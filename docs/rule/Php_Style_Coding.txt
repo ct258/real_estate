@@ -1,0 +1,3 @@
+Style: https://mlocati.github.io/php-cs-fixer-configurator/
+Extension: vscode-php-cs-fixer
+Alt + Shift + F  tự định dạng lại

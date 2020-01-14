@@ -1,0 +1,14 @@
+# Chỉ được phép commit trên nhánh của bạn
+# Bạn có thể tạo nhánh mới, nhưng không được tác động tới branch của người khác
+
+# Cách đặt comment để commit git theo mẫu như sau:
+		<tên người commit>.<họ> <Nội dụng ngắn gọn dưới 25 từ>
+		Update on <dd/mm/yyyy HH:ii 
+		<Các chú thích khác ở đây>
+		VD:
+		commit có nội dung sau: 
+			#nghia.le Begin project
+		Chú thích có nội dung sau:
+
+			Update 12/01/2020 19:20
+			Success create my project 

@@ -1,0 +1,17 @@
+﻿# Không tạo khóa ngoại
+# Comment đầy đủ các trường
+# Sử dụng dấu ' thay cho " trừ trường hợp tạo comment bảng
+# Sử dụng created_at và updated_at mặc định
+# Schema::dropIfExists (không sử dụng)
+# comment cho bảng: DB::statement("ALTER TABLE `user` comment 'This is user'");
+# phpstan sử dụng chuẩn static coding check: https://github.com/nunomaduro/larastan
+
+
+tạo migration theo mẫu:
+php artisan make:migration create_<tên bảng số nhiều>_table
+
+Thực hien cac lenh sau:
+Cai dat: composer install
+Cai key: php artisan key:generate
+Chú ý: tuyệt đối không chạy: composer update, một số code chạy cho version này được nhưng version khác thì kh, chạy lệnh này toàn bộ các gói và cả framework update hết
+

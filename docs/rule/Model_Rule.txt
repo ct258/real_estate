@@ -1,0 +1,8 @@
+Tạo các model có tên là số ít dưới dạng sau:
+php artisan make:model <tên bảng ở số ít>
+
+# Dấu bao chuổi sử dụng ' trừ một số trường hợp đặt biệt thì dùng  " hoặc `
+VD: php artisan make:model ...
+
+# Sau khi tạo xong thì dời model vào thư mục Models và sửa namespace thành namespace App\Models
+
