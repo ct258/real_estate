@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuanuynTable extends Migration
+class CreateQuanhuyenTable extends Migration
 {
     /**
      * Run the migrations.
@@ -26,6 +26,6 @@ class CreateQuanuynTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('quanhuyen');
+        Schema::dropIfExists('quanhuyen');
     }
 }

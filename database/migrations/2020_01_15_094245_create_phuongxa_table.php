@@ -26,6 +26,6 @@ class CreatePhuongxaTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('phuongxa');
+        Schema::dropIfExists('phuongxa');
     }
 }
