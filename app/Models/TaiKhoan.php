@@ -14,8 +14,8 @@ class KhachHang extends Model
 
     protected $fillable = [
         'tk_id',
-        'taikhoan',
-        'matkhau',
+        'tk_taikhoan',
+        'tk_matkhau',
         'remembertoken',
     ];
     public $timestamps = true;
