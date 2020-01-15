@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DuAn extends Model
 {
+    use SoftDeletes;
     protected $table = 'duan';
 
     protected $primaryKey = 'da_id';
@@ -19,7 +21,10 @@ class DuAn extends Model
         'da_diachi',
         'da_trangthai',
         'da_mota',
-        
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
     public $timestamps = true;
+    protected $dates = ['deleted_at'];
 }
