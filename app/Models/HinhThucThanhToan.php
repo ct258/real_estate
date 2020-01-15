@@ -8,15 +8,16 @@ class HinhThucThanhToan extends Model
 {
     protected $table = 'hinhthucthanhtoan';
 
-    protected $primarykey = 'httt_id';
-
-    protected $keytype = 'int';
+    protected $primaryKey = 'httt_id';
+    
+    protected $keyType = 'int';
 
     protected $fillable = [
-        'httt_id',
-        'httt_ten',
+        'httt__id',
+        'httt__ten',
         'httt_mota',
+        
+        
     ];
-
-    public $timestamp = true;
+    public $timestamps = true;
 }
