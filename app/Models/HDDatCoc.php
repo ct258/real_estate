@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class KhachHang extends Model
 {
-    protected $table = 'hdmuaban';
+    protected $table = 'hddatcoc';
 
     protected $primaryKey = 'hdmb_id';
 

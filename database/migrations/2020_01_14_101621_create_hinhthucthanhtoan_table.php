@@ -13,11 +13,11 @@ class CreateHtttTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('httt')) {
-            Schema::create('httt', function (Blueprint $table) {
+        if (!Schema::hasTable('hinhthucthanhtoan')) {
+            Schema::create('hinhthucthanhtoan', function (Blueprint $table) {
                 $table->Increments('httt_id')->comment('id của hình thức thanh toán');
-                $table->string('httt_ten')->comment('Tên hình thức thanh toán');
-                $table->string('httt_mota')->comment('Mô tả');
+                $table->string('httt_ten',50)->comment('Tên hình thức thanh toán');
+                $table->string('httt_mota',100)->comment('Mô tả');
  
                 //log time
                 $table->timestamp('created_at')

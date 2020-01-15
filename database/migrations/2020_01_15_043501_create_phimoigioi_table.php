@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCtbdsTable extends Migration
+class CreatePhimoigioiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateCtbdsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('ctbds')) {
-            Schema::create('ctbds', function (Blueprint $table) {
-                $table->bigIncrements('ctbds_id')->comment('id của bất động sản');
-                $table->string('ctbds_ten', 50)->comment('tên bất động sản');
-               $table->string('ctbds_dientich', 30)->comment('diện tích bất động sản');
-               $table->string('ctbds_gia', 15)->comment('giá bất động sản');
-               $table->string('ctbds_mota')->comment('mô tả bất động sản');
-               $table->string('ctbds_loaidat', 30)->comment('loại đất bất động sản');
-               $table->string('ctbds_diachi', 50)->comment('địa chỉ bất động sản');
-                
+        if (!Schema::hasTable('phimoigioi')) {
+            
+            Schema::create('phimoigioi', function (Blueprint $table) {
+                $table->bigIncrements('pmg_id');
+                $table->string('pmg_gia')->commnet('giá phí môi giới');
+                $table->string('pmg_mota')->comment('mô tả phí môi giới');
 
                 //log time
                 $table->timestamp('created_at')
@@ -38,9 +34,9 @@ class CreateCtbdsTable extends Migration
                 ->comment('ngày xóa tạm');
                 // Setting unique
                 //sdt và cmnd không được trùng
-                
             });
-            DB::statement("ALTER TABLE `ctbds` comment 'Chi tiết bất động sản'");
+
+            DB::statement("ALTER TABLE `phimoigioi` comment 'phí môi giới BĐS'");
         }
     }
 
@@ -51,6 +47,6 @@ class CreateCtbdsTable extends Migration
      */
     public function down()
     {
-        
+        //Schema::dropIfExists('phimoigioi');
     }
 }

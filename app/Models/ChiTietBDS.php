@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ctbds extends Model
 {
-    protected $table = 'ctbds';
+    protected $table = 'chitietbds';
 
     protected $primaryKey = 'ctbds_id';
 
