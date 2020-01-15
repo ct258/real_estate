@@ -4,7 +4,7 @@
 <nav id="sidebar" class="sidebar nav-collapse collapse">
     <ul id="side-nav" class="side-nav">
         <li class="active">
-            <a href="index.html"><i class="fa fa-home"></i> <span class="name">Dự án</span></a>
+            <a href="{{route('duan.index')}}"><i class="fa fa-home"></i> <span class="name">Dự án</span></a>
         </li>
         {{-- <li class="panel ">
             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#side-nav"
@@ -18,4 +18,3 @@
     </ul>
 
 </nav>
-<div class="wrap">

@@ -12,37 +12,37 @@
 <!-- common templates -->
 <script type="text/template" id="settings-template">
     <div class="setting clearfix">
-       <div>Sidebar on the</div>
-       <div id="sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
-           <% onRight = sidebar == 'right'%>
-           <button type="button" data-value="left" class="btn btn-sm btn-default <%= onRight? '' : 'active' %>">Left</button>
-           <button type="button" data-value="right" class="btn btn-sm btn-default <%= onRight? 'active' : '' %>">Right</button>
-       </div>
-   </div>
-   <div class="setting clearfix">
-       <div>Sidebar</div>
-       <div id="display-sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
-           <% display = displaySidebar%>
-           <button type="button" data-value="true" class="btn btn-sm btn-default <%= display? 'active' : '' %>">Show</button>
-           <button type="button" data-value="false" class="btn btn-sm btn-default <%= display? '' : 'active' %>">Hide</button>
-       </div>
-   </div>
+        <div>Sidebar on the</div>
+        <div id="sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
+            <% onRight = sidebar == 'right'%>
+            <button type="button" data-value="left" class="btn btn-sm btn-default <%= onRight? '' : 'active' %>">Left</button>
+            <button type="button" data-value="right" class="btn btn-sm btn-default <%= onRight? 'active' : '' %>">Right</button>
+        </div>
+    </div>
+    <div class="setting clearfix">
+        <div>Sidebar</div>
+        <div id="display-sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
+            <% display = displaySidebar%>
+            <button type="button" data-value="true" class="btn btn-sm btn-default <%= display? 'active' : '' %>">Show</button>
+            <button type="button" data-value="false" class="btn btn-sm btn-default <%= display? '' : 'active' %>">Hide</button>
+        </div>
+    </div>
 </script>
 
 <script type="text/template" id="sidebar-settings-template">
     <% auto = sidebarState == 'auto'%>
-<% if (auto) {%>
-<button type="button"
-        data-value="icons"
-        class="btn-icons btn btn-transparent btn-sm">Icons</button>
-<button type="button"
-        data-value="auto"
-        class="btn-auto btn btn-transparent btn-sm">Auto</button>
-<%} else {%>
-<button type="button"
-        data-value="auto"
-        class="btn btn-transparent btn-sm">Auto</button>
-<% } %>
+    <% if (auto) {%>
+    <button type="button"
+            data-value="icons"
+            class="btn-icons btn btn-transparent btn-sm">Icons</button>
+    <button type="button"
+            data-value="auto"
+            class="btn-auto btn btn-transparent btn-sm">Auto</button>
+    <%} else {%>
+    <button type="button"
+            data-value="auto"
+            class="btn btn-transparent btn-sm">Auto</button>
+    <% } %>
 </script>
 
 <!-- page specific scripts -->
@@ -63,18 +63,18 @@
 <!-- page template -->
 <script type="text/template" id="message-template">
     <div class="sender pull-left">
-            <div class="icon">
-                <img src="{{asset('img/2.png')}}" class="img-circle" alt="">
+                <div class="icon">
+                    <img src="{{asset('img/2.png')}}" class="img-circle" alt="">
+                </div>
+                <div class="time">
+                    just now
+                </div>
             </div>
-            <div class="time">
-                just now
+            <div class="chat-message-body">
+                <span class="arrow"></span>
+                <div class="sender"><a href="#">Tikhon Laninga</a></div>
+                <div class="text">
+                    <%- text %>
+                </div>
             </div>
-        </div>
-        <div class="chat-message-body">
-            <span class="arrow"></span>
-            <div class="sender"><a href="#">Tikhon Laninga</a></div>
-            <div class="text">
-                <%- text %>
-            </div>
-        </div>
-    </script>
+        </script>
