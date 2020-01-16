@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class KhachHang extends Model
 {
@@ -17,6 +18,10 @@ class KhachHang extends Model
     'hddc_ma',
     'hddc_tiencoc',
     'hddc_ngaydc',
+    'created_at',
+    'updated_at',
+    'deleted_at',
     ];
     public $timestamps = true;
+    protected $dates = ['deleted_at'];
 }

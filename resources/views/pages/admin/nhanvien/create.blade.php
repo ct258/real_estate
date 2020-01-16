@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-<h2 class="page-title">Thêm dự án <br><br></h2>
-<form action="{{route('duan.create.submit')}}" method="post">
+<h2 class="page-title">Thêm nhân viên <br><br></h2>
+<form action="{{route('nhanvien.create.submit')}}" method="post">
     @csrf
     <div class="row">
 
@@ -10,25 +10,30 @@
                 <div class="container-fluid">
                     <table class="table">
                         <tr>
-                            <td><label>Tên dự án</label><input type="text" name="name" size="100%" autofocus
+                            <td><label>Mã nhân viên</label><input type="text" name="nv_ma" size="100%" autofocus
+                                    class="form-control input-transparent"><br></td>
+                        </tr>
+                        <tr>
+                            <td><label>Tên nhân viên</label><input type="text" name="nv_ten" size="100%" autofocus
                                     class="form-control input-transparent"><br></td>
                         </tr>
 
                         <tr>
-                            <td><label>Địa chỉ</label><input type="text" name="address"
+                            <td><label>Ngày sinh</label><input type="date" name="nv_ngaysinh"
                                     class="form-control input-transparent"><br></td>
                         </tr>
 
                         <tr>
-                            <td><label>Mô tả</label><textarea name="description" cols="30" rows="5"
-                                    class="form-control input-transparent"></textarea></td>
+                            <td><label>Giới tính</label><br>
+                                <input type="radio" name="nv_gioitinh" id="" value="1">Nam <br>
+                                <input type="radio" name="nv_gioitinh" id="" value="2">Nữ
+                            </td>
                         </tr>
 
 
 
 
                     </table>
-                    {{-- <button type="submit" class="btn btn-success btn-block">Lưu</button></td> --}}
                 </div>
             </section>
         </div>
@@ -36,18 +41,14 @@
             <section class="widget">
                 <table class="table">
                     <tr>
-                        <td><label>Giá dự án</label><input type="number" name="price" min="0" step="500"
+                        <td><label>SDT</label><input type="text" name="nv_sdt" min="0" step="500"
                                 class="form-control input-transparent"><br>
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Diện tích</label><input type="text" name="acreage"
+                        <td><label>Địa chỉ</label><input type="text" name="nv_diachi"
                                 class="form-control input-transparent"><br>
                         </td>
-                    </tr>
-                    <tr>
-                        <td><label>Trạng thái</label><input type="text" name="status"
-                                class="form-control input-transparent"><br></td>
                     </tr>
                 </table>
             </section>
@@ -60,7 +61,7 @@
 
             </div>
 
-        </div><a href="{{route('duan.index')}}" class="btn btn-default">Trở lại</a>
+        </div><a href="{{route('nhanvien.index')}}" class="btn btn-default">Trở lại</a>
     </div>
 </form>
 @endsection
