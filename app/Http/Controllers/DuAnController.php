@@ -38,6 +38,7 @@ class DuAnController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         DuAn::insert([
             'da_ten' => $request->name,
             'da_gia' => $request->price,
@@ -86,6 +87,7 @@ class DuAnController extends Controller
     public function update(Request $request, $duan_id)
     {
         // dd($request);
+        // DuAn::select('')->where('ádasd','>','ád')->get();
         DuAn::where('da_id', $duan_id)
         ->update([
             'da_ten' => $request->name,
@@ -109,10 +111,14 @@ class DuAnController extends Controller
     public function destroy($duan_id)
     {
         DuAn::where('da_id', $duan_id)->delete();
+
+        return redirect('duan')->with('success', 'Đã xóa thành công dự án');
     }
 
     public function restore($duan_id)
     {
         DuAn::where('da_id', $duan_id)->restore();
+
+        return redirect('duan')->with('success', 'Đã khôi phục thành công dự án');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class CongTy extends Model
 {
     
@@ -20,8 +20,12 @@ class CongTy extends Model
             'ct_email',
             'ct_fax',
             'ct_sdt',
+            'created_at',
+            'updated_at',
+            'deleted_at',
             
         ];
         public $timestamps = true;
+        protected $dates = ['deleted_at'];
     
 }

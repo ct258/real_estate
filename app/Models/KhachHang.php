@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class KhachHang extends Model
 {
     protected $table = 'khachhang';
@@ -26,4 +26,5 @@ class KhachHang extends Model
         'deleted_at',
     ];
     public $timestamps = true;
+    protected $dates = ['deleted_at'];
 }

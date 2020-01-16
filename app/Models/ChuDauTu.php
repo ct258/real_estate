@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class ChuDauTu extends Model
 {
     protected $table = 'chudautu';
@@ -19,8 +19,12 @@ class ChuDauTu extends Model
         'cdt_email',
         'cdt_sdt',
         'cdt_tongthauECP',
+        'created_at',
+        'updated_at',
+        'deleted_at',
         
         
     ];
     public $timestamps = true;
+    protected $dates = ['deleted_at'];
 }

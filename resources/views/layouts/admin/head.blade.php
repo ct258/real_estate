@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Light Blue - Responsive Admin Dashboard Template</title>
+    <title>CT258 - PTHTTMĐT</title>
 
     <link href="{{asset('css/application.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">

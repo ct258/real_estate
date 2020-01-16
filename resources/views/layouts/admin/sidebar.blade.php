@@ -1,5 +1,5 @@
 <div class="logo">
-    <h4><a href="index.html">Light <strong>Blue</strong></a></h4>
+    <h4><a href="{{route('duan.index')}}">Light <strong>Blue</strong></a></h4>
 </div>
 <nav id="sidebar" class="sidebar nav-collapse collapse">
     <ul id="side-nav" class="side-nav">

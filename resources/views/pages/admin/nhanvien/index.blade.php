@@ -13,9 +13,9 @@
         </span>
     </div>
 </div>
-@endif=
-<h2 class="page-title">Dự án <br><br></h2>
-<small><a href="{{route('duan.create')}}" class="tst4 btn btn-success">Thêm</a></small><br><br>
+@endif
+<h2 class="page-title">Nhân viên <br><br></h2>
+<small><a href="{{route('nhanvien.create')}}" class="tst4 btn btn-success">Thêm</a></small><br><br>
 <div class="row">
     <div class="col-lg-12">
         <section class="widget">
@@ -24,34 +24,41 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Tên dự án</th>
-                            <th>Giá trị</th>
+                            <th>Mã nhân viên</th>
+                            <th>Hình đại diện</th>
+                            <th>Tên nhân viên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>SDT</th>
                             <th>Địa chỉ</th>
-                            <th>Diện tích</th>
-                            <th>Trạng thái</th>
+                            <th>Email</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($duan as $item)
+                        @foreach ($nhanvien as $item)
                         <tr>
-                            <td>{{$item->da_id}}</td>
-                            <td>{{$item->da_ten}}</td>
-                            <td>{{$item->da_gia}}</td>
-                            <td>{{$item->da_diachi}}</td>
-                            <td>{{$item->da_dientich}}</td>
-                            <td>{{$item->da_trangthai}}</td>
+                            <td>{{$item->nv_id}}</td>
+                            <td>{{$item->nv_ma}}</td>
+                            <td></td>
+                            <td>{{$item->nv_ten}}</td>
+                            <td>{{$item->nv_ngaysinh}}</td>
+                            <td>{{$item->nv_gioitinh}}</td>
+                            <td>{{$item->nv_sdt}}</td>
+                            <td>{{$item->nv_diachi}}</td>
+                            <td></td>
                             <td>
-                                <form action="{{ route('duan.destroy', $item->da_id) }}" method="post"
+                                <form action="{{ route('nhanvien.destroy', $item->nv_id) }}" method="post"
                                     class="delete_form">
                                     @csrf
-                                    <a href="{{route('duan.show',$item->da_id)}}">&nbsp;&nbsp;
+                                    <a href="{{route('nhanvien.show',$item->nv_id)}}">&nbsp;&nbsp;
                                         <i class="fa fa-info"></i></a>
-                                    <a href="{{route('duan.edit',$item->da_id)}}">
+                                    <a href="{{route('nhanvien.edit',$item->nv_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span></a>
                                     &nbsp;
                                     &nbsp;
                                     &nbsp;
+
                                     <button type="submit"
                                         style="border: none;background-color: Transparent;color: red;">
                                         <span class="glyphicon glyphicon-remove"></span>
