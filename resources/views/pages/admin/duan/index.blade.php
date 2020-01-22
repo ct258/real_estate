@@ -17,6 +17,9 @@
 <h2 class="page-title">Dự án <br><br></h2>
 
 
+
+
+
 <small><a href="{{route('duan.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
         @lang('real_estate')</a></small><br><br>
 <div class="row">
@@ -70,4 +73,20 @@
         </section>
     </div>
 </div>
+<section class="widget">
+    <table>
+        <tr>
+            <td>số người đang online: </td>
+            <td>{{ $query_result_person[0]}}</td>
+        </tr>
+        <tr>
+            <td>Số người online hôm nay: </td>
+            <td>{{ $query_result_person[1]}}</td>
+        </tr>
+        <tr>
+            <td>Lịch sử tổng số lượt truy cập: </td>
+            <td>{{ $query_result_person[2]}}</td>
+        </tr>
+    </table>
+</section>
 @endsection
