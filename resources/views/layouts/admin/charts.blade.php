@@ -17,7 +17,7 @@
                         <ul id="messages-menu" class="dropdown-menu messages" role="menu">
                             <li role="presentation">
                                 <a href="#" class="message">
-                                    <img src="img/1.png" alt="">
+                                    <img src="{{asset('img/1.png')}}" alt="">
                                     <div class="details">
                                         <div class="sender">Jane Hew</div>
                                         <div class="text">
@@ -28,7 +28,7 @@
                             </li>
                             <li role="presentation">
                                 <a href="#" class="message">
-                                    <img src="img/2.png" alt="">
+                                    <img src="{{asset('img/2.png')}}" alt="">
                                     <div class="details">
                                         <div class="sender">Alies Rumiancaŭ</div>
                                         <div class="text">
@@ -39,7 +39,7 @@
                             </li>
                             <li role="presentation">
                                 <a href="#" class="message">
-                                    <img src="img/3.png" alt="">
+                                    <img src="{{asset('img/3.png')}}" alt="">
                                     <div class="details">
                                         <div class="sender">Michał Rumiancaŭ</div>
                                         <div class="text">

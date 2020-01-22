@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('change-language/{language}', 'HomeController@changeLanguage')
+        ->name('user.change-language');
+
+
 Route::group(['prefix' => 'duan'], function () {
     //index
     Route::get('/', 'DuAnController@index')->name('duan.index');
@@ -62,4 +68,4 @@ Route::group(['prefix' => 'khachhang'], function () {
     // xóa mềm
     Route::post('/destroy/{khachhang_id}', 'KhachHangController@destroy')->name('khachhang.destroy');
 });
-
+});

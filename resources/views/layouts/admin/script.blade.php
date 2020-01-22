@@ -1,3 +1,4 @@
+@yield('script')
 <!-- common libraries. required for every page-->
 <script src="{{asset('lib/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('lib/jquery-pjax/jquery.pjax.js')}}"></script>
@@ -5,6 +6,7 @@
 <script src="{{asset('lib/widgster/widgster.js')}}"></script>
 <script src="{{asset('lib/underscore/underscore.js')}}"></script>
 
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 <!-- common application js -->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/settings.js')}}"></script>
@@ -63,20 +65,19 @@
 <!-- page template -->
 <script type="text/template" id="message-template">
     <div class="sender pull-left">
-                <div class="icon">
-                    <img src="{{asset('img/2.png')}}" class="img-circle" alt="">
-                </div>
-                <div class="time">
-                    just now
-                </div>
-            </div>
-            <div class="chat-message-body">
-                <span class="arrow"></span>
-                <div class="sender"><a href="#">Tikhon Laninga</a></div>
-                <div class="text">
-                    <%- text %>
-                </div>
-            </div>
-        </script>
-
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <div class="icon">
+            <img src="{{asset('img/2.png')}}" class="img-circle" alt="">
+        </div>
+        <div class="time">
+            just now
+        </div>
+    </div>          
+    <div class="chat-message-body">
+        <span class="arrow"></span>
+        <div class="sender"><a href="#">Tikhon Laninga</a></div>
+        <div class="text">
+            <%- text %>
+        </div>
+    </div>
+</script>
+@yield('script')
