@@ -13,9 +13,12 @@
         </span>
     </div>
 </div>
-@endif=
+@endif
 <h2 class="page-title">Dự án <br><br></h2>
-<small><a href="{{route('duan.create')}}" class="tst4 btn btn-success">Thêm</a></small><br><br>
+
+
+<small><a href="{{route('duan.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
+        @lang('real_estate')</a></small><br><br>
 <div class="row">
     <div class="col-lg-12">
         <section class="widget">

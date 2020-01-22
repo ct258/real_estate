@@ -1,0 +1,10 @@
+{
+    "Action": "Action",
+    "Hello": "Hello.",
+    "Create": "Create",
+    "Create, :name": "Create :name",
+    "real_estate": "Real Estate",
+    "name": "name",
+    "value": "Value",
+    "address": "Address"
+}
