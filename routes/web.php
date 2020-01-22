@@ -47,6 +47,19 @@ Route::group(['prefix' => 'nhanvien'], function () {
     Route::post('/destroy/{nhanvien_id}', 'NhanVienController@destroy')->name('nhanvien.destroy');
 });
 
-Route::get('/a', function () {
-    return view('layouts.admin.tables');
+// khach hang
+Route::group(['prefix' => 'khachhang'], function () {
+    //index
+    Route::get('/', 'KhachHangController@index')->name('khachhang.index');
+    // thêm
+    Route::get('/create', 'KhachHangController@create')->name('khachhang.create');
+    Route::post('/create', 'KhachHangController@store')->name('khachhang.create.submit');
+    // xem chi tiết
+    Route::get('/show/{khachhang_id}', 'KhachHangController@show')->name('khachhang.show');
+    // sửa
+    Route::get('/edit/{khachhang_id}', 'KhachHangController@edit')->name('khachhang.edit');
+    Route::post('/edit/submit/{khachhang_id}', 'KhachHangController@update')->name('khachhang/update');
+    // xóa mềm
+    Route::post('/destroy/{khachhang_id}', 'KhachHangController@destroy')->name('khachhang.destroy');
 });
+

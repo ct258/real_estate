@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class KhachHang extends Model
+class HDDatCoc extends Model
 {
     protected $table = 'hddatcoc';
 
-    protected $primaryKey = 'hdmb_id';
+    protected $primaryKey = 'hdhddatcoc_id';
 
     protected $keyType = 'int';
 
