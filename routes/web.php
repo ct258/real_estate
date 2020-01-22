@@ -24,6 +24,12 @@ Route::group(['prefix' => 'duan'], function () {
     Route::post('/edit/submit/{duan_id}', 'DuAnController@update')->name('duan/update');
     // xóa mềm
     Route::post('/destroy/{duan_id}', 'DuAnController@destroy')->name('duan.destroy');
+
+    //DOM lấy dữ liệu
+    Route::get('/quanhuyen/{ttp_id}', 'DuAnController@get_quanhuyen')->name('duan.quanhuyen');
+    Route::get('/phuongxa/{ttp_id}/{qh_id}', 'DuAnController@get_phuongxa')->name('duan.phuongxa');
+    Route::get('/duongpho/{qh_id}', 'DuAnController@get_duongpho1')->name('duan.duongpho1');
+    Route::get('/duongpho/{ttp_id}/{qh_id}', 'DuAnController@get_duongpho2')->name('duan.duongpho2');
 });
 
 Route::group(['prefix' => 'nhanvien'], function () {
@@ -55,11 +61,5 @@ Route::group(['prefix' => 'khachhang'], function () {
     Route::post('/edit/submit/{khachhang_id}', 'KhachHangController@update')->name('khachhang/update');
     // xóa mềm
     Route::post('/destroy/{khachhang_id}', 'KhachHangController@destroy')->name('khachhang.destroy');
-});
-
-
-
-Route::get('/a', function () {
-    return view('layouts.admin.tables');
 });
 
