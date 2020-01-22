@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DuAn;
+use App\Models\TinhThanhPho;
+use App\Models\QuanHuyen;
+use App\Models\PhuongXa;
+use App\Models\DuongPho;
 
 class DuAnController extends Controller
 {
@@ -26,7 +30,10 @@ class DuAnController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.duan.create');
+        $ttp = TinhThanhPho::select('ttp_id', 'ttp_ten')->orderBy('ttp_ten', 'asc')->get();
+        $qh = QuanHuyen::select('qh_id', 'qh_ten')->orderBy('ttp_id', 'asc')->get();
+
+        return view('pages.admin.duan.create', compact('ttp', 'qh'));
     }
 
     /**
@@ -38,7 +45,6 @@ class DuAnController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         DuAn::insert([
             'da_ten' => $request->name,
             'da_gia' => $request->price,
@@ -50,6 +56,70 @@ class DuAnController extends Controller
 
         return redirect('duan')->with('success', 'Đã thêm thành công dự án');
     }
+
+    public function visits()
+    {
+        return visits($this);
+    }
+
+    public function get_quanhuyen($ttp_id)
+    {
+        $quanhuyen = QuanHuyen::select('qh_id', 'qh_ten')->where('ttp_id', $ttp_id)->orderBy('qh_ten', 'asc')->get();
+
+        echo "<option value=''>-- Chọn Quận/Huyện --</option>";
+
+        foreach ($quanhuyen as $item) {
+            echo "<option value='".$item->qh_id."'>".$item->qh_ten.'</option>';
+        }
+    }
+
+    public function get_phuongxa($ttp_id, $qh_id)
+    {
+        $phuongxa = PhuongXa::select('px_id', 'px_ten')
+        ->where([
+            ['ttp_id', $ttp_id],
+            ['qh_id', $qh_id], ])
+        ->orderBy('px_ten', 'asc')->get();
+        echo "<option value=''>-- Chọn Phường/Xã --</option>";
+        foreach ($phuongxa as $item) {
+            echo "<option value='".$item->px_id."'>".$item->px_ten.'</option>';
+        }
+    }
+
+    public function get_duongpho1($ttp_id)
+    {
+        $duongpho = DuongPho::select('dp_id', 'dp_ten')
+        ->where('ttp_id', $ttp_id)
+        ->orderBy('dp_ten', 'asc')->get();
+
+        echo "<option value=''>-- Chọn Đường/Phố --</option>";
+
+        foreach ($duongpho as $item) {
+            echo "<option value='".$item->dp_id."'>".$item->dp_ten.'</option>';
+        }
+    }
+
+    public function get_duongpho2($ttp_id, $qh_id)
+    {
+        $duongpho = DuongPho::select('dp_id', 'dp_ten')
+        ->where([
+            ['ttp_id', $ttp_id],
+            ['qh_id', $qh_id], ])
+        ->orderBy('dp_ten', 'asc')->get();
+
+        echo "<option value=''>-- Chọn Đường/Phố --</option>";
+
+        foreach ($duongpho as $item) {
+            echo "<option value='".$item->dp_id."'>".$item->dp_ten.'</option>';
+        }
+    }
+
+    // public function reset_quanhuyen($ttp_id)
+    // {
+    //     if ($ttp_id == 1) {
+    //         echo "<option value=''>- Chọn Đường -</option>";
+    //     }
+    // }
 
     /**
      * Display the specified resource.

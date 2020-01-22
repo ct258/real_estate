@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuanHuyen extends Model
+class DuongPho extends Model
 {
-    protected $table = 'quanhuyen';
+    protected $table = 'duongpho';
 
-    protected $primaryKey = 'qh_id';
+    protected $primaryKey = 'dp_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'qh_id',
-        'qh_ten',
-        'qh_ghichu',
+        'dp_id',
+        'dp_ten',
+        'dp_ghichu',
         'ttq_id',
+        'qh_id',
         'created_at',
         'updated_at',
         'deleted_at',
