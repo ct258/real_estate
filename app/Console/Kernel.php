@@ -13,19 +13,19 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        //backup dữ liệu vào 7h sáng thứ 2 mỗi tuần
+        $schedule->command('backup:run')->weekly()->mondays()->at('07:00');
     }
 
     /**
