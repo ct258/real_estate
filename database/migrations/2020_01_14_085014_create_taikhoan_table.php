@@ -16,10 +16,10 @@ class CreateTaikhoanTable extends Migration
         if (!Schema::hasTable('taikhoan')) {
             Schema::create('taikhoan', function (Blueprint $table) {
                 $table->Increments('tk_id')->comment('id của tài khoản');
-                $table->string('tk_taikhoan')->comment('tên tài khoản');
-                $table->string('tk_matkhau')->comment('mật khẩu');
-                $table->string('tk_remembertoken')->comment('Ghi nho đăng nhập');
- 
+                $table->string('username')->comment('tên tài khoản');
+                $table->string('password')->comment('mật khẩu');
+                $table->string('remember_token')->nullable()->comment('Ghi nhớ đăng nhập');
+
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -33,9 +33,8 @@ class CreateTaikhoanTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
                 // Setting unique
-                
-                $table->unique(['tk_taikhoan', 'tk_matkhau']);
 
+                $table->unique(['tk_taikhoan', 'tk_matkhau']);
             });
             DB::statement("ALTER TABLE `taikhoan` comment 'Tài khoản'");
         }

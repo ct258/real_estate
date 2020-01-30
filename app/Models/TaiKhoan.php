@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-class TaiKhoan extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class TaiKhoan extends Authenticatable
 {
+    use Notifiable;
     protected $table = 'taikhoan';
 
     protected $primaryKey = 'tk_id';
@@ -14,13 +16,17 @@ class TaiKhoan extends Model
 
     protected $fillable = [
         'tk_id',
-        'tk_taikhoan',
-        'tk_matkhau',
-        'remembertoken',
+        'username',
+        'password',
+        'remember_token',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     public $timestamps = true;
     protected $dates = ['deleted_at'];
 }
