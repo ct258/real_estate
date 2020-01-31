@@ -18,7 +18,7 @@ class CreateTaikhoanTable extends Migration
                 $table->Increments('tk_id')->comment('id của tài khoản');
                 $table->string('username')->comment('tên tài khoản');
                 $table->string('password')->comment('mật khẩu');
-                $table->string('remember_token')->nullable()->comment('Ghi nhớ đăng nhập');
+                $table->longText('remember_token')->nullable()->comment('Ghi nhớ đăng nhập');
 
                 //log time
                 $table->timestamp('created_at')

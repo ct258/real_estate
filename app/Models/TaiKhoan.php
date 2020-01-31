@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class TaiKhoan extends Authenticatable
+class TaiKhoan extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     protected $table = 'taikhoan';
@@ -29,4 +30,19 @@ class TaiKhoan extends Authenticatable
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

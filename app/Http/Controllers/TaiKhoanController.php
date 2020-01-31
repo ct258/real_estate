@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TaiKhoan;
+use Tymon\JWTAuth\Facades\JWTAuth;
 //user model can kiem tra
 use Auth; //use thư viện auth
 
@@ -21,6 +23,7 @@ class TaiKhoanController extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ];
+
         if ($request->remember == trans('remember.Remember Me')) {
             $remember = true;
         } else {
@@ -29,6 +32,12 @@ class TaiKhoanController extends Controller
         //kiểm tra trường remember có được chọn hay không
 
         if (Auth::guard('taikhoan')->attempt($arr)) {
+            // dd(Auth::guard('taikhoan')->user()->tk_id);
+            $JWT = JWTAuth::fromUser(\Auth::guard('taikhoan')->user());
+            TaiKhoan::where('tk_id', \Auth::guard('taikhoan')->user()->tk_id)->update([
+                'remember_token' => $JWT,
+            ]);
+
             return redirect('/duan');
         //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
