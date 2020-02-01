@@ -25,10 +25,19 @@
                     <i class="glyphicon glyphicon-cog"></i>
                 </a>
             </li>
-            <li class="hidden-xs dropdown">
+            <li class="hidden-xs dropdown ">
                 <a href="#" title="Account" id="account" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i>
                 </a>
+                <ul class="dropdown-menu dropdown-user animated flipInY in"><a href="#" title="Account" id="account"
+                        class="dropdown-toggle" data-toggle="dropdown">
+                    </a>
+                    <li class="">
+                        <a href="{{route('logout')}}">Đăng xuất</a>
+                    </li>
+                </ul>
+
+
 
             </li>
             <li class="visible-xs">

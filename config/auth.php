@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -46,6 +45,15 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        //đây là đoạn mình thêm vào dùng để xác thực
+        'taikhoan' => [
+            'driver' => 'session',
+            'provider' => 'taikhoan',
+        ],
+        'taikhoan-api' => [
+            'driver' => 'token',
+            'provider' => 'taikhoan',
+        ],
     ],
 
     /*
@@ -69,6 +77,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        //truy suất dữ liệu cho bảng
+        'taikhoan' => [
+            'driver' => 'eloquent',
+            'model' => App\Moedls\TaiKhoan::class,
         ],
 
         // 'users' => [
@@ -98,6 +111,10 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        'taikhoan' => [
+            'provider' => 'taikhoan',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
     ],
-
 ];
