@@ -45,6 +45,8 @@ class DuAnController extends Controller
      */
     public function store(Request $request)
     {
+        // trả lại trang trước không mất input
+        // redirect()->back()->withInput();
         DuAn::insert([
             'da_ten' => $request->name,
             'da_gia' => $request->price,
@@ -114,13 +116,6 @@ class DuAnController extends Controller
         }
     }
 
-    // public function reset_quanhuyen($ttp_id)
-    // {
-    //     if ($ttp_id == 1) {
-    //         echo "<option value=''>- Chọn Đường -</option>";
-    //     }
-    // }
-
     /**
      * Display the specified resource.
      *
@@ -156,8 +151,6 @@ class DuAnController extends Controller
      */
     public function update(Request $request, $duan_id)
     {
-        // dd($request);
-        // DuAn::select('')->where('ádasd','>','ád')->get();
         DuAn::where('da_id', $duan_id)
         ->update([
             'da_ten' => $request->name,
@@ -185,6 +178,7 @@ class DuAnController extends Controller
         return redirect('duan')->with('success', 'Đã xóa thành công dự án');
     }
 
+    //xem các dự án đã xóa
     public function index_trash()
     {
         $daxoa = DuAn::withTrashed()->get();
@@ -192,6 +186,7 @@ class DuAnController extends Controller
         return view('pages.admin.daxoa.duan', compact('daxoa'));
     }
 
+    //khôi phục lại dự án đó
     public function restore($duan_id)
     {
         DuAn::where('da_id', $duan_id)->restore();
