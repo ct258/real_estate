@@ -4,21 +4,29 @@
 <nav id="sidebar" class="sidebar nav-collapse collapse">
     <ul id="side-nav" class="side-nav">
         <li class="active">
-            <a href="{{route('duan.index')}}"><i class="fa fa-home"></i> <span class="name">Dự án</span></a>
+            <a href="{{route('duan.index')}}"><span class="fa fa-home" style="font-size: 17px;"></span> <span>Dự
+                    án</span></a>
         </li>
         <li class="active">
-            <a href="{{route('khachhang.index')}}"><i class='fas fa-address-card' style='font-size:14px'></i> <span class="name">Khách hàng</span></a>
+            <a href="{{route('khachhang.index')}}">
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="name">Khách hàng</span></a>
+        </li>
+        <li class="panel ">
+            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#side-nav"
+                href="#elements-collapse">
+                <span class="glyphicon glyphicon-trash"></span>
+                <span class="name">Đã xóa</span>
+            </a>
+            <ul id="elements-collapse" class="panel-collapse collapse ">
+                <li class="">
+                    <a href="{{route('daxoa.duan')}}">
+                        <span class="fa fa-home" style="font-size: 17px;"></span> Dự án
+                    </a>
+                </li>
+            </ul>
         </li>
 
-        {{-- <li class="panel ">
-            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#side-nav"
-                href="#elements-collapse"><i class="fa fa-magic"></i> <span class="name">Elements</span></a>
-            <ul id="elements-collapse" class="panel-collapse collapse ">
-                <li class=""><a href="charts.html">Charts</a></li>
-                <li class=""><a href="icons.html">Icons</a></li>
-                <li class=""><a href="maps.html" data-no-pjax>Maps</a></li>
-            </ul>
-        </li> --}}
     </ul>
 
 </nav>

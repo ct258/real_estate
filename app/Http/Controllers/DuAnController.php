@@ -8,7 +8,6 @@ use App\Models\TinhThanhPho;
 use App\Models\QuanHuyen;
 use App\Models\PhuongXa;
 use App\Models\DuongPho;
-use Auth;
 
 class DuAnController extends Controller
 {
@@ -19,7 +18,6 @@ class DuAnController extends Controller
      */
     public function index()
     {
-        // dd(Auth::guard('taikhoan')->user());
         $duan = DuAn::all();
 
         return view('pages.admin.duan.index', compact('duan'));
@@ -187,9 +185,17 @@ class DuAnController extends Controller
         return redirect('duan')->with('success', 'Đã xóa thành công dự án');
     }
 
+    public function index_trash()
+    {
+        $daxoa = DuAn::withTrashed()->get();
+
+        return view('pages.admin.daxoa.duan', compact('daxoa'));
+    }
+
     public function restore($duan_id)
     {
         DuAn::where('da_id', $duan_id)->restore();
+        //xóa vĩnh viên forceDelete()
 
         return redirect('duan')->with('success', 'Đã khôi phục thành công dự án');
     }
