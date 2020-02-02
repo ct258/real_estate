@@ -8,6 +8,7 @@ use App\Models\TinhThanhPho;
 use App\Models\QuanHuyen;
 use App\Models\PhuongXa;
 use App\Models\DuongPho;
+use Carbon\Carbon;
 
 class DuAnController extends Controller
 {
@@ -18,6 +19,8 @@ class DuAnController extends Controller
      */
     public function index()
     {
+        $mytime = Carbon::now();
+        echo $mytime->toDateTimeString();
         $duan = DuAn::all();
 
         return view('pages.admin.duan.index', compact('duan'));
