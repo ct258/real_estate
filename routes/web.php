@@ -14,9 +14,9 @@
 // Route::group(['middleware' => 'web'], function () {
     // Route::get('/dangnhap', 'TaiKhoanController@getLogin')->name('getLogin');
 
-Route::get('/dangnhap', function () {
-    return view('auth.login');
-})->name('getLogin');
+// Route::get('/dangnhap', function () {
+//     return view('auth.login');
+// })->name('getLogin');
     Route::post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'TaiKhoanController@postLogin']);
     Route::get('/logout', 'TaiKhoanController@logout')->name('logout');
     Route::get('bando', function () {
