@@ -1,0 +1,12 @@
+tạo lại migrate
+php artisan migrate:fresh
+lệnh seed
+php artisan db:seed 
+php artisan db:seed --class=... (tên seeder)
+tài khoản
+username: admin
+password: admin
+
+nếu bị lỗi login thì đóng comment Route::group(['middleware' => 'checklogin'], function () {
+
+cuối file web.php có các view giao diện user, phần comment là code mẫu của ngta, còn include là để bạn xem trang đó trông như thế nào, khi nào code thì bỏ phần include đó đi
