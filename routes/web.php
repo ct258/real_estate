@@ -16,7 +16,7 @@
 
 Route::get('/dangnhap', function () {
     return view('auth.login');
-    })->name('getLogin');
+})->name('getLogin');
     Route::post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'TaiKhoanController@postLogin']);
     Route::get('/logout', 'TaiKhoanController@logout')->name('logout');
     Route::get('bando', function () {
@@ -99,3 +99,25 @@ Route::get('/dangnhap', function () {
         // });
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('user', function () {
+    return view('pages.user.index');
+});
+Route::get('list', function () {
+    return view('pages.user.feature.list');
+});
+Route::get('single_blog', function () {
+    return view('pages.user.feature.single_blog');
+});
+Route::get('blog', function () {
+    return view('pages.user.feature.blog');
+});
+Route::get('about', function () {
+    return view('pages.user.feature.about');
+});
+Route::get('category', function () {
+    return view('pages.user.feature.categories');
+});
+Route::get('contact', function () {
+    return view('pages.user.feature.contact');
+});
