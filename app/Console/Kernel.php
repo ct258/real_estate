@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        // 'App\Console\Commands\Backup',
+        Commands\DemoCron::class,
     ];
 
     /**
@@ -25,7 +27,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //backup dữ liệu vào 7h sáng thứ 2 mỗi tuần
-        $schedule->command('backup:run')->weekly()->mondays()->at('07:00');
+        // $schedule->command('backupcommand')->everyMinute();
+        // $schedule->command('demo:cron')
+        // ->everyMinute();
+        $schedule->command('backup:run')->timezone('Asia/Ho_Chi_Minh')->everyMinute();
+        // $schedule->command('backup:run')->weekly()->mondays()->at('07:00');
     }
 
     /**
