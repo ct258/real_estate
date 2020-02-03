@@ -29,7 +29,7 @@
 
 
 
-<small><a href="{{route('duan.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
+<small><a href="{{route('batdongsan.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
         @lang('real_estate')</a></small><br><br>
 <div class="row">
     <div class="col-lg-12">
@@ -48,21 +48,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($duan as $item)
+                        @foreach ($bds as $item)
                         <tr>
-                            <td>{{$item->da_id}}</td>
-                            <td>{{$item->da_ten}}</td>
-                            <td>{{$item->da_gia}}</td>
-                            <td>{{$item->da_diachi}}</td>
-                            <td>{{$item->da_dientich}}</td>
-                            <td>{{$item->da_trangthai}}</td>
+                            <td>{{$item->bds_id}}</td>
+                            <td>{{$item->bds_ten}}</td>
+                            <td>{{$item->bds_gia}}</td>
+                            <td>{{$item->bds_diachi}}</td>
+                            <td>{{$item->bds_dientich}}</td>
+                            <td>{{$item->bds_trangthai}}</td>
                             <td>
-                                <form action="{{ route('duan.destroy', $item->da_id) }}" method="post"
+                                <form action="{{ route('batdongsan.destroy', $item->bds_id) }}" method="post"
                                     class="delete_form">
                                     @csrf
-                                    <a href="{{route('duan.show',$item->da_id)}}">&nbsp;&nbsp;
+                                    <a href="{{route('batdongsan.show',$item->bds_id)}}">&nbsp;&nbsp;
                                         <i class="fa fa-info"></i></a>
-                                    <a href="{{route('duan.edit',$item->da_id)}}">
+                                    <a href="{{route('batdongsan.edit',$item->bds_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span></a>
                                     &nbsp;
                                     &nbsp;

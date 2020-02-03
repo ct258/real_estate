@@ -3,24 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DuAn extends Model
+class BatDongSan extends Model
 {
-    use SoftDeletes;
-    protected $table = 'duan';
+    protected $table = 'batdongsan';
 
-    protected $primaryKey = 'da_id';
+    protected $primaryKey = 'bds_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'da_id',
-        'da_ten',
-        'da_gia',
-        'da_diachi',
-        'da_trangthai',
-        'da_mota',
+        'bds_id',
+        'loaibds_id',
+        'bds_ten',
+        'bds_dientich',
+        'bds_gia',
+        'bds_mota',
+        'bds_loaidat',
+        'bds_diachi',
         'created_at',
         'updated_at',
         'deleted_at',

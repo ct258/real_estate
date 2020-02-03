@@ -1,11 +1,11 @@
 <div class="logo">
-    <h4><a href="{{route('duan.index')}}">Light <strong>Blue</strong></a></h4>
+    <h4><a href="{{route('batdongsan.index')}}">Light <strong>Blue</strong></a></h4>
 </div>
 <nav id="sidebar" class="sidebar nav-collapse collapse">
     <ul id="side-nav" class="side-nav">
         <li class="active">
-            <a href="{{route('duan.index')}}"><span class="fa fa-home" style="font-size: 17px;"></span> <span>Dự
-                    án</span></a>
+            <a href="{{route('batdongsan.index')}}"><span class="fa fa-home" style="font-size: 17px;"></span> <span>Bất
+                    động sản</span></a>
         </li>
         <li class="active">
             <a href="{{route('khachhang.index')}}">
@@ -20,8 +20,8 @@
             </a>
             <ul id="elements-collapse" class="panel-collapse collapse ">
                 <li class="">
-                    <a href="{{route('daxoa.duan')}}">
-                        <span class="fa fa-home" style="font-size: 17px;"></span> Dự án
+                    <a href="{{route('daxoa.batdongsan')}}">
+                        <span class="fa fa-home" style="font-size: 17px;"></span> Bất động sản
                     </a>
                 </li>
             </ul>

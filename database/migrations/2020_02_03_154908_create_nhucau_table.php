@@ -4,24 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChitietbdsTable extends Migration
+class CreateNhucauTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if(!Schema::hasTable('chitietbds')){
-
-            Schema::create('chitietbds', function (Blueprint $table) {
-                $table->bigIncrements('ctbsd_id');
-                $table->string('ctbsd_ten', 100)->comment('tên của BĐS');
-                $table->string('ctbsd_gia', 50)->comment('giá BĐS');
-                $table->string('ctbsd_dientich',20)->comment('diện tích BĐS');
-                $table->string('ctbsd_diachi', 20)->comment('địa chỉ BĐS');
-                $table->string('ctbsd_loaidat',20)->comment('loại đất BĐS');
+        if (!Schema::hasTable('nhucau')) {
+            Schema::create('nhucau', function (Blueprint $table) {
+                $table->increments('nhucau_id')->comment('id của loại nhu cầu');
+                $table->string('nhucau_ten')->index()->comment('tên nhu cầu (bán/thuê)');
 
                 //log time
                 $table->timestamp('created_at')
@@ -37,20 +30,15 @@ class CreateChitietbdsTable extends Migration
                 ->comment('ngày xóa tạm');
                 // Setting unique
                 //sdt và cmnd không được trùng
-                
             });
-
-            DB::statement("ALTER TABLE `chitietbds` comment 'Chi tiết BĐS'");
+            DB::statement("ALTER TABLE `nhucau` comment 'Loại nhu cầu'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-      
     }
 }
