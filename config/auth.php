@@ -81,7 +81,7 @@ return [
         //truy suất dữ liệu cho bảng
         'taikhoan' => [
             'driver' => 'eloquent',
-            'model' => App\Moedls\TaiKhoan::class,
+            'model' => App\Models\TaiKhoan::class,
         ],
 
         // 'users' => [
