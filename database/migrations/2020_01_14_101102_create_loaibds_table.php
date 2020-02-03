@@ -15,9 +15,12 @@ class CreateLoaibdsTable extends Migration
     {
         if (!Schema::hasTable('loaibds')) {
             Schema::create('loaibds', function (Blueprint $table) {
-                $table->bigIncrements('loaibds_id')->comment('id của loại bất động sản');
-                $table->string('loaibds_ten')->comment('tên loại bất động sản');
-                
+                $table->increments('loaibds_id')->comment('id của loại bất động sản');
+                $table->string('loaibds_ten')->index()->comment('tên loại bất động sản');
+
+                $table->integer('nhucau_id')->index()->unsigned()->comment('tên loại nhu cầu');
+
+                $table->foreign('nhucau_id')->references('nhucau_id')->on('nhucau');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -32,7 +35,6 @@ class CreateLoaibdsTable extends Migration
                 ->comment('ngày xóa tạm');
                 // Setting unique
                 //sdt và cmnd không được trùng
-                
             });
             DB::statement("ALTER TABLE `loaibds` comment 'Loại bất động sản'");
         }
@@ -45,6 +47,5 @@ class CreateLoaibdsTable extends Migration
      */
     public function down()
     {
-        
     }
 }

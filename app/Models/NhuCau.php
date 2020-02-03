@@ -4,21 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HinhAnh extends Model
+class NhuCau extends Model
 {
-    protected $tbale = 'hinhanh';
+    protected $table = 'nhucau';
 
-    protected $primarykey = 'ha_id';
+    protected $primaryKey = 'nhucau_id';
 
-    protected $keytype = 'int';
+    protected $keyType = 'int';
 
     protected $fillable = [
-        'ha_id',
-        'ha_duongdan',
+        'nhucau_id',
+        'nhucau_ten',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
-    public $timestamp = true;
+    public $timestamps = true;
     protected $dates = ['deleted_at'];
 }

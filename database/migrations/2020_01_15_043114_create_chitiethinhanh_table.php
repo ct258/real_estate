@@ -13,12 +13,16 @@ class CreateChitiethinhanhTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('chitiethinhanh')) {
-            
+        if (!Schema::hasTable('chitiethinhanh')) {
             Schema::create('chitiethinhanh', function (Blueprint $table) {
                 $table->bigIncrements('ctha_id');
-                $table->string('ctha_mota',100)->commnet('chi tiết hình ảnh');
-                
+                $table->string('ctha_mota')->commnet('mô tả hình ảnh là ảnh đại diện hay ảnh thường');
+
+                $table->integer('bds_id')->index()->unsigned()->comment('id bất động sản');
+                $table->integer('ha_id')->index()->unsigned()->comment('id hình ảnh');
+
+                $table->foreign('bds_id')->references('bds_id')->on('batdongsan');
+                $table->foreign('ha_id')->references('ha_id')->on('hinhanh');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -37,7 +41,6 @@ class CreateChitiethinhanhTable extends Migration
 
             DB::statement("ALTER TABLE `chitiethinhanh` comment 'chi tiết hình ảnh'");
         }
-        
     }
 
     /**

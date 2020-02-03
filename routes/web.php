@@ -14,6 +14,9 @@
 // Route::group(['middleware' => 'web'], function () {
     // Route::get('/dangnhap', 'TaiKhoanController@getLogin')->name('getLogin');
 
+Route::get('/', function () {
+    return redirect('/dangnhap');
+});
 Route::get('/dangnhap', function () {
     return view('auth.login');
 })->name('getLogin');
@@ -31,26 +34,20 @@ Route::get('/dangnhap', function () {
             Route::group(['middleware' => 'locale'], function () {
                 Route::get('change-language/{language}', 'HomeController@changeLanguage')
                 ->name('user.change-language');
-
-                Route::group(['prefix' => 'duan'], function () {
+                //Bất động sản
+                Route::group(['prefix' => 'batdongsan'], function () {
                     //index
-                    Route::get('/', 'DuAnController@index')->name('duan.index');
+                    Route::get('/', 'BatDongSanController@index')->name('batdongsan.index');
                     // thêm
-                    Route::get('/create', 'DuAnController@create')->name('duan.create');
-                    Route::post('/create', 'DuAnController@store')->name('duan.create.submit');
+                    Route::get('/create', 'BatDongSanController@create')->name('batdongsan.create');
+                    Route::post('/create', 'BatDongSanController@store')->name('batdongsan.create.submit');
                     // xem chi tiết
-                    Route::get('/show/{duan_id}', 'DuAnController@show')->name('duan.show');
+                    Route::get('/show/{batdongsan_id}', 'BatDongSanController@show')->name('batdongsan.show');
                     // sửa
-                    Route::get('/edit/{duan_id}', 'DuAnController@edit')->name('duan.edit');
-                    Route::post('/edit/submit/{duan_id}', 'DuAnController@update')->name('duan/update');
+                    Route::get('/edit/{batdongsan_id}', 'BatDongSanController@edit')->name('batdongsan.edit');
+                    Route::post('/edit/submit/{batdongsan_id}', 'BatDongSanController@update')->name('batdongsan/update');
                     // xóa mềm
-                    Route::post('/destroy/{duan_id}', 'DuAnController@destroy')->name('duan.destroy');
-
-                    //DOM lấy dữ liệu
-                    Route::get('/quanhuyen/{ttp_id}', 'DuAnController@get_quanhuyen')->name('duan.quanhuyen');
-                    Route::get('/phuongxa/{ttp_id}/{qh_id}', 'DuAnController@get_phuongxa')->name('duan.phuongxa');
-                    Route::get('/duongpho/{qh_id}', 'DuAnController@get_duongpho1')->name('duan.duongpho1');
-                    Route::get('/duongpho/{ttp_id}/{qh_id}', 'DuAnController@get_duongpho2')->name('duan.duongpho2');
+                    Route::post('/destroy/{batdongsan_id}', 'BatDongSanController@destroy')->name('batdongsan.destroy');
                 });
 
                 Route::group(['prefix' => 'nhanvien'], function () {
@@ -86,9 +83,9 @@ Route::get('/dangnhap', function () {
 
                 Route::group(['prefix' => 'daxoa'], function () {
                     //index
-                    Route::get('/duan', 'DuAnController@index_trash')->name('daxoa.duan');
+                    Route::get('/batdongsan', 'BatDongSanController@index_trash')->name('daxoa.batdongsan');
                     // thêm
-                    Route::get('/duan/{da_id}', 'DuAnController@restore')->name('daxoa.duan.khoiphuc');
+                    Route::get('/batdongsan/{bds_id}', 'BatDongSanController@restore')->name('daxoa.batdongsan.khoiphuc');
                 });
             });
 
@@ -97,7 +94,11 @@ Route::get('/dangnhap', function () {
             Route::get('/home', 'HomeController@index')->name('home');
         });
         // });
-
+//DOM lấy dữ liệu
+Route::get('/quanhuyen/{ttp_id}', 'BatDongSanController@get_quanhuyen')->name('quanhuyen');
+Route::get('/phuongxa/{ttp_id}/{qh_id}', 'BatDongSanController@get_phuongxa')->name('phuongxa');
+Route::get('/duongpho/{qh_id}', 'BatDongSanController@get_duongpho1')->name('duongpho1');
+Route::get('/duongpho/{ttp_id}/{qh_id}', 'BatDongSanController@get_duongpho2')->name('duongpho2');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('user', function () {

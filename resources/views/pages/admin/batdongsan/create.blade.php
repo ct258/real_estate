@@ -1,16 +1,32 @@
 @extends('layouts.admin')
 @section('content')
-<h2 class="page-title">Thêm dự án <br><br></h2>
-<form action="{{route('duan.create.submit')}}" method="post">
+<h2 class="page-title">Thêm Bất động sản<br><br></h2>
+<form action="{{route('batdongsan.create.submit')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
-
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
         <div class="col-lg-9">
             <section class="widget">
                 <div class="container-fluid">
                     <table class="table">
                         <tr>
-                            <td><label>Tên dự án</label><input type="text" name="name" size="100%" autofocus
+                            <td>{{-- <input type="file" accept="image/*" onchange="loadFile(event)">
+                                <img id="output"/> --}}
+
+
+                                <div class="col-sm-10">
+                                    <img id="image" alt="Chọn hình đại diện" width="100" height="100" />
+
+                                    <input type="file" name="avatar" id="avatar"
+                                        onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
+
+
+                                    {{-- <div class="img"></div> --}}
+                                    {{-- <img id="hinh" alt="your photo" width="100" height="100" /> --}}
+                                    <input type="file" name="photos[]" id="photos[]" multiple onchange=show()></td>
+                        </tr>
+                        <tr>
+                            <td><label>Tên Bất động sản</label><input type="text" name="name" size="100%" autofocus
                                     class="form-control input-transparent"><br></td>
                         </tr>
 
@@ -39,7 +55,7 @@
                 <div class="container-fluid">
                     <table class="table">
                         <tr>
-                            <td><label>Giá dự án</label><input type="number" name="price" min="0" step="500"
+                            <td><label>Giá dự án</label><input type="text" name="price" min="0" step="500"
                                     class="form-control input-transparent"><br>
                             </td>
                         </tr>
@@ -51,7 +67,7 @@
                         </tr>
 
                         <tr>
-                            <td><label>Trạng thái</label><input type="text" name="status"
+                            <td><label>Loại đất</label><input type="text" name="category"
                                     class="form-control input-transparent"><br></td>
                         </tr>
                         <tr>
@@ -104,7 +120,7 @@
 
             </div>
 
-        </div><a href="{{route('duan.index')}}" class="btn btn-default">Trở lại</a>
+        </div><a href="{{route('batdongsan.index')}}" class="btn btn-default">Trở lại</a>
     </div>
 </form>
 {{-- @endsection --}}
@@ -115,14 +131,14 @@
         //lấy quận huyện theo tỉnh thành phố
         $("#tinhthanhpho").change(function(){
             var ttp_id = $(this).val();
-            $.get("../duan/quanhuyen/"+ttp_id, function(data){
+            $.get("../quanhuyen/"+ttp_id, function(data){
                 $("#quanhuyen").html(data);
             });
         });
         //lấy đường phố theo tỉnh
         $("#tinhthanhpho").change(function(){
             var ttp_id = $(this).val();
-            $.get("../duan/duongpho/"+ttp_id, function(data){
+            $.get("../duongpho/"+ttp_id, function(data){
                 $("#duongpho").html(data);
             });
         });
@@ -132,7 +148,7 @@
             var qh_id = "";
             var ttp_id = $("#tinhthanhpho").val();
             var qh_id = $("#quanhuyen").val();
-            $.get("../duan/phuongxa/"+ttp_id+'/'+qh_id, function(data){
+            $.get("../phuongxa/"+ttp_id+'/'+qh_id, function(data){
                 $("#phuongxa").html(data);
             });
         });
@@ -140,7 +156,7 @@
         $("#quanhuyen").change(function(){
             var ttp_id = $("#tinhthanhpho").val();
             var qh_id = $("#quanhuyen").val();
-            $.get("../duan/duongpho/"+ttp_id+'/'+qh_id, function(data){
+            $.get("../duongpho/"+ttp_id+'/'+qh_id, function(data){
                 $("#duongpho").html(data);
             });
         });
@@ -166,7 +182,7 @@
         if(px_id=='px_id' && ttp_id!='tp_id'){
             var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
             $("#phuongxa").html(data2);
-            $.get("../duan/duongpho/"+ttp_id, function(data){
+            $.get("../duongpho/"+ttp_id, function(data){
                 $("#duongpho").html(data);
             });
         }
@@ -179,4 +195,50 @@
     });
 
 </script>
+
+@endsection
+@section('script')
+<script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    var options = {
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+    
+</script>
+{{-- <script>
+      $url = 'localhost:8000';
+  CKEDITOR.replace( 'book_description2', {
+        filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+} );
+</script> --}}
+{{-- <script>
+        // var loadFile = function(event) {
+        //     alert(123);
+        //   var output = document.getElementById('photo');
+        //   photo.src = URL.createObjectURL(event.target.files[0]);
+        // };
+      </script> --}}
+<script type="text/javascript">
+    function show(){
+            var arrLen=file.length;
+            for (i=0 ; i < arrLen ; i++){
+                // $('.img').append(img);
+                // var img='<img id="photo" alt="your photo" width="100" height="100" />';
+                // <img id="photo" alt="your photo" width="100" height="100" />
+                document.getElementById('hinh').src = window.URL.createObjectURL(this.files[i]);
+            }
+            
+            
+          }
+          
+</script>
+
 @endsection

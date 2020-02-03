@@ -13,11 +13,10 @@ class CreateHinhanhTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('hinhanh')){
-
+        if (!Schema::hasTable('hinhanh')) {
             Schema::create('hinhanh', function (Blueprint $table) {
                 $table->bigIncrements('ha_id');
-                $table->string('ha_duongdan',20)->comment('đường dẫn');
+                $table->longText('ha_duongdan')->comment('đường dẫn');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -34,8 +33,7 @@ class CreateHinhanhTable extends Migration
                 //sdt và cmnd không được trùng
             });
 
-            DB::statement("ALTER TABLE `hinhanh` comment 'Chi tiết BĐS'");
-
+            DB::statement("ALTER TABLE `hinhanh` comment 'Hình ảnh'");
         }
     }
 
@@ -46,6 +44,5 @@ class CreateHinhanhTable extends Migration
      */
     public function down()
     {
-       
     }
 }

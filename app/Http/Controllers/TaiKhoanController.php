@@ -47,7 +47,7 @@ class TaiKhoanController extends Controller
             ]);
             // dd(123);
 
-            return redirect('/duan');
+            return redirect('/batdongsan');
 
         // return redirect('/duan');
         //..code tùy chọn
