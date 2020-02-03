@@ -13,3 +13,8 @@ sau đó các bạn gọi trong view ra như sau {{ __('Action') }} thì từ kh
 
 Nguồn tham khảo:
 https://viblo.asia/p/da-ngon-ngu-i18n-trong-laravel-ByEZkWkAZQ0
+--------------------------------------------------------------------------------------------------------------------
+mình sửa dự án lại thành bất động sản rồi đấy,
+có tạo seed cho loại bds với thêm bảng nhu cầu
+do sai phiên bản nên powerdesigner máy mình hk mở được file cũ nên hk sửa lại db cho các bạn coi được
+trong bất động sản có code lưu hình ảnh và lấy tên đường, các bạn cần thì mở ra xem
