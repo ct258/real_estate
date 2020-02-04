@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Mail Driver
@@ -29,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,9 +54,13 @@ return [
     |
     */
 
+    // 'from' => [
+    //     'address' => env('MAIL_FROM_ADDRESS', 'real_estate_CT258@gmail.com'),
+    //     'name' => env('MAIL_FROM_NAME', 'Nghĩa bất động sản đây!'),
+    // ],
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => 'real_estate_CT258@gmail.com',
+        'name' => 'Nghĩa bất động sản đây!',
     ],
 
     /*
@@ -84,9 +87,12 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    // 'username' => env('MAIL_USERNAME'),
 
-    'password' => env('MAIL_PASSWORD'),
+    // 'password' => env('MAIL_PASSWORD'),
+    'username' => 'realestatect258@gmail.com',
+
+    'password' => 'tumtngdanibmhonz',
 
     /*
     |--------------------------------------------------------------------------
@@ -132,5 +138,4 @@ return [
     */
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
-
 ];

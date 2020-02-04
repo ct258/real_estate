@@ -122,3 +122,9 @@ Route::get('category', function () {
 Route::get('contact', function () {
     return view('pages.user.feature.contact');
 });
+
+Route::get('/mail', function () {
+    return view('pages.admin.mail.form');
+});
+
+Route::post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
