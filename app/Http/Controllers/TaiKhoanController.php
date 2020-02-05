@@ -27,36 +27,36 @@ class TaiKhoanController extends Controller
     public function postLogin(Request $request)
     {
         // dd($request);
-        // $arr = [
-        //     'username' => $request->username,
-        //     'password' => $request->password,
-        // ];
+        $arr = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
 
-        // if ($request->remember == trans('remember.Remember Me')) {
-        //     $remember = true;
-        // } else {
-        //     $remember = false;
-        // }
-        // //kiểm tra trường remember có được chọn hay không
+        if ($request->remember == trans('remember.Remember Me')) {
+            $remember = true;
+        } else {
+            $remember = false;
+        }
+        //kiểm tra trường remember có được chọn hay không
 
-        // if (Auth::guard('taikhoan')->attempt($arr)) {
-        //     Auth::guard('taikhoan')->login(Auth::guard('taikhoan')->user(), true);
-        //     $JWT = JWTAuth::fromUser(\Auth::guard('taikhoan')->user());
-        //     TaiKhoan::where('tk_id', \Auth::guard('taikhoan')->user()->tk_id)->update([
-        //         'remember_token' => $JWT,
-        //     ]);
-        //     // dd(123);
+        if (Auth::guard('taikhoan')->attempt($arr)) {
+            Auth::guard('taikhoan')->login(Auth::guard('taikhoan')->user(), true);
+            $JWT = JWTAuth::fromUser(\Auth::guard('taikhoan')->user());
+            TaiKhoan::where('tk_id', \Auth::guard('taikhoan')->user()->tk_id)->update([
+                'remember_token' => $JWT,
+            ]);
+            // dd(123);
 
             return redirect('/batdongsan');
 
-        // // return redirect('/duan');
-        // //..code tùy chọn
-        //     //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
-        // } else {
-        //     dd('tài khoản và mật khẩu chưa chính xác');
-        //     //...code tùy chọn
-        //     //đăng nhập thất bại hiển thị đăng nhập thất bại
-        // }
+        // return redirect('/duan');
+        //..code tùy chọn
+            //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
+        } else {
+            dd('tài khoản và mật khẩu chưa chính xác');
+            //...code tùy chọn
+            //đăng nhập thất bại hiển thị đăng nhập thất bại
+        }
     }
 
     public function logout()
