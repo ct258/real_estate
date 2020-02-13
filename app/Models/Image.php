@@ -4,23 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuanHuyen extends Model
+class Image extends Model
 {
-    protected $table = 'quanhuyen';
+    protected $table = 'image';
 
-    protected $primaryKey = 'qh_id';
+    protected $primaryKey = 'image_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'qh_id',
-        'qh_ten',
-        'qh_ghichu',
-        'ttq_id',
+        'image_id',
+        'image_path',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
     public $timestamps = true;
     protected $dates = ['deleted_at'];
 }

@@ -4,23 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TinhThanhPho extends Model
+class Subscription extends Model
 {
-    protected $table = 'tinhthanhpho';
+    protected $table = 'subscription';
 
-    protected $primaryKey = 'ttp_ma';
+    protected $primaryKey = 'subscription_id';
 
-    protected $keyType = 'string';
+    protected $keyType = 'int';
 
     protected $fillable = [
-        'ttp_ma',
-        'ttp_ten',
-        'ttp_ghichu',
+        'type_id',
+        'customer_id',
+        'subscription_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
     public $timestamps = true;
     protected $dates = ['deleted_at'];
-    public $incrementing = false;
 }

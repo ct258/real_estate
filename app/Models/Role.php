@@ -4,24 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PhuongXa extends Model
+class Role extends Model
 {
-    protected $table = 'phuongxa';
+    protected $table = 'role';
 
-    protected $primaryKey = 'px_id';
+    protected $primaryKey = 'role_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'px_id',
-        'px_ten',
-        'px_ghichu',
-        'ttp_id',
-        'qh_id',
+        'role_id',
+        'role_level',
+        'role_name',
+        'role_note',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
     public $timestamps = true;
     protected $dates = ['deleted_at'];
 }

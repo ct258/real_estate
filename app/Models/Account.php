@@ -6,20 +6,21 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class TaiKhoan extends Authenticatable implements JWTSubject
+class Account extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    protected $table = 'taikhoan';
+    protected $table = 'account';
 
-    protected $primaryKey = 'tk_id';
+    protected $primaryKey = 'account_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'tk_id',
-        'username',
-        'password',
-        'remember_token',
+        'role_id',
+        'account_id',
+        'account_username',
+        'account_password',
+        'account_remember_token',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -3,26 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-class NhanVien extends Model
-{
-    protected $table = 'nhanvien';
 
-    protected $primaryKey = 'nv_id';
+class Ward extends Model
+{
+    protected $table = 'ward';
+
+    protected $primaryKey = 'ward_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'nv_id',
-        'nv_ma',
-        'nv_ten',
-        'nv_gioitinh',
-        'nv_sdt',
-        'nv_diachi',
+        'province_id',
+        'district_id',
+        'ward_id',
+        'ward_name',
+        'ward_prefix',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
     public $timestamps = true;
     protected $dates = ['deleted_at'];
 }

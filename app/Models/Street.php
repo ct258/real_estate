@@ -4,21 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NhuCau extends Model
+class Street extends Model
 {
-    protected $table = 'nhucau';
+    protected $table = 'street';
 
-    protected $primaryKey = 'nhucau_id';
+    protected $primaryKey = 'street_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'nhucau_id',
-        'nhucau_ten',
+        'province_id',
+        'district_id',
+        'street_id',
+        'street_name',
+        'street_prefix',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
     public $timestamps = true;
     protected $dates = ['deleted_at'];
 }
