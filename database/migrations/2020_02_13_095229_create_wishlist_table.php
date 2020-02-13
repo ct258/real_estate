@@ -4,23 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLoaibdsTable extends Migration
+class CreateWishlistTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('loaibds')) {
-            Schema::create('loaibds', function (Blueprint $table) {
-                $table->increments('loaibds_id')->comment('id của loại bất động sản');
-                $table->string('loaibds_ten')->index()->comment('tên loại bất động sản');
+        if (!Schema::hasTable('wishlist')) {
+            Schema::create('wishlist', function (Blueprint $table) {
+                $table->increments('wishlist_id')->comment('id của danh sách yêu thích');
 
-                $table->integer('nhucau_id')->index()->unsigned()->comment('tên loại nhu cầu');
+                //foreign key
+                $table->integer('real_estate_id')->index()->unsigned();
+                $table->integer('customer_id')->index()->unsigned();
 
-                $table->foreign('nhucau_id')->references('nhucau_id')->on('nhucau');
+                $table->foreign('real_estate_id')->references('real_estate_id')->on('real_estate');
+                $table->foreign('customer_id')->references('customer_id')->on('customer');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -33,19 +33,16 @@ class CreateLoaibdsTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-                // Setting unique
-                //sdt và cmnd không được trùng
             });
-            DB::statement("ALTER TABLE `loaibds` comment 'Loại bất động sản'");
+            DB::statement("ALTER TABLE `wishlist` comment 'Danh sách yêu thích'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
+        Schema::dropIfExists('wishlist');
     }
 }

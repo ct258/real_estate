@@ -4,19 +4,25 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHinhanhTable extends Migration
+class CreateBannerTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('hinhanh')) {
-            Schema::create('hinhanh', function (Blueprint $table) {
-                $table->bigIncrements('ha_id');
-                $table->longText('ha_duongdan')->comment('đường dẫn');
+        if (!Schema::hasTable('banner')) {
+            Schema::create('banner', function (Blueprint $table) {
+                $table->increments('banner_id')->comment('id của banner');
+                $table->string('banner_title')->index()->comment('tiêu đề');
+                $table->string('banner_path')->index()->comment('đường dẫn hình ảnh banner');
+                $table->text('banner_link')->index()->comment('link khi click vào');
+
+                //foreign key
+                $table->integer('status_id')->index()->unsigned();
+
+                $table->foreign('status_id')->references('status_id')->on('status');
+
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -29,20 +35,16 @@ class CreateHinhanhTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-                // Setting unique
-                //sdt và cmnd không được trùng
             });
-
-            DB::statement("ALTER TABLE `hinhanh` comment 'Hình ảnh'");
+            DB::statement("ALTER TABLE `banner` comment 'hình banner'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
+        Schema::dropIfExists('banner');
     }
 }

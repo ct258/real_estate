@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNhucauTable extends Migration
+class CreateDirectionTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        if (!Schema::hasTable('nhucau')) {
-            Schema::create('nhucau', function (Blueprint $table) {
-                $table->increments('nhucau_id')->comment('id của loại nhu cầu');
-                $table->string('nhucau_ten')->index()->comment('tên nhu cầu (bán/thuê)');
+        if (!Schema::hasTable('direction')) {
+            Schema::create('direction', function (Blueprint $table) {
+                $table->increments('direction_id')->comment('id của phương hướng');
+                $table->string('direction_name', 45)->index()->comment('tên phương hướng');
 
                 //log time
                 $table->timestamp('created_at')
@@ -28,10 +28,11 @@ class CreateNhucauTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-                // Setting unique
-                //sdt và cmnd không được trùng
+
+                //unique
+                $table->unique(['direction_name']);
             });
-            DB::statement("ALTER TABLE `nhucau` comment 'Loại nhu cầu'");
+            DB::statement("ALTER TABLE `direction` comment 'Phương hướng'");
         }
     }
 
@@ -40,5 +41,6 @@ class CreateNhucauTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('direction');
     }
 }

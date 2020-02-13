@@ -4,22 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaikhoanTable extends Migration
+class CreateAboutTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('taikhoan')) {
-            Schema::create('taikhoan', function (Blueprint $table) {
-                $table->Increments('tk_id')->comment('id của tài khoản');
-                $table->string('username')->comment('tên tài khoản');
-                $table->string('password')->comment('mật khẩu');
-                $table->longText('remember_token')->nullable()->comment('Ghi nhớ đăng nhập');
+        if (!Schema::hasTable('about')) {
+            Schema::create('about', function (Blueprint $table) {
+                $table->increments('about_id')->comment('id thông tin công ty');
+                $table->text('about_description')->index()->comment('mô tả công ty');
+                $table->string('about_address')->index()->comment('địa chỉ công ty dạng đầy đủ');
 
+                //foreign key
+                $table->integer('staff_id')->index()->unsigned();
+
+                $table->foreign('staff_id')->references('staff_id')->on('staff');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -32,20 +33,16 @@ class CreateTaikhoanTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-                // Setting unique
-
-                $table->unique(['tk_taikhoan', 'tk_matkhau']);
             });
-            DB::statement("ALTER TABLE `taikhoan` comment 'Tài khoản'");
+            DB::statement("ALTER TABLE `about` comment 'Thông tin công ty'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
+        Schema::dropIfExists('about');
     }
 }

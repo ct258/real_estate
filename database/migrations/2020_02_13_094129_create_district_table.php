@@ -4,21 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTinhthannhphoTable extends Migration
+class CreateDistrictTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('tinhthanhpho')) {
-            Schema::create('tinhthanhpho', function (Blueprint $table) {
-                $table->bigIncrements('ttp_id')->comment('id tỉnh thành phố');
-                $table->string('ttp_ten', 100)->index()->comment('tên tỉnh thành phố');
-                // $table->string('ttp_ma', 2)->primary()->index()->comment('tên tỉnh thành phố');
-                $table->string('ttp_ghichu', 10)->index()->nullable()->comment('ghi chú ');
+        if (!Schema::hasTable('district')) {
+            Schema::create('district', function (Blueprint $table) {
+                $table->increments('district_id');
+                $table->string('district_name')->index();
+                $table->string('district_prefix')->index();
+
+                //foreign key
+                $table->integer('province_id')->index()->unsigned();
+
+                $table->foreign('province_id')->references('province_id')->on('province');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -32,16 +34,15 @@ class CreateTinhthannhphoTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
             });
-            DB::statement("ALTER TABLE `tinhthanhpho` comment 'tỉnh thành phố'");
+            DB::statement("ALTER TABLE `district` comment 'Quận huyện'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
+        Schema::dropIfExists('district');
     }
 }

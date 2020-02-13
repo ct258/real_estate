@@ -4,23 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHdmuabanTable extends Migration
+class CreateImageDepositContractTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('hdmuaban')) {
-            Schema::create('hdmuaban', function (Blueprint $table) {
-                $table->bigIncrements('hdmb_id')->comment('id của hợp đồng');
-                $table->string('hdmb_ma')->comment('mã của hợp đồng mua bán');
-                $table->date('hdmb_ngayki')->comment('ngày kí hợp đồng');
-                $table->string('hdmb_noidung', 15)->comment('nội dung hợp đồng');
-                $table->string('hdmb_ghichu')->comment('ghi chú hợp đồng');
+        if (!Schema::hasTable('image_deposit_contract')) {
+            Schema::create('image_deposit_contract', function (Blueprint $table) {
+                $table->increments('image_deposit_contract_id');
+                //foreign key
+                $table->integer('image_id')->index()->unsigned();
+                $table->integer('deposit_contract_id')->index()->unsigned();
 
+                $table->foreign('image_id')->references('image_id')->on('image');
+                $table->foreign('deposit_contract_id')->references('deposit_contract_id')->on('deposit_contract');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -33,19 +32,16 @@ class CreateHdmuabanTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-                // Setting unique
-                //sdt và cmnd không được trùng
             });
-            DB::statement("ALTER TABLE `hdmuaban` comment 'Hợp đồng mua bán'");
+            DB::statement("ALTER TABLE `image_deposit_contract` comment 'Hình ảnh hợp đồng đặt cọc'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
+        Schema::dropIfExists('image_deposit_contract');
     }
 }

@@ -4,22 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHddatcocTable extends Migration
+class CreatePaymentTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('hddatcoc')) {
-            Schema::create('hddatcoc', function (Blueprint $table) {
-                $table->Increments('hddc_id')->comment('id của hợp đồng đặt cọc');
-                $table->string('hddc_ma')->comment('mã hợp đồng đặt cọc');
-                $table->integer('hddc_tiencoc')->unsigned()->comment('tiền cọc');
-                $table->string('hddc_ngaydc')->comment('ngày đặt cọc');
- 
+        if (!Schema::hasTable('payment')) {
+            Schema::create('payment', function (Blueprint $table) {
+                $table->increments('payment_id')->comment('id của phương thức thanh toán');
+                $table->string('payment_code', 45)->index()->comment('mã phương thức thanh toán');
+                $table->string('payment_name', 45)->index()->comment('tên phương thức thanh toán');
+                $table->string('payment_description')->index()->comment('mô tả phương thức thanh toán');
+
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -32,21 +30,19 @@ class CreateHddatcocTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-                // Setting unique
-                
 
+                //unique
+                $table->unique(['payment_code', 'payment_name']);
             });
-            DB::statement("ALTER TABLE `hddatcoc` comment 'Hợp đồng đặt cọc'");
+            DB::statement("ALTER TABLE `payment` comment 'Phương thức thanh toán'");
         }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-        
+        Schema::dropIfExists('payment');
     }
 }
