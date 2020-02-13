@@ -8,9 +8,9 @@ use App\Models\Street;
 
 class LocalController extends Controller
 {
-    public function get_district($district_id)
+    public function get_district($province_id)
     {
-        $district = District ::select('district_id', 'district_name')->where('district_id', $ttp_id)->orderBy('qh_ten', 'asc')->get();
+        $district = District ::select('district_id', 'district_name')->where('province_id', $province_id)->orderBy('district_name', 'asc')->get();
 
         echo "<option value=''>-- Chọn Quận/Huyện --</option>";
 

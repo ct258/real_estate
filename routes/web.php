@@ -95,7 +95,7 @@
         });
         // });
 //DOM lấy dữ liệu
-Route::get('/province/{province_id}', 'LocalController@get_province')->name('province');
+Route::get('/district/{province_id}', 'LocalController@get_district')->name('district');
 Route::get('/ward/{province_id}/{district_id}', 'LocalController@get_ward')->name('ward');
 Route::get('/street/{district_id}', 'LocalController@get_street_1')->name('street_1');
 Route::get('/street/{province_id}/{district_id}', 'LocalController@get_street_2')->name('street_2');
