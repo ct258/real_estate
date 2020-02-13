@@ -14,9 +14,9 @@ class CreateRankTable extends Migration
         if (!Schema::hasTable('rank')) {
             Schema::create('rank', function (Blueprint $table) {
                 $table->increments('rank_id')->comment('id của loại khách hàng');
-                $table->integer('rank_level')->index()->comment('hạng mức');
+                $table->integer('rank_level')->unsigned()->index()->comment('hạng mức');
                 $table->string('rank_name')->index()->comment('tên loại khách hàng');
-                $table->string('rank_description')->index()->comment('mô tả loại khách hàng');
+                $table->string('rank_description')->nullable()->index()->comment('mô tả loại khách hàng');
 
                 //log time
                 $table->timestamp('created_at')

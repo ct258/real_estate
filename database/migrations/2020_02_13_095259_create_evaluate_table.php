@@ -15,7 +15,7 @@ class CreateEvaluateTable extends Migration
             Schema::create('evaluate', function (Blueprint $table) {
                 $table->bigIncrements('evaluate_id')->comment('id của đánh giá');
                 $table->string('evaluate_title')->index()->comment('tiêu đề đánh giá');
-                $table->string('evaluate_content')->index()->comment('nội dung đánh giá');
+                $table->string('evaluate_content')->nullable()->index()->comment('nội dung đánh giá');
                 $table->string('evaluate_rank')->index()->comment('số sao đánh giá');
 
                 //foreign key

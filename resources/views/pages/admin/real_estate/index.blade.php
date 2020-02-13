@@ -29,7 +29,7 @@
 
 
 
-<small><a href="{{route('batdongsan.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
+<small><a href="{{route('real_estate.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
         @lang('real_estate')</a></small><br><br>
 <div class="row">
     <div class="col-lg-12">
@@ -48,21 +48,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($bds as $item)
+                        @foreach ($real_estate as $item)
                         <tr>
-                            <td>{{$item->bds_id}}</td>
-                            <td>{{$item->bds_ten}}</td>
-                            <td>{{$item->bds_gia}}</td>
-                            <td>{{$item->bds_diachi}}</td>
-                            <td>{{$item->bds_dientich}}</td>
-                            <td>{{$item->bds_trangthai}}</td>
+                            <td>{{$item->real_estate_id}}</td>
+                            <td>{{$item->real_estate_name}}</td>
+                            <td>{{$item->real_estate_price}}</td>
+                            <td>{{$item->real_estate_address}}</td>
+                            <td>{{$item->real_estate_acreage}}</td>
+                            <td>{{$item->real_estate_status}}</td>
                             <td>
-                                <form action="{{ route('batdongsan.destroy', $item->bds_id) }}" method="post"
+                                <form action="{{ route('real_estate.destroy', $item->real_estate_id) }}" method="post"
                                     class="delete_form">
                                     @csrf
-                                    <a href="{{route('batdongsan.show',$item->bds_id)}}">&nbsp;&nbsp;
+                                    <a href="{{route('real_estate.show',$item->real_estate_id)}}">&nbsp;&nbsp;
                                         <i class="fa fa-info"></i></a>
-                                    <a href="{{route('batdongsan.edit',$item->bds_id)}}">
+                                    <a href="{{route('real_estate.edit',$item->real_estate_id)}}">
                                         <span class="glyphicon glyphicon-edit"></span></a>
                                     &nbsp;
                                     &nbsp;

@@ -16,8 +16,8 @@ class CreateStatusTable extends Migration
                 $table->increments('status_id')->comment('id trạng thái');
                 $table->integer('status_code')->index()->comment('mã trạng thái');
                 $table->string('status_name', 45)->index()->comment('tên trạng thái');
-                $table->string('status_reason')->index()->comment('lý do');
-                $table->string('status_note')->index()->comment('ghi chú');
+                $table->string('status_reason')->nullable()->index()->comment('lý do');
+                $table->string('status_note')->nullable()->index()->comment('ghi chú');
 
                 //log time
                 $table->timestamp('created_at')

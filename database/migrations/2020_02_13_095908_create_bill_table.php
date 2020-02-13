@@ -15,7 +15,7 @@ class CreateBillTable extends Migration
             Schema::create('bill', function (Blueprint $table) {
                 $table->increments('bill_id')->comment('id của loại nhu cầu');
                 $table->dateTime('bill_datetime')->index()->comment('ngày giờ thanh toán');
-                $table->decimal('bill_total', 18, 4)->index()->comment('tổng giá tiền thanh toán');
+                $table->decimal('bill_total', 18, 4)->unsigned()->index()->comment('tổng giá tiền thanh toán');
                 //foreign key
                 $table->integer('status_id')->index()->unsigned();
                 $table->integer('staff_id')->index()->unsigned();

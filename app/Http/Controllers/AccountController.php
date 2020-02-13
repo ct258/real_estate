@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TaiKhoan;
+use App\Models\Account;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 
 //user model can kiem tra
 // use Auth; //use thư viện auth
 
-class TaiKhoanController extends Controller
+class AccountController extends Controller
 {
     public function getLogin()
     {
         if (Auth::check()) {
             // nếu đăng nhập thàng công thì
-            return redirect('/duan');
+            return redirect('/real_estate');
         } else {
             return view('auth.login');
         }
@@ -39,15 +39,15 @@ class TaiKhoanController extends Controller
         }
         //kiểm tra trường remember có được chọn hay không
 
-        if (Auth::guard('taikhoan')->attempt($arr)) {
-            Auth::guard('taikhoan')->login(Auth::guard('taikhoan')->user(), true);
-            $JWT = JWTAuth::fromUser(\Auth::guard('taikhoan')->user());
-            TaiKhoan::where('tk_id', \Auth::guard('taikhoan')->user()->tk_id)->update([
+        if (Auth::guard('account')->attempt($arr, $remember)) {
+            Auth::guard('account')->login(Auth::guard('account')->user());
+            $JWT = JWTAuth::fromUser(\Auth::guard('account')->user());
+            Account::where('account_id', \Auth::guard('account')->user()->account_id)->update([
                 'remember_token' => $JWT,
             ]);
             // dd(123);
 
-            return redirect('/batdongsan');
+            return redirect('/real_estate');
 
         // return redirect('/duan');
         //..code tùy chọn
@@ -61,7 +61,7 @@ class TaiKhoanController extends Controller
 
     public function logout()
     {
-        Auth::guard('taikhoan')->logout();
+        Auth::guard('account')->logout();
 
         return redirect()->route('getLogin');
     }

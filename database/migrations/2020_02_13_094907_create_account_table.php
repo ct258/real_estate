@@ -14,9 +14,9 @@ class CreateAccountTable extends Migration
         if (!Schema::hasTable('account')) {
             Schema::create('account', function (Blueprint $table) {
                 $table->increments('account_id')->comment('id của tài khoản');
-                $table->string('account_username')->index()->comment('tên đăng nhập');
-                $table->string('account_password')->index()->comment('mật khẩu');
-                $table->longText('account_remember_token')->index()->comment('lưu đăng nhập ');
+                $table->string('username')->index()->comment('tên đăng nhập');
+                $table->string('password')->index()->comment('mật khẩu');
+                $table->longText('remember_token')->nullable()->index()->comment('lưu đăng nhập ');
 
                 //foreign key
                 $table->integer('role_id')->index()->unsigned();
@@ -37,7 +37,7 @@ class CreateAccountTable extends Migration
                 ->comment('ngày xóa tạm');
 
                 //unique
-                $table->unique(['account_username']);
+                $table->unique(['username']);
             });
             DB::statement("ALTER TABLE `account` comment 'Tài khoản'");
         }

@@ -11,10 +11,16 @@ class taoadmin extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $data = array([
+        $data1 = array([
+            'role_level' => 1,
+            'role_name' => 'test',
+        ]);
+        DB::table('role')->insert($data1);
+        $data2 = array([
             'username' => 'admin',
             'password' => Hash::make('admin'),
+            'role_id' => 1,
         ]);
-        DB::table('taikhoan')->insert($data);
+        DB::table('account')->insert($data2);
     }
 }

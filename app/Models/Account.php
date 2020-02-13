@@ -18,9 +18,9 @@ class Account extends Authenticatable implements JWTSubject
     protected $fillable = [
         'role_id',
         'account_id',
-        'account_username',
-        'account_password',
-        'account_remember_token',
+        'username',
+        'password',
+        'remember_token',
         'created_at',
         'updated_at',
         'deleted_at',

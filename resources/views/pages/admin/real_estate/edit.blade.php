@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <h2 class="page-title">Thêm dự án <br><br></h2>
-<form action="{{route('duan/update',$duan->da_id)}}" method="post">
+<form action="{{route('real_estate/update',$real_estate->real_estate_id)}}" method="post">
     @csrf
     <div class="row">
 
@@ -11,17 +11,20 @@
                     <table class="table">
                         <tr>
                             <td><label>Tên dự án</label><input type="text" name="name" size="100%"
-                                    class="form-control input-transparent" value="{{$duan->da_ten}}"><br></td>
+                                    class="form-control input-transparent"
+                                    value="{{$real_estate->real_estate_name}}"><br></td>
                         </tr>
 
                         <tr>
                             <td><label>Địa chỉ</label><input type="text" name="address"
-                                    class="form-control input-transparent" value="{{$duan->da_diachi}}"><br></td>
+                                    class="form-control input-transparent"
+                                    value="{{$real_estate->real_estate_address}}"><br></td>
                         </tr>
 
                         <tr>
                             <td><label>Mô tả</label><textarea name="description" cols="30" rows="5"
-                                    class="form-control input-transparent">{{$duan->da_mota}}</textarea></td>
+                                    class="form-control input-transparent">{{$real_estate->real_estate_description}}</textarea>
+                            </td>
                         </tr>
 
 
@@ -37,17 +40,19 @@
                 <table class="table">
                     <tr>
                         <td><label>Giá dự án</label><input type="number" name="price" min="0"
-                                class="form-control input-transparent" value="{{$duan->da_gia}}"><br>
+                                class="form-control input-transparent" value="{{$real_estate->real_estate_price}}"><br>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Diện tích</label><input type="text" name="acreage"
-                                class="form-control input-transparent" value="{{$duan->da_dientich}}"><br>
+                                class="form-control input-transparent"
+                                value="{{$real_estate->real_estate_acreage}}"><br>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Trạng thái</label><input type="text" name="status"
-                                class="form-control input-transparent" value="{{$duan->da_trangthai}}"><br></td>
+                                class="form-control input-transparent" value="{{$real_estate->real_estate_status}}"><br>
+                        </td>
                     </tr>
                 </table>
             </section>
@@ -60,7 +65,7 @@
 
             </div>
 
-        </div><a href="{{route('duan.index')}}" class="btn btn-default">Trở lại</a>
+        </div><a href="{{route('real_estate.index')}}" class="btn btn-default">Trở lại</a>
     </div>
 </form>
 @endsection

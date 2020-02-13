@@ -15,8 +15,8 @@ class CreateMailTemplateTable extends Migration
             Schema::create('mail_template', function (Blueprint $table) {
                 $table->increments('mail_template_id')->comment('id mẫu mail');
                 $table->string('mail_template_code', 45)->index()->comment('mã mẫu mail');
-                $table->string('mail_template_subject')->index()->comment('tiêu đề');
-                $table->text('mail_template_body')->index()->comment('nội dung mail');
+                $table->string('mail_template_subject')->nullable()->index()->comment('tiêu đề');
+                $table->text('mail_template_body')->nullable()->index()->comment('nội dung mail');
 
                 //foreign key
                 $table->integer('staff_id')->index()->unsigned();

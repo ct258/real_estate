@@ -18,7 +18,7 @@ class CreateSaleContractTable extends Migration
                 $table->string('sale_contract_nameA')->index()->comment('tên bên A');
                 $table->string('sale_contract_nameB')->index()->comment('tên bên B');
                 $table->date('sale_contract_sign_day')->index()->comment('ngày ký');
-                $table->decimal('sale_contract_total_money', 18, 4)->index()->comment('tổng tiền');
+                $table->decimal('sale_contract_total_money', 18, 4)->unsigned()->index()->comment('tổng tiền');
 
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();

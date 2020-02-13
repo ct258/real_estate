@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <h2 class="page-title">Thêm Bất động sản<br><br></h2>
-<form action="{{route('batdongsan.create.submit')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('real_estate.create.submit')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
@@ -73,31 +73,31 @@
                         <tr>
 
                             <td>
-                                <select name="tinhthanhpho" id="tinhthanhpho" class="form-control form-control-sm">
-                                    <option value="tp_id" selected>-- Chọn Tỉnh/TP --</option>
-                                    @foreach ($ttp as $item)
-                                    <option value="{{$item->ttp_id}}">{{$item->ttp_ten}}</option>
+                                <select name="province" id="province" class="form-control form-control-sm">
+                                    <option value="province_id" selected>-- Chọn Tỉnh/TP --</option>
+                                    @foreach ($province as $item)
+                                    <option value="{{$item->province_id}}">{{$item->province_name}}</option>
                                     @endforeach
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <select name="quanhuyen" id="quanhuyen" class="form-control form-control-sm">
-                                    <option value="qh_id" selected>-- Chọn Quận/Huyện --</option>
+                                <select name="district" id="district" class="form-control form-control-sm">
+                                    <option value="district_id" selected>-- Chọn Quận/Huyện --</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <select name="phuongxa" id="phuongxa" class="form-control form-control-sm">
-                                    <option value="px_id" selected>-- Chọn Phường/Xã --</option>
+                                <select name="ward" id="ward" class="form-control form-control-sm">
+                                    <option value="ward_id" selected>-- Chọn Phường/Xã --</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <select name="duongpho" id="duongpho" class="form-control form-control-sm">
+                                <select name="street" id="street" class="form-control form-control-sm">
                                     <option value="dp_id" selected>-- Chọn Đường/Phố --</option>
                                 </select>
                             </td>
@@ -120,7 +120,7 @@
 
             </div>
 
-        </div><a href="{{route('batdongsan.index')}}" class="btn btn-default">Trở lại</a>
+        </div><a href="{{route('real_estate.index')}}" class="btn btn-default">Trở lại</a>
     </div>
 </form>
 {{-- @endsection --}}
@@ -129,68 +129,68 @@
 <script>
     $(document).ready(function () {
         //lấy quận huyện theo tỉnh thành phố
-        $("#tinhthanhpho").change(function(){
-            var ttp_id = $(this).val();
-            $.get("../quanhuyen/"+ttp_id, function(data){
-                $("#quanhuyen").html(data);
+        $("#province").change(function(){
+            var province_id = $(this).val();
+            $.get("../district/"+province_id, function(data){
+                $("#district").html(data);
             });
         });
         //lấy đường phố theo tỉnh
-        $("#tinhthanhpho").change(function(){
-            var ttp_id = $(this).val();
-            $.get("../duongpho/"+ttp_id, function(data){
-                $("#duongpho").html(data);
+        $("#province").change(function(){
+            var province_id = $(this).val();
+            $.get("../street/"+province_id, function(data){
+                $("#street").html(data);
             });
         });
         //lấy phường xã theo tỉnh,huyện
-        $("#quanhuyen").change(function(){
-            var ttp_id = "";
-            var qh_id = "";
-            var ttp_id = $("#tinhthanhpho").val();
-            var qh_id = $("#quanhuyen").val();
-            $.get("../phuongxa/"+ttp_id+'/'+qh_id, function(data){
-                $("#phuongxa").html(data);
+        $("#district").change(function(){
+            var province_id = "";
+            var district_id = "";
+            var province_id = $("#province").val();
+            var district_id = $("#district").val();
+            $.get("../ward/"+province_id+'/'+district_id, function(data){
+                $("#ward").html(data);
             });
         });
         //lấy đường phố theo tỉnh,huyện
-        $("#quanhuyen").change(function(){
-            var ttp_id = $("#tinhthanhpho").val();
-            var qh_id = $("#quanhuyen").val();
-            $.get("../duongpho/"+ttp_id+'/'+qh_id, function(data){
-                $("#duongpho").html(data);
+        $("#district").change(function(){
+            var province_id = $("#province").val();
+            var district_id = $("#district").val();
+            $.get("../street/"+province_id+'/'+district_id, function(data){
+                $("#street").html(data);
             });
         });
 
     });
     //reset tất cả về ban đầu khi thay đổi tỉnh
-    $("#tinhthanhpho").change(function(){
-        var ttp_id = $("#tinhthanhpho").val();
-        if(ttp_id=='tp_id'){
+    $("#province").change(function(){
+        var province_id = $("#province").val();
+        if(province_id=='province_id'){
             var data1="<option value='0'>-- Chọn Quận/Huyện --</option>";
             var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
             var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
-            $("#quanhuyen").html(data1);
-            $("#phuongxa").html(data2);
-            $("#duongpho").html(data3);
+            $("#district").html(data1);
+            $("#ward").html(data2);
+            $("#street").html(data3);
         }
     });
     //reset tất cả về ban đầu khi thay đổi tỉnh
-    $("#quanhuyen").change(function(){
-        var px_id = $("#phuongxa").val();
-        var ttp_id = $("#tinhthanhpho").val();
+    $("#district").change(function(){
+        var ward_id = $("#ward").val();
+        var province_id = $("#province").val();
             
-        if(px_id=='px_id' && ttp_id!='tp_id'){
+        if(ward_id=='ward_id' && province_id!='province_id'){
             var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
-            $("#phuongxa").html(data2);
-            $.get("../duongpho/"+ttp_id, function(data){
-                $("#duongpho").html(data);
+            $("#ward").html(data2);
+            $.get("../street/"+province_id, function(data){
+                $("#street").html(data);
             });
         }
         else{
             var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
             var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
-            $("#phuongxa").html(data2);
-            $("#duongpho").html(data3);
+            $("#ward").html(data2);
+            $("#street").html(data3);
         }
     });
 

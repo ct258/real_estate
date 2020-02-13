@@ -14,7 +14,6 @@ class CreateTypeTable extends Migration
         if (!Schema::hasTable('type')) {
             Schema::create('type', function (Blueprint $table) {
                 $table->increments('type_id')->comment('id của loại bất động sản');
-                $table->string('type_code', 45)->index()->comment('mã loại bất động sản');
                 $table->string('type_name', 45)->index()->comment('tên loại bất động sản');
 
                 //foreign key
@@ -34,8 +33,6 @@ class CreateTypeTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
 
-                //unique
-                $table->unique(['type_code', 'type_name']);
             });
             DB::statement("ALTER TABLE `type` comment 'Loại bất động sản'");
         }

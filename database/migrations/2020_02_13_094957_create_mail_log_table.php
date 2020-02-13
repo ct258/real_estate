@@ -16,8 +16,8 @@ class CreateMailLogTable extends Migration
                 $table->increments('mail_log_id')->comment('id của loại nhu cầu');
                 $table->dateTime('mail_log_send_datetime')->index()->comment('thời gian gửi');
                 $table->string('mail_log_send_to')->index()->comment('người nhận mail');
-                $table->string('mail_log_send_subject')->index()->comment('tiêu đề');
-                $table->text('mail_log_send_body')->index()->comment('nội dung mail');
+                $table->string('mail_log_send_subject')->nullable()->index()->comment('tiêu đề');
+                $table->text('mail_log_send_body')->nullable()->index()->comment('nội dung mail');
 
                 //foreign key
                 $table->integer('mail_template_id')->index()->unsigned();

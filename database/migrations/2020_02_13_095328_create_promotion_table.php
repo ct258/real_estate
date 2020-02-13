@@ -16,8 +16,8 @@ class CreatePromotionTable extends Migration
                 $table->increments('promotion_id')->comment('id của khuyến mãi');
                 $table->string('promotion_title')->index()->comment('tiêu đề khuyến mãi');
                 $table->string('promotion_content')->index()->comment('nội dung khuyến mãi');
-                $table->string('promotion_from')->index()->comment('thời gian bắt đầu');
-                $table->string('promotion_to')->index()->comment('thời gian kết thúc');
+                $table->string('promotion_from')->nullable()->index()->comment('thời gian bắt đầu');
+                $table->string('promotion_to')->nullable()->index()->comment('thời gian kết thúc');
 
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
