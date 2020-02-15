@@ -31,7 +31,7 @@
                         </tr>
 
                         <tr>
-                            <td><label>Mô tả</label><textarea name="description" cols="30"
+                            <td><label>Mô tả</label><textarea name="description" cols="30" id="editor1"
                                     style="max-width:100%;height: 235px;"
                                     class="form-control input-transparent"></textarea>
                             </td>

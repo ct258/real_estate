@@ -11,6 +11,12 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/settings.js')}}"></script>
 
+{{-- CKEditor --}}
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace('editor1'); 
+</script>
+
 <!-- common templates -->
 <script type="text/template" id="settings-template">
     <div class="setting clearfix">
