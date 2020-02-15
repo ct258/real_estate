@@ -13,9 +13,17 @@
 
 {{-- CKEditor --}}
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script>
+{{-- <script>
     CKEDITOR.replace('editor1'); 
+</script> --}}
+{{-- <script>
+    CKEDITOR.replace( 'editor1', {
+        filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+
+} );
 </script>
+@include('ckfinder::setup') --}}
+@include('ckfinder::setup')
 
 <!-- common templates -->
 <script type="text/template" id="settings-template">
