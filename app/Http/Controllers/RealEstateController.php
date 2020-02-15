@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Province;
-use App\Models\District;
 use App\Models\RealEstate;
+use App\Models\Type;
+use App\Models\Form;
 use App\Models\Image;
 use App\Models\ImageRealEstate;
 use Carbon\Carbon;
@@ -33,10 +34,10 @@ class RealEstateController extends Controller
      */
     public function create()
     {
+        $form = Form::select('form_id', 'form_name')->get();
         $province = Province::select('province_id', 'province_name')->orderBy('province_name', 'asc')->get();
-        // $qh = District::select('district_id', 'qh_ten')->orderBy('ttp_id', 'asc')->get();
 
-        return view('pages.admin.real_estate.create', compact('province'));
+        return view('pages.admin.real_estate.create', compact('province', 'form'));
     }
 
     /**
@@ -181,5 +182,16 @@ class RealEstateController extends Controller
         //xóa vĩnh viên forceDelete()
 
         return redirect('real_estate')->with('success', 'Đã khôi phục thành công dự án');
+    }
+
+    public function get_type($form_id)
+    {
+        $type = Type ::select('type_id', 'type_name')->where('form_id', $form_id)->get();
+
+        echo "<option value=''>-- Chọn --</option>";
+
+        foreach ($type as $item) {
+            echo "<option value='".$item->type_id."'>".$item->type_name.'</option>';
+        }
     }
 }
