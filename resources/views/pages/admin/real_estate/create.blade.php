@@ -12,15 +12,10 @@
                         <tr>
                             <td>{{-- <input type="file" accept="image/*" onchange="loadFile(event)">
                                 <img id="output"/> --}}
-
-
                                 <div class="col-sm-10">
                                     <img id="image" alt="Chọn hình đại diện" width="100" height="100" />
-
                                     <input type="file" name="avatar" id="avatar"
                                         onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
-
-
                                     {{-- <div class="img"></div> --}}
                                     {{-- <img id="hinh" alt="your photo" width="100" height="100" /> --}}
                                     <input type="file" name="photos[]" id="photos[]" multiple onchange=show()></td>
@@ -42,10 +37,6 @@
                             </td>
                         </tr>
                         <br>
-
-
-
-
                     </table>
                 </div>
             </section>
@@ -67,8 +58,21 @@
                         </tr>
 
                         <tr>
-                            <td><label>Loại đất</label><input type="text" name="category"
-                                    class="form-control input-transparent"><br></td>
+                            <td>
+                                <label>Hình thức</label>
+                                <select name="form" id="form" class="form-control form-control-sm">
+                                    <option value="form_id" selected>-- Chọn --</option>
+                                    @foreach ($form as $item)
+                                    <option value="{{$item->form_id}}">{{$item->form_name}}</option>
+                                    @endforeach
+                                </select>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Loại bất động sản</label>
+                                <select name="type" id="type" class="form-control form-control-sm">
+                                    <option value="form_id" selected>-- Chọn --</option>
+                                </select>
                         </tr>
                         <tr>
 
@@ -128,6 +132,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+        //lấy loại bất động sản
+        $("#form").change(function(){
+            var form_id = $(this).val();
+            $.get("../real_estate/get_type/"+form_id, function(data){
+                $("#type").html(data);
+            });
+        });
         //lấy quận huyện theo tỉnh thành phố
         $("#province").change(function(){
             var province_id = $(this).val();

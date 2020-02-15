@@ -48,6 +48,8 @@
                     Route::post('/edit/submit/{real_estate_id}', 'RealEstateController@update')->name('real_estate/update');
                     // xóa mềm
                     Route::post('/destroy/{real_estate_id}', 'RealEstateController@destroy')->name('real_estate.destroy');
+                    //lấy loại bất động sản
+                    Route::get('/get_type/{form_id}', 'RealEstateController@get_type')->name('real_estate.type');
                 });
 
                 Route::group(['prefix' => 'nhanvien'], function () {
@@ -124,6 +126,9 @@ Route::get('category', function () {
 });
 Route::get('contact', function () {
     return view('pages.user.feature.contact');
+});
+Route::get('post', function () {
+    return view('pages.user.feature.post');
 });
 
 Route::get('/mail', function () {
