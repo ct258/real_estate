@@ -26,7 +26,7 @@ class CreateRealEstateTable extends Migration
                 $table->integer('brokerage_fee_id')->index()->unsigned();
                 $table->integer('ward_id')->index()->unsigned();
                 $table->integer('street_id')->nullable()->index()->unsigned();
-                $table->integer('direction_id')->index()->unsigned();
+                // $table->integer('direction_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();
 
                 $table->foreign('type_id')->references('type_id')->on('type');
@@ -34,7 +34,7 @@ class CreateRealEstateTable extends Migration
                 $table->foreign('brokerage_fee_id')->references('brokerage_fee_id')->on('brokerage_fee');
                 $table->foreign('ward_id')->references('ward_id')->on('ward');
                 $table->foreign('street_id')->references('street_id')->on('street');
-                $table->foreign('direction_id')->references('direction_id')->on('direction');
+                // $table->foreign('direction_id')->references('direction_id')->on('direction');
                 $table->foreign('customer_id')->references('customer_id')->on('customer');
                 //log time
                 $table->timestamp('created_at')
