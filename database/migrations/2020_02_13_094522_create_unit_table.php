@@ -4,19 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormTable extends Migration
+class CreateUnitTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        if (!Schema::hasTable('form')) {
-            Schema::create('form', function (Blueprint $table) {
-                $table->increments('form_id')->comment('id của loại nhu cầu');
-                $table->string('form_code', 45)->index()->comment('mã nhu cầu (bán/thuê)');
-                $table->string('form_name', 45)->index()->comment('tên nhu cầu (bán/thuê)');
+        if (!Schema::hasTable('unit')) {
+            Schema::create('unit', function (Blueprint $table) {
+                $table->increments('unit_id');
+                $table->string('unit_name')->index()->comment('tên đơn vị');
 
+                //foreign key
+                $table->integer('form_id')->index()->unsigned();
+
+                $table->foreign('form_id')->references('form_id')->on('form');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -30,7 +33,7 @@ class CreateFormTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
             });
-            DB::statement("ALTER TABLE `form` comment 'Nhu cầu ( thuê, bán..)'");
+            DB::statement("ALTER TABLE `unit` comment 'Đơn vị'");
         }
     }
 
@@ -39,6 +42,6 @@ class CreateFormTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form');
+        Schema::dropIfExists('unit');
     }
 }

@@ -4,19 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Form extends Model
+class Unit extends Model
 {
-    protected $table = 'form';
+    protected $table = 'unit';
 
-    protected $primaryKey = 'form_id';
+    protected $primaryKey = 'unit_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
         'unit_id',
-        'form_id',
-        'form_code',
-        'form_name',
+        'unit_name',
         'created_at',
         'updated_at',
         'deleted_at',

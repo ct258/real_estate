@@ -14,6 +14,7 @@ class CreateCustomerTable extends Migration
         if (!Schema::hasTable('customer')) {
             Schema::create('customer', function (Blueprint $table) {
                 $table->increments('customer_id')->comment('id của khách hàng');
+                $table->string('customer_code', 10)->index()->comment('mã khách hàng');
                 $table->string('customer_name')->index()->comment('họ và tên khách hàng');
                 $table->string('customer_email')->nullable()->index()->comment('email');
                 $table->string('customer_tel', 20)->nullable()->index()->comment('số điện thoại');
