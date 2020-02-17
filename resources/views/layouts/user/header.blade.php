@@ -6,24 +6,24 @@
                 <div class="col-lg-6 header-top-left">
                     <div class="top-info">
                         <i class="fa fa-phone"></i>
-                        (+88) 666 121 4321
+                        (+84) 123 456 7890
                     </div>
                     <div class="top-info">
                         <i class="fa fa-envelope"></i>
-                        info.leramiz@colorlib.com
+                        batdongsancantho@gmail.com
                     </div>
                 </div>
                 <div class="col-lg-6 text-lg-right header-top-right">
                     <div class="top-social">
-                        <a href=""><i class="fa fa-facebook"></i></a>
-                        <a href=""><i class="fa fa-twitter"></i></a>
-                        <a href=""><i class="fa fa-instagram"></i></a>
-                        <a href=""><i class="fa fa-pinterest"></i></a>
-                        <a href=""><i class="fa fa-linkedin"></i></a>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-pinterest"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a>
                     </div>
                     <div class="user-panel">
-                        <a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-                        <a href=""><i class="fa fa-sign-in"></i> Login</a>
+                        <a href=""><i class="far fa-user-circle"></i> Đăng ký</a>
+                        <a href=""><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,6 @@
                         <i class="fa fa-bars"></i>
                     </div>
                     <ul class="main-menu">
-                        <li><a href="index.html">Home</a></li>
                         <li><a href="categories.html">FEATURED LISTING</a></li>
                         <li><a href="about.html">ABOUT US</a></li>
                         <li><a href="single-list.html">Pages</a></li>
