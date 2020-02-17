@@ -18,7 +18,7 @@ class CheckLogin
     public function handle($request, Closure $next)
     {
         // nếu user đã đăng nhập
-        if (Auth::guard('taikhoan')->check()) {
+        if (Auth::guard('account')->check()) {
             $user = Auth::user();
             // nếu level =1 (admin), status = 1 (actived) thì cho qua.
             // if ($user->level == 1 && $user->status == 1) {
@@ -29,7 +29,7 @@ class CheckLogin
                 // return redirect()->route('getLogin');
             // }
         } else {
-            return redirect('/dangnhap');
+            return redirect('/');
         }
     }
 }

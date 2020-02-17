@@ -13,6 +13,7 @@ class Form extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
+        'unit_id',
         'form_id',
         'form_code',
         'form_name',

@@ -33,9 +33,6 @@ class CreateTypeTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-
-                //unique
-                $table->unique(['type_code', 'type_name']);
             });
             DB::statement("ALTER TABLE `type` comment 'Loại bất động sản'");
         }

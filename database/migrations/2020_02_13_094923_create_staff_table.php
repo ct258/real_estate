@@ -16,11 +16,11 @@ class CreateStaffTable extends Migration
                 $table->increments('staff_id')->comment('id của nhân viên');
                 $table->string('staff_code', 10)->index()->comment('mã nhân viên');
                 $table->string('staff_name')->index()->comment('tên nhân viên');
-                $table->date('staff_birth')->index()->comment('ngày sinh');
-                $table->tinyInteger('staff_gender')->default('1')->index()->comment('giới tính');
-                $table->string('staff_tel', 20)->index()->comment('số điện thoại');
-                $table->string('staff_email')->index()->comment('email');
-                $table->string('staff_address')->index()->comment('địa chỉ');
+                $table->date('staff_birth')->nullable()->index()->comment('ngày sinh');
+                $table->tinyInteger('staff_gender')->nullable()->default('1')->index()->comment('giới tính');
+                $table->string('staff_tel', 20)->nullable()->index()->comment('số điện thoại');
+                $table->string('staff_email')->nullable()->index()->comment('email');
+                $table->string('staff_address')->nullable()->index()->comment('địa chỉ');
 
                 //foreign key
                 $table->integer('account_id')->index()->unsigned();

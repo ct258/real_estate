@@ -14,9 +14,9 @@ class CreateRoleTable extends Migration
         if (!Schema::hasTable('role')) {
             Schema::create('role', function (Blueprint $table) {
                 $table->increments('role_id')->comment('id của vai trò');
-                $table->integer('role_level')->index()->comment('vai trò (khách, nv, quản lý,...)');
+                $table->integer('role_level')->unsigned()->index()->comment('vai trò (khách, nv, quản lý,...)');
                 $table->string('role_name', 45)->index()->comment('tên vai trò');
-                $table->string('role_note', 45)->index()->comment('ghi chú');
+                $table->string('role_note', 45)->nullable()->index()->comment('ghi chú');
 
                 //log time
                 $table->timestamp('created_at')

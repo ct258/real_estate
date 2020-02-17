@@ -14,40 +14,42 @@
 // Route::group(['middleware' => 'web'], function () {
     // Route::get('/dangnhap', 'TaiKhoanController@getLogin')->name('getLogin');
 
-Route::get('/', function () {
-    return redirect('/dangnhap');
-});
-Route::get('/dangnhap', function () {
-    return view('auth.login');
-})->name('getLogin');
-    Route::post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'TaiKhoanController@postLogin']);
+    //Đăng nhập
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('getLogin');
+    Route::get('/', function () {
+        return view('auth.login');
+    })->name('getLogin');
+    Route::post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
     Route::get('/logout', 'TaiKhoanController@logout')->name('logout');
-    Route::get('bando', function () {
-        return view('pages.admin.bando.index');
-    })->name('bando');
 
     Auth::routes();
 
         Auth::routes();
         Route::group(['middleware' => 'checklogin'], function () {
+            //Thay đổi ngôn ngữ
             Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
             Route::group(['middleware' => 'locale'], function () {
                 Route::get('change-language/{language}', 'HomeController@changeLanguage')
                 ->name('user.change-language');
+
                 //Bất động sản
-                Route::group(['prefix' => 'batdongsan'], function () {
+                Route::group(['prefix' => 'real_estate'], function () {
                     //index
-                    Route::get('/', 'BatDongSanController@index')->name('batdongsan.index');
+                    Route::get('/', 'RealEstateController@index')->name('real_estate.index');
                     // thêm
-                    Route::get('/create', 'BatDongSanController@create')->name('batdongsan.create');
-                    Route::post('/create', 'BatDongSanController@store')->name('batdongsan.create.submit');
+                    Route::get('/create', 'RealEstateController@create')->name('real_estate.create');
+                    Route::post('/create', 'RealEstateController@store')->name('real_estate.create.submit');
                     // xem chi tiết
-                    Route::get('/show/{batdongsan_id}', 'BatDongSanController@show')->name('batdongsan.show');
+                    Route::get('/show/{real_estate_id}', 'RealEstateController@show')->name('real_estate.show');
                     // sửa
-                    Route::get('/edit/{batdongsan_id}', 'BatDongSanController@edit')->name('batdongsan.edit');
-                    Route::post('/edit/submit/{batdongsan_id}', 'BatDongSanController@update')->name('batdongsan/update');
+                    Route::get('/edit/{real_estate_id}', 'RealEstateController@edit')->name('real_estate.edit');
+                    Route::post('/edit/submit/{real_estate_id}', 'RealEstateController@update')->name('real_estate/update');
                     // xóa mềm
-                    Route::post('/destroy/{batdongsan_id}', 'BatDongSanController@destroy')->name('batdongsan.destroy');
+                    Route::post('/destroy/{real_estate_id}', 'RealEstateController@destroy')->name('real_estate.destroy');
+                    //lấy loại bất động sản
+                    Route::get('/get_type/{form_id}', 'RealEstateController@get_type')->name('real_estate.type');
                 });
 
                 Route::group(['prefix' => 'nhanvien'], function () {
@@ -81,11 +83,11 @@ Route::get('/dangnhap', function () {
                     Route::post('/destroy/{khachhang_id}', 'KhachHangController@destroy')->name('khachhang.destroy');
                 });
 
-                Route::group(['prefix' => 'daxoa'], function () {
+                Route::group(['prefix' => 'removed'], function () {
                     //index
-                    Route::get('/batdongsan', 'BatDongSanController@index_trash')->name('daxoa.batdongsan');
+                    Route::get('/real_estate', 'RealEstateController@index_trash')->name('removed.real_estate');
                     // thêm
-                    Route::get('/batdongsan/{bds_id}', 'BatDongSanController@restore')->name('daxoa.batdongsan.khoiphuc');
+                    Route::get('/real_estate/{real_estate_id}', 'RealEstateController@restore')->name('removed.real_estate.restore');
                 });
             });
 
@@ -95,12 +97,15 @@ Route::get('/dangnhap', function () {
         });
         // });
 //DOM lấy dữ liệu
-Route::get('/quanhuyen/{ttp_id}', 'BatDongSanController@get_quanhuyen')->name('quanhuyen');
-Route::get('/phuongxa/{ttp_id}/{qh_id}', 'BatDongSanController@get_phuongxa')->name('phuongxa');
-Route::get('/duongpho/{qh_id}', 'BatDongSanController@get_duongpho1')->name('duongpho1');
-Route::get('/duongpho/{ttp_id}/{qh_id}', 'BatDongSanController@get_duongpho2')->name('duongpho2');
+Route::get('/district/{province_id}', 'LocalController@get_district')->name('district');
+Route::get('/ward/{province_id}/{district_id}', 'LocalController@get_ward')->name('ward');
+Route::get('/street/{district_id}', 'LocalController@get_street_1')->name('street_1');
+Route::get('/street/{province_id}/{district_id}', 'LocalController@get_street_2')->name('street_2');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('bando', function () {
+    return view('pages.admin.bando.index');
+})->name('bando');
 Route::get('user', function () {
     return view('pages.user.index');
 });
@@ -121,6 +126,9 @@ Route::get('category', function () {
 });
 Route::get('contact', function () {
     return view('pages.user.feature.contact');
+});
+Route::get('post', function () {
+    return view('pages.user.feature.post');
 });
 
 Route::get('/mail', function () {

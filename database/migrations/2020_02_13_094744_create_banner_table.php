@@ -16,7 +16,7 @@ class CreateBannerTable extends Migration
                 $table->increments('banner_id')->comment('id của banner');
                 $table->string('banner_title')->index()->comment('tiêu đề');
                 $table->string('banner_path')->index()->comment('đường dẫn hình ảnh banner');
-                $table->text('banner_link')->index()->comment('link khi click vào');
+                $table->text('banner_link')->nullable()->index()->comment('link khi click vào');
 
                 //foreign key
                 $table->integer('status_id')->index()->unsigned();

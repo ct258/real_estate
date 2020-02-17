@@ -14,13 +14,14 @@ class CreateCustomerTable extends Migration
         if (!Schema::hasTable('customer')) {
             Schema::create('customer', function (Blueprint $table) {
                 $table->increments('customer_id')->comment('id của khách hàng');
+                $table->string('customer_code', 10)->index()->comment('mã khách hàng');
                 $table->string('customer_name')->index()->comment('họ và tên khách hàng');
-                $table->string('customer_email')->index()->comment('email');
-                $table->string('customer_tel', 20)->index()->comment('số điện thoại');
-                $table->date('customer_birth')->index()->comment('ngày sinh');
-                $table->tinyInteger('customer_gender')->default('1')->index()->comment('giới tính');
-                $table->string('customer_address')->index()->comment('địa chỉ');
-                $table->string('customer_identity_card', 20)->index()->comment('cmnd');
+                $table->string('customer_email')->nullable()->index()->comment('email');
+                $table->string('customer_tel', 20)->nullable()->index()->comment('số điện thoại');
+                $table->date('customer_birth')->nullable()->index()->comment('ngày sinh');
+                $table->tinyInteger('customer_gender')->nullable()->default('1')->index()->comment('giới tính');
+                $table->string('customer_address')->nullable()->index()->comment('địa chỉ');
+                $table->string('customer_identity_card', 20)->nullable()->index()->comment('cmnd');
 
                 //foreign key
                 $table->integer('rank_id')->index()->unsigned();

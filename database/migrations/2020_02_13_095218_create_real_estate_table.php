@@ -16,8 +16,8 @@ class CreateRealEstateTable extends Migration
                 $table->increments('real_estate_id')->comment('id của bất động sản');
                 $table->string('real_estate_name')->index()->comment('tên bất động sản');
                 $table->string('real_estate_acreage')->index()->comment('diện tích bất động sản');
-                $table->string('real_estate_price')->index()->comment('giá bất động sản');
-                $table->string('real_estate_description')->index()->comment('mô tả bất động sản');
+                $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá bất động sản');
+                $table->string('real_estate_description')->nullable()->index()->comment('mô tả bất động sản');
                 $table->string('real_estate_address')->index()->comment('địa chỉ bất động sản');
 
                 //foreign key
@@ -25,8 +25,8 @@ class CreateRealEstateTable extends Migration
                 $table->integer('status_id')->index()->unsigned();
                 $table->integer('brokerage_fee_id')->index()->unsigned();
                 $table->integer('ward_id')->index()->unsigned();
-                $table->integer('street_id')->index()->unsigned();
-                $table->integer('direction_id')->index()->unsigned();
+                $table->integer('street_id')->nullable()->index()->unsigned();
+                $table->integer('unit_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();
 
                 $table->foreign('type_id')->references('type_id')->on('type');
@@ -34,7 +34,7 @@ class CreateRealEstateTable extends Migration
                 $table->foreign('brokerage_fee_id')->references('brokerage_fee_id')->on('brokerage_fee');
                 $table->foreign('ward_id')->references('ward_id')->on('ward');
                 $table->foreign('street_id')->references('street_id')->on('street');
-                $table->foreign('direction_id')->references('direction_id')->on('direction');
+                $table->foreign('unit_id')->references('unit_id')->on('unit');
                 $table->foreign('customer_id')->references('customer_id')->on('customer');
                 //log time
                 $table->timestamp('created_at')

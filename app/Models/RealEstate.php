@@ -16,6 +16,7 @@ class RealEstate extends Model
         'type_id',
         'status_id',
         'brokerage_fee_id',
+        'unit_id',
         'ward_id',
         'street_id',
         'direction_id',

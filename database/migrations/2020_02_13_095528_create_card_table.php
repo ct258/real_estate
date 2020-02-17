@@ -14,9 +14,9 @@ class CreateCardTable extends Migration
         if (!Schema::hasTable('card')) {
             Schema::create('card', function (Blueprint $table) {
                 $table->increments('card_id')->comment('id của giỏ hàng');
-                $table->integer('card_unit')->index()->comment('số lượng');
-                $table->decimal('card_discount', 18, 4)->index()->comment('giảm giá');
-                $table->decimal('card_total', 18, 4)->index()->comment('tổng tiền');
+                $table->integer('card_unit')->default(1)->index()->comment('số lượng');
+                $table->decimal('card_discount', 18, 4)->unsigned()->default(0)->index()->comment('giảm giá');
+                $table->decimal('card_total', 18, 4)->unsigned()->index()->comment('tổng tiền');
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();

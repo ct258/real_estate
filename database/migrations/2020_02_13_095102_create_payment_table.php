@@ -16,7 +16,7 @@ class CreatePaymentTable extends Migration
                 $table->increments('payment_id')->comment('id của phương thức thanh toán');
                 $table->string('payment_code', 45)->index()->comment('mã phương thức thanh toán');
                 $table->string('payment_name', 45)->index()->comment('tên phương thức thanh toán');
-                $table->string('payment_description')->index()->comment('mô tả phương thức thanh toán');
+                $table->string('payment_description')->nullable()->index()->comment('mô tả phương thức thanh toán');
 
                 //log time
                 $table->timestamp('created_at')
