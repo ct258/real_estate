@@ -43,6 +43,6 @@ class CreateImageRealEstateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_real_estate');
+        // Schema::dropIfExists('image_real_estate');
     }
 }

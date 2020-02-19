@@ -46,6 +46,6 @@ class CreatePaymentLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_log');
+        // Schema::dropIfExists('payment_log');
     }
 }

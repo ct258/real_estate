@@ -46,6 +46,6 @@ class CreateEvaluateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluate');
+        // Schema::dropIfExists('evaluate');
     }
 }

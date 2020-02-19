@@ -42,6 +42,6 @@ class CreateImageDepositContractTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_deposit_contract');
+        // Schema::dropIfExists('image_deposit_contract');
     }
 }

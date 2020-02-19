@@ -48,6 +48,6 @@ class CreateDepositContractTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deposit_contract');
+        // Schema::dropIfExists('deposit_contract');
     }
 }
