@@ -1,4 +1,5 @@
 @include('layouts.user.head')
+@yield('css')
 
 <body>
     <!-- Page Preloder -->
@@ -14,6 +15,7 @@
     @include('layouts.user.client')
     @include('layouts.user.footer')
     @include('layouts.user.script')
+    @yield('script')
 </body>
 
 </html>
