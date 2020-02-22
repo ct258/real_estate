@@ -10,6 +10,7 @@ class Account extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     protected $table = 'account';
+    protected $guard = 'account';
 
     protected $primaryKey = 'account_id';
 

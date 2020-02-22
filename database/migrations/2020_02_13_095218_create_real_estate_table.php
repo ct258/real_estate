@@ -14,10 +14,13 @@ class CreateRealEstateTable extends Migration
         if (!Schema::hasTable('real_estate')) {
             Schema::create('real_estate', function (Blueprint $table) {
                 $table->increments('real_estate_id')->comment('id của bất động sản');
-                $table->string('real_estate_name', 80)->index()->comment('tên bất động sản');
+                $table->string('real_estate_name_en', 80)->nullable()->index()->comment('tên bất động sản tiếng anh');
+                $table->string('real_estate_name_vi', 80)->index()->comment('tên bất động sản tiếng việt');
                 $table->string('real_estate_acreage')->index()->comment('diện tích bất động sản');
-                $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá bất động sản');
-                $table->longText('real_estate_description')->nullable()->index()->comment('mô tả bất động sản');
+                $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá trị hiển thị');
+                $table->decimal('real_estate_price_total', 18, 4)->unsigned()->index()->comment('giá trị thật sự');
+                $table->longText('real_estate_description_en')->nullable()->index()->comment('mô tả bất động sản tiếng anh');
+                $table->longText('real_estate_description_vi')->nullable()->index()->comment('mô tả bất động sản tiếng việt');
                 $table->string('real_estate_address')->index()->comment('địa chỉ bất động sản');
 
                 //foreign key

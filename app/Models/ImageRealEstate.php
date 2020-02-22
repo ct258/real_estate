@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Form extends Model
+class ImageRealEstate extends Model
 {
-    protected $table = 'form';
+    protected $table = 'image_real_estate';
 
-    protected $primaryKey = 'form_id';
+    protected $primaryKey = 'image_real_estate_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'unit_id',
-        'form_id',
-        // 'form_code',
-        'form_name',
+        'image_real_estate_id',
+        'image_id',
+        'real_estate_id',
+        'image_real_estate_note',
         'created_at',
         'updated_at',
         'deleted_at',
