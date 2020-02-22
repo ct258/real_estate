@@ -46,13 +46,13 @@ return [
             'hash' => false,
         ],
         //đây là đoạn mình thêm vào dùng để xác thực
-        'taikhoan' => [
+        'account' => [
             'driver' => 'session',
-            'provider' => 'taikhoan',
+            'provider' => 'account',
         ],
-        'taikhoan-api' => [
+        'account-api' => [
             'driver' => 'token',
-            'provider' => 'taikhoan',
+            'provider' => 'account',
         ],
     ],
 
@@ -79,9 +79,9 @@ return [
             'model' => App\User::class,
         ],
         //truy suất dữ liệu cho bảng
-        'taikhoan' => [
+        'account' => [
             'driver' => 'eloquent',
-            'model' => App\Models\TaiKhoan::class,
+            'model' => App\Models\Account::class,
         ],
 
         // 'users' => [
@@ -111,8 +111,8 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'taikhoan' => [
-            'provider' => 'taikhoan',
+        'account' => [
+            'provider' => 'account',
             'table' => 'password_resets',
             'expire' => 60,
         ],

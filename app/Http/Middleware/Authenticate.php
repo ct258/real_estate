@@ -18,7 +18,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         // dd($request);
-        if (!Auth::guard('taikhoan')->user()->tk_id) {
+        if (!Auth::guard('account')->user()->account_id) {
             return route('getLogin');
         }
     }
