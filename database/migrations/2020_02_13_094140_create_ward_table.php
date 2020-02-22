@@ -45,6 +45,6 @@ class CreateWardTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ward');
+        // Schema::dropIfExists('ward');
     }
 }

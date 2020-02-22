@@ -1,63 +1,139 @@
 @extends('layouts.user')
 @section('page')
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
 <!-- Page -->
 <section class="page-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 single-list-page">
-                <div class="single-list-content">
-                    <div class="row">
-                        <div class="col-xl-8 sl-title">
-                            <h2>305 North Palm Drive</h2>
-                            <p><i class="fa fa-map-marker"></i>Beverly Hills, CA 90210</p>
+                <form action="{{route('post.create.submit')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="single-list-content">
+                        <div class="row">
+                            <div class="col-xl-8 sl-title">
+                                <h2><label> Tiêu đề(*):</label><input type="text" name="name" id=""
+                                        class="form-control input-transparent" autocomplete="off"></h2>
+                                <p><i class="fa fa-map-marker"></i><label>Địa chỉ (*):</label> <input type="text"
+                                        name="address" id="" placeholder="" class="form-control input-transparent"></p>
+                            </div>
                         </div>
-                        <div class="col-xl-4">
-                            <a href="#" class="price-btn">$4,500,000</a>
+                        <h3 class="sl-sp-title">Thông tin cơ bản</h3>
+                        <div class="row property-details-list">
+                            <table class="table">
+                                <tr>
+                                    <td>Hình thức(*)</td>
+                                    <td>
+                                        <select name="form" id="form" class="form-control form-control-sm">
+                                            <option value="form_id" selected>-- Chọn hình thức --</option>
+                                            @foreach ($form as $item)
+                                            <option value="{{$item->form_id}}">{{$item->form_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>Loại(*)</td>
+                                    <td>
+                                        <select name="type" id="type" class="form-control form-control-sm">
+                                            <option value="type_id" selected>-- Chọn Loại --</option>
+                                            @foreach ($type as $item)
+                                            <option value="{{$item->type_id}}">{{$item->type_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tỉnh/Thành phố(*)</td>
+                                    <td>
+                                        <select name="province" id="province" class="form-control form-control-sm">
+                                            <option value="province_id" selected>-- Chọn Tỉnh/TP --</option>
+                                            @foreach ($province as $item)
+                                            <option value="{{$item->province_id}}">{{$item->province_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>Quận/Huyện(*)</td>
+                                    <td>
+                                        <select name="district" id="district" class="form-control form-control-sm">
+                                            <option value="district_id" selected>-- Chọn Quận/Huyện --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Phường/Xã</td>
+                                    <td>
+                                        <select name="ward" id="ward" class="form-control form-control-sm">
+                                            <option value="ward_id" selected>-- Chọn Phường/Xã --</option>
+                                        </select>
+                                    </td>
+                                    <td>Đường/Phố</td>
+                                    <td>
+                                        <select name="street" id="street" class="form-control form-control-sm">
+                                            <option value="street_id" selected>-- Chọn Đường/Phố --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Diện tích</td>
+                                    <td>
+                                        <input type="number" name="acreage" id="acreage"
+                                            class="form-control form-control-sm">
+                                    </td>
+                                    <td>Đơn vị</td>
+                                    <td>
+                                        <input type="number" name="unit" id="unit" class="form-control form-control-sm">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Giá</td>
+                                    <td>
+                                        <input type="number" name="price" id="price"
+                                            class="form-control form-control-sm">
+                                    </td>
+                                    <td>Thành tiền: </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
                         </div>
-                    </div>
-                    <h3 class="sl-sp-title">THÔNG TIN CƠ BẢN</h3>
-                    <div class="row property-details-list">
-                        <div class="col-md-4 col-sm-6">
-                            <p><i class="fa fa-th-large"></i> 1500 Square foot</p>
-                            <p><i class="fa fa-bed"></i> 16 Bedrooms</p>
-                            <p><i class="fa fa-user"></i> Gina Wesley</p>
+                        <h3 class="sl-sp-title">Thông tin mô tả</h3>
+                        <div>
+                            <textarea name="description" cols="30" id="editor1" style="max-width:100%;height: 235px;"
+                                class="form-control input-transparent"></textarea>
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <p><i class="fa fa-car"></i> 2 Garages</p>
-                            <p><i class="fa fa-building-o"></i> Family Villa</p>
-                            <p><i class="fa fa-clock-o"></i> 1 days ago</p>
+                        <h3 class="sl-sp-title">Thông tin khác</h3>
+                        <div class="row property-details-list">
+                            <div class="col-md-4 col-sm-6">
+                                <p><i class="fas fa-building"></i> Mặt tiền <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent">
+                                </p>
+                                <p><i class="fa fa-bed"></i> Phòng ngủ <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent"></p>
+                                <p><i class="fa fa-th-large"></i> Số tầng <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent"></p>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <p><i class="fa fa-car"></i> Lối vào <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent"></p>
+                                <p><i class="fas fa-compass"></i> Hướng nhà <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent">
+                                </p>
+                                <p><i class="fa fa-clock-o"></i> Độ tuổi <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent">
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><i class="fa fa-restroom"></i> Toilet <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent"></p>
+                                <p><i class="fas fa-couch"></i> Nội thất <input type="number" name="" id="" min=0
+                                        class="form-control input-transparent"></p>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <p><i class="fa fa-bath"></i> 8 Bathrooms</p>
-                            <p><i class="fa fa-trophy"></i> 5 years age</p>
-                        </div>
-                    </div>
-                    <h3 class="sl-sp-title">THÔNG TIN MÔ TẢ</h3>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas fermentum
-                            ornareste. Donec index lorem. Vestibulum aliquet odio, eget tempor libero. Cras congue
-                            cursus tincidunt. Nullam venenatis dui id orci egestas tincidunt id elit. Nullam ut vuputate
-                            justo. Integer lacnia pharetra pretium. Casan ante ipsum primis in faucibus orci luctus et
-                            ultrice.</p>
-                    </div>
-                    <h3 class="sl-sp-title">THÔNG TIN KHÁC</h3>
-                    <div class="row property-details-list">
-                        <div class="col-md-4 col-sm-6">
-                            <p><i class="fa fa-building-o"></i> Mặt tiền</p>
-                            <p><i class="fa fa-bed"></i> Phòng ngủ</p>
-                            <p><i class="fa fa-th-large"></i> Số tầng</p>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <p><i class="fa fa-car"></i> Lối vào</p>
-                            <p><i class="fa fa-building-o"></i> Hướng nhà</p>
-                            <p><i class="fa fa-clock-o"></i> 1 days ago</p>
-                        </div>
-                        <div class="col-md-4">
-                            <p><i class="fa fa-bath"></i> Toilet</p>
-                            <p><i class="fa fa-trophy"></i> Nội thất</p>
-                        </div>
-                    </div>
-                    {{-- <h3 class="sl-sp-title bd-no">Floorplans</h3>
+                        {{-- <h3 class="sl-sp-title bd-no">Floorplans</h3>
                     <div id="accordion" class="plan-accordion">
                         <div class="panel">
                             <div class="panel-header" id="headingOne">
@@ -101,16 +177,25 @@
                         </div>
                     </div> --}}
 
-                    <h3 class="sl-sp-title bd-no">HÌNH ẢNH VÀ VIDEO</h3>
-                    <div class="perview-video">
-                        <img src="img/video.jpg" alt="">
-                        <a href="https://www.youtube.com/watch?v=v13nSVp6m5I" class="video-link"><img
-                                src="img/video-btn.png" alt=""></a>
+                        <h3 class="sl-sp-title bd-no">Hình ảnh</h3>
+                        <div class="perview-video">
+                            <div class="spanButtonPlaceholder block-upload-item" id="upload-drop-zone"
+                                style="position: relative; overflow: hidden; direction: ltr;">
+                                <p>(Click để tải ảnh<br> hoặc kéo thả ảnh vào đây)</p>
+                                <input multiple="multiple" type="file" name="file"
+                                    style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;">
+                            </div>
+                        </div>
+                        <h3 class="sl-sp-title bd-no">Vị trí</h3>
+                        <div class="pos-map" id="map-canvas"></div>
                     </div>
-                    <h3 class="sl-sp-title bd-no">Location</h3>
-                    <div class="pos-map" id="map-canvas"></div>
-                </div>
+                    <button type="submit" class="btn btn-success">Đăng</button>
+                </form>
             </div>
+
+
+
+            {{--  --}}
             <!-- sidebar -->
             <div class="col-lg-4 col-md-7 sidebar">
                 <div class="author-card">
@@ -181,4 +266,88 @@
     </div>
 </section>
 <!-- Page end -->
+@endsection
+@section('script')
+<script>
+    CKEDITOR.replace( 'editor1', {
+        filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+
+    } );
+</script>
+<script>
+    $(document).ready(function () {
+        //lấy loại bất động sản
+        $("#form").change(function(){
+            var form_id = $(this).val();
+            $.get("../real_estate/get_type/"+form_id, function(data){
+                $("#type").html(data);
+            });
+        });
+        //lấy quận huyện theo tỉnh thành phố
+        $("#province").change(function(){
+            var province_id = $(this).val();
+            $.get("../district/"+province_id, function(data){
+                $("#district").html(data);
+            });
+        });
+        //lấy đường phố theo tỉnh
+        $("#province").change(function(){
+            var province_id = $(this).val();
+            $.get("../street/"+province_id, function(data){
+                $("#street").html(data);
+            });
+        });
+        //lấy phường xã theo tỉnh,huyện
+        $("#district").change(function(){
+            var province_id = "";
+            var district_id = "";
+            var province_id = $("#province").val();
+            var district_id = $("#district").val();
+            $.get("../ward/"+province_id+'/'+district_id, function(data){
+                $("#ward").html(data);
+            });
+        });
+        //lấy đường phố theo tỉnh,huyện
+        $("#district").change(function(){
+            var province_id = $("#province").val();
+            var district_id = $("#district").val();
+            $.get("../street/"+province_id+'/'+district_id, function(data){
+                $("#street").html(data);
+            });
+        });
+
+    });
+    //reset tất cả về ban đầu khi thay đổi tỉnh
+    $("#province").change(function(){
+        var province_id = $("#province").val();
+        if(province_id=='province_id'){
+            var data1="<option value='0'>-- Chọn Quận/Huyện --</option>";
+            var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+            var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
+            $("#district").html(data1);
+            $("#ward").html(data2);
+            $("#street").html(data3);
+        }
+    });
+    //reset tất cả về ban đầu khi thay đổi tỉnh
+    $("#district").change(function(){
+        var ward_id = $("#ward").val();
+        var province_id = $("#province").val();
+            
+        if(ward_id=='ward_id' && province_id!='province_id'){
+            var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+            $("#ward").html(data2);
+            $.get("../street/"+province_id, function(data){
+                $("#street").html(data);
+            });
+        }
+        else{
+            var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+            var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
+            $("#ward").html(data2);
+            $("#street").html(data3);
+        }
+    });
+
+</script>
 @endsection

@@ -14,7 +14,7 @@ class Status extends Model
 
     protected $fillable = [
         'status_id',
-        'status_code',
+        // 'status_code',
         'status_name',
         'status_reason',
         'status_note',

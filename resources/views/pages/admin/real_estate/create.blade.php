@@ -45,17 +45,7 @@
             <section class="widget">
                 <div class="container-fluid">
                     <table class="table">
-                        <tr>
-                            <td><label>Giá dự án</label><input type="text" name="price" min="0" step="500"
-                                    class="form-control input-transparent"><br>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td><label>Diện tích</label><input type="text" name="acreage"
-                                    class="form-control input-transparent"><br>
-                            </td>
-                        </tr>
 
                         <tr>
                             <td>
@@ -73,34 +63,61 @@
                                 <select name="type" id="type" class="form-control form-control-sm">
                                     <option value="form_id" selected>-- Chọn --</option>
                                 </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Đơn vị</label>
+                                <select name="unit" id="unit" class="form-control form-control-sm">
+                                    <option value="unit_id" selected>-- Chọn --</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Diện tích</label><input type="text" name="acreage"
+                                    class="form-control input-transparent"><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Giá dự án</label><input type="number" name="price" min="0" step="any"
+                                    class="form-control input-transparent"><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Phương hướng</label>
+                                <select name="direction" id="direction" class="form-control form-control-sm">
+                                    <option value="" selected>-- Chọn --</option>
+                                    @foreach ($direction as $item)
+                                    <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
+                                    @endforeach
+                                </select><br>
+                            </td>
                         </tr>
                         <tr>
 
                             <td>
+                                <label>Địa chỉ</label>
                                 <select name="province" id="province" class="form-control form-control-sm">
                                     <option value="province_id" selected>-- Chọn Tỉnh/TP --</option>
                                     @foreach ($province as $item)
                                     <option value="{{$item->province_id}}">{{$item->province_name}}</option>
                                     @endforeach
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+
+                                <br>
+
                                 <select name="district" id="district" class="form-control form-control-sm">
                                     <option value="district_id" selected>-- Chọn Quận/Huyện --</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+
+                                <br>
+
                                 <select name="ward" id="ward" class="form-control form-control-sm">
                                     <option value="ward_id" selected>-- Chọn Phường/Xã --</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+
+                                <br>
+
                                 <select name="street" id="street" class="form-control form-control-sm">
                                     <option value="dp_id" selected>-- Chọn Đường/Phố --</option>
                                 </select>
@@ -132,10 +149,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+        //lấy đơn vị
+        $("#form").change(function(){
+            var form_id = $(this).val();
+            $.get("../unit/"+form_id, function(data){
+                $("#unit").html(data);
+            });
+        });
+        
         //lấy loại bất động sản
         $("#form").change(function(){
             var form_id = $(this).val();
-            $.get("../real_estate/get_type/"+form_id, function(data){
+            $.get("../type/"+form_id, function(data){
                 $("#type").html(data);
             });
         });

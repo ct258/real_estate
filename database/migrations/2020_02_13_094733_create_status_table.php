@@ -14,7 +14,7 @@ class CreateStatusTable extends Migration
         if (!Schema::hasTable('status')) {
             Schema::create('status', function (Blueprint $table) {
                 $table->increments('status_id')->comment('id trạng thái');
-                $table->integer('status_code')->index()->comment('mã trạng thái');
+                // $table->integer('status_code')->index()->comment('mã trạng thái');
                 $table->string('status_name', 45)->index()->comment('tên trạng thái');
                 $table->string('status_reason')->nullable()->index()->comment('lý do');
                 $table->string('status_note')->nullable()->index()->comment('ghi chú');
@@ -33,7 +33,7 @@ class CreateStatusTable extends Migration
                 ->comment('ngày xóa tạm');
 
                 //unique
-                $table->unique(['status_code', 'status_name']);
+                $table->unique(['status_name']);
             });
             DB::statement("ALTER TABLE `status` comment 'Trạng thái'");
         }
@@ -44,6 +44,6 @@ class CreateStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        // Schema::dropIfExists('status');
     }
 }

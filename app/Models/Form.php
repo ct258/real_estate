@@ -15,7 +15,7 @@ class Form extends Model
     protected $fillable = [
         'unit_id',
         'form_id',
-        'form_code',
+        // 'form_code',
         'form_name',
         'created_at',
         'updated_at',

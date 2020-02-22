@@ -42,6 +42,6 @@ class CreateImageSaleContractTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_sale_contract');
+        // Schema::dropIfExists('image_sale_contract');
     }
 }

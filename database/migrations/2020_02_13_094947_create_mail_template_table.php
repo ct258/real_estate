@@ -44,6 +44,6 @@ class CreateMailTemplateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mail_template');
+        // Schema::dropIfExists('mail_template');
     }
 }

@@ -14,7 +14,9 @@ class CreateUnitTable extends Migration
         if (!Schema::hasTable('unit')) {
             Schema::create('unit', function (Blueprint $table) {
                 $table->increments('unit_id');
-                $table->string('unit_name')->index()->comment('tên đơn vị');
+                $table->string('unit_name_en')->nullable()->index()->comment('tên đơn vị tiếng anh');
+                $table->string('unit_name_vi')->index()->comment('tên đơn vị tiếng việt');
+                $table->decimal('unit_value', 18, 4)->nullable()->unsigned()->index()->comment('giá trị quy đổi chữ sang số');
 
                 //foreign key
                 $table->integer('form_id')->index()->unsigned();
@@ -42,6 +44,6 @@ class CreateUnitTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit');
+        // Schema::dropIfExists('unit');
     }
 }

@@ -43,6 +43,6 @@ class CreateBrokerageFeeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brokerage_fee');
+        // Schema::dropIfExists('brokerage_fee');
     }
 }

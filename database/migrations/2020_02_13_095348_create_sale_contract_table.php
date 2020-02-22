@@ -49,6 +49,6 @@ class CreateSaleContractTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sale_contract');
+        // Schema::dropIfExists('sale_contract');
     }
 }

@@ -9,7 +9,9 @@ use App\Models\Type;
 use App\Models\Form;
 use App\Models\Image;
 use App\Models\ImageRealEstate;
+use App\Models\Direction;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class RealEstateController extends Controller
 {
@@ -34,10 +36,11 @@ class RealEstateController extends Controller
      */
     public function create()
     {
+        $direction = Direction::select('direction_id', 'direction_name')->get();
         $form = Form::select('form_id', 'form_name')->get();
         $province = Province::select('province_id', 'province_name')->orderBy('province_name', 'asc')->get();
 
-        return view('pages.admin.real_estate.create', compact('province', 'form'));
+        return view('pages.admin.real_estate.create', compact('province', 'form', 'direction'));
     }
 
     /**
@@ -51,21 +54,28 @@ class RealEstateController extends Controller
     {
         // dd($request);
         if ($request->hasFile('avatar')) {
-            $time = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+            $time = str_replace(' ', '', Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString());
             $real_estate_id = RealEstate::insertGetId(array(
                     'real_estate_name' => $request->name,
                     'real_estate_price' => $request->price,
                     'real_estate_address' => $request->address,
                     'real_estate_acreage' => $request->acreage,
                     'real_estate_description' => $request->description,
-                    'loaibds_id' => 1,
+                    'type_id' => $request->type,
+                    'street_id' => $request->street,
+                    'ward_id' => $request->ward,
+                    'district_id' => $request->district,
+                    'unit_id' => $request->unit,
+                    'status_id' => 1,
+                    //Phải dùng tài khoản khách hàng để tạo
+                    // 'customer_id' => Auth::guard('account')->user()->account_id,
                 ));
 
             $file_name = $request->file('avatar')->getClientOriginalName(); //Trả về tên file
             //lưu file
             $request->file('avatar')->move(
             'img/Product', //nơi cần lưu
-            $file_name,
+            $time.'_'.$file_name,
             );
             $avatar_path = Image::insertGetId(array(
                 'image_path' => 'img/Product/'.$time.'_'.$file_name,
@@ -81,7 +91,7 @@ class RealEstateController extends Controller
                     $file_name = $value->getClientOriginalName();
                     $value->move(
                         'img/Product', //nơi cần lưu
-                        $file_name,
+                        $time.'_'.$file_name,
                         );
                     $hinhanh = Image::insertGetId(array(
                         'image_path' => 'img/Product/'.$time.'_'.$file_name,

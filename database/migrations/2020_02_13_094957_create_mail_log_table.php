@@ -45,6 +45,6 @@ class CreateMailLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mail_log');
+        // Schema::dropIfExists('mail_log');
     }
 }

@@ -45,6 +45,6 @@ class CreateStreetTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('street');
+        // Schema::dropIfExists('street');
     }
 }
