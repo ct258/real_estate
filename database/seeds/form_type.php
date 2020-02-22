@@ -10,87 +10,74 @@ class form_type extends Seeder
     public function run()
     {
         $data1 = array(
-            ['form_code' => 'B',
-                'form_name' => 'Bán', ],
-            ['form_code' => 'T',
-                'form_name' => 'Cho thuê', ],
+            ['form_name' => 'Nhà đất bán'],
+            ['form_name' => 'Nhà đất cho thuê'],
          );
         DB::table('form')->insert($data1);
         $data2 = array(
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'căn hộ chung cư',
+                'type_name' => 'Bán căn hộ chung cư',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'nhà riêng',
+                'type_name' => 'Bán nhà riêng',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'nhà biệt thự liền kề',
+                'type_name' => 'Bán nhà biệt thự liền kề',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'nhà mặt phố',
+                'type_name' => 'Bán nhà mặt phố',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'đất nền dự án',
+                'type_name' => 'Bán đất nền dự án',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'đất',
+                'type_name' => 'Bán đất',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'trang trại, khu nghỉ dưỡng',
+                'type_name' => 'Bán trang trại, khu nghỉ dưỡng',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'kho, nhà xưởng',
+                'type_name' => 'Bán kho, nhà xưởng',
             ],
             [
                 'form_id' => 1,
-                'type_code' => 1,
-                'type_name' => 'loại bất động sản khác',
+                'type_name' => 'Bán loại bất động sản khác',
             ],
             [
                 'form_id' => 2,
-                'type_code' => 2,
-                'type_name' => 'căn hộ chung cư',
+                'type_name' => 'Cho thuê căn hộ chung cư',
             ],
             [
                 'form_id' => 2,
-                'type_code' => 2,
-                'type_name' => 'nhà riêng',
+                'type_name' => 'Cho thuê nhà riêng',
             ],
             [
                 'form_id' => 2,
-                'type_code' => 2,
-                'type_name' => 'nhà mặt phố',
+                'type_name' => 'Cho thuê nhà mặt phố',
             ],
             [
                 'form_id' => 2,
-                'type_code' => 2,
-                'type_name' => 'nhà trọ, phòng trọ',
+                'type_name' => 'Cho thuê nhà trọ, phòng trọ',
             ],
             [
                 'form_id' => 2,
-                'type_code' => 2,
-                'type_name' => 'cửa hàng, ki ốt',
+                'type_name' => 'Cho thuê cửa hàng, ki ốt',
             ],
             [
                 'form_id' => 2,
-                'type_code' => 2,
-                'type_name' => 'kho, nhà xưởng, đất',
+                'type_name' => 'Cho thuê kho, nhà xưởng, đất',
+            ],
+            [
+                'form_id' => 2,
+                'type_name' => 'Cho thuê loại bất động sản khác',
             ],
          );
         DB::table('type')->insert($data2);
