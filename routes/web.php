@@ -89,18 +89,29 @@
                     // thêm
                     Route::get('/real_estate/{real_estate_id}', 'RealEstateController@restore')->name('removed.real_estate.restore');
                 });
+                Route::group(['prefix' => 'post'], function () {
+                    Route::get('/create', 'PostController@create')->name('post.create');
+                    Route::post('/create', 'PostController@store')->name('post.create.submit');
+                });
             });
 
             Auth::routes();
 
             Route::get('/home', 'HomeController@index')->name('home');
         });
+        // End middleware check user
+
         // });
 //DOM lấy dữ liệu
-Route::get('/district/{province_id}', 'LocalController@get_district')->name('district');
-Route::get('/ward/{province_id}/{district_id}', 'LocalController@get_ward')->name('ward');
-Route::get('/street/{district_id}', 'LocalController@get_street_1')->name('street_1');
-Route::get('/street/{province_id}/{district_id}', 'LocalController@get_street_2')->name('street_2');
+Route::get('/district/{province_id}', 'DOMController@get_district')->name('district');
+Route::get('/ward/{province_id}/{district_id}', 'DOMController@get_ward')->name('ward');
+Route::get('/street/{district_id}', 'DOMController@get_street_1')->name('street_1');
+Route::get('/street/{province_id}/{district_id}', 'DOMController@get_street_2')->name('street_2');
+Route::get('/type/{form_id}', 'DOMController@get_type')->name('type');
+Route::get('/unit/{form_id}', 'DOMController@get_unit')->name('unit');
+Route::get('/price/{form_id}', 'DOMController@get_price')->name('price');
+Route::get('/acreage/{form_id}', 'DOMController@get_acreage')->name('acreage');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('bando', function () {
@@ -109,9 +120,10 @@ Route::get('bando', function () {
 Route::get('user', function () {
     return view('pages.user.index');
 });
-Route::get('list', function () {
-    return view('pages.user.feature.list');
-});
+Route::get('list', 'ClientController@list')->name('list');
+Route::get('listajax', 'ClientController@list_ajax')->name('list.ajax');
+Route::post('list_sort', 'ClientController@list_sort')->name('list.sort');
+
 Route::get('single_blog', function () {
     return view('pages.user.feature.single_blog');
 });
@@ -126,9 +138,6 @@ Route::get('category', function () {
 });
 Route::get('contact', function () {
     return view('pages.user.feature.contact');
-});
-Route::get('post', function () {
-    return view('pages.user.feature.post');
 });
 
 Route::get('/mail', function () {
