@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\Street;
+use App\Models\Type;
+use App\Models\Unit;
+use App\Models\StandardAcreage;
+use App\Models\StandardPrice;
 
-class LocalController extends Controller
+class DOMController extends Controller
 {
     public function get_district($province_id)
     {
@@ -57,6 +61,43 @@ class LocalController extends Controller
 
         foreach ($street as $item) {
             echo "<option value='".$item->street_id."'>".$item->street_name.'</option>';
+        }
+    }
+
+    public function get_type($form_id)
+    {
+        $type = Type ::select('type_id', 'type_name')->where('form_id', $form_id)->get();
+
+        foreach ($type as $item) {
+            echo "<option value='".$item->type_id."'>".$item->type_name.'</option>';
+        }
+    }
+
+    public function get_unit($form_id)
+    {
+        $unit = Unit ::select('unit_id', 'unit_name')->where('form_id', $form_id)->groupBy('form_id')->get();
+
+        foreach ($unit as $item) {
+            echo "<option value='".$item->unit_id."'>".$item->unit_name.'</option>';
+        }
+    }
+
+    // public function get_acreage($form_id)
+    // {
+    //     $standard_acreage = StandardAcreage::select('standard_acreage_id', 'standard_acreage_name', 'standard_acreage_value1', 'standard_acreage_value2')
+    //     ->where('form_id', $form_id)->get();
+    //     foreach ($standard_acreage as $item) {
+    //         echo "<option value='{`acreage`:[".$item->standard_acreage_value1.','.$item->standard_acreage_value2."]}'>".$item->standard_acreage_name.'</option>';
+    //     }
+    // }
+
+    public function get_price($form_id)
+    {
+        $standard_price = StandardPrice::select('standard_price_id', 'standard_price_name', 'standard_price_value1', 'standard_price_value2')
+        ->where('form_id', $form_id)->get();
+        echo "<option value=''>-- Chọn Giá --</option>";
+        foreach ($standard_price as $item) {
+            echo '<option value='.$item->standard_price_value1.','.$item->standard_price_value2.'>'.$item->standard_price_name.'</option>';
         }
     }
 }
