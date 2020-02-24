@@ -26,6 +26,10 @@
     #paginationa {
         display: contents;
     }
+
+    #search-form {
+        width: 100%;
+    }
 </style>
 @endsection
 @section('page')
@@ -48,7 +52,7 @@
             <div class="col-lg-3">
                 <form class="filter-form" action="{{route('list.sort')}}" method="POST">
                     @csrf
-                    <table class="search-form">
+                    <table id='search-form' class="search-form">
                         <tr>
                             <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
                             </td>
@@ -82,6 +86,7 @@
                         <tr>
                             <td><select name="acreage" id="acreage">
                                     <option value="">-- Chọn Diện tích --</option>
+                                    <option value=""><button type="text" name="" id=""></button></option>
                                     @foreach ($standard_acreage as $item)
                                     <option
                                         value="{{$item->standard_acreage_value1}},{{$item->standard_acreage_value2}}">
@@ -142,18 +147,18 @@
 <script>
     $(document).ready(function () {
         //lấy đơn vị
-        $("#form").change(function(){
-            var form_id = $(this).val();
-            $.get("./unit/"+form_id, function(data){
-                $("#unit").html(data);
-            });
-        });
+        // $("#form").change(function(){
+        //     var form_id = $(this).val();
+        //     $.get("./unit/"+form_id, function(data){
+        //         $("#unit").html(data);
+        //     });
+        // });
         
         //lấy loại bất động sản
         $("#form").change(function(){
             var form_id = $(this).val();
             $.get("./type/"+form_id, function(data){
-                $("#type").html(data);alert(a);
+                $("#type").html(data);
             });
         });
         //lấy quận huyện theo tỉnh thành phố
@@ -229,12 +234,12 @@
             });
         });
         //lấy diện tích
-        $("#form").change(function(){
-            var form_id = $(this).val();
-            $.get("./acreage/"+form_id, function(data){
-                $("#acreage").html(data);
-            });
-        });
+        // $("#form").change(function(){
+        //     var form_id = $(this).val();
+        //     $.get("./acreage/"+form_id, function(data){
+        //         $("#acreage").html(data);
+        //     });
+        // });
     });
 </script>
 {{-- <script>
@@ -272,4 +277,22 @@ alert("Lỗi rồi");
 });
 
 </script> --}}
+<script type="text/javascript">
+    $('#header-search').on('keyup', function() {
+        var search = $(this).serialize();
+        if ($(this).find('.m-input').val() == '') {
+            $('#search-suggest div').hide();
+        } else {
+            $.ajax({
+                url: '/search',
+                type: 'POST',
+                data: search,
+            })
+            .done(function(res) {
+                $('#search-suggest').html('');
+                $('#search-suggest').append(res)
+            })
+        };
+    });
+</script>
 @endsection
