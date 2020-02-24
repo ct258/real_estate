@@ -121,8 +121,8 @@ Route::get('user', function () {
     return view('pages.user.index');
 });
 Route::get('list', 'ClientController@list')->name('list');
+Route::post('list', 'ClientController@searchFullText')->name('list.sort');
 Route::get('listajax', 'ClientController@list_ajax')->name('list.ajax');
-Route::post('list_sort', 'ClientController@list_sort')->name('list.sort');
 
 Route::get('single_blog', function () {
     return view('pages.user.feature.single_blog');

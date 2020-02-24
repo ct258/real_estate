@@ -27,6 +27,7 @@ class CreateRealEstateTable extends Migration
                 $table->integer('type_id')->index()->unsigned();
                 $table->integer('status_id')->index()->unsigned();
                 $table->integer('brokerage_fee_id')->nullable()->index()->unsigned();
+                $table->integer('district_id')->nullable()->index()->unsigned();
                 $table->integer('ward_id')->nullable()->index()->unsigned();
                 $table->integer('street_id')->nullable()->index()->unsigned();
                 $table->integer('unit_id')->nullable()->index()->unsigned();
@@ -35,6 +36,7 @@ class CreateRealEstateTable extends Migration
                 $table->foreign('type_id')->references('type_id')->on('type');
                 $table->foreign('status_id')->references('status_id')->on('status');
                 $table->foreign('brokerage_fee_id')->references('brokerage_fee_id')->on('brokerage_fee');
+                $table->foreign('district_id')->references('district_id')->on('district');
                 $table->foreign('ward_id')->references('ward_id')->on('ward');
                 $table->foreign('street_id')->references('street_id')->on('street');
                 $table->foreign('unit_id')->references('unit_id')->on('unit');
@@ -52,7 +54,15 @@ class CreateRealEstateTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
             });
-            DB::statement("ALTER TABLE `real_estate` comment 'Bất động sản'");
+            DB:: statement("ALTER TABLE `real_estate` comment 'Bất động sản'");
+            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search1` (`real_estate_name_vi`)');
+            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search2` (`real_estate_name_en`)');
+            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search3` (`real_estate_description_en`)');
+            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search4` (`real_estate_description_vi`)');
+            // DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search5` (`real_estate_price`)');
+            // DB::statement('ALTER TABLE users ADD FULLTEXT `name` (`name`)');
+            // DB:: statement('ALTER TABLE SET FOREIGN_KEY_CHECKS=0; ENGINE = MyISAM; SET FOREIGN_KEY_CHECKS=1;');
+            // DB::statement('ALTER TABLE `real_estate` ENGINE = MyISAM');
         }
     }
 

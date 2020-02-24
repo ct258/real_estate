@@ -34,4 +34,41 @@ class RealEstate extends Model
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
+    protected function fullTextWildcards($term)
+    {
+        // removing symbols used by MySQL
+        $reservedSymbols = ['-', '+', '<', '>', '@', '(', ')', '~'];
+        $term = str_replace($reservedSymbols, '', $term);
+
+        $words = explode(' ', $term);
+
+        foreach ($words as $key => $word) {
+            /*
+             * applying + operator (required word) only big words
+             * because smaller ones are not indexed by mysql
+             */
+            if (strlen($word) >= 1) {
+                $words[$key] = '+'.$word.'*';
+            }
+        }
+
+        $searchTerm = implode(' ', $words);
+
+        return $searchTerm;
+    }
+
+    public function scopeFullTextSearch($query, $term)
+    {
+        $query->whereRaw('MATCH real_estate_name_vi AGAINST (? IN BOOLEAN MODE)',
+        $this->fullTextWildcards($term));
+        // ->orWhereRaw('MATCH real_estate_name_en AGAINST (? IN BOOLEAN MODE)',
+        // $this->fullTextWildcards($term))
+        // ->orWhereRaw('MATCH real_estate_description_en AGAINST (? IN BOOLEAN MODE)',
+        // $this->fullTextWildcards($term))
+        // ->orWhereRaw('MATCH real_estate_description_vi AGAINST (? IN BOOLEAN MODE)',
+        // $this->fullTextWildcards($term));
+
+        return $query;
+    }
 }
