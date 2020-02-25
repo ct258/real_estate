@@ -41,31 +41,31 @@ class ClientController extends Controller
 
     public function list(Request $request)
     {
-        $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-            ->join('image', 'image_real_estate.image_id', 'image.image_id')
-            ->join('district', 'real_estate.district_id', 'district.district_id')
-            ->join('province', 'district.province_id', 'province.province_id')
-            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-            ->select('real_estate.real_estate_id',
-            'real_estate_name_vi',
-            'real_estate_description_vi',
-            'real_estate_price',
-            'real_estate_acreage',
-            'real_estate.created_at',
-            'unit.unit_name_vi',
-            'image.image_path',
-            'province.province_name',
-            'district.district_name')
-            ->where('image_real_estate.image_real_estate_note', 'Avatar')
-            ->paginate(5);
+        // $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+        //     ->join('image', 'image_real_estate.image_id', 'image.image_id')
+        //     ->join('district', 'real_estate.district_id', 'district.district_id')
+        //     ->join('province', 'district.province_id', 'province.province_id')
+        //     ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+        //     ->select('real_estate.real_estate_id',
+        //     'real_estate_name_vi',
+        //     'real_estate_description_vi',
+        //     'real_estate_price',
+        //     'real_estate_acreage',
+        //     'real_estate.created_at',
+        //     'unit.unit_name_vi',
+        //     'image.image_path',
+        //     'province.province_name',
+        //     'district.district_name')
+        //     ->where('image_real_estate.image_real_estate_note', 'Avatar')
+        //     ->paginate(5);
 
         // tính thời gian đăng
         Carbon::setlocale('vi');
         $now = Carbon::now();
-        foreach ($real_estate as $key => $value) {
-            // dd($value['real_estate_id']);
-            $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-        }
+        // foreach ($real_estate as $key => $value) {
+        //     // dd($value['real_estate_id']);
+        //     $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
+        // }
         // lấy dữ liệu cho search form
         $form = Form::select('form_id', 'form_name')->get();
         $province = Province::select('province_id', 'province_name')->get();
@@ -74,7 +74,7 @@ class ClientController extends Controller
         // $real_estate = json_encode($real_estate);
         // dd(json_decode($real_estate));
 
-        return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'direction', 'standard_acreage'))->render();
+        return view('pages.user.feature.list', compact( 'form', 'province', 'direction', 'standard_acreage'))->render();
     }
 
     //bỏ
