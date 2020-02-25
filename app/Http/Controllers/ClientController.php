@@ -12,6 +12,33 @@ use Carbon\Carbon;
 
 class ClientController extends Controller
 {
+    public function query()
+    {
+        // queries to Algolia search index and returns matched records as Eloquent Models
+        $real_estate = Post::search('title')->get();
+
+        // do the usual stuff here
+        foreach ($real_estate as $post) {
+            // ...
+        }
+    }
+
+    public function add()
+    {
+        // this post should be indexed at Algolia right away!
+        $real_estate = new Post();
+        $real_estate->setAttribute('name', 'Another Post');
+        $real_estate->setAttribute('user_id', '1');
+        $real_estate->save();
+    }
+
+    public function delete()
+    {
+        // this post should be removed from the index at Algolia right away!
+        $real_estate = RealEstate::find(1);
+        $real_estate->delete();
+    }
+
     public function list(Request $request)
     {
         $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
@@ -20,8 +47,8 @@ class ClientController extends Controller
             ->join('province', 'district.province_id', 'province.province_id')
             ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
             ->select('real_estate.real_estate_id',
-            'real_estate_name',
-            'real_estate_description',
+            'real_estate_name_vi',
+            'real_estate_description_vi',
             'real_estate_price',
             'real_estate_acreage',
             'real_estate.created_at',
@@ -50,6 +77,7 @@ class ClientController extends Controller
         return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'direction', 'standard_acreage'))->render();
     }
 
+    //bỏ
     public function list_ajax(Request $request)
     {
         if ($request->ajax()) {
@@ -85,24 +113,11 @@ class ClientController extends Controller
         }
     }
 
-    public function list_sort(Request $request)
+    public function searchFullText(Request $request)
     {
-        dd($request);
-        // "search" => null
-        // "form" => "1"
-        // "type" => "3"
-        // "province" => "28"
-        // "district" => "369"
-        // "acreage" => "{'acreage':[80,100]}"
-        // "price" => "{`price`:[7000000000,10000000000]}"
-        // "ward" => "5880"
-        // "street" => "26126"
-        // "bedroom" => null
-        // "direction" => "6"
         $real_estate = RealEstate::query();
-        //nếu gõ từ khóa
         if ($request->search) {
-            $real_estate = $real_estate->where('real_estate_name', 'like', '%'.$request->search.'%');
+            $real_estate = $real_estate->FullTextSearch($request->search);
         } else { //lọc
             if ($request->type) {
                 $real_estate = $real_estate->where('real_estate.type_id', $request->type);
@@ -132,30 +147,43 @@ class ClientController extends Controller
                 $real_estate = $real_estate->whereBetween('real_estate.real_estate_price_total', $value_price);
             }
         }
-        dd($real_estate->get());
-
-        //     $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-        //     ->join('image', 'image_real_estate.image_id', 'image.image_id')
-        //     ->join('district', 'real_estate.district_id', 'district.district_id')
-        //     ->join('province', 'district.province_id', 'province.province_id')
-        //     ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-        //     ->select('real_estate.real_estate_id',
-        //     'real_estate_name',
-        //     'real_estate_description',
-        //     'real_estate_price',
-        //     'real_estate_acreage',
-        //     'real_estate.created_at',
-        //     'unit.unit_name_vi',
-        //     'image.image_path',
-        //     'province.province_name',
-        //     'district.district_name')
-        //     ->where('image_real_estate.image_real_estate_note', 'Avatar')
-        //     ->paginate(5);
-        // }
+        $real_estate = $real_estate
+        // ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+        // ->join('image', 'image_real_estate.image_id', 'image.image_id')
+        // ->select('real_estate.real_estate_id',
+        // 'real_estate_name_vi',
+        // 'real_estate_description_vi',
+        // 'real_estate_price',
+        // 'real_estate_acreage',
+        // 'real_estate.created_at',
+        // 'image.image_path', )
+        // ->paginate(5);
+        ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+        ->join('image', 'image_real_estate.image_id', 'image.image_id')
+        ->join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+        ->select('real_estate.real_estate_id',
+        'real_estate_name_vi',
+        'real_estate_description_vi',
+        'real_estate_price',
+        'real_estate_acreage',
+        'real_estate.created_at',
+        'unit.unit_name_vi',
+        'image.image_path',
+        'province.province_name',
+        'district.district_name')
+        ->orWhereNotNull('image_real_estate.image_real_estate_note', 'Avatar')
+        ->paginate(5);
+        // dd($real_estate);
         // tính thời gian đăng
         Carbon::setlocale('vi');
         $now = Carbon::now();
-        $day = $real_estate[0]->created_at->diffForHumans(($now));
+        $day[] = '';
+        foreach ($real_estate as $key => $value) {
+            // dd($value['real_estate_id']);
+            $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
+        }
 
         // lấy dữ liệu cho search form
         $form = Form::select('form_id', 'form_name')->get();
@@ -163,6 +191,12 @@ class ClientController extends Controller
         $direction = Direction::select('direction_id', 'direction_name')->get();
         $standard_acreage = StandardAcreage::select('standard_acreage_id', 'standard_acreage_name', 'standard_acreage_value1', 'standard_acreage_value2')->get();
 
-        return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'direction', 'standard_acreage'));
+        return redirect('/list')
+        ->with('real_estate',$real_estate)
+        ->with('day',$day)
+        ->with('form',$form)
+        ->with('province',$province)
+        ->with('direction',$direction)
+        ->with('standard_acreage',$standard_acreage);
     }
 }

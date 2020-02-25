@@ -9,7 +9,7 @@
         </div>
         <div class="feature-text">
             <div class="text-center feature-title">
-                <h5>{{$item->real_estate_name}}</h5>
+                <h5>{{$item->real_estate_name_vi}}</h5>
                 <p><i class="fas fa-map-marked"></i> {{$item->district_name}},
                     {{$item->province_name}}</p>
             </div>
