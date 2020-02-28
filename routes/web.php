@@ -123,10 +123,11 @@ Route::get('user', function () {
 Route::get('list', 'ClientController@list')->name('list');
 Route::post('list', 'ClientController@searchFullText')->name('list.sort');
 Route::get('listajax', 'ClientController@list_ajax')->name('list.ajax');
-
-Route::get('single_blog', function () {
-    return view('pages.user.feature.single_blog');
+Route::get('single_list', function () {
+    return view('pages.user.feature.single_list');
 });
+Route::get('single_list/{real_estate_id}', 'ClientController@single_list')->name('single_list');
+Route::get('single_blog/{real_estate_id}', 'ClientController@single_blog')->name('single_blog');
 Route::get('blog', function () {
     return view('pages.user.feature.blog');
 });
@@ -145,3 +146,4 @@ Route::get('/mail', function () {
 });
 
 Route::post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
+

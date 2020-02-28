@@ -14,13 +14,8 @@ class CreateRealEstateTable extends Migration
         if (!Schema::hasTable('real_estate')) {
             Schema::create('real_estate', function (Blueprint $table) {
                 $table->increments('real_estate_id')->comment('id của bất động sản');
-                $table->string('real_estate_name_en', 80)->nullable()->index()->comment('tên bất động sản tiếng anh');
-                $table->string('real_estate_name_vi', 80)->index()->comment('tên bất động sản tiếng việt');
                 $table->string('real_estate_acreage')->index()->comment('diện tích bất động sản');
-                $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá trị hiển thị');
-                $table->decimal('real_estate_price_total', 18, 4)->unsigned()->index()->comment('giá trị thật sự');
-                $table->longText('real_estate_description_en')->nullable()->index()->comment('mô tả bất động sản tiếng anh');
-                $table->longText('real_estate_description_vi')->nullable()->index()->comment('mô tả bất động sản tiếng việt');
+                $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá trị');
                 $table->string('real_estate_address')->index()->comment('địa chỉ bất động sản');
 
                 //foreign key
@@ -55,14 +50,6 @@ class CreateRealEstateTable extends Migration
                 ->comment('ngày xóa tạm');
             });
             DB:: statement("ALTER TABLE `real_estate` comment 'Bất động sản'");
-            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search1` (`real_estate_name_vi`)');
-            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search2` (`real_estate_name_en`)');
-            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search3` (`real_estate_description_en`)');
-            DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search4` (`real_estate_description_vi`)');
-            // DB:: statement('ALTER TABLE `real_estate` ADD FULLTEXT `search5` (`real_estate_price`)');
-            // DB::statement('ALTER TABLE users ADD FULLTEXT `name` (`name`)');
-            // DB:: statement('ALTER TABLE SET FOREIGN_KEY_CHECKS=0; ENGINE = MyISAM; SET FOREIGN_KEY_CHECKS=1;');
-            // DB::statement('ALTER TABLE `real_estate` ENGINE = MyISAM');
         }
     }
 
