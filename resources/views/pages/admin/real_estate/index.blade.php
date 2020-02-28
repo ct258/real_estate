@@ -14,6 +14,9 @@
     </div>
 </div>
 @endif
+@if (Auth::guard('account')->user()->hasRole('Admin'))
+<h1>Admin đây!</h1>
+@endif
 <h2 class="page-title">Dự án <br><br></h2>
 
 {{-- <section class="widget">

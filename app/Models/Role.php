@@ -24,4 +24,14 @@ class Role extends Model
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\Account', 'role_id', 'role_id');
+    }
+
+    public function permissions()
+    {
+        return $this->belongsTo(Permission::class, 'role_id');
+    }
 }
