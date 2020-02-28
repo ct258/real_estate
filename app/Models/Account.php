@@ -47,4 +47,20 @@ class Account extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function roles()
+    {
+        return $this->belongsTo('App\Models\Role', 'role_id');
+    }
+
+    public function hasRole($role)
+    {
+        $roles = $this->roles()->where('role_name', $role)->count();
+
+        if ($roles == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

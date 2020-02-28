@@ -6,6 +6,7 @@ use App\Models\RealEstate;
 use App\Models\Form;
 use App\Models\Province;
 use App\Models\Direction;
+use App\Models\RealEstateTranslation;
 use App\Models\StandardAcreage;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -41,40 +42,46 @@ class ClientController extends Controller
 
     public function list(Request $request)
     {
-        // $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-        //     ->join('image', 'image_real_estate.image_id', 'image.image_id')
-        //     ->join('district', 'real_estate.district_id', 'district.district_id')
-        //     ->join('province', 'district.province_id', 'province.province_id')
-        //     ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-        //     ->select('real_estate.real_estate_id',
-        //     'real_estate_name_vi',
-        //     'real_estate_description_vi',
-        //     'real_estate_price',
-        //     'real_estate_acreage',
-        //     'real_estate.created_at',
-        //     'unit.unit_name_vi',
-        //     'image.image_path',
-        //     'province.province_name',
-        //     'district.district_name')
-        //     ->where('image_real_estate.image_real_estate_note', 'Avatar')
-        //     ->paginate(5);
-
+        // dd(\Session::get('website_language', config('app.locale')));
+        app()->setLocale(\Session::get('website_language', config('app.locale')));
+        // \App::setLocale('vi');
+        // $content = RealEstateTranslation::getTranslation('vi')->first();
+        // dd($content);
+        $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+            ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
+            ->join('image', 'image_real_estate.image_id', 'image.image_id')
+            ->join('district', 'real_estate.district_id', 'district.district_id')
+            ->join('province', 'district.province_id', 'province.province_id')
+            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+            ->select('real_estate.real_estate_id',
+            'translation_name',
+            'translation_description',
+            'real_estate_price',
+            'real_estate_acreage',
+            'real_estate.created_at',
+            'unit.unit_name_vi',
+            'image.image_path',
+            'province.province_name',
+            'district.district_name')
+            ->where([['image_real_estate.image_real_estate_note', 'Avatar'], ['translation_locale', \Session::get('website_language', config('app.locale'))]])
+            // ->where('image_real_estate.image_real_estate_note', 'Avatar')
+            // ->groupBy('real_estate.real_estate_id')
+            ->paginate(5);
+        // dd($real_estate);
         // tính thời gian đăng
         Carbon::setlocale('vi');
         $now = Carbon::now();
-        // foreach ($real_estate as $key => $value) {
-        //     // dd($value['real_estate_id']);
-        //     $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-        // }
+        foreach ($real_estate as $key => $value) {
+            // dd($value['real_estate_id']);
+            $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
+        }
         // lấy dữ liệu cho search form
         $form = Form::select('form_id', 'form_name')->get();
         $province = Province::select('province_id', 'province_name')->get();
         $direction = Direction::select('direction_id', 'direction_name')->get();
         $standard_acreage = StandardAcreage::select('standard_acreage_id', 'standard_acreage_name', 'standard_acreage_value1', 'standard_acreage_value2')->get();
-        // $real_estate = json_encode($real_estate);
-        // dd(json_decode($real_estate));
 
-        return view('pages.user.feature.list', compact( 'form', 'province', 'direction', 'standard_acreage'))->render();
+        return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'direction', 'standard_acreage'));
     }
 
     //bỏ
@@ -192,11 +199,39 @@ class ClientController extends Controller
         $standard_acreage = StandardAcreage::select('standard_acreage_id', 'standard_acreage_name', 'standard_acreage_value1', 'standard_acreage_value2')->get();
 
         return redirect('/list')
-        ->with('real_estate',$real_estate)
-        ->with('day',$day)
-        ->with('form',$form)
-        ->with('province',$province)
-        ->with('direction',$direction)
-        ->with('standard_acreage',$standard_acreage);
+        ->with('real_estate', $real_estate)
+        ->with('day', $day)
+        ->with('form', $form)
+        ->with('province', $province)
+        ->with('direction', $direction)
+        ->with('standard_acreage', $standard_acreage);
+    }
+
+    public function single_list(Request $request, $real_estate_id)
+    {
+        $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+        ->select('real_estate.real_estate_id',
+        'real_estate_name_vi',
+        'real_estate_address',
+        'real_estate_description_vi',
+        'real_estate_price',
+        'real_estate_acreage',
+        'real_estate.created_at',
+        'unit.unit_name_vi',
+        'province.province_name',
+        'district.district_name')
+        ->where('real_estate.real_estate_id', $real_estate_id)
+        ->first();
+        $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+        ->join('image', 'image_real_estate.image_id', 'image.image_id')
+        ->select('image.image_path')
+        ->where('real_estate.real_estate_id', $real_estate_id)
+        ->get();
+        // dd($real_estate);
+        // dd($image);
+
+        return view('pages.user.feature.single_list', compact('real_estate', 'image'));
     }
 }

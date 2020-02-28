@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\UserOnline;
+use App\Models\UserOnlineModel;
 
 class UserOnlineProvider extends ServiceProvider
 {
@@ -24,7 +24,7 @@ class UserOnlineProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function ($view) {
-            $obj_uom = new UserOnline();
+            $obj_uom = new UserOnlineModel();
             $query_result_person = $obj_uom->runSessionUserOnline();
 
             return $view->with('query_result_person', $query_result_person);

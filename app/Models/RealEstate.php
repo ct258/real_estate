@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+// use Dimsav\Translatable\Translatable;
+
 class RealEstate extends Model
 {
+    // use Translatable;
     protected $table = 'real_estate';
 
     protected $primaryKey = 'real_estate_id';
@@ -22,10 +25,8 @@ class RealEstate extends Model
         'street_id',
         'customer_id',
         'real_estate_id',
-        'real_estate_name',
         'real_estate_acreage',
         'real_estate_price',
-        'real_estate_descrpition',
         'real_estate_address',
         'created_at',
         'updated_at',
@@ -34,6 +35,8 @@ class RealEstate extends Model
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
+    // public $translatedAttributes = ['ret_name', 'ret_description'];
 
     protected function fullTextWildcards($term)
     {
@@ -60,14 +63,10 @@ class RealEstate extends Model
 
     public function scopeFullTextSearch($query, $term)
     {
-        $query->whereRaw('MATCH real_estate_name_vi AGAINST (? IN BOOLEAN MODE)',
+        $query->whereRaw('MATCH translation_name AGAINST (? IN BOOLEAN MODE)',
+        $this->fullTextWildcards($term))
+        ->orWhereRaw('MATCH translation_description AGAINST (? IN BOOLEAN MODE)',
         $this->fullTextWildcards($term));
-        // ->orWhereRaw('MATCH real_estate_name_en AGAINST (? IN BOOLEAN MODE)',
-        // $this->fullTextWildcards($term))
-        // ->orWhereRaw('MATCH real_estate_description_en AGAINST (? IN BOOLEAN MODE)',
-        // $this->fullTextWildcards($term))
-        // ->orWhereRaw('MATCH real_estate_description_vi AGAINST (? IN BOOLEAN MODE)',
-        // $this->fullTextWildcards($term));
 
         return $query;
     }

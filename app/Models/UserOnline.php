@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-class UserOnline extends Model
+class UserOnlineModel extends Model
 {
     protected $table = 'user_onlines';
     public $primaryKey = 'uo_id';
@@ -57,7 +57,7 @@ class UserOnline extends Model
      */
     private function insertUserOnline($session_id, $time)
     {
-        $User_ol = new UserOnline();
+        $User_ol = new UserOnlineModel();
         $User_ol->uo_session = $session_id;
         $User_ol->uo_time = $time;
         $User_ol->uo_active = 0;

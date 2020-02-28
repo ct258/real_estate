@@ -52,15 +52,14 @@ class RealEstateController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->session());
         // dd($request);
         if ($request->hasFile('avatar')) {
             $time = str_replace(' ', '', Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString());
             $real_estate_id = RealEstate::insertGetId(array(
-                    'real_estate_name' => $request->name,
                     'real_estate_price' => $request->price,
                     'real_estate_address' => $request->address,
                     'real_estate_acreage' => $request->acreage,
-                    'real_estate_description' => $request->description,
                     'type_id' => $request->type,
                     'street_id' => $request->street,
                     'ward_id' => $request->ward,
@@ -70,6 +69,12 @@ class RealEstateController extends Controller
                     //Phải dùng tài khoản khách hàng để tạo
                     // 'customer_id' => Auth::guard('account')->user()->account_id,
                 ));
+            Translation::insert([
+                    'translation_name' => $request->name,
+                    'translation_description' => $request->description,
+                    'translation_locale' => 'vi',
+                    'real_estate_id' => $real_estate_id,
+                ]);
 
             $file_name = $request->file('avatar')->getClientOriginalName(); //Trả về tên file
             //lưu file
