@@ -1,0 +1,8 @@
+
+composer require ckfinder/ckfinder-laravel-package
+php artisan ckfinder:download
+php artisan vendor:publish --tag=ckfinder
+
+
+
+composer require dimsav/laravel-translatable
