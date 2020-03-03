@@ -147,3 +147,9 @@ Route::get('/mail', function () {
 
 Route::post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
 
+Route::get('map', function () {
+    return view('pages.user.feature.map');
+});
+Route::get('card', function () {
+    return view('pages.user.card.index');
+});
