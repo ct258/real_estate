@@ -145,3 +145,4 @@ Route::get('/mail', function () {
 });
 
 Route::post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
+
