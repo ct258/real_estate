@@ -24,8 +24,8 @@
                     <div class="user-panel">
                         <a href="{{route('lang',['vi']) }}">Vi</a>
                         <a href="{{ route('lang',['en']) }}">En</a>
-                        <a href=""><i class="far fa-user-circle"></i> Đăng ký</a>
-                        <a href=""><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                        <a href=""><i class="far fa-user-circle"></i> @lang('Account')</a>
+                        <a href=""><i class="fa fa-shopping-cart"></i> @lang('Cart')</a>
                     </div>
                 </div>
             </div>
