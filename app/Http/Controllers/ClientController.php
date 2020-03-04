@@ -42,8 +42,8 @@ class ClientController extends Controller
 
     public function list(Request $request)
     {
-        // dd(\Session::get('website_language', config('app.locale')));
-        app()->setLocale(\Session::get('website_language', config('app.locale')));
+        // dd(\Session::get('lang', config('app.locale')));
+        app()->setLocale(\Session::get('lang', config('app.locale')));
         // \App::setLocale('vi');
         // $content = RealEstateTranslation::getTranslation('vi')->first();
         // dd($content);
@@ -63,7 +63,7 @@ class ClientController extends Controller
             'image.image_path',
             'province.province_name',
             'district.district_name')
-            ->where([['image_real_estate.image_real_estate_note', 'Avatar'], ['translation_locale', \Session::get('website_language', config('app.locale'))]])
+            ->where([['image_real_estate.image_real_estate_note', 'Avatar'], ['translation_locale', \Session::get('lang', config('app.locale'))]])
             // ->where('image_real_estate.image_real_estate_note', 'Avatar')
             // ->groupBy('real_estate.real_estate_id')
             ->paginate(5);
@@ -223,7 +223,7 @@ class ClientController extends Controller
         'unit.unit_name_vi',
         'province.province_name',
         'district.district_name')
-        ->where([['real_estate.real_estate_id', $real_estate_id], ['translation_locale', \Session::get('website_language', config('app.locale'))]])
+        ->where([['real_estate.real_estate_id', $real_estate_id], ['translation_locale', \Session::get('lang', config('app.locale'))]])
         ->first();
         $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')

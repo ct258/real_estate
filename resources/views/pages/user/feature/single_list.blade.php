@@ -58,6 +58,8 @@
                         <div class="col-xl-4">
                             <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                                 class="price-btn">@lang('Buy')</a>
+                            {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
+                            class="price-btn">@lang('Buy')</a> --}}
                         </div>
                         <div class="col-xl-12">
                             <div class="container-fluid">
@@ -96,7 +98,6 @@
                     <p class="col-xs-12 col-sm-4"><i class="fa fa-bed"></i> {{ __('Bedroom') }} </p>
                     <p class="col-xs-12 col-sm-4"><i class="fa fa-bath"></i> @lang('Bathroom')</p>
                     <p class="col-xs-12 col-sm-4"><i class="fa fa-trophy"></i> @lang('Year age')</p>
-                    <p class="col-xs-12 col-sm-4"><i class="fa fa-clock-o"></i> Time</p>
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-wind"></i> @lang('Air Conditioning')</p>
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-dumpster-fire"></i> @lang('BBQ Area')</p>
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-video"></i> @lang('CCTV')</p>

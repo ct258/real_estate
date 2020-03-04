@@ -267,7 +267,7 @@
 </section>
 <!-- Page end -->
 @endsection
-@section('script')
+@push('script')
 <script>
     CKEDITOR.replace( 'editor1', {
         filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
@@ -350,4 +350,4 @@
     });
 
 </script>
-@endsection
+@endpush
