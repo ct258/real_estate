@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @push('css')
-<link href="{{ asset('user/card/1.css') }}" rel="stylesheet">
+<link href="{{ asset('user/cart/1.css') }}" rel="stylesheet">
 @endpush
 
 @section('page')
@@ -15,7 +15,7 @@
                 </div>
                 <div class="row content-1">
                     <div class="col-lg-4">
-                        <img src="{{ asset('user/card/images/nhadep.png') }}" alt="">
+                        <img src="{{ asset('user/cart/images/nhadep.png') }}" alt="">
                     </div>
                     <div class="col-lg-4">
                         <div class="content-2">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="row content-1">
                     <div class="col-lg-4">
-                        <img src="{{ asset('user/card/images/nhadep.png') }}" alt="">
+                        <img src="{{ asset('user/cart/images/nhadep.png') }}" alt="">
                     </div>
                     <div class="col-lg-4">
                         <div class="content-2">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="row content-1">
                     <div class="col-lg-4">
-                        <img src="{{ asset('user/card/images/nhadep.png') }}" alt="">
+                        <img src="{{ asset('user/cart/images/nhadep.png') }}" alt="">
                     </div>
                     <div class="col-lg-4">
                         <div class="content-2">
@@ -136,11 +136,11 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="pay-1">
-                                        <img src="{{ asset('user/card/images/vnpay.png') }}" alt="">
+                                        <img src="{{ asset('user/cart/images/vnpay.png') }}" alt="">
                                         <p>Ứng dụng VNPay</p>
                                     </div>
                                     <div class="pay-1">
-                                        <img src="{{ asset('user/card/images/atm.png') }}" alt="">
+                                        <img src="{{ asset('user/cart/images/atm.png') }}" alt="">
                                         <p>Thẻ ATM và tài khoản ngân hàng</p>
                                         <div class="pay-1-1">
                                             <ul>
@@ -184,13 +184,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <!-- Modal footer
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          </div> -->
-
                             </div>
                         </div>
                     </div>
@@ -204,13 +197,6 @@
 
 @endsection
 @push('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="{{ asset('user/card/js/1.js') }}"></script>
-<script src="{{ asset('user/card/js/jquery.easing.1.3.js') }}"></script>
+<script src="{{ asset('user/cart/js/1.js') }}"></script>
+<script src="{{ asset('user/cart/js/jquery.easing.1.3.js') }}"></script>
 @endpush

@@ -210,19 +210,20 @@ class ClientController extends Controller
     public function single_list(Request $request, $real_estate_id)
     {
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
         ->join('province', 'district.province_id', 'province.province_id')
         ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
         ->select('real_estate.real_estate_id',
-        'real_estate_name_vi',
+        'translation_name',
         'real_estate_address',
-        'real_estate_description_vi',
+        'translation_description',
         'real_estate_price',
         'real_estate_acreage',
         'real_estate.created_at',
         'unit.unit_name_vi',
         'province.province_name',
         'district.district_name')
-        ->where('real_estate.real_estate_id', $real_estate_id)
+        ->where([['real_estate.real_estate_id', $real_estate_id], ['translation_locale', \Session::get('website_language', config('app.locale'))]])
         ->first();
         $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')
@@ -233,5 +234,20 @@ class ClientController extends Controller
         // dd($image);
 
         return view('pages.user.feature.single_list', compact('real_estate', 'image'));
+    }
+
+    public function add_to_cart(Request $request, $real_estate_id)
+    {
+        dd($request);
+        if ($request->ajax()) {
+        }
+        if (Request::ajax()) {
+            // return Response::json(View::make('pages.user.feature.list_ajax', array('real_estate' => $real_estate))->render());
+        }
+    }
+
+    public function subscription(Request $request, $user)
+    {
+        dd($request);
     }
 }
