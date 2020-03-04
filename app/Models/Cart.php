@@ -4,21 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Card extends Model
+class Cart extends Model
 {
-    protected $table = 'card';
+    protected $table = 'cart';
 
-    protected $primaryKey = 'card_id';
+    protected $primaryKey = 'cart_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
         'real_estate_id',
         'customer_id',
-        'card_id',
-        'card_unit',
-        'card_discount',
-        'card_total',
+        'cart_id',
+        'cart_unit',
+        'cart_discount',
+        'cart_total',
         'created_at',
         'updated_at',
         'deleted_at',

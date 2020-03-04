@@ -22,7 +22,7 @@
         return view('auth.login');
     })->name('getLogin');
     Route:: post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
-    Route:: get('/logout', 'TaiKhoanController@logout')->name('logout');
+    Route:: get('/logout', 'AccountController@logout')->name('logout');
 
     Auth:: routes();
 
@@ -93,6 +93,10 @@
             Route:: post('/create', 'PostController@store')->name('post.create.submit');
         });
     });
+    Route::group(['prefix' => 'cart'], function () {
+        Route:: get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
+        Route:: get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
+    });
 
     Auth:: routes();
 
@@ -149,12 +153,7 @@
     Route::get('map', function () {
         return view('pages.user.feature.map');
     });
-    Route::get('cart', function () {
-        return view('pages.user.cart.index');
-    });
-    Route:: get('/cart/{real_estate_id}', ['uses' => 'ClientController@add_to_cart', 'as' => 'cart.add']);
+
     Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
-    Route:: get('cart', function () {
-        return view('pages.user.cart.index');
-    });
+
     // });
