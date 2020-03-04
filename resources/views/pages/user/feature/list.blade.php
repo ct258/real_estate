@@ -1,6 +1,7 @@
 @extends('layouts.user')
 
-@section('css')
+@push('css')
+
 
 <style>
     .page-section {
@@ -30,21 +31,24 @@
     #search-form {
         width: 100%;
     }
-    .left{
+
+    .left {
         margin: 10px 0;
     }
+
     button.btn.btn-primary.mn {
-    width: 86px;
-    height: 30px;
-    padding: 1px;
-    font-size: 14px;
-    margin-left: 75px;
-}
-button.btn.btn-primary.mn:hover {
-    color:aquamarine;
-}
+        width: 86px;
+        height: 30px;
+        padding: 1px;
+        font-size: 14px;
+        margin-left: 75px;
+    }
+
+    button.btn.btn-primary.mn:hover {
+        color: aquamarine;
+    }
 </style>
-@endsection
+@endpush
 @section('page')
 
 <!-- Page -->
@@ -55,7 +59,7 @@ button.btn.btn-primary.mn:hover {
             <div class="col-lg-9">
                 <div class="row">
                     <div id="paginationa" class="paginationa">
-                        {{-- @include('pages.user.feature.list_ajax') --}}
+                        @include('pages.user.feature.list_ajax')
                     </div>
                 </div>
             </div>
@@ -65,41 +69,39 @@ button.btn.btn-primary.mn:hover {
             <div class="col-lg-3">
                 <form class="filter-form" action="{{route('list.sort')}}" method="POST">
                     @csrf
-                  <div class="left">
-                    <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
-                    </td>
-                  </div>
-                  <div class="left">
-                    <select name="form" id="form">
-                        <option value="">-- Chọn loại tin rao --</option>
-                        @foreach ($form as $item)
-                        <option value="{{$item->form_id}}">{{$item->form_name}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                  <div class="left">
-                    <select name="type" id="type">
-                        <option value="">-- Chọn loại nhà đất --</option>
-                    </select>
-                  </div>
-                  <div class="left">
-                    <select name="acreage" id="acreage">
-                        <option value="">-- Chọn Diện tích --</option>
-                        <option value=""><button type="text" name="" id=""></button></option>
-                        @foreach ($standard_acreage as $item)
-                        <option
-                            value="{{$item->standard_acreage_value1}},{{$item->standard_acreage_value2}}">
-                            {{$item->standard_acreage_name}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                  <div class="left">
-                    <select name="price" id="price">
-                        <option value="">-- Chọn Giá --</option>
-                    </select>
-                  </div>
-                  <div class="left">
-                        <button type="button" class="btn btn-primary mn" data-toggle="collapse" data-target="#demo">Xem Thêm</button>
+                    <div class="left">
+                        <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
+                        </td>
+                    </div>
+                    <div class="left">
+                        <select name="form" id="form">
+                            <option value="">-- Chọn loại tin rao --</option>
+                            @foreach ($form as $item)
+                            <option value="{{$item->form_id}}">{{$item->form_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="left">
+                        <select name="type" id="type">
+                            <option value="">-- Chọn loại nhà đất --</option>
+                        </select>
+                    </div>
+                    <div class="left">
+                        <select name="acreage" id="acreage">
+                            <option value="">-- Chọn Diện tích --</option>
+                            <option value=""><button type="text" name="" id=""></button></option>
+                            @foreach ($standard_acreage as $item)
+                            <option value="{{$item->standard_acreage_value1}},{{$item->standard_acreage_value2}}">
+                                {{$item->standard_acreage_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="left">
+                        <select name="price" id="price">
+                            <option value="">-- Chọn Giá --</option>
+                        </select>
+                    </div>
+                    <div class="left">
                         <div id="demo" class="collapse">
                             <div class="left">
                                 <select name="province" id="province">
@@ -108,47 +110,50 @@ button.btn.btn-primary.mn:hover {
                                     <option value="{{$item->province_id}}">{{$item->province_name}}</option>
                                     @endforeach
                                 </select>
-                              </div>
-                              <div class="left">
+                            </div>
+                            <div class="left">
                                 <select name="district" id="district">
                                     <option value="">-- Chọn Quận/Huyện --</option>
                                 </select>
-                              </div>
-                              <div class="left">
+                            </div>
+                            <div class="left">
                                 <select name="ward" id="ward">
                                     <option value="">-- Chọn Phường/Xã --</option>
                                 </select>
-                              </div>
-                              <div class="left">
+                            </div>
+                            <div class="left">
                                 <select name="street" id="street">
                                     <option value="">-- Chọn Đường/Phố --</option>
                                 </select>
-                              </div>
-                              <div class="left">
+                            </div>
+                            <div class="left">
                                 <select name="bedroom" id="bedroom">
                                     <option value="">-- Chọn số phòng ngủ --</option>
                                 </select>
-                              </div>
-                              <div class="left">
-                                  <select name="direction" id="direction">
+                            </div>
+                            <div class="left">
+                                <select name="direction" id="direction">
                                     <option value="">-- Chọn hướng nhà --</option>
                                     @foreach ($direction as $item)
                                     <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
                                     @endforeach
                                 </select>
-                              </div>
+                            </div>
                         </div>
-                  </div>
-                  
-                  <div class="left">
-                    <button class="btn btn-primary mn">Tìm kiếm</button>
-                  </div>
+                        <button type="button" class="btn btn-primary mn" data-toggle="collapse" data-target="#demo">Xem
+                            Thêm</button>
+                    </div>
+
+                    <div class="left">
+                        <button class="btn btn-primary mn">Tìm kiếm</button>
+                    </div>
 
                 </form>
             </div>
             {{-- end search form --}}
 
-
+            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+                data-width="" data-numposts="5"></div>
         </div>
 
 
@@ -160,7 +165,9 @@ button.btn.btn-primary.mn:hover {
 
 
 @endsection
-@section('script')
+@push('script')
+
+
 <script>
     $(document).ready(function () {
         //lấy đơn vị
@@ -275,12 +282,17 @@ button.btn.btn-primary.mn:hover {
     // });
         function getPosts(page)
         {
+            $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
             $.ajax({
                 // type: "GET",
                 // url:"{{ url('listajax?page=') }}" + page,
 url: 'listajax?page='+ page,
 // dataType: "json",
-success:function(data)
+success: function(data)
 {
 alert(data);
 $('#paginationa').html(data);
@@ -312,4 +324,4 @@ alert("Lỗi rồi");
         };
     });
 </script>
-@endsection
+@endpush
