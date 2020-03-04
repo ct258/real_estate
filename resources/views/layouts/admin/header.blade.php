@@ -45,7 +45,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </li>
-            <li class="hidden-xs"><a href="login.html"><i class="glyphicon glyphicon-off"></i></a></li>
+            <li class="hidden-xs"><a href="{{route('logout')}}"><i class="glyphicon glyphicon-off"></i></a></li>
         </ul>
         <form id="search-form" class="navbar-form pull-right" role="search">
             <input type="search" class="form-control search-query" placeholder="Tìm kiếm...">
