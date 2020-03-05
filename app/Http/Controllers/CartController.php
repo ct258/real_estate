@@ -4,54 +4,94 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response;
-use Cookie;
+use App\Models\Cart;
+use App\Models\CartTemp;
 
 class CartController extends Controller
 {
     public function cart(Request $request)
     {
-        // dd($request);
-        // if (Auth::guard('account')->check()) {
-        // } else {
-        //     $response = new Response();
-        //     $response->withCookie('user_id', 'vietpro', 2);
+        //nếu đã đăng nhập thì lưu vô Cart
+        if (Auth::guard('account')->check()) {
+            $cart = Cart::join('real_estate', 'cart.real_estate_id', 'real_estate.real_estate_id')
+            ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+            ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
+            ->join('image', 'image_real_estate.image_id', 'image.image_id')
+            ->join('district', 'real_estate.district_id', 'district.district_id')
+            ->join('province', 'district.province_id', 'province.province_id')
+            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+            ->join('customer', 'cart.customer_id', 'customer.customer_id')
+            ->select('real_estate.real_estate_id',
+            'customer_name',
+            'translation_name',
+            'real_estate_price',
+            'real_estate_acreage',
+            'unit.unit_name_vi',
+            'image.image_path',
+            'province.province_name',
+            'district.district_name')
+            ->where([
+                ['image_real_estate.image_real_estate_note', 'Avatar'],
+                ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['customer.customer_id', Auth::guard('account')->check()],
+                ])
+                // ->whereNotNull('customer_id', Auth::guard('account')->check())
+            ->get();
+        } else { //nếu chưa thì lấy dữ liệu bảng tạm
+            $cart = CartTemp::join('real_estate', 'cart_temp.real_estate_id', 'real_estate.real_estate_id')
+            ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
+            ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
+            ->join('image', 'image_real_estate.image_id', 'image.image_id')
+            ->join('district', 'real_estate.district_id', 'district.district_id')
+            ->join('province', 'district.province_id', 'province.province_id')
+            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+            ->select('real_estate.real_estate_id',
+            'translation_name',
+            'real_estate_price',
+            'real_estate_acreage',
+            'unit.unit_name_vi',
+            'image.image_path',
+            'province.province_name',
+            'district.district_name')
+            ->where([
+                ['image_real_estate.image_real_estate_note', 'Avatar'],
+                ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['cart_temp_cookie_name', $request->cookie('Name_of_your_cookie')],
+                ])
+            ->get();
+        }
 
-        //     return $response;
-        // }
-
-        return view('pages.user.cart.index');
+        return view('pages.user.cart.index', compact('cart'));
     }
 
     public function add_to_cart(Request $request, $real_estate_id)
     {
-        dd('code chưa chạy');
-        // $response = new Response();
-        // $arr = array($real_estate_id);
-        // $response->withCookie(cookie()->forever('real_estate_id', '123'));
-        // dd($request);
-        // dd($request->cookie('real_estate_id'));
+        //nếu đã đăng nhập thì lưu vô Cart
         if (Auth::guard('account')->check()) {
-        } else {
-            $response = new Response();
-            if (!$request->cookie('real_estate_id')) {
-                // if (!Cookie::has('real_estate_id')) {
-                $arr = array($real_estate_id);
-                $response->withCookie('real_estate_id', '2', 1);
-            // $response->withCookie(cookie()->forever('real_estate_id', json_encode($arr)));
+            //tìm trong cart_temp cùng cookie và chuyển hết vào giỏ hàng
+            $find = Cart::where([['real_estate_id', $real_estate_id], ['customer_id', \Auth::guard('account')->user()->account_id]])->first();
+            if (!$find) {
+                Cart::insert([
+                'real_estate_id' => $real_estate_id,
+                'customer_id' => \Auth::guard('account')->user()->account_id,
+            ]);
             } else {
-                dd('else');
-                $temp1 = json_decode($request->cookie('real_estate_id'));
-                $temp2 = array_push($temp1, $real_estate_id);
-                $response->withCookie(cookie()->forever('real_estate_id', json_encode($temp2)));
+                Cart::where('real_estate_id', $real_estate_id)
+                ->update(['cart_unit' => $find->cart_unit + 1]);
             }
-            dd($request);
-            dd($request->cookie('real_estate_id'));
-
-            return $response;
+        } else { //nếu chưa thì lưu vô cart temp
+            $find = CartTemp::where([['real_estate_id', $real_estate_id], ['cart_temp_cookie_name', $request->cookie('Name_of_your_cookie')]])->first();
+            if (!$find) {
+                CartTemp::insert([
+                    'real_estate_id' => $real_estate_id,
+                    'cart_temp_cookie_name' => $request->cookie('Name_of_your_cookie'),
+                ]);
+            } else {
+                CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))
+                ->update(['cart_unit' => $find->cart_unit + 1]);
+            }
         }
-        dd(123);
 
-        return view('pages.user.cart.index');
+        return redirect('single_list/'.$real_estate_id);
     }
 }

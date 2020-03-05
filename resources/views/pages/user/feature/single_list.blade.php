@@ -56,7 +56,7 @@
 
                         </div>
                         <div class="col-xl-4">
-                            <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
+                            <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
                                 class="price-btn">@lang('Buy')</a>
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}

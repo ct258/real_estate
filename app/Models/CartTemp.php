@@ -16,6 +16,8 @@ class CartTemp extends Model
         'real_estate_id',
         'cart_temp_id',
         'cart_temp_cookie_name',
+        'cart_temp_unit',
+        'cart_temp_discount',
         'created_at',
         'updated_at',
         'deleted_at',

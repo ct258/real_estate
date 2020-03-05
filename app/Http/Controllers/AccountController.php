@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Account;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
+use App\Models\CartTemp;
 
 //user model can kiem tra
 // use Auth; //use thư viện auth
@@ -44,6 +46,27 @@ class AccountController extends Controller
             Account::where('account_id', \Auth::guard('account')->user()->account_id)->update([
                 'remember_token' => $JWT,
             ]);
+            //xét quyền khách hàng
+            $item = CartTemp::select('real_estate_id')->where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->get();
+            // dd($item);
+            CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->delete();
+            if ($item) {
+                foreach ($item as $key => $value) {
+                    $find = Cart::where([['real_estate_id', $value->real_estate_id], ['customer_id', \Auth::guard('account')->user()->account_id]])->first();
+                    if (!$find) {
+                        Cart::insert([
+                        'real_estate_id' => $value->real_estate_id,
+                        'customer_id' => \Auth::guard('account')->user()->account_id,
+                        'cart_unit' => $value->cart_temp_unit,
+                    ]);
+                    } else {
+                        Cart::where('real_estate_id', $find->real_estate_id)
+                        ->update([
+                            'cart_unit' => $find->cart_unit + 1,
+                        ]);
+                    }
+                }
+            }
             // dd(123);
 //             $role = Role::select('role_level', 'role_name')->join('account', 'role.role_id', 'account.role_id')
             // ->where('account_id', \Auth::guard('account')->user()->account_id)

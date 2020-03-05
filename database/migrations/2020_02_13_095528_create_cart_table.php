@@ -16,7 +16,6 @@ class CreateCartTable extends Migration
                 $table->increments('cart_id')->comment('id của giỏ hàng');
                 $table->integer('cart_unit')->default(1)->comment('số lượng');
                 $table->decimal('cart_discount', 18, 4)->unsigned()->default(0)->comment('giảm giá');
-                $table->decimal('cart_total', 18, 4)->unsigned()->comment('tổng tiền');
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();

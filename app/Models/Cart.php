@@ -18,7 +18,6 @@ class Cart extends Model
         'cart_id',
         'cart_unit',
         'cart_discount',
-        'cart_total',
         'created_at',
         'updated_at',
         'deleted_at',

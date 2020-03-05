@@ -15,6 +15,8 @@ class CreateCartTempTable extends Migration
             Schema::create('cart_temp', function (Blueprint $table) {
                 $table->increments('cart_temp_id')->comment('id của giỏ hàng tạm');
                 $table->string('cart_temp_cookie_name', 80)->comment('tên cookie');
+                $table->integer('cart_temp_unit')->default(1)->comment('số lượng');
+                $table->decimal('cart_temp_discount', 18, 4)->unsigned()->default(0)->comment('giảm giá');
 
                 //foreign key
                 $table->integer('real_estate_id')->unsigned();
