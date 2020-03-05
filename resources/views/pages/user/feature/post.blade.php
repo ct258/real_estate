@@ -16,11 +16,22 @@
                     @csrf
                     <div class="single-list-content">
                         <div class="row">
-                            <div class="col-xl-8 sl-title">
+                            <div class="col-xl-6 sl-title">
+                                <img src="https://lipis.github.io/flag-icon-css/flags/4x3/vn.svg" style="width:5%;";>
                                 <h2><label> Tiêu đề(*):</label><input type="text" name="name" id=""
-                                        class="form-control input-transparent" autocomplete="off"></h2>
+                                        class="form-control input-transparent" style="max-width:100%" autocomplete="on"></h2>
+                                        <img src="https://lipis.github.io/flag-icon-css/flags/4x3/vn.svg" style="width:5%;";>
+                                        <p><i class="fa fa-map-marker"></i><label>Địa chỉ (*):</label> <input type="text"
+                                            name="address" id="" placeholder="" style="max-width:100%" class="form-control input-transparent"></p>
+                            </div>
+                            <div class="col-xl-6 sl-title">
+                                <img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" style="width:5%;";>
+                                <h2><label> Tiêu đề(*):</label><input type="text" name="name" id=""
+                                        class="form-control input-transparent"  style="max-width:100%;" autocomplete="on"></h2>
+                                <img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" style="width:5%;";>
                                 <p><i class="fa fa-map-marker"></i><label>Địa chỉ (*):</label> <input type="text"
-                                        name="address" id="" placeholder="" class="form-control input-transparent"></p>
+                                        name="address" id="" placeholder="" style="max-width:100%;" class="form-control input-transparent"></p>
+                                  
                             </div>
                         </div>
                         <h3 class="sl-sp-title">Thông tin cơ bản</h3>
@@ -102,9 +113,19 @@
                         </div>
                         <h3 class="sl-sp-title">Thông tin mô tả</h3>
                         <div>
+                            <img src="https://lipis.github.io/flag-icon-css/flags/4x3/vn.svg" style="width:5%;";>
                             <textarea name="description" cols="30" id="editor1" style="max-width:100%;height: 235px;"
                                 class="form-control input-transparent"></textarea>
+                        </div>  
+                        <br>
+                        <br>
+                        <div>
+                            <img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" style="width:5%;";>
+                            <textarea name="description" cols="30" id="editor2" style="max-width:100%;height: 235px;"
+                                class="form-control input-transparent"></textarea>
+                                
                         </div>
+                        <br>
                         <h3 class="sl-sp-title">Thông tin khác</h3>
                         <div class="row property-details-list">
                             <div class="col-md-4 col-sm-6">
@@ -270,6 +291,12 @@
 @section('script')
 <script>
     CKEDITOR.replace( 'editor1', {
+        filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+
+    } );
+</script>
+<script>
+    CKEDITOR.replace( 'editor2', {
         filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
 
     } );
