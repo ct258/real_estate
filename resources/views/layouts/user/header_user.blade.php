@@ -15,24 +15,20 @@
                 </div>
                 <div class="col-lg-6 text-lg-right header-top-right">
                     <div class="top-social">
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        {{-- <a href=""><i class="fab fa-facebook-f"></i></a>
                         <a href=""><i class="fab fa-twitter"></i></a>
                         <a href=""><i class="fab fa-instagram"></i></a>
                         <a href=""><i class="fab fa-pinterest"></i></a>
-                        <a href=""><i class="fab fa-linkedin"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a> --}}
                     </div>
                     <div class="user-panel">
                         <a href="{{route('lang',['vi']) }}">Vi</a>
                         <a href="{{ route('lang',['en']) }}">En</a>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle profile-pic" href=""><i class="far fa-user-circle"></i>
-                                @lang('Account')</a>
-                            <ul class="dropdown-menu dropdown-user animated flipInY">
-                                <li>
-                                    Đăng xuất</li>
-                            </ul>
-                        </li>
-                        <a href=""><i class="fa fa-shopping-cart"></i> @lang('Cart')</a>
+                        <a class="dropdown-toggle profile-pic" href="">
+                            <i class="far fa-user-circle"></i>
+                            @lang('Account')</a>
+
+                        <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> @lang('Cart')</a>
                     </div>
                 </div>
             </div>

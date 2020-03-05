@@ -15,7 +15,7 @@ class Bill extends Model
     protected $fillable = [
         'status_id',
         'staff_id',
-        'card_id',
+        'cart_id',
         'payment_id',
         'bill_id',
         'bill_datetime',

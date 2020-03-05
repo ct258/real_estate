@@ -4,25 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class CartTemp extends Model
 {
-    protected $table = 'cart';
+    protected $table = 'cart_temp';
 
-    protected $primaryKey = 'cart_id';
+    protected $primaryKey = 'cart_temp_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
         'real_estate_id',
-        'customer_id',
-        'cart_id',
-        'cart_unit',
-        'cart_discount',
+        'cart_temp_id',
+        'cart_temp_cookie_name',
+        'cart_temp_unit',
+        'cart_temp_discount',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
     public $timestamps = true;
-    protected $dates = ['deleted_at'];
 }
