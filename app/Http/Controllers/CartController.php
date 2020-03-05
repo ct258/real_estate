@@ -60,6 +60,7 @@ class CartController extends Controller
                 ])
             ->get();
         }
+        // dd($cart);
 
         return view('pages.user.cart.index', compact('cart'));
     }
