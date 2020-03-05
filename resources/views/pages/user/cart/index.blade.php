@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @push('css')
-<link href="{{ asset('user/card/1.css') }}" rel="stylesheet">
+<link href="{{ asset('user/cart/1.css') }}" rel="stylesheet">
 @endpush
 
 @section('page')
@@ -11,15 +11,16 @@
         <div class="row">
             <div class="col-lg-9">
                 <div id="title-1">
-                    <h3>Giỏ hàng <span>(3 sản phẩm)</span></h3>
+                    <h3>Giỏ hàng <span>({{count($cart)}} sản phẩm)</span></h3>
                 </div>
+                @foreach ($cart as $item)
                 <div class="row content-1">
                     <div class="col-lg-4">
-                        <img src="{{ asset('user/card/images/nhadep.png') }}" alt="">
+                        <img src="{{ asset($item->image_path) }}" alt="">
                     </div>
                     <div class="col-lg-4">
                         <div class="content-2">
-                            <p id="title-2">Nhà quận 11 - Gần mặt tiền đường</p>
+                            <p id="title-2">{{$item->translation_name}}</p>
                             <p>Được đăng tin bởi: <span>Bất Động Sản Cần Thơ</span> </p>
                             <p>Nhân viên tư vấn: Dương Tâm</p>
                             <p>SĐT: 012 345 678</p>
@@ -28,60 +29,16 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="content-3">
-                            <p id="title-3">Giá: 3.9 Tỷ</p>
-                            <p>Diện tích: 35,3 m2</p>
+                            <p id="title-3">Giá: {{number_format($item->real_estate_price)}}</p>
+                            <p>Diện tích: {{$item->real_estate_acreage}} m<sup>2</sup></p>
                         </div>
                         <div class="delect">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
-                <div class="row content-1">
-                    <div class="col-lg-4">
-                        <img src="{{ asset('user/card/images/nhadep.png') }}" alt="">
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="content-2">
-                            <p id="title-2">Nhà quận 11 - Gần mặt tiền đường</p>
-                            <p>Được đăng tin bởi: <span>Bất Động Sản Cần Thơ</span> </p>
-                            <p>Nhân viên tư vấn: Dương Tâm</p>
-                            <p>SĐT: 012 345 678</p>
-                        </div>
+                @endforeach
 
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="content-3">
-                            <p id="title-3">Giá: 3.9 Tỷ</p>
-                            <p>Diện tích: 35,3 m2</p>
-                        </div>
-                        <div class="delect">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="row content-1">
-                    <div class="col-lg-4">
-                        <img src="{{ asset('user/card/images/nhadep.png') }}" alt="">
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="content-2">
-                            <p id="title-2">Nhà quận 11 - Gần mặt tiền đường</p>
-                            <p>Được đăng tin bởi: <span>Bất Động Sản Cần Thơ</span> </p>
-                            <p>Nhân viên tư vấn: Dương Tâm</p>
-                            <p>SĐT: 012 345 678</p>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="content-3">
-                            <p id="title-3">Giá: 3.9 Tỷ</p>
-                            <p>Diện tích: 35,3 m2</p>
-                        </div>
-                        <div class="delect">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-lg-3">
                 <div class="card card-left-1">
@@ -104,7 +61,7 @@
                             <p>Đơn Hàng</p>
                         </div>
                         <div class="price-content">
-                            <p id="tt">Nhà quận 11 - Gần mặt tiền đường</p>
+                            <p id="tt">{{$item->translation_name}}</p>
                             <p>Tạm tính: 3 900 000 000đ</p>
                             <p>Phí thủ tục: 5 000 000đ</p>
                             <p>Khuyến mãi: 0đ</p>
@@ -136,11 +93,11 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="pay-1">
-                                        <img src="{{ asset('user/card/images/vnpay.png') }}" alt="">
+                                        <img src="{{ asset('user/cart/images/vnpay.png') }}" alt="">
                                         <p>Ứng dụng VNPay</p>
                                     </div>
                                     <div class="pay-1">
-                                        <img src="{{ asset('user/card/images/atm.png') }}" alt="">
+                                        <img src="{{ asset('user/cart/images/atm.png') }}" alt="">
                                         <p>Thẻ ATM và tài khoản ngân hàng</p>
                                         <div class="pay-1-1">
                                             <ul>
@@ -184,13 +141,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <!-- Modal footer
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          </div> -->
-
                             </div>
                         </div>
                     </div>
@@ -204,13 +154,6 @@
 
 @endsection
 @push('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="{{ asset('user/card/js/1.js') }}"></script>
-<script src="{{ asset('user/card/js/jquery.easing.1.3.js') }}"></script>
+<script src="{{ asset('user/cart/js/1.js') }}"></script>
+<script src="{{ asset('user/cart/js/jquery.easing.1.3.js') }}"></script>
 @endpush

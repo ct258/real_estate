@@ -15,17 +15,20 @@
                 </div>
                 <div class="col-lg-6 text-lg-right header-top-right">
                     <div class="top-social">
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        {{-- <a href=""><i class="fab fa-facebook-f"></i></a>
                         <a href=""><i class="fab fa-twitter"></i></a>
                         <a href=""><i class="fab fa-instagram"></i></a>
                         <a href=""><i class="fab fa-pinterest"></i></a>
-                        <a href=""><i class="fab fa-linkedin"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a> --}}
                     </div>
                     <div class="user-panel">
                         <a href="{{route('lang',['vi']) }}">Vi</a>
                         <a href="{{ route('lang',['en']) }}">En</a>
-                        <a href=""><i class="far fa-user-circle"></i> Đăng ký</a>
-                        <a href=""><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                        <a class="dropdown-toggle profile-pic" href="">
+                            <i class="far fa-user-circle"></i>
+                            @lang('Account')</a>
+
+                        <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> @lang('Cart')</a>
                     </div>
                 </div>
             </div>

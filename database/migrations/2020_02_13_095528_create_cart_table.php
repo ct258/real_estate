@@ -4,19 +4,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCardTable extends Migration
+class CreateCartTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        if (!Schema::hasTable('card')) {
-            Schema::create('card', function (Blueprint $table) {
-                $table->increments('card_id')->comment('id của giỏ hàng');
-                $table->integer('card_unit')->default(1)->index()->comment('số lượng');
-                $table->decimal('card_discount', 18, 4)->unsigned()->default(0)->index()->comment('giảm giá');
-                $table->decimal('card_total', 18, 4)->unsigned()->index()->comment('tổng tiền');
+        if (!Schema::hasTable('cart')) {
+            Schema::create('cart', function (Blueprint $table) {
+                $table->increments('cart_id')->comment('id của giỏ hàng');
+                $table->integer('cart_unit')->default(1)->comment('số lượng');
+                $table->decimal('cart_discount', 18, 4)->unsigned()->default(0)->comment('giảm giá');
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();
@@ -37,7 +36,7 @@ class CreateCardTable extends Migration
                 ->comment('ngày xóa tạm');
                 // Setting unique
             });
-            DB::statement("ALTER TABLE `card` comment 'Giỏ hàng'");
+            DB::statement("ALTER TABLE `cart` comment 'Giỏ hàng'");
         }
     }
 
@@ -46,6 +45,6 @@ class CreateCardTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('card');
+        // Schema::dropIfExists('cart');
     }
 }

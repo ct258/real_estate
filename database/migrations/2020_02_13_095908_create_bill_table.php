@@ -19,12 +19,12 @@ class CreateBillTable extends Migration
                 //foreign key
                 $table->integer('status_id')->index()->unsigned();
                 $table->integer('staff_id')->index()->unsigned();
-                $table->integer('card_id')->index()->unsigned();
+                $table->integer('cart_id')->index()->unsigned();
                 $table->integer('payment_id')->index()->unsigned();
 
                 $table->foreign('status_id')->references('status_id')->on('status');
                 $table->foreign('staff_id')->references('staff_id')->on('staff');
-                $table->foreign('card_id')->references('card_id')->on('card');
+                $table->foreign('cart_id')->references('cart_id')->on('cart');
                 $table->foreign('payment_id')->references('payment_id')->on('payment');
                 //log time
                 $table->timestamp('created_at')

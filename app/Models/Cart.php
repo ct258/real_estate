@@ -4,22 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bill extends Model
+class Cart extends Model
 {
-    protected $table = 'bill';
+    protected $table = 'cart';
 
-    protected $primaryKey = 'bill_id';
+    protected $primaryKey = 'cart_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'status_id',
-        'staff_id',
+        'real_estate_id',
+        'customer_id',
         'cart_id',
-        'payment_id',
-        'bill_id',
-        'bill_datetime',
-        'bill_total',
+        'cart_unit',
+        'cart_discount',
         'created_at',
         'updated_at',
         'deleted_at',

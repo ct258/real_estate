@@ -11,7 +11,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:account');
+        $this->middleware("Auth::guard('Account')");
     }
 
     /**
@@ -24,10 +24,10 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function changeLanguage($language)
-    {
-        \Session::put('website_language', $language);
+    // public function changeLanguage($language)
+    // {
+    //     \Session::put('website_language', $language);
 
-        return redirect()->back();
-    }
+    //     return redirect()->back();
+    // }
 }
