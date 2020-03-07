@@ -5,6 +5,23 @@
 @endpush
 
 @section('page')
+@if($message = Session::get('success'))
+<div class="alert alert-success" role="alert">
+    <p>{{$message}}</p>
+    <p class="mb-0"></p>
+</div>
+@endif
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    Upload Validation Error
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 
 <section>
     <div class="container-fruid">
@@ -99,7 +116,9 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="pay-1">
-                                        <img src="{{ asset('user/cart/images/vnpay.png') }}" alt="">
+
+                                        <a href="{{route('VNPay')}}"><img
+                                                src="{{ asset('user/cart/images/vnpay.png') }}" alt=""></a>
                                         <p>Ứng dụng VNPay</p>
                                     </div>
                                     <div class="pay-1">

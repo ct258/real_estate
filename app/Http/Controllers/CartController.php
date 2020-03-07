@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartTemp;
+use App\Models\Account;
 
 class CartController extends Controller
 {
