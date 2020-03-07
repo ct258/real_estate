@@ -1,4 +1,12 @@
 @extends('layouts.admin')
+@push('css')
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+@endpush
 @section('content')
 <h2 class="page-title">Thêm Bất động sản<br><br></h2>
 <form action="{{route('real_estate.create.submit')}}" method="post" enctype="multipart/form-data">
@@ -134,6 +142,10 @@
         </div>
 
     </div>
+    <label for="captcha">Captcha</label>
+    {!! NoCaptcha::renderJs() !!}
+    {!! NoCaptcha::display() !!}
+    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
     <div class="row">
         <div class="col-sm-2">
             <div class="form-group">

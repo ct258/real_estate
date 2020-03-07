@@ -155,5 +155,8 @@
     });
 
     Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
-
+    Route::group(['prefix' => 'payment'], function () {
+        Route:: get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
+        Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
+    });
     // });
