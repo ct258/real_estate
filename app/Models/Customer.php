@@ -31,4 +31,9 @@ class Customer extends Model
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
+    public function accounts()
+    {
+        return $this->belongsTo('App\Models\Account', 'account_id');
+    }
 }
