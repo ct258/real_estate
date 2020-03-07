@@ -13,6 +13,10 @@ class CartController extends Controller
     {
         //nếu đã đăng nhập thì lưu vô Cart
         if (Auth::guard('account')->check()) {
+            $info = Account::join('customer', 'customer.account_id', 'account.account_id')
+            ->select('customer_name', 'customer_address')
+            ->where('account.account_id', Auth::guard('account')->user()->account_id)->first();
+
             $cart = Cart::join('real_estate', 'cart.real_estate_id', 'real_estate.real_estate_id')
             ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
             ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
@@ -37,7 +41,12 @@ class CartController extends Controller
                 ])
                 // ->whereNotNull('customer_id', Auth::guard('account')->check())
             ->get();
+            $total_money = 0;
+            foreach ($cart as $value) {
+                $total_money = $total_money + $value->real_estate_price;
+            }
         } else { //nếu chưa thì lấy dữ liệu bảng tạm
+            $info = null;
             $cart = CartTemp::join('real_estate', 'cart_temp.real_estate_id', 'real_estate.real_estate_id')
             ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
             ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
@@ -59,10 +68,15 @@ class CartController extends Controller
                 ['cart_temp_cookie_name', $request->cookie('Name_of_your_cookie')],
                 ])
             ->get();
+            $total_money = 0;
+            foreach ($cart as $value) {
+                $total_money = $total_money + $value->real_estate_price;
+            }
+            // dd($total_money);
         }
         // dd($cart);
 
-        return view('pages.user.cart.index', compact('cart'));
+        return view('pages.user.cart.index', compact('cart', 'info', 'total_money'));
     }
 
     public function add_to_cart(Request $request, $real_estate_id)

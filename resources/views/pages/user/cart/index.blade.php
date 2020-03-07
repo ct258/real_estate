@@ -13,6 +13,7 @@
                 <div id="title-1">
                     <h3>Giỏ hàng <span>({{count($cart)}} sản phẩm)</span></h3>
                 </div>
+                {{-- @if($cart) --}}
                 @foreach ($cart as $item)
                 <div class="row content-1">
                     <div class="col-lg-4">
@@ -38,22 +39,26 @@
                     </div>
                 </div>
                 @endforeach
-
+                {{-- @endif --}}
             </div>
             <div class="col-lg-3">
+                @if ($info)
                 <div class="card card-left-1">
                     <div class="card-body">
                         <div class="infor-top">
                             <p>Thông tin Khách Hàng Mua</p>
                         </div>
                         <div class="infor-middle">
-                            <h4>Nguyễn Phúc</h4>
-                            <p>KTX, Đường 30-4, Ninh Kiều, Cần Thơ, VN</p>
+
+                            <h4>{{$info->customer_name}}</h4>
+                            <p>{{$info->customer_address}}</p>
                             <p>Điện thoại:&nbsp;&nbsp;&nbsp;&nbsp;0123 456 789</p>
 
                         </div>
                     </div>
                 </div>
+                @endif
+
                 <br>
                 <div class="card card-left-2">
                     <div class="card-body">
@@ -61,8 +66,9 @@
                             <p>Đơn Hàng</p>
                         </div>
                         <div class="price-content">
-                            <p id="tt">{{$item->translation_name}}</p>
-                            <p>Tạm tính: 3 900 000 000đ</p>
+
+                            {{-- <p id="tt">{{$item->translation_name}}</p> --}}
+                            <p>Tạm tính: {{number_format($total_money)}}đ</p>
                             <p>Phí thủ tục: 5 000 000đ</p>
                             <p>Khuyến mãi: 0đ</p>
                         </div>
