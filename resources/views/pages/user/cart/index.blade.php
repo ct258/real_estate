@@ -86,12 +86,17 @@
 
                             {{-- <p id="tt">{{$item->translation_name}}</p> --}}
                             <p>Tạm tính: {{number_format($total_money)}}đ</p>
-                            <p>Phí thủ tục: 5 000 000đ</p>
+                            <p>Phí thủ tục:
+                                @if($total_money==0) 0đ</p>
+                            @else
+                            123456đ</p>
+
+                            @endif
                             <p>Khuyến mãi: 0đ</p>
                         </div>
                         <div class="price-bottom">
                             <p>Thành tiền: </p>
-                            <p>&nbsp;&nbsp;&nbsp; 3 900 000 000đ</p>
+                            <p>&nbsp;&nbsp;&nbsp; {{$total_money}}đ</p>
                         </div>
                     </div>
                 </div>

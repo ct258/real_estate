@@ -46,33 +46,35 @@ class AccountController extends Controller
             Account::where('account_id', \Auth::guard('account')->user()->account_id)->update([
                 'remember_token' => $JWT,
             ]);
-            //xét quyền khách hàng
-            $item = CartTemp::select('real_estate_id')->where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->get();
-            // dd($item);
-            CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->delete();
+
+            //---------------------------------------------//
+            //Chuyển giỏ hàng ảo vào giỏ hàng thật
+
+            //tìm xem khách hàng này có giỏ hàng ảo không
+            $item = CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->first();
+
+            //Nếu trong giỏ hàng ảo có sp của khách hàng này
             if ($item) {
-                foreach ($item as $key => $value) {
-                    $find = Cart::where([['real_estate_id', $value->real_estate_id], ['customer_id', \Auth::guard('account')->user()->account_id]])->first();
-                    if (!$find) {
-                        Cart::insert([
-                        'real_estate_id' => $value->real_estate_id,
+                //xem khách hàng này có giỏ hàng chưa
+                $find = Cart::where('customer_id', \Auth::guard('account')->user()->load('customer')->customer->customer_id)
+                ->first();
+
+                //nếu khách hàng không có giỏ hàng thì thêm vào
+                if (!$find) {
+                    Cart::insert([
                         'customer_id' => \Auth::guard('account')->user()->account_id,
-                        'cart_unit' => $value->cart_temp_unit,
+                        'cart_list' => $item->cart_temp_list,
                     ]);
-                    } else {
-                        Cart::where('real_estate_id', $find->real_estate_id)
-                        ->update([
-                            'cart_unit' => $find->cart_unit + 1,
-                        ]);
-                    }
                 }
+                CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->delete();
             }
+
             // dd(123);
-//             $role = Role::select('role_level', 'role_name')->join('account', 'role.role_id', 'account.role_id')
+            //  $role = Role::select('role_level', 'role_name')->join('account', 'role.role_id', 'account.role_id')
             // ->where('account_id', \Auth::guard('account')->user()->account_id)
             // ->first();
             // if($role->role_level==2){
-//     return \back
+            //     return \back
             // }
             // return Redirect::back();
             return redirect('/real_estate');
