@@ -13,33 +13,6 @@ use Carbon\Carbon;
 
 class ClientController extends Controller
 {
-    public function query()
-    {
-        // queries to Algolia search index and returns matched records as Eloquent Models
-        $real_estate = Post::search('title')->get();
-
-        // do the usual stuff here
-        foreach ($real_estate as $post) {
-            // ...
-        }
-    }
-
-    public function add()
-    {
-        // this post should be indexed at Algolia right away!
-        $real_estate = new Post();
-        $real_estate->setAttribute('name', 'Another Post');
-        $real_estate->setAttribute('user_id', '1');
-        $real_estate->save();
-    }
-
-    public function delete()
-    {
-        // this post should be removed from the index at Algolia right away!
-        $real_estate = RealEstate::find(1);
-        $real_estate->delete();
-    }
-
     public function list(Request $request)
     {
         // dd(\Session::get('lang', config('app.locale')));
@@ -55,6 +28,7 @@ class ClientController extends Controller
             ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
             ->select('real_estate.real_estate_id',
             'translation_name',
+            'translation_address',
             'translation_description',
             'real_estate_price',
             'real_estate_acreage',
@@ -215,7 +189,7 @@ class ClientController extends Controller
         ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
         ->select('real_estate.real_estate_id',
         'translation_name',
-        'real_estate_address',
+        'translation_address',
         'translation_description',
         'real_estate_price',
         'real_estate_acreage',
