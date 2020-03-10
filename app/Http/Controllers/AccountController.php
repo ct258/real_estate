@@ -40,7 +40,7 @@ class AccountController extends Controller
         }
         //kiểm tra trường remember có được chọn hay không
 
-        if (Auth::guard('account')->attempt($arr, $remember, $remember)) {
+        if (Auth::guard('account')->attempt($arr, $remember)) {
             Auth::guard('account')->login(Auth::guard('account')->user());
             $JWT = JWTAuth::fromUser(\Auth::guard('account')->user());
             Account::where('account_id', \Auth::guard('account')->user()->account_id)->update([
