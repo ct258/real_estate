@@ -15,7 +15,7 @@ class CreatePaymentLogTable extends Migration
             Schema::create('payment_log', function (Blueprint $table) {
                 $table->increments('payment_log_id');
                 $table->string('payment_log_code', 45)->index()->comment('Số giao dịch');
-                $table->dateTime('payment_log_datetime')->index()->comment('thời gian giao dịch');
+                // $table->dateTime('payment_log_datetime')->index()->comment('thời gian giao dịch');
                 $table->string('payment_log_status', 45)->index()->comment('trạng thái giao dịch');
                 //foreign key
                 $table->integer('bill_id')->index()->unsigned();

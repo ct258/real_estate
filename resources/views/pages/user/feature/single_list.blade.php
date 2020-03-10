@@ -1,5 +1,7 @@
 @extends('layouts.user')
-@section('page')
+@push('css')
+
+
 <style>
     path {
         color: #30caa0;
@@ -32,6 +34,25 @@
         padding: 40px 30px;
     }
 </style>
+@endpush
+@section('page')
+@if($message = Session::get('success'))
+<div class="alert alert-success" role="alert">
+    <p>{{$message}}</p>
+    <p class="mb-0"></p>
+</div>
+@endif
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    Upload Validation Error
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <!-- Page -->
 <section class="page-section">
     <div class="container">
@@ -51,7 +72,7 @@
                     <div class="row">
                         <div class="col-xl-8 sl-title">
                             <h2>{{$real_estate->translation_name}}</h2>
-                            <p><i class="fa fa-map-marker"></i> {{$real_estate->real_estate_address}}</p>
+                            <p><i class="fa fa-map-marker"></i> {{$real_estate->translation_address}}</p>
 
 
                         </div>

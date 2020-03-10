@@ -16,7 +16,6 @@ class PaymentLog extends Model
         'bill_id',
         'payment_log_id',
         'payment_log_code',
-        'payment_log_datetime',
         'payment_log_status',
         'created_at',
         'updated_at',

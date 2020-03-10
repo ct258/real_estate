@@ -9,17 +9,17 @@ class direction extends Seeder
      */
     public function run()
     {
-        $data1 = array(
-            ['direction_name' => 'KXĐ'],
-            ['direction_name' => 'Đông'],
-            ['direction_name' => 'Tây'],
-            ['direction_name' => 'Nam'],
-            ['direction_name' => 'Bắc'],
-            ['direction_name' => 'Đông - Bắc'],
-            ['direction_name' => 'Tây Bắc'],
-            ['direction_name' => 'Tây - Nam'],
-            ['direction_name' => 'Đông - Nam'],
-         );
-        DB::table('direction')->insert($data1);
+        // $data1 = array(
+        //     ['direction_name' => 'KXĐ'],
+        //     ['direction_name' => 'Đông'],
+        //     ['direction_name' => 'Tây'],
+        //     ['direction_name' => 'Nam'],
+        //     ['direction_name' => 'Bắc'],
+        //     ['direction_name' => 'Đông - Bắc'],
+        //     ['direction_name' => 'Tây Bắc'],
+        //     ['direction_name' => 'Tây - Nam'],
+        //     ['direction_name' => 'Đông - Nam'],
+        //  );
+        // DB::table('direction')->insert($data1);
     }
 }

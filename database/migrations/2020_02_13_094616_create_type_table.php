@@ -15,7 +15,7 @@ class CreateTypeTable extends Migration
             Schema::create('type', function (Blueprint $table) {
                 $table->increments('type_id')->comment('id của loại bất động sản');
                 // $table->string('type_code', 45)->index()->comment('mã loại bất động sản');
-                $table->string('type_name', 45)->index()->comment('tên loại bất động sản');
+                // $table->string('type_name', 45)->index()->comment('tên loại bất động sản');
 
                 //foreign key
                 $table->integer('form_id')->index()->unsigned();

@@ -13,11 +13,9 @@ class Cart extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'real_estate_id',
         'customer_id',
         'cart_id',
-        'cart_unit',
-        'cart_discount',
+        'cart_list',
         'created_at',
         'updated_at',
         'deleted_at',

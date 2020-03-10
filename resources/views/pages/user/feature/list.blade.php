@@ -62,6 +62,7 @@
                         @include('pages.user.feature.list_ajax')
                     </div>
                 </div>
+                {!!$real_estate->onEachSide(5)->links()!!}
             </div>
 
             {{-- end main page --}}
@@ -134,9 +135,15 @@
                             <div class="left">
                                 <select name="direction" id="direction">
                                     <option value="">-- Chọn hướng nhà --</option>
-                                    @foreach ($direction as $item)
-                                    <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
-                                    @endforeach
+
+                                    <option value="">Đông</option>
+                                    <option value="">Tây</option>
+                                    <option value="">Nam</option>
+                                    <option value="">Bắc</option>
+                                    <option value="">Đông - Nam</option>
+                                    <option value="">Đông - Bắc</option>
+                                    <option value="">Tây - Nam</option>
+                                    <option value="">Tây - Bắc</option>
                                 </select>
                             </div>
                         </div>

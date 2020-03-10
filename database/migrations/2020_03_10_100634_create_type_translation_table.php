@@ -4,18 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDirectionTable extends Migration
+class CreateTypeTranslationTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        if (!Schema::hasTable('direction')) {
-            Schema::create('direction', function (Blueprint $table) {
-                $table->increments('direction_id')->comment('id của phương hướng');
-                $table->string('direction_name', 45)->index()->comment('tên phương hướng');
+        if (!Schema::hasTable('type_translation')) {
+            Schema::create('type_translation', function (Blueprint $table) {
+                $table->increments('type_translation_id')->comment('id');
+                $table->string('type_translation_name')->index()->comment('tên');
+                $table->string('type_translation_locale', 5)->index();
 
+                //foreign key
+                $table->integer('type_id')->index()->unsigned();
+
+                $table->foreign('type_id')->references('type_id')->on('type');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -28,11 +33,8 @@ class CreateDirectionTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-
-                //unique
-                $table->unique(['direction_name']);
             });
-            DB::statement("ALTER TABLE `direction` comment 'Phương hướng'");
+            DB::statement("ALTER TABLE `type_translation` comment 'Loại bất động sản'");
         }
     }
 
@@ -41,6 +43,6 @@ class CreateDirectionTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('direction');
+        // Schema::dropIfExists('type_translation');
     }
 }

@@ -14,8 +14,8 @@ class CreateAboutTable extends Migration
         if (!Schema::hasTable('about')) {
             Schema::create('about', function (Blueprint $table) {
                 $table->increments('about_id')->comment('id thông tin công ty');
-                $table->text('about_description')->index()->comment('mô tả công ty');
-                $table->string('about_address')->index()->comment('địa chỉ công ty dạng đầy đủ');
+                // $table->string('about_name')->index()->comment('tên thông tin');
+                // $table->text('about_content')->index()->comment('mô tả công ty');
 
                 //foreign key
                 $table->integer('staff_id')->index()->unsigned();

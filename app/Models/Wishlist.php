@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wishlist extends Model
 {
-        protected $table = '';
+    protected $table = 'wishlist';
 
-    protected $primaryKey = '';
+    protected $primaryKey = 'wishlist_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        
+        'customer_id',
+        'wishlist_id',
+        'wishlist_list',
         'created_at',
         'updated_at',
         'deleted_at',
