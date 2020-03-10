@@ -41,4 +41,3 @@
     </div>
 </div>
 @endforeach
-{!!$real_estate->onEachSide(5)->links()!!}
