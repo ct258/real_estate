@@ -153,6 +153,9 @@
     Route::get('map', function () {
         return view('pages.user.feature.map');
     });
+    Route::get('subscription', function () {
+        return view('pages.user.subscription.index');
+    });
 
     Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
     Route::group(['prefix' => 'payment'], function () {
