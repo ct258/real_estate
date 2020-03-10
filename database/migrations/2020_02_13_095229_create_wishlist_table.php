@@ -14,6 +14,7 @@ class CreateWishlistTable extends Migration
         if (!Schema::hasTable('wishlist')) {
             Schema::create('wishlist', function (Blueprint $table) {
                 $table->increments('wishlist_id')->comment('id của danh sách yêu thích');
+                // $table->text('wishlist_list')->comment('danh sách');
 
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();

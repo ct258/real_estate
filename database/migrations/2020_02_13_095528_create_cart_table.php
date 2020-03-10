@@ -14,11 +14,13 @@ class CreateCartTable extends Migration
         if (!Schema::hasTable('cart')) {
             Schema::create('cart', function (Blueprint $table) {
                 $table->increments('cart_id')->comment('id của giỏ hàng');
-                $table->integer('cart_unit')->default(1)->comment('số lượng');
-                $table->decimal('cart_discount', 18, 4)->unsigned()->default(0)->comment('giảm giá');
+                // $table->integer('cart_unit')->default(1)->comment('số lượng');
+                // $table->decimal('cart_discount', 18, 4)->unsigned()->default(0)->comment('giảm giá');
+                // $table->text('cart_list')->nullable()->comment('danh sách');
+
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
-                $table->integer('customer_id')->index()->unsigned();
+                $table->integer('customer_id')->unsigned();
 
                 $table->foreign('real_estate_id')->references('real_estate_id')->on('real_estate');
                 $table->foreign('customer_id')->references('customer_id')->on('customer');

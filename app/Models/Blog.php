@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Direction extends Model
+class Blog extends Model
 {
-    protected $table = 'direction';
+    protected $table = 'blog';
 
-    protected $primaryKey = 'direction_id';
+    protected $primaryKey = 'blog_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'direction_id',
-        'direction_name',
+        'staff_id',
+        'about_id',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -17,8 +17,6 @@ class Promotion extends Model
         'real_estate_id',
         'status_id',
         'promotion_id',
-        'promotion_title',
-        'promotion_content',
         'promotion_from',
         'promotion_to',
         'created_at',

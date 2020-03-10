@@ -15,8 +15,9 @@ class CreateRealEstateTranslationTable extends Migration
             Schema::create('real_estate_translation', function (Blueprint $table) {
                 $table->increments('translation_id')->comment('id của bất động sản dịch');
                 $table->string('translation_name', 80)->index()->comment('tên bất động sản');
+                $table->string('translation_address')->index()->comment('địa chỉ bất động sản');
                 $table->longText('translation_description')->nullable()->index()->comment('mô tả bất động sản');
-                $table->string('translation_locale', 20)->index()->comment('ngôn ngữ cần dịch');
+                $table->string('translation_locale', 5)->index()->comment('ngôn ngữ cần dịch');
 
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
@@ -38,9 +39,10 @@ class CreateRealEstateTranslationTable extends Migration
                 //unique
                 $table->unique(['real_estate_id', 'translation_locale']);
             });
-            DB:: statement("ALTER TABLE `translation` comment 'Đa ngôn ngữ'");
-            DB:: statement('ALTER TABLE `translation` ADD FULLTEXT `search1` (`translation_name`)');
-            DB:: statement('ALTER TABLE `translation` ADD FULLTEXT `search2` (`translation_description`)');
+            DB:: statement("ALTER TABLE `real_estate_translation` comment 'Đa ngôn ngữ'");
+            DB:: statement('ALTER TABLE `real_estate_translation` ADD FULLTEXT `search1` (`translation_name`)');
+            DB:: statement('ALTER TABLE `real_estate_translation` ADD FULLTEXT `search2` (`translation_description`)');
+            DB:: statement('ALTER TABLE `real_estate_translation` ADD FULLTEXT `search3` (`translation_address`)');
         }
     }
 

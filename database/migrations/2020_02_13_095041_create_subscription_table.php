@@ -18,8 +18,12 @@ class CreateSubscriptionTable extends Migration
                 //foreign key
                 $table->integer('type_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();
+                $table->integer('province_id')->index()->unsigned();
+                $table->integer('district_id')->nullable()->index()->unsigned();
 
                 $table->foreign('type_id')->references('type_id')->on('type');
+                $table->foreign('province_id')->references('province_id')->on('province');
+                $table->foreign('district_id')->references('district_id')->on('district');
                 $table->foreign('customer_id')->references('customer_id')->on('customer');
                 //log time
                 $table->timestamp('created_at')

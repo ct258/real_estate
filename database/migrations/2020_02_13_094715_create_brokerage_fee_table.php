@@ -15,8 +15,9 @@ class CreateBrokerageFeeTable extends Migration
             Schema::create('brokerage_fee', function (Blueprint $table) {
                 $table->increments('brokerage_fee_id')->comment('id của phí đăng bài');
                 $table->string('brokerage_fee_code')->index()->comment('mã phí đăng bài');
-                $table->string('brokerage_fee_unit')->index()->comment('gói phí đăng bài');
-                $table->string('brokerage_fee_name')->index()->comment('tên phí đăng bài');
+                // $table->string('brokerage_fee_name')->index()->comment('tên phí đăng bài');
+                $table->string('brokerage_fee_price')->index()->comment('giá đăng bài');
+                // $table->string('brokerage_fee_description')->index()->comment('mô tả');
 
                 //log time
                 $table->timestamp('created_at')

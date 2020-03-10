@@ -16,6 +16,7 @@ class RealEstateTranslation extends Model
         'real_estate_id',
         'translation_id',
         'translation_name',
+        'translation_address',
         'translation_description',
         'translation_locale',
         'created_at',

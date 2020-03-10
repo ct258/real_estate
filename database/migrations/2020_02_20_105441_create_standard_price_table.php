@@ -36,7 +36,7 @@ class CreateStandardPriceTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
             });
-            DB::statement("ALTER TABLE `standard` comment 'Tiêu chuẩn giá'");
+            DB::statement("ALTER TABLE `standard_price` comment 'Tiêu chuẩn giá'");
         }
     }
 
