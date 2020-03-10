@@ -35,8 +35,9 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="room-price"><i class="fas fa-dollar-sign"></i>{{number_format($item->real_estate_price)}}
-                {{$item->unit_name_vi}}</a>
+            <a href="{{route('single_list',$item->real_estate_id)}}" class="room-price"><i
+                    class="fas fa-dollar-sign"></i>{{number_format($item->real_estate_price)}}
+                {{$item->unit_translation_name}}</a>
         </div>
     </div>
 </div>

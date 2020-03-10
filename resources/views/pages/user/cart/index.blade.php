@@ -28,9 +28,15 @@
         <div class="row">
             <div class="col-lg-9">
                 <div id="title-1">
+                    @if ($cart)
+
                     <h3>Giỏ hàng <span>({{count($cart)}} sản phẩm)</span></h3>
+                    @else
+
+                    <h3>Giỏ hàng <span>0 sản phẩm)</span></h3>
+                    @endif
                 </div>
-                {{-- @if($cart) --}}
+                @if($cart)
                 @foreach ($cart as $item)
                 <div class="row content-1">
                     <div class="col-lg-4">
@@ -56,7 +62,7 @@
                     </div>
                 </div>
                 @endforeach
-                {{-- @endif --}}
+                @endif
             </div>
             <div class="col-lg-3">
                 @if ($info)
