@@ -22,6 +22,11 @@
                         <a href=""><i class="fab fa-linkedin"></i></a> --}}
                     </div>
                     <div class="user-panel">
+                        <a href="{{route('currency',['USD']) }}">USD</a>
+                        <a href="{{route('currency',['VND']) }}">VND</a>
+                        <a href="{{route('currency',['EUR']) }}">EUR</a>
+                        <a href="{{route('currency',['JPY']) }}">JPY</a>
+                        <a href="{{route('currency',['GBP']) }}">GBP</a>
                         <a href="{{route('lang',['vi']) }}">Vi</a>
                         <a href="{{ route('lang',['en']) }}">En</a>
                         <a class="dropdown-toggle profile-pic" href="">

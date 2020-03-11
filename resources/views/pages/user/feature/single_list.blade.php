@@ -91,7 +91,13 @@
                                             m<sup>2</sup></div>
                                     </div>
                                     <div class="col-sm">
-                                        <div><i class="fas fa-dollar-sign"></i>
+                                        <div>
+                                            <div style="font-weight: bold;
+                                            display: inline-block;
+                                            color: #30caa0;
+                                            font-size: 18px;}"> {{$rate->currency_symbol}}
+                                            </div>
+                                            {{-- <i class="fas fa-dollar-sign"></i> --}}
                                             {{number_format($real_estate->real_estate_price)}}
                                         </div>
 
