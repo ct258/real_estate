@@ -20,6 +20,7 @@ class DepositContract extends Model
         'deposit_contract_nameB',
         'deposit_contract_sign_day',
         'deposit_contract_total_money',
+        'deposit_contract_term',
         'created_at',
         'updated_at',
         'deleted_at',
