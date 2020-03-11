@@ -8,6 +8,7 @@ use App\Models\Province;
 use App\Models\Direction;
 use App\Models\RealEstateTranslation;
 use App\Models\StandardAcreage;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -189,6 +190,9 @@ class ClientController extends Controller
 
     public function single_list(Request $request, $real_estate_id)
     {
+        // Session::forget('currency');
+        // \Session::flash('currency', 'USD');
+        // dd($request);
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
         ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
         ->join('province', 'district.province_id', 'province.province_id')
@@ -209,6 +213,12 @@ class ClientController extends Controller
             ['translation_locale', \Session::get('lang', config('app.locale'))],
             ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
         ->first();
+        // dd($request);
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+        // dd(\Session::get('currency'));
+        // dd($rate);
+        $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
+        // dd($real_estate->real_estate_price * $rate->currency_rate);
         $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')
         ->select('image.image_path')
@@ -217,7 +227,7 @@ class ClientController extends Controller
         // dd($real_estate);
         // dd($image);
 
-        return view('pages.user.feature.single_list', compact('real_estate', 'image'));
+        return view('pages.user.feature.single_list', compact('real_estate', 'image', 'rate'));
     }
 
     public function add_to_cart(Request $request, $real_estate_id)

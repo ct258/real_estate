@@ -15,7 +15,7 @@ class CreateCurrencyTable extends Migration
             Schema::create('currency', function (Blueprint $table) {
                 $table->increments('currency_id')->comment('id');
                 $table->string('currency_name')->index()->comment('Tên');
-                $table->decimal('currency_rate', 18, 4)->index()->comment('tỉ giá so với vnd');
+                $table->decimal('currency_rate', 18, 10)->index()->comment('tỉ giá so với vnd');
                 $table->string('currency_symbol')->index()->comment('ký hiệu');
 
                 //log time
