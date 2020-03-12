@@ -224,10 +224,11 @@ ol {
 	padding: 12px 0;
 	border-bottom: 1px solid #667792;
 	margin-bottom: 40px;
+	background: #044950;
 }
 
 .top-info {
-	font-size: 14px;
+	font-size: 16px;
 	color: #fff;
 	display: inline-block;
 }
@@ -237,11 +238,12 @@ ol {
 }
 
 .top-info:first-child {
-	margin-right: 40px;
+	margin-right: 29px;
 }
 
 .top-social {
 	display: inline-block;
+	float: left;
 }
 
 .top-social a {
@@ -254,9 +256,9 @@ ol {
 	margin-left: 20px;
 }
 
-.user-panel a {
+.user-panel > a {
 	color: #fff;
-	padding: 0 20px;
+	padding: 0 11px;
 	border-left: 1px solid #667792;
 }
 
@@ -304,8 +306,9 @@ ol {
 
 .hero-section {
 	position: relative;
-	height: 870px;
-	margin-bottom: -54px;
+	height: 630px;
+	margin-bottom: -4px;
+	top: 49px;
 }
 
 .hero-text {
