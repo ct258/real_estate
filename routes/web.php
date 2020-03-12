@@ -152,11 +152,11 @@
 
         Route:: post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
 
-        Route::get('map', function () {
-            return view('pages.user.feature.map');
-        });
         Route::get('subscription', function () {
             return view('pages.user.subscription.index');
+        });
+        Route::get('index', function () {
+            return view('pages.user.index');
         });
 
         Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
@@ -165,4 +165,10 @@
             Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
         });
         // });
+    });
+    Route::get('map', function () {
+        return view('pages.user.feature.map');
+    });
+    Route::get('map2', function () {
+        return view('pages.user.feature.map2');
     });
