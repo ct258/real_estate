@@ -16,6 +16,11 @@ class Currency
      */
     public function handle($request, Closure $next)
     {
+        // dd(\Session::get('currency'));
+        if (!\Session::get('currency')) {
+            session(['currency' => 'VND']);
+        }
+        // session(['currency' => 'VND']);
         // session()->put(['currency' => VND]);
         // \Session::push('currency', 'VND');
         if ($currency = $request->session()->get('currency')) {
