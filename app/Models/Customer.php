@@ -18,6 +18,7 @@ class Customer extends Model
         'ward_id',
         'customer_id',
         'customer_name',
+        'customer_avatar',
         'customer_email',
         'customer_tel',
         'customer_birth',
