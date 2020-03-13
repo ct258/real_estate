@@ -16,6 +16,7 @@ class CreateCustomerTable extends Migration
                 $table->increments('customer_id')->comment('id của khách hàng');
                 $table->string('customer_code', 10)->index()->comment('mã khách hàng');
                 $table->string('customer_name')->index()->comment('họ và tên khách hàng');
+                $table->string('customer_avatar')->index()->nullable()->comment('địa chỉ ảnh đại diện');
                 $table->string('customer_email')->nullable()->index()->comment('email');
                 $table->string('customer_tel', 20)->nullable()->index()->comment('số điện thoại');
                 $table->date('customer_birth')->nullable()->index()->comment('ngày sinh');
