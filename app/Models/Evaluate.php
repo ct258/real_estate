@@ -16,6 +16,7 @@ class Evaluate extends Model
         'real_estate_id',
         'customer_id',
         'evalute_id',
+        'evalute_reply',
         'evalute_title',
         'evalute_content',
         'evalute_rank',
