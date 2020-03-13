@@ -52,7 +52,7 @@ class standard extends Seeder
         ], [
             'standard_price_name' => '> 100 triệu',
             'standard_price_value1' => 100,
-            'standard_price_value2' => 999999999999999,
+            'standard_price_value2' => null,
             'form_id' => 2,
         ], [
             'standard_price_name' => 'Thỏa thuận',
@@ -107,7 +107,7 @@ class standard extends Seeder
         ], [
             'standard_price_name' => '> 30 tỷ',
             'standard_price_value1' => 30000000000,
-            'standard_price_value2' => 99999999999999,
+            'standard_price_value2' => null,
             'form_id' => 1,
         ],
     );
@@ -166,7 +166,7 @@ class standard extends Seeder
         ], [
             'standard_acreage_name' => '>= 500 m2',
             'standard_acreage_value1' => 500,
-            'standard_acreage_value2' => 999999,
+            'standard_acreage_value2' => null,
             'form_id' => 2,
         ],
     );

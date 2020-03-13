@@ -1,16 +1,16 @@
 <!-- Filter form section -->
-<div class="filter-search">
-    <div class="container">
-        <form class="filter-form">
-            <input type="text" placeholder="Enter a street name, address number or keyword">
-            <select>
-                <option value="City">City</option>
-            </select>
-            <select>
-                <option value="City">State</option>
-            </select>
-            <button class="site-btn fs-submit">SEARCH</button>
-        </form>
+<div class="container">
+    <div class="row search">
+        <div class="col-lg-8 search1">
+            <input class="form-control" placeholder="Tìm kiếm theo địa điểm, tên căn hộ hoặc từ khóa" id="search"
+                type="text" value="">
+        </div>
+        <div class="col-lg-4 search1">
+            <button class="btn btn-orange " type="submit">
+                Tìm Kiếm <i class="fa fa-search"></i>
+            </button>
+        </div>
     </div>
+</div>
 </div>
 <!-- Filter form section end -->

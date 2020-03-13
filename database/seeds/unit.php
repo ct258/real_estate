@@ -9,52 +9,120 @@ class unit extends Seeder
      */
     public function run()
     {
-        $data1 = array(
-            ['unit_name_vi' => 'Thỏa thuận',
-            // 'unit_name_en' => 'Agreement',
+        DB:: table('unit')->insert([
+            [
+            'unit_id'    => 1,
             'unit_value' => 1,
-            'form_id' => 1, ],
-            ['unit_name_vi' => 'Triệu',
-            // 'unit_name_en' => 'Million',
+            'form_id'    => 1, ],
+            [
+            'unit_id'    => 2,
             'unit_value' => 1000000,
-            'form_id' => 1, ],
-            ['unit_name_vi' => 'Tỷ',
-            // 'unit_name_en' => 'Billion',
+            'form_id'    => 1,       ],
+            [
+            'unit_id'    => 3,
             'unit_value' => 1000000000,
-            'form_id' => 1, ],
-            ['unit_name_vi' => 'Trăm nghìn/m2',
-            // 'unit_name_en' => 'Hundred thousand/m2',
+            'form_id'    => 1,          ],
+            [
+            'unit_id'    => 4,
             'unit_value' => 100000,
-            'form_id' => 1, ],
-            ['unit_name_vi' => 'Triệu/m2',
-            // 'unit_name_en' => 'Million/m2',
+            'form_id'    => 1,      ],
+            [
+            'unit_id'    => 5,
             'unit_value' => 1000000,
-            'form_id' => 1, ],
-            ['unit_name_vi' => 'Thỏa thuận',
-            // 'unit_name_en' => 'Agreement',
+            'form_id'    => 1,       ],
+            [
+            'unit_id'    => 6,
             'unit_value' => 1,
-            'form_id' => 2, ],
-            ['unit_name_vi' => 'Trăm nghìn/tháng',
-            // 'unit_name_en' => 'Hundred thousand/month',
+            'form_id'    => 2, ],
+            [
+            'unit_id'    => 7,
             'unit_value' => 1000000,
-            'form_id' => 2, ],
-            ['unit_name_vi' => 'Triệu/tháng',
-            // 'unit_name_en' => 'Million/month',
+            'form_id'    => 2,       ],
+            [
+            'unit_id'    => 8,
             'unit_value' => 1000000,
-            'form_id' => 2, ],
-            ['unit_name_vi' => 'Trăm nghìn/m2/tháng',
-            // 'unit_name_en' => 'Hundred thousand/m2/month'',
+            'form_id'    => 2,       ],
+            [
+            'unit_id'    => 9,
             'unit_value' => 100000,
-            'form_id' => 2, ],
-            ['unit_name_vi' => 'Triệu/m2/tháng',
-            // 'unit_name_en' => 'Million/m2/month',
+            'form_id'    => 2,      ],
+            [
+            'unit_id'    => 10,
             'unit_value' => 1000000,
-            'form_id' => 2, ],
-            ['unit_name_vi' => 'Nghìn/m2/tháng',
-            // 'unit_name_en' => 'Thousand/m2/month',
+            'form_id'    => 2,       ],
+            [
+            'unit_id'    => 11,
             'unit_value' => 1000,
-            'form_id' => 2, ],
-         );
-        DB::table('unit')->insert($data1);
+            'form_id'    => 2,    ],
+         ]);
+
+        DB::table('unit_translation')->insert([[
+            'unit_id'                 => 1,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Thỏa thuận', ], [
+            'unit_id'                 => 1,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Agreement', ], [
+            'unit_id'                 => 2,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Triệu', ], [
+            'unit_id'                 => 2,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Million', ], [
+            'unit_id'                 => 3,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Tỷ', ], [
+            'unit_id'                 => 3,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Billion', ], [
+            'unit_id'                 => 4,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Trăm nghìn/m2', ], [
+            'unit_id'                 => 4,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Hundred thousand/m2', ], [
+            'unit_id'                 => 5,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Triệu/m2', ], [
+            'unit_id'                 => 5,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Million/m2', ], [
+            'unit_id'                 => 6,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Thỏa thuận', ], [
+            'unit_id'                 => 6,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Agreement', ], [
+            'unit_id'                 => 7,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Trăm nghìn/tháng', ], [
+            'unit_id'                 => 7,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Hundred thousand/month', ], [
+            'unit_id'                 => 8,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Triệu/tháng', ], [
+            'unit_id'                 => 8,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Million/month', ], [
+            'unit_id'                 => 9,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Trăm nghìn/m2/tháng', ], [
+            'unit_id'                 => 9,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Hundred thousand/m2/month', ], [
+            'unit_id'                 => 10,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Triệu/m2/tháng', ], [
+            'unit_id'                 => 10,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Million/m2/month', ], [
+            'unit_id'                 => 11,
+            'unit_translation_locale' => 'vi',
+            'unit_translation_name'   => 'Nghìn/m2/tháng', ], [
+            'unit_id'                 => 11,
+            'unit_translation_locale' => 'en',
+            'unit_translation_name'   => 'Thousand/m2/month', ],
+         ]);
     }
 }

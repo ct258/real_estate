@@ -15,8 +15,6 @@ class Rank extends Model
     protected $fillable = [
         'rank_id',
         'rank_level',
-        'rank_name',
-        'rank_description',
         'created_at',
         'updated_at',
         'deleted_at',

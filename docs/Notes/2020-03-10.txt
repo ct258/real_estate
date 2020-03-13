@@ -1,0 +1,6 @@
+import csdl province,district,ward,street
+
+chạy php artisan db:seed --class=
+
+lần lượt các file sau:
+form, type, unit, status, account, rank, customer, real_estate, currency

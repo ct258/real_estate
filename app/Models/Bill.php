@@ -18,7 +18,7 @@ class Bill extends Model
         'cart_id',
         'payment_id',
         'bill_id',
-        'bill_datetime',
+        'bill_content',
         'bill_total',
         'created_at',
         'updated_at',

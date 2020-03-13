@@ -16,7 +16,8 @@ class CreateRealEstateTable extends Migration
                 $table->increments('real_estate_id')->comment('id của bất động sản');
                 $table->string('real_estate_acreage')->index()->comment('diện tích bất động sản');
                 $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá trị');
-                $table->string('real_estate_address')->index()->comment('địa chỉ bất động sản');
+                $table->decimal('real_estate_longitude', 8, 6)->nullable()->index()->comment('kinh độ');
+                $table->decimal('real_estate_latitude', 8, 6)->nullable()->index()->comment('vĩ độ');
 
                 //foreign key
                 $table->integer('type_id')->index()->unsigned();
@@ -27,7 +28,9 @@ class CreateRealEstateTable extends Migration
                 $table->integer('street_id')->nullable()->index()->unsigned();
                 $table->integer('unit_id')->nullable()->index()->unsigned();
                 $table->integer('customer_id')->nullable()->index()->unsigned();
+                $table->integer('convenience_id')->nullable()->index()->unsigned();
 
+                $table->foreign('convenience_id')->references('convenience_id')->on('convenience');
                 $table->foreign('type_id')->references('type_id')->on('type');
                 $table->foreign('status_id')->references('status_id')->on('status');
                 $table->foreign('brokerage_fee_id')->references('brokerage_fee_id')->on('brokerage_fee');

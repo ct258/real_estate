@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{asset('leramiz/css/animate.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/owl.carousel.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/style.css')}}" />
+  <link rel="stylesheet" href="{{asset('leramiz/css/style1.css')}}" />
   <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
   {{-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"

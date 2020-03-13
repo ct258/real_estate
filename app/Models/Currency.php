@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Direction extends Model
+class Currency extends Model
 {
-    protected $table = 'direction';
+    protected $table = 'currency';
 
-    protected $primaryKey = 'direction_id';
+    protected $primaryKey = 'currency_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'direction_id',
-        'direction_name',
+        'currency',
+        'currency_name',
+        'currency_rate',
+        'currency_symbol',
         'created_at',
         'updated_at',
         'deleted_at',
