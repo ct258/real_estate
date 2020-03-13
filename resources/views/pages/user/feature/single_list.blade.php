@@ -144,123 +144,102 @@
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-tv"></i> @lang('Tivi')</p>
 
                 </div>
-                <h3 class="sl-sp-title bd-no">Floorplans</h3>
-                <div id="accordion" class="plan-accordion">
-                    <div class="panel">
-                        <div class="panel-header" id="headingOne">
-                            <button class="panel-link active" data-toggle="collapse" data-target="#collapse1"
-                                aria-expanded="false" aria-controls="collapse1">First Floor: <span>660 sq ft</span>
-                                <i class="fa fa-angle-down"></i></button>
-                        </div>
-                        <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="panel-body">
-                                <img src="{{asset('leramiz/img/plan-sketch.jpg')}}" alt="">
+                <h3 class="sl-sp-title">Đánh giá</h3>
+                <div class="comment-warp">
+                    {{-- <h4 class="comment-title">3 Comments</h4> --}}
+                    <ul class="comment-list">
+                        <li>
+                            <div class="comment">
+                                <div class="comment-avator set-bg"
+                                    data-setbg="{{asset('leramiz/img/blog/comment/1.jpg')}}"></div>
+                                <div class="comment-content">
+                                    <h5>Lucia Mendes <span>24 Mar 2018</span></h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. finibus eros eget purus vulputate,
+                                        sit amet ornare ipsum. Ut enim ad minim veniam. Donec tincidunt sem non odio
+                                        congue.</p>
+                                    <a href="" class="c-btn">Like</a>
+                                    <a href="" class="c-btn">Reply</a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header" id="headingTwo">
-                            <button class="panel-link" data-toggle="collapse" data-target="#collapse2"
-                                aria-expanded="true" aria-controls="collapse2">Second Floor:<span>610 sq ft.</span>
-                                <i class="fa fa-angle-down"></i>
-                            </button>
-                        </div>
-                        <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="panel-body">
-                                <img src="{{asset('leramiz/img/plan-sketch.jpg')}}" alt="">
+                            <ul class="replay-comment-list">
+                                <li>
+                                    <div class="comment">
+                                        <div class="comment-avator set-bg"
+                                            data-setbg="{{asset('leramiz/img/blog/comment/2.jpg')}}"></div>
+                                        <div class="comment-content">
+                                            <h5>Peter Simon<span>25 Jun 2018</span></h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod
+                                                tempor incididunt ut labore iron man dolore magna aliqua. fpurus
+                                                vulputate, sit amet ornare ipsum. Ut enim ad minim veniam. Donec
+                                                tincidunt sem non odio congue.</p>
+                                            <a href="" class="c-btn">Like</a>
+                                            <a href="" class="c-btn">Reply</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="comment">
+                                <div class="comment-avator set-bg"
+                                    data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}"></div>
+                                <div class="comment-content">
+                                    <h5>Gina Haspel<span>25 Jun 2018</span></h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. finibus eros eget purus vulputate,
+                                        sit amet ornare ipsum. Ut enim ad minim veniam. Donec tincidunt sem non odio
+                                        congue.</p>
+                                    <a href="" class="c-btn">Like</a>
+                                    <a href="" class="c-btn">Reply</a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header" id="headingThree">
-                            <button class="panel-link" data-toggle="collapse" data-target="#collapse3"
-                                aria-expanded="false" aria-controls="collapse3">Third Floor :<span>580 sq ft</span>
-                                <i class="fa fa-angle-down"></i>
-                            </button>
-                        </div>
-                        <div id="collapse3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="panel-body">
-                                <img src="{{asset('leramiz/img/plan-sketch.jpg')}}" alt="">
+                        </li>
+                    </ul>
+                    <div class="comment-form-warp">
+                        <h4 class="comment-title">Leave Your Comment</h4>
+                        <form class="comment-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" placeholder="Your Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" placeholder="Your Email">
+                                </div>
+                                <div class="col-lg-9">
+                                    <textarea placeholder="Your Message"></textarea>
+                                    <button class="site-btn">SEND COMMENT</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
-                {{-- <h3 class="sl-sp-title bd-no">Video</h3>
-                    <div class="perview-video">
-                        <img src="{{asset('leramiz/img/video.jpg')}}" alt="">
-                <a href="https://www.youtube.com/watch?v=v13nSVp6m5I" class="video-link"><img src="img/video-btn.png"
-                        alt=""></a>
             </div>
-            <h3 class="sl-sp-title bd-no">Location</h3>
-            <div class="pos-map" id="map-canvas"></div> --}}
-        </div>
-        <!-- sidebar -->
-        <div class="col-lg-4 col-md-7 sidebar">
-            <div class="author-card">
-                <div class="author-img set-bg" data-setbg="{{asset('leramiz/img/author.jpg')}}"></div>
-                <div class="author-info">
-                    <h5>Gina Wesley</h5>
-                    <p>Real Estate Agent</p>
+            <!-- sidebar -->
+            <div class="col-lg-4 col-md-7 sidebar">
+                <div class="author-card">
+                    <div class="author-img set-bg" data-setbg="{{asset('leramiz/img/author.jpg')}}"></div>
+                    <div class="author-info">
+                        <h5>Gina Wesley</h5>
+                        <p>Real Estate Agent</p>
+                    </div>
+                    <div class="author-contact">
+                        <p><i class="fa fa-phone"></i>(567) 666 121 2233</p>
+                        <p><i class="fa fa-envelope"></i>ginawesley26@gmail.com</p>
+                    </div>
                 </div>
-                <div class="author-contact">
-                    <p><i class="fa fa-phone"></i>(567) 666 121 2233</p>
-                    <p><i class="fa fa-envelope"></i>ginawesley26@gmail.com</p>
+                <div class="contact-form-card">
+                    <h5>Do you have any question?</h5>
+                    <form>
+                        <input type="text" placeholder="Your name">
+                        <input type="text" placeholder="Your email">
+                        <textarea placeholder="Your question"></textarea>
+                        <button>SEND</button>
+                    </form>
                 </div>
+
             </div>
-            <div class="contact-form-card">
-                <h5>Do you have any question?</h5>
-                <form>
-                    <input type="text" placeholder="Your name">
-                    <input type="text" placeholder="Your email">
-                    <textarea placeholder="Your question"></textarea>
-                    <button>SEND</button>
-                </form>
-            </div>
-            <div class="related-properties">
-                <h2>Related Property</h2>
-                <div class="rp-item">
-                    <div class="rp-pic set-bg" data-setbg="{{asset('leramiz/img/feature/1.jpg')}}">
-                        <div class="sale-notic">FOR SALE</div>
-                    </div>
-                    <div class="rp-info">
-                        <h5>1963 S Crescent Heights Blvd</h5>
-                        <p><i class="fa fa-map-marker"></i>Los Angeles, CA 90034</p>
-                    </div>
-                    <a href="#" class="rp-price">$1,200,000</a>
-                </div>
-                <div class="rp-item">
-                    <div class="rp-pic set-bg" data-setbg="{{asset('leramiz/img/feature/2.jpg')}}">
-                        <div class="rent-notic">FOR Rent</div>
-                    </div>
-                    <div class="rp-info">
-                        <h5>17 Sturges Road, Wokingham</h5>
-                        <p><i class="fa fa-map-marker"></i> Newtown, CT 06470</p>
-                    </div>
-                    <a href="#" class="rp-price">$2,500/month</a>
-                </div>
-                <div class="rp-item">
-                    <div class="rp-pic set-bg" data-setbg="{{asset('leramiz/img/feature/4.jpg')}}">
-                        <div class="sale-notic">FOR SALE</div>
-                    </div>
-                    <div class="rp-info">
-                        <h5>28 Quaker Ridge Road, Manhasset</h5>
-                        <p><i class="fa fa-map-marker"></i>28 Quaker Ridge Road, Manhasset</p>
-                    </div>
-                    <a href="#" class="rp-price">$5,600,000</a>
-                </div>
-                <div class="rp-item">
-                    <div class="rp-pic set-bg" data-setbg="{{asset('leramiz/img/feature/5.jpg')}}">
-                        <div class="rent-notic">FOR Rent</div>
-                    </div>
-                    <div class="rp-info">
-                        <h5>Sofi Berryessa 750 N King Road</h5>
-                        <p><i class="fa fa-map-marker"></i>Sofi Berryessa 750 N King Road</p>
-                    </div>
-                    <a href="#" class="rp-price">$1,600/month</a>
-                </div>
-            </div>
-        </div>
 </section>
 <!-- Page end -->
 @endsection
