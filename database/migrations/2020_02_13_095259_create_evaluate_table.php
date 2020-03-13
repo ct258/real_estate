@@ -14,14 +14,17 @@ class CreateEvaluateTable extends Migration
         if (!Schema::hasTable('evaluate')) {
             Schema::create('evaluate', function (Blueprint $table) {
                 $table->bigIncrements('evaluate_id')->comment('id của đánh giá');
-                $table->string('evaluate_title')->index()->comment('tiêu đề đánh giá');
+                // $table->integer('evaluate_reply')->index()->comment('trả lời cho bình luận số ...');
+                $table->string('evaluate_title')->nullable()->index()->comment('tiêu đề đánh giá');
                 $table->string('evaluate_content')->nullable()->index()->comment('nội dung đánh giá');
-                $table->string('evaluate_rank')->index()->comment('số sao đánh giá');
+                $table->string('evaluate_rank')->unsigned()->index()->comment('số sao đánh giá');
 
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
                 $table->integer('customer_id')->index()->unsigned();
+                $table->integer('evaluate_reply')->index()->unsigned()->nullable()->comment('trả lời cho bình luận số ...');
 
+                $table->foreign('evaluate_reply')->references('evaluate_id')->on('evaluate')->onDelete('evaluate_id');
                 $table->foreign('real_estate_id')->references('real_estate_id')->on('real_estate');
                 $table->foreign('customer_id')->references('customer_id')->on('customer');
                 //log time
