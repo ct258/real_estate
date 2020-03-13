@@ -172,3 +172,9 @@
     Route::get('map2', function () {
         return view('pages.user.feature.map2');
     });
+    Route::get('map3', function () {
+        return view('pages.user.feature.map3');
+    });
+    Route::get('123123', function () {
+        return view('layouts.admin_new.admin');
+    });
