@@ -178,3 +178,4 @@
     Route::get('123123', function () {
         return view('layouts.admin_new.admin');
     });
+   
