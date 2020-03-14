@@ -18,7 +18,7 @@
 
     @endif
     @include('layouts.user.top')
-    @include('layouts.user.breadcrumb')
+    {{-- @include('layouts.user.breadcrumb') --}}
     @yield('page')
     {{-- @include('layouts.user.page') --}}
     @include('layouts.user.client')
