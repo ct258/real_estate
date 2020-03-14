@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evaluate extends Model
 {
-    protected $table = 'evalute';
+    protected $table = 'evaluate';
 
-    protected $primaryKey = 'evalute_id';
+    protected $primaryKey = 'evaluate_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
         'real_estate_id',
         'customer_id',
-        'evalute_id',
-        'evalute_reply',
-        'evalute_title',
-        'evalute_content',
-        'evalute_rank',
+        'evaluate_id',
+        'evaluate_reply',
+        'evaluate_title',
+        'evaluate_content',
+        'evaluate_rank',
         'created_at',
         'updated_at',
         'deleted_at',
