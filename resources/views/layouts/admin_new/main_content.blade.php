@@ -2,7 +2,7 @@
 <section id="main-content">
     <section class="wrapper">
         <!-- //market-->
-        <!-- <div class="market-updates">
+        {{-- <div class="market-updates">
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-2">
 					<div class="col-md-4 market-update-right">
@@ -56,7 +56,8 @@
 				</div>
 			</div>
 		   <div class="clearfix"> </div>
-		</div>	 -->
+		</div>	  --}}
+		{{-- @yield('content') --}}
         <!-- //market-->
         <!-- <div class="row">
 			<div class="panel-body">
