@@ -33,6 +33,140 @@
     .single-list-content {
         padding: 40px 30px;
     }
+    /* rating  */
+
+    .product-customer-col-1 > h4 {
+        font-size: 25px;
+        text-align: center;
+        font-weight: bold;
+        padding-top: 14px;
+    }
+
+    .product-customer-col-1 {
+        width: 100%;
+        /* border: 1px solid red; */
+    }
+
+    .row.customer_rating {
+        /* border: 1px solid #13110f; */
+        font-family: 'Source Sans Pro', sans-serif;
+        margin-top: 78px;
+        background: #e4e4e459;
+    }
+
+    
+.product-customer-col-1 p.total-review-point {
+    font-size: 48px;
+    text-align: center;
+    color: red;
+    font-weight: 600;
+}
+
+svg.svg-inline--fa.fa-star.fa-w-18 {
+    /* color: red; */
+    font-size: 18px;
+}
+.start p {
+    font-size: 16px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Three column layout */
+.product-customer-col-2 {width: 100%;height: 81%;/* border: 1px solid black; */margin-top: 19px;}
+.side {
+  float: left;
+  width: 15%;
+  margin-top:10px;
+}
+
+.middle {
+  margin-top:10px;
+  float: left;
+  width: 70%;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #bfbfbf;
+    text-align: center;
+    color: white;
+    border-radius: 11px;
+    height: 11px;
+}
+
+/* Individual bars */
+.bar-5 {
+    width: 60%;
+    height: 10px;
+    background-color: #30caa0;
+    border-radius: 5px;
+}
+.bar-4 {width: 30%; height: 10px; background-color: #2196F3;border-radius: 5px;}
+.bar-3 {width: 10%; height: 10px; background-color: #00bcd4;border-radius: 5px;}
+.bar-2 {width: 4%; height: 10px; background-color: #ff9800;border-radius: 5px;}
+.bar-1 {width: 15%; height: 10px; background-color: #f44336;border-radius: 5px;}
+
+.product-customer-col-2 .left {
+    font-size: 16px;
+    /* border: 1px solid black; */
+    /* width: 21px; */
+    margin-top: -6px;
+    /* text-transform: uppercase; */
+    color: #020202;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.product-customer-col-2 .right {
+    font-size: 18px;
+    margin-top: 2px;
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.share_comment {
+    width: 98%;
+    height: 70%;
+    /* border: 1px solid black; */
+    margin: auto;
+    margin-top: 44px;
+    
+}
+.share_comment h3 {
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+    margin-top: 5px;
+}
+.share_comment button.btn.btn-default {
+    background: #f9f955;
+    /* margin: auto; */
+    width: 72%;
+    margin-left: 30px;
+    margin-top: 11px;
+}
+
+
+
+
+
+
+
+
+
+
+    
 </style>
 @endpush
 @section('page')
@@ -56,7 +190,7 @@
 <!-- Page -->
 <section class="page-section">
     <div class="container">
-        <div class="row">
+        <div class="row single_list">
             <div class="col-lg-8 single-list-page">
                 <div class="single-list-slider owl-carousel" id="sl-slider">
                     @foreach ($image as $item)
@@ -240,6 +374,91 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row customer_rating">
+            <div class="col-lg-3">
+                <div class="product-customer-col-1">
+                    <h4>Đánh Giá Trung Bình</h4>
+                    <p class="total-review-point">5/5</p>
+                    <div style="text-align: center" class="start">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <p>(15 nhận xét)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-customer-col-2">
+                        <div class="side">
+                          <div class="left">5 Star</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-5"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div class="right">150</div>
+                        </div>
+                        <div class="side">
+                          <div class="left">4 Star</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-4"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div class="right">63</div>
+                        </div>
+                        <div class="side">
+                          <div class="left">3 Star</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-3"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div class="right">15</div>
+                        </div>
+                        <div class="side">
+                          <div class="left" >2 Star</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-2"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div class="right">6</div>
+                        </div>
+                        <div class="side">
+                          <div class="left">1 Star</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-1"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div class="right">20</div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="share_comment">
+                    <h3>Chia sẻ nhận xét về sản phẩm</h3>
+                    <button class="btn btn-default">Viết nhận xét của bạn</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- Page end -->
 @endsection
