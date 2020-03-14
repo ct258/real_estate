@@ -9,6 +9,7 @@ use App\Models\Direction;
 use App\Models\RealEstateTranslation;
 use App\Models\StandardAcreage;
 use App\Models\Currency;
+use App\Models\Evaluate;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -213,12 +214,25 @@ class ClientController extends Controller
             ['translation_locale', \Session::get('lang', config('app.locale'))],
             ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
         ->first();
-        // dd($request);
         $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
-        // dd(\Session::get('currency'));
-        // dd($rate);
+
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
         // dd($real_estate->real_estate_price * $rate->currency_rate);
+        $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
+        ->select('customer.customer_avatar',
+        'customer.customer_name',
+        'evaluate.evaluate_rank',
+        'evaluate.evaluate_title',
+        'evaluate.evaluate_content',
+        'evaluate.updated_at'
+        )
+        ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
+        ->get();
+        $count_rank = count($evaluate);
+        // dd($evaluate);
+        $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
+        // dd($count_rank);
+        // dd($averageRank);
         $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')
         ->select('image.image_path')
@@ -227,17 +241,7 @@ class ClientController extends Controller
         // dd($real_estate);
         // dd($image);
 
-        return view('pages.user.feature.single_list', compact('real_estate', 'image', 'rate'));
-    }
-
-    public function add_to_cart(Request $request, $real_estate_id)
-    {
-        dd($request);
-        if ($request->ajax()) {
-        }
-        if (Request::ajax()) {
-            // return Response::json(View::make('pages.user.feature.list_ajax', array('real_estate' => $real_estate))->render());
-        }
+        return view('pages.user.feature.single_list', compact('real_estate', 'image', 'rate', 'evaluate', 'count_rank', 'average_rank'));
     }
 
     public function subscription(Request $request, $user)
