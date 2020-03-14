@@ -55,8 +55,9 @@
                         <span>Mail </span>
                     </a>
                     <ul class="sub">
-                        <li><a href="mail.html">Inbox</a></li>
-                        <li><a href="mail_compose.html">Compose Mail</a></li>
+                        <li><a href="{{route('email')}}">Hộp thư đến</a></li>
+
+                        <li><a href="{{route('email_compose')}}"> Soạn mail</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

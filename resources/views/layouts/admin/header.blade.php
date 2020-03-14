@@ -15,7 +15,7 @@
             <li class="dropdown">
                 <a href="#" title="8 support tickets" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-globe"></i>
-                    <span class="count">8</span>
+                    <span class="count">18</span>
                 </a>
 
             </li>
@@ -32,6 +32,9 @@
                 <ul class="dropdown-menu dropdown-user animated flipInY in"><a href="#" title="Account" id="account"
                         class="dropdown-toggle" data-toggle="dropdown">
                     </a>
+                    <li class="">
+                        <a href="">Chỉnh sửa thông tin cá nhân</a>
+                    </li>
                     <li class="">
                         <a href="{{route('logout')}}">Đăng xuất</a>
                     </li>
