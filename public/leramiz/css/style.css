@@ -224,7 +224,7 @@ ol {
 	padding: 12px 0;
 	border-bottom: 1px solid #667792;
 	margin-bottom: 40px;
-	background: #044950;
+	/* background: #044950; */
 }
 
 .top-info {
@@ -238,7 +238,7 @@ ol {
 }
 
 .top-info:first-child {
-	margin-right: 29px;
+	margin-right: 13px;
 }
 
 .top-social {
