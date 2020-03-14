@@ -4,6 +4,21 @@
     box-sizing: border-box;
 }
 
+ul.dropdown-menu.show li a:hover {
+    color: #30cca0;
+}
+
+ul.dropdown-menu.show li a {
+    text-decoration: none;
+    padding-left: 5px;
+    color: #6c6ae8;
+}
+
+.user-panel > a:hover {
+    color: #30caa0;
+    text-decoration: none;
+}
+
 
 .curency .dropdown ul li {
     padding: 2px 11px;
@@ -25,9 +40,10 @@ p.dropdown-toggle {
 .curency {
     /* width: 88px; */
     position: absolute;
-    left: 315px;
+    left: 221px;
     top: 1px;
     color: white;
+    /* text-decoration: none; */
 }
 
 
@@ -55,13 +71,12 @@ div#curency a:hover {
     position: relative;
     /* border: 1px solid black; */
     height: 640px;
-    top: 49px;
-    background-repeat: no-repeat ;
+    top: 0px;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 100%;
     animation: slide 40s infinite;
-    
 }
 .content{
     color: white;
@@ -73,7 +88,7 @@ div#curency a:hover {
 
 .principal{
     left: 50%;
-    top: 31%;
+    top: 25%;
     transform: translate(-50%,-50%);
     position: absolute;
     letter-spacing: 5px;
@@ -175,7 +190,7 @@ div#curency a:hover {
 .col-lg-4.search1 button.btn.btn-orange {
     height: 42px;
     margin-top: 8px;
-    margin-left: 64px;
+    margin-left: 71px;
     background: #2fe868;
     font-size: 17px;
     text-align: center;
@@ -210,8 +225,9 @@ button.btn.btn-orange {
     width: 65%;
     border: 1px solid #f1dfdfe0;
     position: relative;
-    top: -256px;
-    margin: auto;
+    top: -351px;
+    left: 197px;
+    /* margin-left: 100px; */
     height: 60px;
     /* line-height: 60px; */
     background-color: #7e848269;

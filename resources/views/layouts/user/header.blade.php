@@ -52,7 +52,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="site-navbar">
-                    <!-- <a href="#" class="site-logo"><img src="img/logo.png" alt=""></a> -->
                     <div class="nav-switch">
                         <i class="fa fa-bars"></i>
                     </div>
