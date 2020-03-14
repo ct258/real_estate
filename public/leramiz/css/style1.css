@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.row.single_list {
+    margin-top: 20px;
+}
+
 ul.dropdown-menu.show li a:hover {
     color: #30cca0;
 }
