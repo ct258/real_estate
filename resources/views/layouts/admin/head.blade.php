@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>CT258 - PTHTTMĐT</title>
+    <title>CT258 - REAL ESTATE</title>
 
     <link href="{{asset('css/application.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('img/logo.jpg')}}">

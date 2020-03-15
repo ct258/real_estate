@@ -146,9 +146,15 @@
             return view('pages.user.feature.contact');
         });
 
+
+
+        Route::get('mail/mail_compose', function () {
+        return view('pages.admin.mail.mail_compose');
+        })->name('email_compose');
+            
         Route::get('/mail', function () {
-            return view('pages.admin.mail.form');
-        });
+            return view('pages.admin.mail.mail');
+        })->name('email');
 
         Route:: post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
 
@@ -175,7 +181,8 @@
     Route::get('map3', function () {
         return view('pages.user.feature.map3');
     });
-    Route::get('123123', function () {
+    
+    Route::get('dashboard', function () {
         return view('layouts.admin_new.admin');
     });
-   
+

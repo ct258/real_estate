@@ -10,25 +10,25 @@ class currency extends Seeder
     public function run()
     {
         DB::table('currency')->insert([
-            ['currency_name' => 'Vietnamese dong',
-            'currency_rate'   => 1,
-            'currency_symbol' => 'VND',
+            ['currency_name' => 'VND',
+            'currency_rate' => 1,
+            'currency_symbol' => 'đ',
             ], [
-            'currency_name'   => 'U.S dollar',
-            'currency_rate'   => 0.00004,
-            'currency_symbol' => 'USD',
+            'currency_name' => 'USD',
+            'currency_rate' => 0.00004,
+            'currency_symbol' => '$',
             ], [
-            'currency_name'   => 'Euro',
-            'currency_rate'   => 0.04,
-            'currency_symbol' => 'EUR',
+            'currency_name' => 'EUR',
+            'currency_rate' => 0.04,
+            'currency_symbol' => '€',
             ],  [
-            'currency_name'   => 'Japanese yen',
-            'currency_rate'   => 4.53,
-            'currency_symbol' => 'JPY',
+            'currency_name' => 'JPY',
+            'currency_rate' => 4.53,
+            'currency_symbol' => '¥',
             ],  [
-            'currency_name'   => 'British pound',
-            'currency_rate'   => 0.03,
-            'currency_symbol' => 'GBP',
+            'currency_name' => 'GBP',
+            'currency_rate' => 0.03,
+            'currency_symbol' => '£',
             ],
         ]);
     }
