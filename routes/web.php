@@ -38,7 +38,7 @@
             //Bất động sản
             Route::group(['prefix' => 'real_estate'], function () {
                 //index
-                Route:: get('/', 'RealEstateController@index')->name('real_estate.index');
+                Route:: get('/index', 'RealEstateController@index')->name('real_estate.index');
                 // thêm
                 Route:: get('/create', 'RealEstateController@create')->name('real_estate.create');
                 Route:: post('/create', 'RealEstateController@store')->name('real_estate.create.submit');
@@ -183,6 +183,6 @@
     });
     
     Route::get('dashboard', function () {
-        return view('layouts.admin_new.admin');
-    });
+        return view('pages.admin.dashboard');
+    })->name('dashboard');
 

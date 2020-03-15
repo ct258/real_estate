@@ -5,27 +5,26 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="index.html">
+                    <a class="active" href="{{route('dashboard')}}">
                         <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
+                        <span>Bảng Điều Khiển</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>UI Elements</span>
+                        <span>Bất Động Sản</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="glyphicon.html">glyphicon</a></li>
-                        <li><a href="grids.html">Grids</a></li>
+                        <li><a href="{{route('real_estate.create')}}">Tạo BĐS</a></li>
+                    <li><a href="{{route('real_estate.index')}}">Cập nhật BĐS</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="fontawesome.html">
-                        <i class="fa fa-bullhorn"></i>
-                        <span>Font awesome </span>
+                        <i class="fas fa-user"></i>
+                        <span>Khách Hàng </span>
                     </a>
                 </li>
                 <li class="sub-menu">
@@ -40,15 +39,15 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-tasks"></i>
-                        <span>Form Components</span>
+                        <i class="fa fa-cog"></i>
+                        <span>Cài Đặt</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="form_component.html">Form Elements</a></li>
+                        <li><a href="form_component.html">Ảnh bìa</a></li>
                         <li><a href="form_validation.html">Form Validation</a></li>
                         <li><a href="dropzone.html">Dropzone</a></li>
                     </ul>
-                </li>
+                </li> 
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-envelope"></i>
