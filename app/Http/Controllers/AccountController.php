@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartTemp;
+use App\Models\Customer;
 
 //user model can kiem tra
 // use Auth; //use thư viện auth
@@ -94,5 +95,38 @@ class AccountController extends Controller
         Auth::guard('account')->logout();
 
         return redirect('/');
+    }
+
+    public function register(Request $request)
+    {
+        $account_id = Account::insertGetId(array(
+            'username' => $request->username,
+            'password' => \Hash::make($request->password),
+            'role_id' => 3,
+        ));
+        Customer::insert([
+            'customer_name' => $request->fullname,
+            'customer_email' => $request->email,
+            'customer_tel' => $request->phone,
+            'customer_birth' => $request->birth,
+            'customer_gender' => $request->gender,
+            'customer_address' => $request->address,
+            'customer_identity_card' => $request->IDCard,
+            'rank_id' => 1,
+            'account_id' => $account_id,
+            'ward_id' => $request->ward,
+        ]);
+
+        return view('pages.user.index');
+    }
+
+    public function find_username($username)
+    {
+        $acc = Account::where('username', $username)->first();
+        if ($acc) {
+            echo false;
+        } else {
+            echo true;
+        }
     }
 }
