@@ -14,7 +14,7 @@ class CreateStaffTable extends Migration
         if (!Schema::hasTable('staff')) {
             Schema::create('staff', function (Blueprint $table) {
                 $table->increments('staff_id')->comment('id của nhân viên');
-                $table->string('staff_code', 10)->index()->comment('mã nhân viên');
+                // $table->string('staff_code', 10)->index()->comment('mã nhân viên');
                 $table->string('staff_name')->index()->comment('tên nhân viên');
                 $table->date('staff_birth')->nullable()->index()->comment('ngày sinh');
                 $table->tinyInteger('staff_gender')->nullable()->default('1')->index()->comment('giới tính');
