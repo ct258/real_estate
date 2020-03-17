@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.table-bottom h4 {
+    font-size: 24px;
+    margin-left: 4px;
+    color: #2ca94c;
+    width: 98%;
+    border-bottom: 1px solid #0a0a0a52;
+    padding-bottom: 10px;
+}
+
+button.btn.btn-success {
+    width: 150px;
+    font-size: 17px;
+    margin-left: 234px;
+    margin-top: -34px;
+    margin-bottom: 74px;
+}
+
+.submit {
+    width: -16%;
+    /* margin: auto; */
+}
+
+.submit button.btn.btn-success {
+    /* margin: 2px; */
+    /* margin-top: -65px; */
+}
+
+.submit {
+    /* width: 107px; */
+}
+
+.table-bottom table tr {
+    /* margin-top: 7px; */
+    height: 45px;
+}
+
+.table-bottom table {
+    width: 68%;
+    margin: auto;
+    margin-top: 14px;
+    margin-bottom: 65px;
+}
+
+.table-middle table{
+    width: 90%;
+    margin: auto;
+}
+
+
+
+table.table {
+    width: 82%;
+    margin: auto;
+}
+
+.table-middle {
+    margin-top: 62px;
+}
+
+.table-top ul li {
+    list-style-type: none;
+    float: left;
+    padding: 7px;
+    font-size: 17px;
+    font-family: initial;
+    font-weight: bold;
+}
+
+.table-top p {
+    width: 308px;
+    margin: auto;
+    margin-bottom: 11px;
+    font-style: oblique;
+}
+
+.modal-content.background {
+    width: 587px;
+    margin-left: -60px;
+}
+
+.table-bottom {
+    background: url("images/bgfooter.jpg");
+    background-repeat: no-repeat;
+    /* margin-top: 0px; */
+    background-size: contain;
+    background-position-y: bottom;
+}
+
+
+.table-top {
+    width: 100%;
+}
+
+p.modal-title {
+    font-family: Arial;
+    /* text-align: center; */
+    font-weight: bold;
+    color: green;
+    /* padding-left: 61px; */
+    width: 100%;
+}

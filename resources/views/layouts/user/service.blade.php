@@ -1,5 +1,5 @@
 <!-- Services section -->
-<section class="services-section spad set-bg" data-setbg="{{asset('leramiz/img/service-bg.jpg')}}">
+{{-- <section class="services-section spad set-bg" data-setbg="{{asset('leramiz/img/service-bg.jpg')}}">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -39,5 +39,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Services section end -->

@@ -8,42 +8,17 @@ use App\Models\Province;
 use App\Models\Direction;
 use App\Models\RealEstateTranslation;
 use App\Models\StandardAcreage;
+use App\Models\Currency;
+use App\Models\Evaluate;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class ClientController extends Controller
 {
-    public function query()
-    {
-        // queries to Algolia search index and returns matched records as Eloquent Models
-        $real_estate = Post::search('title')->get();
-
-        // do the usual stuff here
-        foreach ($real_estate as $post) {
-            // ...
-        }
-    }
-
-    public function add()
-    {
-        // this post should be indexed at Algolia right away!
-        $real_estate = new Post();
-        $real_estate->setAttribute('name', 'Another Post');
-        $real_estate->setAttribute('user_id', '1');
-        $real_estate->save();
-    }
-
-    public function delete()
-    {
-        // this post should be removed from the index at Algolia right away!
-        $real_estate = RealEstate::find(1);
-        $real_estate->delete();
-    }
-
     public function list(Request $request)
     {
-        // dd(\Session::get('website_language', config('app.locale')));
-        app()->setLocale(\Session::get('website_language', config('app.locale')));
+        // dd(\Session::get('lang', config('app.locale')));
+        app()->setLocale(\Session::get('lang', config('app.locale')));
         // \App::setLocale('vi');
         // $content = RealEstateTranslation::getTranslation('vi')->first();
         // dd($content);
@@ -53,17 +28,22 @@ class ClientController extends Controller
             ->join('district', 'real_estate.district_id', 'district.district_id')
             ->join('province', 'district.province_id', 'province.province_id')
             ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+            ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
             ->select('real_estate.real_estate_id',
             'translation_name',
+            'translation_address',
             'translation_description',
             'real_estate_price',
             'real_estate_acreage',
             'real_estate.created_at',
-            'unit.unit_name_vi',
+            'unit_translation.unit_translation_name',
             'image.image_path',
             'province.province_name',
             'district.district_name')
-            ->where([['image_real_estate.image_real_estate_note', 'Avatar'], ['translation_locale', \Session::get('website_language', config('app.locale'))]])
+            ->where([
+                ['image_real_estate.image_real_estate_note', 'Avatar'],
+                ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
             // ->where('image_real_estate.image_real_estate_note', 'Avatar')
             // ->groupBy('real_estate.real_estate_id')
             ->paginate(5);
@@ -76,12 +56,14 @@ class ClientController extends Controller
             $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
         }
         // lấy dữ liệu cho search form
-        $form = Form::select('form_id', 'form_name')->get();
+        $form = Form::join('form_translation', 'form.form_id', 'form_translation.form_id')
+        ->select('form.form_id', 'form_translation_name')
+        ->where('form_translation_locale', \Session::get('lang', config('app.locale')))
+        ->get();
         $province = Province::select('province_id', 'province_name')->get();
-        $direction = Direction::select('direction_id', 'direction_name')->get();
         $standard_acreage = StandardAcreage::select('standard_acreage_id', 'standard_acreage_name', 'standard_acreage_value1', 'standard_acreage_value2')->get();
 
-        return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'direction', 'standard_acreage'));
+        return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'standard_acreage'));
     }
 
     //bỏ
@@ -209,21 +191,48 @@ class ClientController extends Controller
 
     public function single_list(Request $request, $real_estate_id)
     {
+        // Session::forget('currency');
+        // \Session::flash('currency', 'USD');
+        // dd($request);
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
         ->join('province', 'district.province_id', 'province.province_id')
         ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+        ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
         ->select('real_estate.real_estate_id',
-        'real_estate_name_vi',
-        'real_estate_address',
-        'real_estate_description_vi',
+        'translation_name',
+        'translation_address',
+        'translation_description',
         'real_estate_price',
         'real_estate_acreage',
         'real_estate.created_at',
-        'unit.unit_name_vi',
+        'unit_translation.unit_translation_name',
         'province.province_name',
         'district.district_name')
-        ->where('real_estate.real_estate_id', $real_estate_id)
+        ->where([
+            ['real_estate.real_estate_id', $real_estate_id],
+            ['translation_locale', \Session::get('lang', config('app.locale'))],
+            ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
         ->first();
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+
+        $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
+        // dd($real_estate->real_estate_price * $rate->currency_rate);
+        $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
+        ->select('customer.customer_avatar',
+        'customer.customer_name',
+        'evaluate.evaluate_rank',
+        'evaluate.evaluate_title',
+        'evaluate.evaluate_content',
+        'evaluate.updated_at'
+        )
+        ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
+        ->get();
+        $count_rank = count($evaluate);
+        // dd($evaluate);
+        $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
+        // dd($count_rank);
+        // dd($averageRank);
         $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')
         ->select('image.image_path')
@@ -232,6 +241,11 @@ class ClientController extends Controller
         // dd($real_estate);
         // dd($image);
 
-        return view('pages.user.feature.single_list', compact('real_estate', 'image'));
+        return view('pages.user.feature.single_list', compact('real_estate', 'image', 'rate', 'evaluate', 'count_rank', 'average_rank'));
+    }
+
+    public function subscription(Request $request, $user)
+    {
+        dd($request);
     }
 }

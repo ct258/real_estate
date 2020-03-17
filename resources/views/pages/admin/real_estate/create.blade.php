@@ -1,5 +1,17 @@
-@extends('layouts.admin')
+@extends('layouts.admin_new.admin')
+@push('css')
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+@endpush
+
 @section('content')
+<!-- main content start -->
+<section id="main-content">
+    <section class="wrapper">
 <h2 class="page-title">Thêm Bất động sản<br><br></h2>
 <form action="{{route('real_estate.create.submit')}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -85,12 +97,12 @@
                         </tr>
                         <tr>
                             <td><label>Phương hướng</label>
-                                <select name="direction" id="direction" class="form-control form-control-sm">
+                                {{-- <select name="direction" id="direction" class="form-control form-control-sm">
                                     <option value="" selected>-- Chọn --</option>
-                                    @foreach ($direction as $item)
-                                    <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
+                                    {{-- @foreach ($direction as $item) --}}
+                                    {{-- <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
                                     @endforeach
-                                </select><br>
+                                </select><br> --}}
                             </td>
                         </tr>
                         <tr>
@@ -134,6 +146,10 @@
         </div>
 
     </div>
+    <label for="captcha">Captcha</label>
+    {!! NoCaptcha::renderJs() !!}
+    {!! NoCaptcha::display() !!}
+    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
     <div class="row">
         <div class="col-sm-2">
             <div class="form-group">
@@ -283,5 +299,14 @@ filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?
           }
           
 </script>
-
+</section>
+ <!-- footer -->
+        <div class="footer">
+            <div class="wthree-copyright">
+                <p>© Quản lý sàn giao dịch bất động sản | Made by student group learning E-Commerce Development <a href="{{route('real_estate.index')}}">Real-Estate</a></p>
+            </div>
+        </div>
+  <!-- / footer -->
+</section> 
+<!--main content end-->
 @endsection

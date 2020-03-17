@@ -13,7 +13,6 @@ class Banner extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'status_id',
         'banner_id',
         'banner_title',
         'banner_path',

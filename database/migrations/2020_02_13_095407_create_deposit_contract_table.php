@@ -19,6 +19,7 @@ class CreateDepositContractTable extends Migration
                 $table->string('deposit_contract_nameB')->index()->comment('tên bên B');
                 $table->date('deposit_contract_sign_day')->index()->comment('ngày ký');
                 $table->decimal('deposit_contract_total_money', 18, 4)->index()->comment('tổng tiền');
+                $table->date('deposit_contract_term')->nullable()->index()->comment('thời hạn hợp đồng');
                 //foreign key
                 $table->integer('real_estate_id')->index()->unsigned();
 

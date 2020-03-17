@@ -1,0 +1,240 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.row.single_list {
+    margin-top: 20px;
+}
+
+ul.dropdown-menu.show li a:hover {
+    color: #30cca0;
+}
+
+ul.dropdown-menu.show li a {
+    text-decoration: none;
+    padding-left: 5px;
+    color: #6c6ae8;
+}
+
+.user-panel > a:hover {
+    color: #30caa0;
+    text-decoration: none;
+}
+
+
+.curency .dropdown ul li {
+    padding: 2px 11px;
+}
+
+p.dropdown-toggle {
+    font-size: 16px;
+    color: white;
+}
+
+.curency .dropdown {
+    width: 78px;
+    height: 30px;
+    /* border: 1px solid black; */
+}
+
+.dropdown {}
+
+.curency {
+    /* width: 88px; */
+    position: absolute;
+    left: 221px;
+    top: 1px;
+    color: white;
+    /* text-decoration: none; */
+}
+
+
+
+div#curency > a {
+    display: initial;
+    color: white;
+    padding: 0px 3px;
+    text-align: center;
+    line-height: 35px;
+    transform: 3s;
+}
+div#curency a:hover {
+    color: #30caa0;
+    font-size: 16px;
+}
+
+/* Hero section */
+
+.load{
+    animation: slide 2s;
+    
+}
+.slider{
+    position: relative;
+    /* border: 1px solid black; */
+    height: 640px;
+    top: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    animation: slide 40s infinite;
+}
+.content{
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.principal{
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.principal h1{
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Trocchi', serif;
+    font-size: 45px; 
+    font-weight: normal; 
+    line-height: 48px; 
+}
+
+.principal p{
+    font-size: 20px;
+    color: #18ffc0;
+    font-family: 'Trocchi', serif;
+    text-shadow: 0px 1px #8a0808;
+    font-weight: 700;
+}
+
+@keyframes slide{
+    0% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+    20% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+    20.01% {
+        background-image: url("../img/bg/bg2.jpg");
+    }
+    40% {
+        background-image: url("../img/bg/bg2.jpg");
+    }
+    40.01% {
+        background-image: url("../img/bg/bg3.jpg");
+    }
+    60% {
+        background-image: url("../img/bg/bg3.jpg");
+    }
+    60.01% {
+        background-image: url("../img/bg/bg4.jpg");
+    }
+    80% {
+        background-image: url("../img/bg/bg4.jpg");
+    }
+    80.01% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+    100% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+}
+@-webkit-keyframes  silde{
+    0% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+    20% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+    20.01% {
+        background-image: url("../img/bg/bg2.jpg");
+    }
+    40% {
+        background-image: url("../img/bg/bg2.jpg");
+    }
+    40.01% {
+        background-image: url("../img/bg/bg3.jpg");
+    }
+    60% {
+        background-image: url("../img/bg/bg3.jpg");
+    }
+    60.01% {
+        background-image: url("../img/bg/bg4.jpg");
+    }
+    80% {
+        background-image: url("../img/bg/bg4.jpg");
+    }
+    80.01% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+    100% {
+        background-image: url("../img/bg/bg1.jpg");
+    }
+}
+
+.col-lg-4.search1 button.btn.btn-orange i.fa.fa-search {
+    padding: 0 5px;
+    font-size: 18px;
+    color: #272424;
+    
+    
+}
+
+.col-lg-4.search1 button.btn.btn-orange {
+    height: 42px;
+    margin-top: 8px;
+    margin-left: 71px;
+    background: #2fe868;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 13px;
+}
+
+.col-lg-4.search1 {}
+
+.col-lg-8.search1 input#search {
+    height: 42px;
+    margin-top: 8px;
+    margin-left: 22px;
+    width: 522px;
+    border: 0.5px dotted red;
+    border-radius: 16px;
+}
+
+.col-lg-8.search1 {}
+
+.col-lg-8.search1 {
+    /* line-height: 60px; */
+    /* width: 15px; */
+}
+
+.col-lg-6 {/* display: inline; */}
+
+button.btn.btn-orange {
+    /* float: right; */
+}
+
+.search {
+    width: 65%;
+    border: 1px solid #f1dfdfe0;
+    position: relative;
+    top: -351px;
+    left: 197px;
+    /* margin-left: 100px; */
+    height: 60px;
+    /* line-height: 60px; */
+    background-color: #7e848269;
+    border-radius: 10px;
+}
+

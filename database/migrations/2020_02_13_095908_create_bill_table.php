@@ -14,17 +14,18 @@ class CreateBillTable extends Migration
         if (!Schema::hasTable('bill')) {
             Schema::create('bill', function (Blueprint $table) {
                 $table->increments('bill_id')->comment('id của loại nhu cầu');
-                $table->dateTime('bill_datetime')->index()->comment('ngày giờ thanh toán');
-                $table->decimal('bill_total', 18, 4)->unsigned()->index()->comment('tổng giá tiền thanh toán');
+                $table->text('bill_content')->comment('tổng giá tiền thanh toán');
+                $table->decimal('bill_discount', 18, 4)->unsigned()->comment('tổng giá tiền thanh toán');
+                $table->decimal('bill_total', 18, 4)->unsigned()->comment('tổng giá tiền thanh toán');
                 //foreign key
-                $table->integer('status_id')->index()->unsigned();
-                $table->integer('staff_id')->index()->unsigned();
-                $table->integer('card_id')->index()->unsigned();
-                $table->integer('payment_id')->index()->unsigned();
+                $table->integer('status_id')->unsigned();
+                $table->integer('staff_id')->unsigned();
+                $table->integer('cart_id')->unsigned();
+                $table->integer('payment_id')->unsigned();
 
                 $table->foreign('status_id')->references('status_id')->on('status');
                 $table->foreign('staff_id')->references('staff_id')->on('staff');
-                $table->foreign('card_id')->references('card_id')->on('card');
+                $table->foreign('cart_id')->references('cart_id')->on('cart');
                 $table->foreign('payment_id')->references('payment_id')->on('payment');
                 //log time
                 $table->timestamp('created_at')

@@ -9,11 +9,17 @@ class status extends Seeder
      */
     public function run()
     {
-        $data1 = array(
-            ['status_id' => 1, 'status_name' => 'Đang chờ duyệt'],
-            ['status_id' => 2, 'status_name' => 'Đang đăng '],
-            ['status_id' => 3, 'status_name' => 'Đã bán'],
-         );
-        DB::table('status')->insert($data1);
+        DB::table('status')->insert([
+            ['status_id' => 1, 'status_name' => 'Đang chờ thanh toán'],
+            ['status_id' => 2, 'status_name' => 'Đang chờ duyệt'],
+            ['status_id' => 3, 'status_name' => 'Đang hoạt động'],
+            ['status_id' => 4, 'status_name' => 'Đang chờ gia hạn'],
+            ['status_id' => 5, 'status_name' => 'Đang mua - bán'],
+            ['status_id' => 6, 'status_name' => 'Đang đặt cọc'],
+            ['status_id' => 7, 'status_name' => 'Đang công chứng'],
+            ['status_id' => 8, 'status_name' => 'Đang sang tên'],
+            ['status_id' => 9, 'status_name' => 'Đang đã bán'],
+            ['status_id' => 10, 'status_name' => 'Hủy'],
+        ]);
     }
 }

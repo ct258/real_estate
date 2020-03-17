@@ -36,11 +36,11 @@ class RealEstateController extends Controller
      */
     public function create()
     {
-        $direction = Direction::select('direction_id', 'direction_name')->get();
+        // $direction = Direction::select('direction_id', 'direction_name')->get();
         $form = Form::select('form_id', 'form_name')->get();
         $province = Province::select('province_id', 'province_name')->orderBy('province_name', 'asc')->get();
 
-        return view('pages.admin.real_estate.create', compact('province', 'form', 'direction'));
+        return view('pages.admin.real_estate.create', compact('province', 'form'));
     }
 
     /**
@@ -52,6 +52,9 @@ class RealEstateController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
         // dd($request->session());
         // dd($request);
         if ($request->hasFile('avatar')) {
@@ -208,5 +211,22 @@ class RealEstateController extends Controller
         foreach ($type as $item) {
             echo "<option value='".$item->type_id."'>".$item->type_name.'</option>';
         }
+    }
+
+    public function captchaForm()
+    {
+        return view('captchaform');
+    }
+
+    public function storeCaptchaForm(Request $request)
+    {
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile_number' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+
+        dd('successfully validate');
     }
 }

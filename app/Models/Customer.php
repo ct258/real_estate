@@ -18,6 +18,7 @@ class Customer extends Model
         'ward_id',
         'customer_id',
         'customer_name',
+        'customer_avatar',
         'customer_email',
         'customer_tel',
         'customer_birth',
@@ -31,4 +32,9 @@ class Customer extends Model
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
+    public function accounts()
+    {
+        return $this->belongsTo('App\Models\Account', 'account_id');
+    }
 }

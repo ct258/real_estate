@@ -1,5 +1,5 @@
 <!-- feature category section -->
-<section class="feature-category-section spad">
+{{-- <section class="feature-category-section spad">
     <div class="container">
         <div class="section-title text-center">
             <h3>LOOKING PROPERTY</h3>
@@ -24,5 +24,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- feature category section end-->

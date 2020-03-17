@@ -15,7 +15,7 @@
             <li class="dropdown">
                 <a href="#" title="8 support tickets" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-globe"></i>
-                    <span class="count">8</span>
+                    <span class="count">18</span>
                 </a>
 
             </li>
@@ -33,6 +33,9 @@
                         class="dropdown-toggle" data-toggle="dropdown">
                     </a>
                     <li class="">
+                        <a href="">Chỉnh sửa thông tin cá nhân</a>
+                    </li>
+                    <li class="">
                         <a href="{{route('logout')}}">Đăng xuất</a>
                     </li>
                 </ul>
@@ -45,7 +48,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </li>
-            <li class="hidden-xs"><a href="login.html"><i class="glyphicon glyphicon-off"></i></a></li>
+            <li class="hidden-xs"><a href="{{route('logout')}}"><i class="glyphicon glyphicon-off"></i></a></li>
         </ul>
         <form id="search-form" class="navbar-form pull-right" role="search">
             <input type="search" class="form-control search-query" placeholder="Tìm kiếm...">

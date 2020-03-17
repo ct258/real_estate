@@ -15,7 +15,7 @@ class CreateFormTable extends Migration
             Schema::create('form', function (Blueprint $table) {
                 $table->increments('form_id')->comment('id của loại nhu cầu');
                 // $table->string('form_code', 45)->index()->comment('mã nhu cầu (bán/thuê)');
-                $table->string('form_name', 45)->index()->comment('tên nhu cầu (bán/thuê)');
+                // $table->string('form_name', 45)->index()->comment('tên nhu cầu (bán/thuê)');
 
                 //log time
                 $table->timestamp('created_at')

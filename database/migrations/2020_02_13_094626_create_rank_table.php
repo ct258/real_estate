@@ -15,8 +15,8 @@ class CreateRankTable extends Migration
             Schema::create('rank', function (Blueprint $table) {
                 $table->increments('rank_id')->comment('id của loại khách hàng');
                 $table->integer('rank_level')->unsigned()->index()->comment('hạng mức');
-                $table->string('rank_name')->index()->comment('tên loại khách hàng');
-                $table->string('rank_description')->nullable()->index()->comment('mô tả loại khách hàng');
+                // $table->string('rank_name')->index()->comment('tên loại khách hàng');
+                // $table->string('rank_description')->nullable()->index()->comment('mô tả loại khách hàng');
 
                 //log time
                 $table->timestamp('created_at')
@@ -32,7 +32,8 @@ class CreateRankTable extends Migration
                 ->comment('ngày xóa tạm');
 
                 //unique
-                $table->unique(['rank_level', 'rank_name', 'rank_description']);
+                // $table->unique(['rank_level', 'rank_name', 'rank_description']);
+                $table->unique('rank_level');
             });
             DB::statement("ALTER TABLE `rank` comment 'Loại khách hàng'");
         }

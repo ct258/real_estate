@@ -20,6 +20,7 @@ class RealEstate extends Model
         'status_id',
         'brokerage_fee_id',
         'unit_id',
+        'convenience_id',
         'district_id',
         'ward_id',
         'street_id',
@@ -27,7 +28,6 @@ class RealEstate extends Model
         'real_estate_id',
         'real_estate_acreage',
         'real_estate_price',
-        'real_estate_address',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -64,6 +64,8 @@ class RealEstate extends Model
     public function scopeFullTextSearch($query, $term)
     {
         $query->whereRaw('MATCH translation_name AGAINST (? IN BOOLEAN MODE)',
+        $this->fullTextWildcards($term))
+        ->orWhereRaw('MATCH translation_address AGAINST (? IN BOOLEAN MODE)',
         $this->fullTextWildcards($term))
         ->orWhereRaw('MATCH translation_description AGAINST (? IN BOOLEAN MODE)',
         $this->fullTextWildcards($term));

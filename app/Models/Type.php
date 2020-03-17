@@ -16,7 +16,6 @@ class Type extends Model
         'form_id',
         'type_id',
         // 'type_code',
-        'type_name',
         'created_at',
         'updated_at',
         'deleted_at',
