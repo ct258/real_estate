@@ -32,7 +32,7 @@
                             <li> <a href="#"> <i class="fa fa-comments-o text-muted "></i> Samual Daren <p>I am not here</p></a></li>
                             <li> <a href="#"> <i class="fa fa-comments-o text-muted "></i> Tis man <p>I do not think</p></a>  </li>
                         </ul>
-                        <a href="#"> + Thêm</a>
+                        <a href="#"> + Thêm Mới</a>
 
                         <div class="inbox-body text-center inbox-action">
                             <div class="btn-group">

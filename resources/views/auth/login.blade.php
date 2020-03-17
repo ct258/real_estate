@@ -237,6 +237,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             background-color: #3b5998;
         }
 
+            /* fix */
+            .card.card-signin.flex-row.my-5 {
+                width: 390px;
+                margin: auto;
+                background-color: white;
+            }
         /* fix */
         .card.card-signin.flex-row.my-5 {
             width: 390px;

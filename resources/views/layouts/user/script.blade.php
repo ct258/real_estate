@@ -33,6 +33,3 @@
         $('html,body').animate({scrollTop: 0},1400);
    });
 });
-</script>
-@include('ckfinder::setup')
-@stack('script')
