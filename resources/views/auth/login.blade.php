@@ -241,10 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             .card.card-signin.flex-row.my-5 {
                 width: 390px;
                 margin: auto;
-                --growth-from:0.8;
-                --growth-to:1;
                 background-color: white;
-                animation: growth linear 0.3s
             }
 
             body {
@@ -275,11 +272,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 padding: 0 9px;
                 font-size: 27px;
                 color: #30caa8;
-            }
-
-            @-webkit-keyframes growth{
-                from{ transform: scale(var(--growth-from));}
-                to{transform: scale(var(--growth-to));}
             }
         </style>
 </head>

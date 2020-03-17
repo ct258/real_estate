@@ -3,7 +3,6 @@
 <script src="{{asset('leramiz/js/jquery-3.2.1.js')}}"></script>
 <script src="{{asset('leramiz/js/bootstrap.min.js')}}"></script> --}}
 <script src="{{asset('leramiz/js/owl.carousel.min.js')}}"></script>
-<script src="{{asset('leramiz/js/jquery.easing.1.3.js')}}"></script>
 <script src="{{asset('leramiz/js/masonry.pkgd.min.js')}}"></script>
 {{-- <script src="{{asset('leramiz/js/magnific-popup.min.js')}}"></script> --}}
 <script src="{{asset('leramiz/js/main.js')}}"></script>
@@ -23,16 +22,5 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function () {
-    console.log("scrollup");
-
-   $('.scrollupp').on('click', function () {
-        // console.log("đã vào hàm");
-        // $('html,body').animate({scrollTop : $('.chapter2').offset().top}, 1400,"easeOutElastic");
-        $('html,body').animate({scrollTop: 0},1400);
-   });
-});
-</script>
 @include('ckfinder::setup')
 @stack('script')
