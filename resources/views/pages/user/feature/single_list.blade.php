@@ -68,10 +68,15 @@
         font-size: 18px;
     }
 
+
+    .start {
+        margin-left: 30px;
+    }
+
     .start p {
+        overflow: hidden;
         font-size: 16px;
-        margin: 5px 0;
-        text-align: center;
+        margin: 5px 15px;
     }
 
     /* Three column layout */
@@ -201,24 +206,35 @@
         background-color: #ffc120 !important;
     }
 
-    .row.customer_rating .bar-5 {
+    .row.customer_rating .bar-5,
+    .bar-4,
+    .bar-3,
+    .bar-2,
+    .bar-1 {
         background-color: #ffc120;
     }
 
-    .row.customer_rating .bar-4 {
-        background-color: #ffc120;
+    .star-fake {
+        font-size: 0;
+        line-height: 1;
+        position: relative;
+        white-space: nowrap;
+        display: inline-block;
+        margin: 0 auto;
     }
 
-    .row.customer_rating .bar-3 {
-        background-color: #ffc120;
+    .star-fake svg {
+        color: #b8b8b8;
     }
 
-    .row.customer_rating .bar-2 {
-        background-color: #ffc120;
-    }
-
-    .row.customer_rating .bar-1 {
-        background-color: #ffc120;
+    .star-real {
+        display: block;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        z-index: 1;
+        overflow: hidden;
+        line-height: 1;
     }
 </style>
 @endpush
@@ -337,13 +353,24 @@
                         <div class="col-lg-3">
                             <div class="product-customer-col-1">
                                 <h4>Đánh Giá Trung Bình</h4>
-                                <p class="total-review-point">5/5</p>
-                                <div style="text-align: center;" class="start">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+
+                                <p class="total-review-point">{{$average_rank}}/5</p>
+                                <div class="start">
+                                    <span class="star-fake">
+
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="star-real" style="width: {{$average_rank_per}}%">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                    </span>
                                     <p>({{$count_rank}} nhận xét)</p>
                                 </div>
                             </div>
@@ -358,8 +385,7 @@
                                         <div class="bar-5"></div>
                                     </div>
                                 </div>
-                                <div class="side right">
-                                    <div class="right">150</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">4 Star</div>
@@ -370,7 +396,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
-                                    <div class="right">63</div>
+
+                                    <div class="right">{{$rank_4}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">3 Star</div>
@@ -381,7 +409,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
-                                    <div class="right">15</div>
+
+                                    <div class="right">{{$rank_3}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">2 Star</div>
@@ -392,7 +422,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
-                                    <div class="right">6</div>
+
+                                    <div class="right">{{$rank_2}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">1 Star</div>
@@ -403,7 +435,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
-                                    <div class="right">20</div>
+
+                                    <div class="right">{{$rank_1}}</div>
+
                                 </div>
                             </div>
                         </div>

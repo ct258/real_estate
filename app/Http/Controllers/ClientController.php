@@ -238,10 +238,64 @@ class ClientController extends Controller
         ->select('image.image_path')
         ->where('real_estate.real_estate_id', $real_estate_id)
         ->get();
-        // dd($real_estate);
-        // dd($image);
 
-        return view('pages.user.feature.single_list', compact('real_estate', 'image', 'rate', 'evaluate', 'count_rank', 'average_rank'));
+        $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
+        ->select('customer.customer_avatar',
+        'customer.customer_name',
+        'evaluate.evaluate_rank',
+        'evaluate.evaluate_title',
+        'evaluate.evaluate_content',
+        'evaluate.updated_at'
+        )
+        ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
+        ->get();
+        $rank_5 = 0;
+        $rank_4 = 0;
+        $rank_3 = 0;
+        $rank_2 = 0;
+        $rank_1 = 0;
+        foreach ($evaluate as $item) {
+            switch ($item->evaluate_rank) {
+                case 5:
+                    $rank_5++;
+                break;
+                case 4:
+                    $rank_4++;
+                break;
+                case 3:
+                    $rank_3++;
+                break;
+                case 2:
+                    $rank_2++;
+                break;
+                case 1:
+                    $rank_1++;
+                break;
+            }
+        }
+        //5 5 5 2 3 3
+        //bao nhiêu phản hồi
+        $count_rank = count($evaluate);
+        //số sao trung bình
+        $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
+        //tính %
+        $average_rank_per = $average_rank * 100 / 5;
+
+        // dd($real_estate);
+
+        return view('pages.user.feature.single_list', compact('real_estate',
+        'image',
+        'rate',
+        'evaluate',
+        'count_rank',
+        'average_rank',
+        'average_rank_per',
+        'rank_5',
+        'rank_4',
+        'rank_3',
+        'rank_2',
+        'rank_1',
+        ));
     }
 
     public function subscription(Request $request, $user)

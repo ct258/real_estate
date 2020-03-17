@@ -183,7 +183,7 @@ div#curency a:hover {
     }
 }
 
-.col-lg-4.search1 button.btn.btn-orange i.fa.fa-search {
+.col-lg-2.search1 button.btn.btn-orange i.fa.fa-search {
     padding: 0 5px;
     font-size: 18px;
     color: #272424;
@@ -191,7 +191,7 @@ div#curency a:hover {
     
 }
 
-.col-lg-4.search1 button.btn.btn-orange {
+.col-lg-2.search1 button.btn.btn-orange {
     height: 42px;
     margin-top: 8px;
     margin-left: 71px;
@@ -203,37 +203,45 @@ div#curency a:hover {
 
 .col-lg-4.search1 {}
 
-.col-lg-8.search1 input#search {
-    height: 42px;
+.col-lg-6.search1 input#search {
+    height: 40px;
     margin-top: 8px;
-    margin-left: 22px;
-    width: 522px;
+    margin-left: 11px;
+    width: 102%;
     border: 0.5px dotted red;
-    border-radius: 16px;
-}
-
-.col-lg-8.search1 {}
-
-.col-lg-8.search1 {
-    /* line-height: 60px; */
-    /* width: 15px; */
-}
-
-.col-lg-6 {/* display: inline; */}
-
-button.btn.btn-orange {
-    /* float: right; */
+    /* border-radius: 13px; */
 }
 
 .search {
-    width: 65%;
+    width: 85%;
     border: 1px solid #f1dfdfe0;
     position: relative;
     top: -351px;
-    left: 197px;
+    left: 11%;
     /* margin-left: 100px; */
     height: 60px;
     /* line-height: 60px; */
     background-color: #7e848269;
     border-radius: 10px;
+    font-family: 'Trocchi', serif;
+}
+.col-lg-2.select {
+    margin-top: 8px;
+    /* border-left: 1px solid; */
+    margin-left: 6px;
+    /* height: 43px; */
+    /* border-radius: 62px; */
+}
+
+.col-lg-2.select.left {
+    margin-left: -15px;
+}
+.col-lg-2.search1 button.btn.btn-orange {
+    height: 39px;
+    margin-top: 7px;
+    margin-left: -10px;
+    background: #2fe868;
+    font-size: 17px;
+    text-align: center;
+    /* border-radius: 13px; */
 }
