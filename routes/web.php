@@ -150,6 +150,7 @@
             return view('pages.user.feature.contact');
         });
 
+
         Route::get('mail/mail_compose', function () {
             return view('pages.admin.mail.mail_compose');
         })->name('email_compose');
@@ -183,6 +184,7 @@
     Route::get('map3', function () {
         return view('pages.user.feature.map3');
     });
+
 
     Route::get('dashboard', function () {
         return view('pages.admin.dashboard');

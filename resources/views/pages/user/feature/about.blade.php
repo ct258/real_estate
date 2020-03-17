@@ -1,35 +1,39 @@
 @extends('layouts.user')
 @section('page')
 <!-- Page -->
-{{-- <section class="page-section">
+ <section class="page-section">
     <div class="container">
         <img class="mb-5" src="img/about.jpg" alt="">
         <div class="row about-text">
             <div class="col-xl-6 about-text-left">
-                <h5>ABOUT US</h5>
-                <p>Lorem ipsum dolor sitdoni amet, consectetur donald adipis elite for. Vivamus interdum ultrices augue.
-                    Aenean dos cursus lania. Duis et fringilla leonardo. Mauris mattis sem, debut curus risus viverra
-                    sed. Vestibul vitae velit felis. Nulla placerat orci ante casat. Pellentesque ac placerat . Cras
-                    urna duis, ornare cursus purus.</p>
-                <p>Ut vel auctor ligula. Aenean nec dui pretium, commodo ligula sit amet, faucibus purus. Mauris at
-                    dolor imperdiet, aliquet nisi non, vulputate est. Maecenas feugiat sagittis lacus. Mauris dinissim
-                    consequat tellus id congue. Mauris bendum mollis viverra. Vestibulum in leo placerat sollicitudin
-                    varius.</p>
+                <h5>GIỚI THIỆU</h5>
+                <p>Sàn Giao Dịch Bất Động Sản Real Estate là đồ án  chi nhánh trực thuộc Công ty Cổ Phần Địa Ốc Cần Thơ 
+                    hoạt động theo Giấy chứng nhận đăng ký kinh doanh số 1600194599-003; do Sở Kế hoạch và Đầu 
+                    tư tỉnh Cần Thơ cấp. </p>
+                    <ul class="about-list">
+                        <h5>LĨNH VỰC HOẠT ĐỘNG     </h5>
+                        <li><i class="fa fa-check-circle-o"></i> Giao dịch mua bán, chuyển nhượng, cho thuê, thuê mua bất động sản</li>
+                        <li><i class="fa fa-check-circle-o"></i>Môi giới bất động sản              </li>
+                        <li><i class="fa fa-check-circle-o"></i>Thẩm định giá bất động sản</li>
+                        <li><i class="fa fa-check-circle-o"></i>Tư vấn bất động sản</li>
+                        <li><i class="fa fa-check-circle-o"></i>Marketing và phân phối các dự án bất động sản</li>
+                        <li><i class="fa fa-check-circle-o"></i>Đấu giá bất động sản</li>
+                        <li><i class="fa fa-check-circle-o"></i>Tư vấn, đầu tư và kinh doanh bất động sản</li>
+                    </ul>
             </div>
-            <div class="col-xl-6 about-text-right">
-                <h5>OUR QUALITY</h5>
-                <p>Donec enim ipsum porta justo integer at velna vitae auctor integer congue magna at risus auctor purus
-                    unt pretium ligula rutrum integer sapien ultrice ligula luctus undo magna risus</p>
-                <ul class="about-list">
-                    <li><i class="fa fa-check-circle-o"></i>Lorem ipsum dolor sitdoni amet, consectetur dont adipis
-                        elite vivamus interdum.</li>
-                    <li><i class="fa fa-check-circle-o"></i>Integer pulvinar ante nulla, ac fermentum ex congue id
-                        vestibulum ensectetur. </li>
-                    <li><i class="fa fa-check-circle-o"></i>Proin blandit nibh in quam semper iaculis lorem ipsum dolor
-                        salama ender.</li>
-                    <li><i class="fa fa-check-circle-o"></i>Mauris at dolor imperdiet, aliquet nisi non, vulputate est
-                        sit amet.</li>
-                </ul>
+            <div class="col-xl-6 about-text-left">
+                <h5>PHÁT TRIỂN</h5>
+                <p>Sàn Giao Dịch Bất Động Sản Real Estate là đồ án  chi nhánh trực thuộc Công ty Cổ Phần Địa Ốc Cần Thơ 
+                    hoạt động theo Giấy chứng nhận đăng ký kinh doanh số 1600194599-003; do Sở Kế hoạch và Đầu 
+                    tư tỉnh Cần Thơ cấp. </p>
+                        <h5>MỤC TIÊU</h5>
+                        <p> Sàn Giao Dịch Bất Động Sản ANRESCO sẽ trở thành một đơn vị hàng đầu về môi giới, 
+                            tư vấn và kinh doanh bất động sản; là cầu nối giữa các chủ đầu tư dự án với người dân 
+                            có nhu cầu an cư lạc nghiệp, góp phần tạo hình ảnh đẹp của chủ đầu tư trên thị trường bất động sản</p>
+                            <p>Trong quá trình phát triển, Sàn ANRESCO không ngừng cải tiến
+                                 và nâng cao các dịch vụ chăm sóc khách hàng một cách tốt nhất,
+                                 để đáp ứng kịp thời và nhanh nhất nhu cầu nhà ở và đầu tư bất động sản của khách hàng</p>
+                                            
             </div>
         </div>
     </div>
@@ -61,9 +65,7 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
-                    <p>“Leramiz was quick to understand my needs and steer me in the right direction. Their
-                        professionalism and warmth made the process of finding a suitable home a lot less stressful than
-                        it could have been. Thanks, agent Tony Holland.”</p>
+                    <p>“...........................................”</p>
                     <h5>Stacy Mc Neeley</h5>
                     <span>CEP’s Director</span>
                     <div class="clint-pic set-bg" data-setbg="img/review/1.jpg"></div>
@@ -128,11 +130,11 @@
                             </div>
                         </div>
                         <div class="member-info">
-                            <h5>Sasha Gordon</h5>
-                            <span>Researcher</span>
+                            <h5>Nguyễn Hữu Phúc</h5>
+                            <span>Thành viên nhóm</span>
                             <div class="member-contact">
-                                <p><i class="fa fa-phone"></i>(567) 666 121 2243</p>
-                                <p><i class="fa fa-envelope"></i>sashagordon@gmail.com</p>
+                                <p><i class="fa fa-phone"></i>0939.630.348</p>
+                                <p><i class="fa fa-envelope"></i>phucb1605239@student.ctu.edu.vn</p>
                             </div>
                         </div>
                     </div>
@@ -155,6 +157,7 @@
                                 <p><i class="fa fa-envelope"></i>nickybutt79@gmail.com</p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -181,7 +184,7 @@
         </div>
     </section>
     <!-- Team section end-->
-</section> --}}
+</section> 
 <!-- Page end -->
-@include('layouts.user.about')
+{{-- @include('layouts.user.about') --}}
 @endsection
