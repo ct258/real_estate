@@ -15,19 +15,69 @@
     // Route::get('/dangnhap', 'TaiKhoanController@getLogin')->name('getLogin');
     Auth::routes(['register' => false]);
 
+    //đăng nhập, đăng xuất
+Route::group(['prefix' => ''], function () {
+    Route::get('/login', function () {return view('auth.login');})->name('getLogin');
+    Route:: post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
+    Route:: get('/logout', 'AccountController@logout')->name('logout');
+    Route:: post('/register/submit', ['as' => 'register.submit', 'uses' => 'AccountController@register']);
+    Route:: get('/find_username/{username}', ['as' => 'find_username', 'uses' => 'AccountController@find_username']);
+});
+
+//người đùng
     Route::group(['prefix' => ''], function () {
-        Route:: post('/register/submit', ['as' => 'register.submit', 'uses' => 'AccountController@register']);
-        Route:: get('/find_username/{username}', ['as' => 'find_username', 'uses' => 'AccountController@find_username']);
-        Route::get('/login', function () {
-            return view('auth.login');
-        })->name('getLogin');
+        
+        Route::get('user', function () {
+            return view('pages.user.index');
+        });
+        Route:: get('list', 'ClientController@list')->name('list');
+        Route:: post('list', 'ClientController@searchFullText')->name('list.sort');
+        Route:: get('listajax', 'ClientController@list_ajax')->name('list.ajax');
+        Route:: get('single_list/{real_estate_id}', 'ClientController@single_list')->name('single_list');
+        Route:: get('single_blog/{real_estate_id}', 'ClientController@single_blog')->name('single_blog');
+        Route::group(['prefix' => 'cart'], function () {
+            Route:: get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
+            Route:: get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
+        });
+        Route:: get('blog', function () {
+            return view('pages.user.feature.blog');
+        });
+        
+        Route::get('about', function () {
+            return view('pages.user.feature.about');
+        });
+        Route::get('category', function () {
+            return view('pages.user.feature.categories');
+        });
+        Route::get('contact', function () {
+            return view('pages.user.feature.contact');
+        });
+
+        Route::get('mail/mail_compose', function () {
+            return view('pages.admin.mail.mail_compose');
+        })->name('email_compose');
+
+        Route::get('/mail', function () {
+            return view('pages.admin.mail.mail');
+        })->name('email');
+
+        Route::get('/form_register', function () {
+            return view('pages.admin.mail.form_register');
+        });
+
+        Route:: post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
+
+        Route::get('subscription', function () {
+            return view('pages.user.subscription.index');
+        });
         Route::get('/', function () {
-            return view('auth.login');
-        })->name('getLogin');
-        Route:: post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
-        Route:: get('/logout', 'AccountController@logout')->name('logout');
+            return view('pages.user.index');
+        });
+
+        Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
+        
     });
-    //Đăng nhập
+
     Auth:: routes();
     // Auth::routes(['verify' => true]);
 
@@ -98,21 +148,23 @@
                 Route:: get('/create', 'PostController@create')->name('post.create');
                 Route:: post('/create', 'PostController@store')->name('post.create.submit');
             });
+            Route::get('dashboard', function () {
+                return view('pages.admin.dashboard');
+            })->name('dashboard');
+            Route::group(['prefix' => 'payment'], function () {
+                Route:: get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
+                Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
+            });
         });
-        Route::group(['prefix' => 'cart'], function () {
-            Route:: get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
-            Route:: get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
-        });
+        // End middleware check user
+        
 
         Auth:: routes();
 
-        Route:: get('/home', 'HomeController@index')->name('home');
 
-        // End middleware check user
-
-        // });
         //DOM lấy dữ liệu
-        Route:: get('/district/{province_id}', 'DOMController@get_district')->name('district');
+        Route::group(['prefix' => ''], function () {
+            Route:: get('/district/{province_id}', 'DOMController@get_district')->name('district');
         Route:: get('/ward/{province_id}/{district_id}', 'DOMController@get_ward')->name('ward');
         Route:: get('/street/{district_id}', 'DOMController@get_street_1')->name('street_1');
         Route:: get('/street/{province_id}/{district_id}', 'DOMController@get_street_2')->name('street_2');
@@ -120,63 +172,16 @@
         Route:: get('/unit/{form_id}', 'DOMController@get_unit')->name('unit');
         Route:: get('/price/{form_id}', 'DOMController@get_price')->name('price');
         Route:: get('/acreage/{form_id}', 'DOMController@get_acreage')->name('acreage');
+        });
+        
 
         Route:: get('/home', 'HomeController@index')->name('home');
-
-        Route::get('bando', function () {
+//test
+        Route::group(['prefix' => ''], function () {
+            Route::get('bando', function () {
             return view('pages.admin.bando.index');
         })->name('bando');
-        Route::get('user', function () {
-            return view('pages.user.index');
-        });
-        Route:: get('list', 'ClientController@list')->name('list');
-        Route:: post('list', 'ClientController@searchFullText')->name('list.sort');
-        Route:: get('listajax', 'ClientController@list_ajax')->name('list.ajax');
-        // Route:: get('single_list', function () {
-        //     return view('pages.user.feature.single_list');
-        // });
-        Route:: get('single_list/{real_estate_id}', 'ClientController@single_list')->name('single_list');
-        Route:: get('single_blog/{real_estate_id}', 'ClientController@single_blog')->name('single_blog');
-        Route:: get('blog', function () {
-            return view('pages.user.feature.blog');
-        });
-        Route::get('about', function () {
-            return view('pages.user.feature.about');
-        });
-        Route::get('category', function () {
-            return view('pages.user.feature.categories');
-        });
-        Route::get('contact', function () {
-            return view('pages.user.feature.contact');
-        });
-
-        Route::get('mail/mail_compose', function () {
-            return view('pages.admin.mail.mail_compose');
-        })->name('email_compose');
-
-        Route::get('/mail', function () {
-            return view('pages.admin.mail.mail');
-        })->name('email');
-
-        Route::get('/form_register', function () {
-            return view('pages.admin.mail.form_register');
-        });
-
-        Route:: post('/send', ['uses' => 'SendmailController@send', 'as' => 'send_mail']);
-
-        Route::get('subscription', function () {
-            return view('pages.user.subscription.index');
-        });
-        Route::get('index', function () {
-            return view('pages.user.index');
-        });
-
-        Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
-        Route::group(['prefix' => 'payment'], function () {
-            Route:: get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
-            Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
-        });
-        // });
+        
     });
     Route::get('map', function () {
         return view('pages.user.feature.map');
@@ -187,7 +192,7 @@
     Route::get('map3', function () {
         return view('pages.user.feature.map3');
     });
+        });
+        
 
-    Route::get('dashboard', function () {
-        return view('pages.admin.dashboard');
-    })->name('dashboard');
+    
