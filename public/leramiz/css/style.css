@@ -2096,3 +2096,22 @@ ol {
 		float: none;
 	}
 }
+
+
+
+.scrollup {
+	width: 30px;
+	background: #30caa8;
+	height: 30px;
+	position: fixed;
+	top: 94%;
+	right: 60px;
+	display: block;
+}
+
+svg.svg-inline--fa.fa-angle-up.fa-w-10 {
+	font-size: 32px;
+	/* padding: 3px 3px; */
+	margin: auto;
+	width: 90%;
+}
