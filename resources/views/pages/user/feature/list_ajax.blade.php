@@ -31,7 +31,7 @@
                         <p><i class="fa fa-user"></i> Tony Holland</p>
                     </div>
                     <div class="rf-right">
-                        <p><i class="fa fa-clock-o"></i> {{$day[$item->real_estate_id]}}</p>
+                        <p><i class="far fa-clock"></i></i> {{$day[$item->real_estate_id]}}</p>
                     </div>
                 </div>
             </div>

@@ -187,6 +187,3 @@
     Route::get('dashboard', function () {
         return view('pages.admin.dashboard');
     })->name('dashboard');
-
-        return view('layouts.admin_new.admin');
-    });
