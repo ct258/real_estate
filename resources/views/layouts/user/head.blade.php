@@ -49,32 +49,5 @@
     element.style {
       height: 100px;
     }
-    .scrollupp {
-    width: 40px;
-    background-color: #30caa8;
-    height: 45px;
-    top: 94%;
-    right: 50px;
-    display: block;
-    position: fixed;
-    animation-name: example;
-    animation-duration: 1s;
-    animation-iteration-count: 1000;
-  }
-  /* Code animation */
-    @keyframes example {
-      0% { top:92%;}
-      50% {  top:94%;}
-      100% { top:92%;}
-      
-    }
-
-svg.svg-inline--fa.fa-angle-up.fa-w-10 {
-    font-size: 32px;
-    padding-left: 4px;
-    margin: auto;
-    width: 90%;
-    color: white;
-}
   </style>
 </head>

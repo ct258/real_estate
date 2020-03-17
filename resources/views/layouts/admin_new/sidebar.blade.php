@@ -22,19 +22,24 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="fontawesome.html">
-                        <i class="fas fa-user"></i>
+                    <a href="">
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Khách Hàng </span>
                     </a>
+                    <ul class="sub">
+                        <li><a href="">Cập Nhật Khách Hàng</a></li>
+                        <li><a href="">Ý Kiến Khách Hàng</a></li>
+                    </ul>
                 </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-th"></i>
-                        <span>Data Tables</span>
+                        <span>Thống Kê</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="basic_table.html">Basic Table</a></li>
-                        <li><a href="responsive_table.html">Responsive Table</a></li>
+                        <li><a href="">Thống Kê</a></li>
+                        <li><a href="">Thống Kê Doanh Thu</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -43,9 +48,9 @@
                         <span>Cài Đặt</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="form_component.html">Ảnh bìa</a></li>
-                        <li><a href="form_validation.html">Form Validation</a></li>
-                        <li><a href="dropzone.html">Dropzone</a></li>
+                        <li><a href="">Ảnh Bìa</a></li>
+                        <li><a href="">Cập Nhật Trạng Thái</a></li>
+                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
                     </ul>
                 </li> 
                 <li class="sub-menu">
@@ -59,7 +64,7 @@
                         <li><a href="{{route('email_compose')}}"> Soạn mail</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                {{-- <li class="sub-menu">
                     <a href="javascript:;">
                         <i class=" fa fa-bar-chart-o"></i>
                         <span>Charts</span>
@@ -68,7 +73,7 @@
                         <li><a href="chartjs.html">Chart js</a></li>
                         <li><a href="flot_chart.html">Flot Charts</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class=" fa fa-bar-chart-o"></i>

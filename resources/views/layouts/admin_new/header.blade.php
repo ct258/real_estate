@@ -3,7 +3,7 @@
     <!--logo start-->
     <div class="brand">
         <a href="index.html" class="logo">
-            VISITORS
+            ADMIN
         </a>
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars"></div>
@@ -198,13 +198,13 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="{{asset('admin/images/2.png')}}">
-                    <span class="username">John Doe</span>
+                    <span class="username">Admin</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
-                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                    <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ Sơ</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> Cài Đặt</a></li>
+                    <li><a href="login.html"><i class="fa fa-key"></i> Đăng Xuất</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

@@ -77,7 +77,4 @@
         </div>
     </div>
 </footer>
-<div class="scrollupp">
-   <i id ='scrollupp'class="fa fa-angle-up"></i>
-</div>
 <!-- Footer section end -->
