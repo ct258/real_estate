@@ -29,7 +29,7 @@ class CheckLogin
                 // return redirect()->route('getLogin');
             // }
         } else {
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }

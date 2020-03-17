@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Models\Customer;
+
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -45,5 +49,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('login');
+    }
+    public function showLoginForm(Request $request)
+    {
+        if (Auth::guard('account')->check()) {
+            $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->user_id)->first();
+            // dd($check_customer);
+            if($check_customer){
+
+                return redirect('/');
+            }
+            // nếu đăng nhập thàng công thì
+            return redirect('/dashboard');
+        } else {
+            return view('auth.login');
+        }
     }
 }
