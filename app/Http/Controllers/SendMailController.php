@@ -22,7 +22,7 @@ class SendMailController extends Controller
         // Session::flash('flash_message', 'Send message successfully!');
         $this->input = $request->all();
         Mail::send(
-            'pages\admin\mail\mail',
+            'pages\admin\mail\mail_template',
             [
                 'name' => $this->input['Name'],
             ],

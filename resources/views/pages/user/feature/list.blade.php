@@ -1,6 +1,5 @@
 @extends('layouts.user')
 
-
 @push('css')
 
 <style>
@@ -31,8 +30,25 @@
     #search-form {
         width: 100%;
     }
+
+    .left {
+        margin: 10px 0;
+    }
+
+    button.btn.btn-primary.mn {
+        width: 86px;
+        height: 30px;
+        padding: 1px;
+        font-size: 14px;
+        margin-left: 75px;
+    }
+
+    button.btn.btn-primary.mn:hover {
+        color: aquamarine;
+    }
 </style>
-@endsection
+@endpush
+
 @section('page')
 
 <!-- Page -->
@@ -43,7 +59,7 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div id="paginationa" class="paginationa">
-                        {{-- @include('pages.user.feature.list_ajax') --}}
+                        @include('pages.user.feature.list_ajax')
                     </div>
                 </div>
             </div>
@@ -119,7 +135,7 @@
                             <select name="direction" id="direction">
                                 <option value="">-- Chọn hướng nhà --</option>
                                 {{-- @foreach ($direction as $item)
-                                <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
+                                    <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
                                 @endforeach --}}
                             </select>
                         </div>
@@ -143,131 +159,132 @@
 
 
         {{-- <div class="site-pagination">
-        </div> --}}
+            </div> --}}
 
     </div>
 </section>
 
+@endsection
 
 
 @push('script')
 <script>
     $(document).ready(function () {
-        //lấy đơn vị
-        // $("#form").change(function(){
-        //     var form_id = $(this).val();
-        //     $.get("./unit/"+form_id, function(data){
-        //         $("#unit").html(data);
-        //     });
-        // });
-        
-        //lấy loại bất động sản
-        $("#form").change(function(){
-            var form_id = $(this).val();
-            $.get("./type/"+form_id, function(data){
-                $("#type").html(data);
+            //lấy đơn vị
+            // $("#form").change(function(){
+            //     var form_id = $(this).val();
+            //     $.get("./unit/"+form_id, function(data){
+            //         $("#unit").html(data);
+            //     });
+            // });
+            
+            //lấy loại bất động sản
+            $("#form").change(function(){
+                var form_id = $(this).val();
+                $.get("./type/"+form_id, function(data){
+                    $("#type").html(data);
+                });
             });
-        });
-        //lấy quận huyện theo tỉnh thành phố
-        $("#province").change(function(){
-            var province_id = $(this).val();
-            $.get("./district/"+province_id, function(data){
-                $("#district").html(data);
+            //lấy quận huyện theo tỉnh thành phố
+            $("#province").change(function(){
+                var province_id = $(this).val();
+                $.get("./district/"+province_id, function(data){
+                    $("#district").html(data);
+                });
             });
-        });
-        //lấy đường phố theo tỉnh
-        $("#province").change(function(){
-            var province_id = $(this).val();
-            $.get("./street/"+province_id, function(data){
-                $("#street").html(data);
-            });
-        });
-        //lấy phường xã theo tỉnh,huyện
-        $("#district").change(function(){
-            var province_id = "";
-            var district_id = "";
-            var province_id = $("#province").val();
-            var district_id = $("#district").val();
-            $.get("./ward/"+province_id+'/'+district_id, function(data){
-                $("#ward").html(data);
-            });
-        });
-        //lấy đường phố theo tỉnh,huyện
-        $("#district").change(function(){
-            var province_id = $("#province").val();
-            var district_id = $("#district").val();
-            $.get("./street/"+province_id+'/'+district_id, function(data){
-                $("#street").html(data);
-            });
-        });
-
-    
-        //reset tất cả về ban đầu khi thay đổi tỉnh
-        $("#province").change(function(){
-            var province_id = $("#province").val();
-            if(province_id=='province_id'){
-                var data1="<option value='0'>-- Chọn Quận/Huyện --</option>";
-                var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
-                var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
-                $("#district").html(data1);
-                $("#ward").html(data2);
-                $("#street").html(data3);
-            }
-        });
-        //reset tất cả về ban đầu khi thay đổi tỉnh
-        $("#district").change(function(){
-            var ward_id = $("#ward").val();
-            var province_id = $("#province").val();
-                
-            if(ward_id=='' && province_id!=''){
-                var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
-                $("#ward").html(data2);
+            //lấy đường phố theo tỉnh
+            $("#province").change(function(){
+                var province_id = $(this).val();
                 $.get("./street/"+province_id, function(data){
                     $("#street").html(data);
                 });
-            }
-            else{
-                var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
-                var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
-                $("#ward").html(data2);
-                $("#street").html(data3);
-            }
-        });
-        //lấy giá
-        $("#form").change(function(){
-            var form_id = $(this).val();
-            $.get("./price/"+form_id, function(data){
-                $("#price").html(data);
             });
+            //lấy phường xã theo tỉnh,huyện
+            $("#district").change(function(){
+                var province_id = "";
+                var district_id = "";
+                var province_id = $("#province").val();
+                var district_id = $("#district").val();
+                $.get("./ward/"+province_id+'/'+district_id, function(data){
+                    $("#ward").html(data);
+                });
+            });
+            //lấy đường phố theo tỉnh,huyện
+            $("#district").change(function(){
+                var province_id = $("#province").val();
+                var district_id = $("#district").val();
+                $.get("./street/"+province_id+'/'+district_id, function(data){
+                    $("#street").html(data);
+                });
+            });
+
+        
+            //reset tất cả về ban đầu khi thay đổi tỉnh
+            $("#province").change(function(){
+                var province_id = $("#province").val();
+                if(province_id=='province_id'){
+                    var data1="<option value='0'>-- Chọn Quận/Huyện --</option>";
+                    var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+                    var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
+                    $("#district").html(data1);
+                    $("#ward").html(data2);
+                    $("#street").html(data3);
+                }
+            });
+            //reset tất cả về ban đầu khi thay đổi tỉnh
+            $("#district").change(function(){
+                var ward_id = $("#ward").val();
+                var province_id = $("#province").val();
+                    
+                if(ward_id=='' && province_id!=''){
+                    var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+                    $("#ward").html(data2);
+                    $.get("./street/"+province_id, function(data){
+                        $("#street").html(data);
+                    });
+                }
+                else{
+                    var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+                    var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
+                    $("#ward").html(data2);
+                    $("#street").html(data3);
+                }
+            });
+            //lấy giá
+            $("#form").change(function(){
+                var form_id = $(this).val();
+                $.get("./price/"+form_id, function(data){
+                    $("#price").html(data);
+                });
+            });
+            //lấy diện tích
+            // $("#form").change(function(){
+            //     var form_id = $(this).val();
+            //     $.get("./acreage/"+form_id, function(data){
+            //         $("#acreage").html(data);
+            //     });
+            // });
         });
-        //lấy diện tích
-        // $("#form").change(function(){
-        //     var form_id = $(this).val();
-        //     $.get("./acreage/"+form_id, function(data){
-        //         $("#acreage").html(data);
-        //     });
-        // });
-    });
 </script>
 {{-- <script>
-    $(document).ready(function(){
+        $(document).ready(function(){
 
-        // $(document).on('click', '.pagination a', function(event){
-        // event.preventDefault(); 
-        // var page = $(this).attr('href').split('page=')[1];
-        // getPosts(page);
+            // $(document).on('click', '.pagination a', function(event){
+            // event.preventDefault(); 
+            // var page = $(this).attr('href').split('page=')[1];
+            // getPosts(page);
+            // });
+        
+            $(document).on('click', '.pagination a', function (e) {
+                getPosts($(this).attr('href').split('page=')[1]);
+                e.preventDefault();
+            });
         // });
-    
-        $(document).on('click', '.pagination a', function (e) {
-            getPosts($(this).attr('href').split('page=')[1]);
-            e.preventDefault();
-        });
-    // });
-        function getPosts(page)
-        {
-            $.ajax({
-                // type: "GET",
-                // url:"{{ url('listajax?page=') }}" + page,
+            function getPosts(page)
+            {
+                $.ajax({
+                    // type: "GET",
+                    // url:"{{ url('listajax?page=') }}" + page,
 url: 'listajax?page='+ page,
 // dataType: "json",
 success:function(data)
@@ -286,20 +303,20 @@ alert("Lỗi rồi");
 </script> --}}
 <script type="text/javascript">
     $('#header-search').on('keyup', function() {
-        var search = $(this).serialize();
-        if ($(this).find('.m-input').val() == '') {
-            $('#search-suggest div').hide();
-        } else {
-            $.ajax({
-                url: '/search',
-                type: 'POST',
-                data: search,
-            })
-            .done(function(res) {
-                $('#search-suggest').html('');
-                $('#search-suggest').append(res)
-            })
-        };
-    });
+            var search = $(this).serialize();
+            if ($(this).find('.m-input').val() == '') {
+                $('#search-suggest div').hide();
+            } else {
+                $.ajax({
+                    url: '/search',
+                    type: 'POST',
+                    data: search,
+                })
+                .done(function(res) {
+                    $('#search-suggest').html('');
+                    $('#search-suggest').append(res)
+                })
+            };
+        });
 </script>
-@endsection
+@endpush
