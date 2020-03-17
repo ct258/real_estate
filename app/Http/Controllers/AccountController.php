@@ -19,7 +19,7 @@ class AccountController extends Controller
     {
         if (Auth::check()) {
             // nếu đăng nhập thàng công thì
-            return redirect('/real_estate');
+            return redirect('/dashboard');
         } else {
             return view('auth.login');
         }
@@ -78,7 +78,7 @@ class AccountController extends Controller
             //     return \back
             // }
             // return Redirect::back();
-            return redirect('/real_estate');
+            return redirect('/dashboard');
 
         // return redirect('/duan');
         //..code tùy chọn
