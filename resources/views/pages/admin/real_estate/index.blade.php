@@ -33,6 +33,7 @@
         </section> --}}
         <section class="widget">
             <iframe src="{{URL::to('/')}}/bando" width="100%" height="300"></iframe>
+
         </section>
 
         <small><a href="{{route('real_estate.create')}}" class="tst4 btn btn-success">{{ __('Create') }}

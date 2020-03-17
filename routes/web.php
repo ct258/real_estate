@@ -13,20 +13,24 @@
 // Đăng nhập và xử lý đăng nhập
 // Route::group(['middleware' => 'web'], function () {
     // Route::get('/dangnhap', 'TaiKhoanController@getLogin')->name('getLogin');
+    Auth::routes(['register' => false]);
 
+    Route::group(['prefix' => ''], function () {
+        Route:: post('/register/submit', ['as' => 'register.submit', 'uses' => 'AccountController@register']);
+        Route:: get('/find_username/{username}', ['as' => 'find_username', 'uses' => 'AccountController@find_username']);
+        Route::get('/login', function () {
+            return view('auth.login');
+        })->name('getLogin');
+        Route::get('/', function () {
+            return view('auth.login');
+        })->name('getLogin');
+        Route:: post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
+        Route:: get('/logout', 'AccountController@logout')->name('logout');
+    });
     //Đăng nhập
-    Route::get('/login', function () {
-        return view('auth.login');
-    })->name('getLogin');
-    Route::get('/', function () {
-        return view('auth.login');
-    })->name('getLogin');
-    Route:: post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
-    Route:: get('/logout', 'AccountController@logout')->name('logout');
-
     Auth:: routes();
+    // Auth::routes(['verify' => true]);
 
-    Auth:: routes();
     //Thay đổi ngôn ngữ
     Route:: get('currency/{currency}', 'CurrencyController@changeCurrency')->name('currency');
     Route:: get('lang/{lang}', 'LangController@changeLang')->name('lang');
@@ -38,7 +42,7 @@
             //Bất động sản
             Route::group(['prefix' => 'real_estate'], function () {
                 //index
-                Route:: get('/', 'RealEstateController@index')->name('real_estate.index');
+                Route:: get('/index', 'RealEstateController@index')->name('real_estate.index');
                 // thêm
                 Route:: get('/create', 'RealEstateController@create')->name('real_estate.create');
                 Route:: post('/create', 'RealEstateController@store')->name('real_estate.create.submit');
@@ -147,11 +151,10 @@
         });
 
 
-
         Route::get('mail/mail_compose', function () {
-        return view('pages.admin.mail.mail_compose');
+            return view('pages.admin.mail.mail_compose');
         })->name('email_compose');
-            
+
         Route::get('/mail', function () {
             return view('pages.admin.mail.mail');
         })->name('email');
@@ -181,8 +184,8 @@
     Route::get('map3', function () {
         return view('pages.user.feature.map3');
     });
-    
-    Route::get('dashboard', function () {
-        return view('layouts.admin_new.admin');
-    });
 
+
+    Route::get('dashboard', function () {
+        return view('pages.admin.dashboard');
+    })->name('dashboard');
