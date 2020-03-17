@@ -5,14 +5,14 @@
 <script src="{{asset('leramiz/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('leramiz/js/jquery.easing.1.3.js')}}"></script>
 <script src="{{asset('leramiz/js/masonry.pkgd.min.js')}}"></script>
-{{-- <script src="{{asset('leramiz/js/magnific-popup.min.js')}}"></script> --}}
+<script src="{{asset('leramiz/js/magnific-popup.min.js')}}"></script>
 <script src="{{asset('leramiz/js/main.js')}}"></script>
 <script src="{{asset('fontawesome/js/all.js')}}"></script>
 <script src="{{asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
   crossorigin=""></script>
-  <!-- Latest compiled and minified CSS -->
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -33,3 +33,4 @@
         $('html,body').animate({scrollTop: 0},1400);
    });
 });
+</script>
