@@ -62,6 +62,7 @@
                         @include('pages.user.feature.list_ajax')
                     </div>
                 </div>
+                {{ $real_estate->links() }}
             </div>
 
             {{-- end main page --}}
