@@ -39,9 +39,9 @@
                         </div>
                         <a href="{{route('lang',['vi']) }}">Vi</a>
                         <a href="{{ route('lang',['en']) }}">En</a>
-                        <a href=""><i class="fa fa-user-circle-o"></i>@lang('Account')</a>
+                        <a href=""><i class="fas fa-user-circle"></i></i>@lang('Account')</a>
                         <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
-                        <a href="{{route('logout') }}"><i class="fa fa-sign-in"></i>Logout</a>
+                        <a href="{{route('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
 
                     </div>
                 </div>
