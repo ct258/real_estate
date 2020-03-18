@@ -24,6 +24,7 @@ Route::group(['prefix' => ''], function () {
     Route:: get('/find_username/{username}', ['as' => 'find_username', 'uses' => 'AccountController@find_username']);
 });
 
+Route::group(['middleware' => ['currency']], function () {
 //người đùng
     Route::group(['prefix' => ''], function () {
         
@@ -72,7 +73,7 @@ Route::group(['prefix' => ''], function () {
         });
         Route::get('/', function () {
             return view('pages.user.index');
-        });
+        })->name('index');
 
         Route:: get('/subscription,{user_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription']);
         
@@ -81,14 +82,24 @@ Route::group(['prefix' => ''], function () {
     Auth:: routes();
     // Auth::routes(['verify' => true]);
 
+
+
+
+//Admin
+
+
     //Thay đổi ngôn ngữ
     Route:: get('currency/{currency}', 'CurrencyController@changeCurrency')->name('currency');
     Route:: get('lang/{lang}', 'LangController@changeLang')->name('lang');
-    Route::group(['middleware' => ['currency']], function () {
+    
         // Route::group(['middleware' => 'locale'], function () {
         //     Route::get('lang/{lang}', 'LangController@lang')->name('lang');
         // Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
         Route::group(['middleware' => 'checklogin'], function () {
+            Route::group(['middleware' => ['checkAdmin']], function () {
+                
+            
+            //chỉ có admin mới vào được
             //Bất động sản
             Route::group(['prefix' => 'real_estate'], function () {
                 //index
@@ -156,6 +167,7 @@ Route::group(['prefix' => ''], function () {
                 Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
             });
         });
+        });
         // End middleware check user
         
 
@@ -165,13 +177,13 @@ Route::group(['prefix' => ''], function () {
         //DOM lấy dữ liệu
         Route::group(['prefix' => ''], function () {
             Route:: get('/district/{province_id}', 'DOMController@get_district')->name('district');
-        Route:: get('/ward/{province_id}/{district_id}', 'DOMController@get_ward')->name('ward');
-        Route:: get('/street/{district_id}', 'DOMController@get_street_1')->name('street_1');
-        Route:: get('/street/{province_id}/{district_id}', 'DOMController@get_street_2')->name('street_2');
-        Route:: get('/type/{form_id}', 'DOMController@get_type')->name('type');
-        Route:: get('/unit/{form_id}', 'DOMController@get_unit')->name('unit');
-        Route:: get('/price/{form_id}', 'DOMController@get_price')->name('price');
-        Route:: get('/acreage/{form_id}', 'DOMController@get_acreage')->name('acreage');
+            Route:: get('/ward/{province_id}/{district_id}', 'DOMController@get_ward')->name('ward');
+            Route:: get('/street/{district_id}', 'DOMController@get_street_1')->name('street_1');
+            Route:: get('/street/{province_id}/{district_id}', 'DOMController@get_street_2')->name('street_2');
+            Route:: get('/type/{form_id}', 'DOMController@get_type')->name('type');
+            Route:: get('/unit/{form_id}', 'DOMController@get_unit')->name('unit');
+            Route:: get('/price/{form_id}', 'DOMController@get_price')->name('price');
+            Route:: get('/acreage/{form_id}', 'DOMController@get_acreage')->name('acreage');
         });
         
 
@@ -193,6 +205,10 @@ Route::group(['prefix' => ''], function () {
         return view('pages.user.feature.map3');
     });
         });
+
+        Route::get('error', function () {
+            return view('pages.admin.error');
+        })->name('error');
         
 
     

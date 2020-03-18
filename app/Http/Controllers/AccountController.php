@@ -17,24 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class AccountController extends Controller
 {
-    public function getLogin()
-    {
-        dd(123);
-        if (Auth::guard('account')->check()) {
-            $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->user_id)->first();
-            // dd($check_customer);
-            if($check_customer){
-
-                return redirect('/');
-            }
-            // nếu đăng nhập thàng công thì
-            return redirect('/dashboard');
-        } else {
-            return view('auth.login');
-        }
-
-        // return view('pages.admin.bando.index'); //return ra trang login để đăng nhập
-    }
+    
 
     public function postLogin(Request $request)
     {

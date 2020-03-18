@@ -46,7 +46,7 @@ class ClientController extends Controller
                 ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
             // ->where('image_real_estate.image_real_estate_note', 'Avatar')
             // ->groupBy('real_estate.real_estate_id')
-            ->paginate(5);
+            ->paginate(6);
         // dd($real_estate);
         // tính thời gian đăng
         Carbon::setlocale('vi');
@@ -86,7 +86,7 @@ class ClientController extends Controller
             'province.province_name',
             'district.district_name')
             ->where('image_real_estate.image_real_estate_note', 'Avatar')
-            ->paginate(5);
+            ->paginate(6);
 
             // tính thời gian đăng
             Carbon::setlocale('vi');
@@ -146,7 +146,7 @@ class ClientController extends Controller
         // 'real_estate_acreage',
         // 'real_estate.created_at',
         // 'image.image_path', )
-        // ->paginate(5);
+        // ->paginate(6);
         ->join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')
         ->join('district', 'real_estate.district_id', 'district.district_id')
@@ -163,7 +163,7 @@ class ClientController extends Controller
         'province.province_name',
         'district.district_name')
         ->orWhereNotNull('image_real_estate.image_real_estate_note', 'Avatar')
-        ->paginate(5);
+        ->paginate(6);
         // dd($real_estate);
         // tính thời gian đăng
         Carbon::setlocale('vi');
