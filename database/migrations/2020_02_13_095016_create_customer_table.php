@@ -14,7 +14,7 @@ class CreateCustomerTable extends Migration
         if (!Schema::hasTable('customer')) {
             Schema::create('customer', function (Blueprint $table) {
                 $table->increments('customer_id')->comment('id của khách hàng');
-                $table->string('customer_code', 10)->index()->comment('mã khách hàng');
+                // $table->string('customer_code', 10)->index()->comment('mã khách hàng');
                 $table->string('customer_name')->index()->comment('họ và tên khách hàng');
                 $table->string('customer_avatar')->index()->nullable()->comment('địa chỉ ảnh đại diện');
                 $table->string('customer_email')->nullable()->index()->comment('email');
@@ -27,7 +27,7 @@ class CreateCustomerTable extends Migration
                 //foreign key
                 $table->integer('rank_id')->index()->unsigned();
                 $table->integer('account_id')->index()->unsigned();
-                $table->integer('ward_id')->index()->unsigned();
+                $table->integer('ward_id')->nullable()->index()->unsigned();
 
                 $table->foreign('rank_id')->references('rank_id')->on('rank');
                 $table->foreign('account_id')->references('account_id')->on('account');

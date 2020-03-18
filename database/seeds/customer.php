@@ -14,8 +14,8 @@ class customer extends Seeder
         //customer
         for ($i = 4; $i <= 9; ++$i) {
             DB::table('customer')->insert([
-        'account_id'             => $i + 1,
-        'customer_code'          => str_random(10),
+        'account_id' => $i + 1,
+        // 'customer_code'          => str_random(10),
         'customer_name'          => $faker->unique()->name,
         'customer_email'         => $faker->unique()->safeEmail,
         'customer_tel'           => rand(1000000000, 9999999999),

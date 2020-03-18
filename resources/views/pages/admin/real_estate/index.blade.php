@@ -26,13 +26,13 @@
         @endif
         <h2 class="page-title">Dự án <br><br></h2>
         
-        {{-- <section class="widget">
+        <section class="widget">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31430.62811272662!2d105.75139444973242!3d10.031005900889205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0883d0dac6b15%3A0xf6ae5b1bd18625!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBD4bqnbiBUaMah!5e0!3m2!1svi!2s!4v1580546072949!5m2!1svi!2s"
                 width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        </section> --}}
+        </section>
         <section class="widget">
-            <iframe src="{{URL::to('/')}}/bando" width="100%" height="300"></iframe>
+            <iframe src="{{URL::to('/')}}/bando" width="100%" height="500"></iframe>
         </section>
 
         <small><a href="{{route('real_estate.create')}}" class="tst4 btn btn-success">{{ __('Create') }}

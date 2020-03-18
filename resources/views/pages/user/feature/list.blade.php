@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('css')
+@push('css')
 
 <style>
     .page-section {
@@ -30,8 +30,24 @@
     #search-form {
         width: 100%;
     }
+
+    .left {
+        margin: 10px 0;
+    }
+
+    button.btn.btn-primary.mn {
+        width: 86px;
+        height: 30px;
+        padding: 1px;
+        font-size: 14px;
+        margin-left: 75px;
+    }
+
+    button.btn.btn-primary.mn:hover {
+        color: aquamarine;
+    }
 </style>
-@endsection
+@endpush
 @section('page')
 
 <!-- Page -->
@@ -42,7 +58,7 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div id="paginationa" class="paginationa">
-                        {{-- @include('pages.user.feature.list_ajax') --}}
+                        @include('pages.user.feature.list_ajax')
                     </div>
                 </div>
             </div>
@@ -52,81 +68,86 @@
             <div class="col-lg-3">
                 <form class="filter-form" action="{{route('list.sort')}}" method="POST">
                     @csrf
-                    <table id='search-form' class="search-form">
-                        <tr>
-                            <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><select name="form" id="form">
-                                    <option value="">-- Chọn loại tin rao --</option>
-                                    @foreach ($form as $item)
-                                    <option value="{{$item->form_id}}">{{$item->form_name}}</option>
-                                    @endforeach
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="type" id="type">
-                                    <option value="">-- Chọn loại nhà đất --</option>
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="province" id="province">
-                                    <option value="">-- Chọn Tỉnh/Thành phố --</option>
-                                    @foreach ($province as $item)
-                                    <option value="{{$item->province_id}}">{{$item->province_name}}</option>
-                                    @endforeach
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="district" id="district">
-                                    <option value="">-- Chọn Quận/Huyện --</option>
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="acreage" id="acreage">
-                                    <option value="">-- Chọn Diện tích --</option>
-                                    <option value=""><button type="text" name="" id=""></button></option>
-                                    @foreach ($standard_acreage as $item)
-                                    <option
-                                        value="{{$item->standard_acreage_value1}},{{$item->standard_acreage_value2}}">
-                                        {{$item->standard_acreage_name}}</option>
-                                    @endforeach
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="price" id="price">
-                                    <option value="">-- Chọn Giá --</option>
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="ward" id="ward">
-                                    <option value="">-- Chọn Phường/Xã --</option>
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="street" id="street">
-                                    <option value="">-- Chọn Đường/Phố --</option>
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="bedroom" id="bedroom">
-                                    <option value="">-- Chọn số phòng ngủ --</option>
-                                </select><br></td>
-                        </tr>
-                        <tr>
-                            <td><select name="direction" id="direction">
-                                    <option value="">-- Chọn hướng nhà --</option>
-                                    @foreach ($direction as $item)
-                                    <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
-                                    @endforeach
-                                </select><br></td>
-                        </tr>
+                    <div class="left">
+                        <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
+                        </td>
+                    </div>
+                    <div class="left">
+                        <select name="form" id="form">
+                            <option value="">-- Chọn loại tin rao --</option>
+                            @foreach ($form as $item)
+                            <option value="{{$item->form_id}}">{{$item->form_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="left">
+                        <select name="type" id="type">
+                            <option value="">-- Chọn loại nhà đất --</option>
+                        </select>
+                    </div>
+                    <div class="left">
+                        <select name="acreage" id="acreage">
+                            <option value="">-- Chọn Diện tích --</option>
+                            <option value=""><button type="text" name="" id=""></button></option>
+                            @foreach ($standard_acreage as $item)
+                            <option value="{{$item->standard_acreage_value1}},{{$item->standard_acreage_value2}}">
+                                {{$item->standard_acreage_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="left">
+                        <select name="price" id="price">
+                            <option value="">-- Chọn Giá --</option>
+                        </select>
+                    </div>
+                    <div id="demo" class="collapse">
+                        <div class="left">
+                            <select name="province" id="province">
+                                <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                                @foreach ($province as $item)
+                                <option value="{{$item->province_id}}">{{$item->province_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="left">
+                            <select name="district" id="district">
+                                <option value="">-- Chọn Quận/Huyện --</option>
+                            </select>
+                        </div>
+                        <div class="left">
+                            <select name="ward" id="ward">
+                                <option value="">-- Chọn Phường/Xã --</option>
+                            </select>
+                        </div>
+                        <div class="left">
+                            <select name="street" id="street">
+                                <option value="">-- Chọn Đường/Phố --</option>
+                            </select>
+                        </div>
+                        <div class="left">
+                            <select name="bedroom" id="bedroom">
+                                <option value="">-- Chọn số phòng ngủ --</option>
+                            </select>
+                        </div>
+                        <div class="left">
+                            <select name="direction" id="direction">
+                                <option value="">-- Chọn hướng nhà --</option>
+                                {{-- @foreach ($direction as $item)
+                                <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <button type="button" class="btn btn-primary mn" data-toggle="collapse" data-target="#demo">Xem
+                            Thêm</button>
 
-                        <tr>
-                            <td><button class="site-btn fs-submit">Tìm kiếm</button></td>
-                        </tr>
-                    </table>
+                    </div>
+
+                    <div class="left">
+                        <button class="btn btn-primary mn">Tìm kiếm</button>
+                    </div>
+
                 </form>
             </div>
             {{-- end search form --}}
@@ -143,7 +164,7 @@
 
 
 @endsection
-@section('script')
+@push('script')
 <script>
     $(document).ready(function () {
         //lấy đơn vị
@@ -295,4 +316,4 @@ alert("Lỗi rồi");
         };
     });
 </script>
-@endsection
+@endpush
