@@ -1,5 +1,6 @@
 @extends('layouts.user')
 
+
 @push('css')
 
 <style>
@@ -30,24 +31,8 @@
     #search-form {
         width: 100%;
     }
-
-    .left {
-        margin: 10px 0;
-    }
-
-    button.btn.btn-primary.mn {
-        width: 86px;
-        height: 30px;
-        padding: 1px;
-        font-size: 14px;
-        margin-left: 75px;
-    }
-
-    button.btn.btn-primary.mn:hover {
-        color: aquamarine;
-    }
 </style>
-@endpush
+@endsection
 @section('page')
 
 <!-- Page -->
@@ -58,7 +43,7 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div id="paginationa" class="paginationa">
-                        @include('pages.user.feature.list_ajax')
+                        {{-- @include('pages.user.feature.list_ajax') --}}
                     </div>
                 </div>
             </div>
@@ -68,6 +53,7 @@
             <div class="col-lg-3">
                 <form class="filter-form" action="{{route('list.sort')}}" method="POST">
                     @csrf
+
                     <div class="left">
                         <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
                         </td>
@@ -163,7 +149,7 @@
 </section>
 
 
-@endsection
+
 @push('script')
 <script>
     $(document).ready(function () {
@@ -316,4 +302,4 @@ alert("Lỗi rồi");
         };
     });
 </script>
-@endpush
+@endsection

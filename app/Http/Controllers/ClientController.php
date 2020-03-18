@@ -218,6 +218,21 @@ class ClientController extends Controller
 
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
         // dd($real_estate->real_estate_price * $rate->currency_rate);
+        $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
+        ->select('customer.customer_avatar',
+        'customer.customer_name',
+        'evaluate.evaluate_rank',
+        'evaluate.evaluate_title',
+        'evaluate.evaluate_content',
+        'evaluate.updated_at'
+        )
+        ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
+        ->get();
+        $count_rank = count($evaluate);
+        // dd($evaluate);
+        $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
+        // dd($count_rank);
+        // dd($averageRank);
         $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
         ->join('image', 'image_real_estate.image_id', 'image.image_id')
         ->select('image.image_path')

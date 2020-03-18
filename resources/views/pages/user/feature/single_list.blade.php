@@ -68,6 +68,7 @@
         font-size: 18px;
     }
 
+
     .start {
         margin-left: 30px;
     }
@@ -352,6 +353,7 @@
                         <div class="col-lg-3">
                             <div class="product-customer-col-1">
                                 <h4>Đánh Giá Trung Bình</h4>
+
                                 <p class="total-review-point">{{$average_rank}}/5</p>
                                 <div class="start">
                                     <span class="star-fake">
@@ -383,8 +385,7 @@
                                         <div class="bar-5"></div>
                                     </div>
                                 </div>
-                                <div class="side right">
-                                    <div class="right">{{$rank_5}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">4 Star</div>
@@ -395,7 +396,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
+
                                     <div class="right">{{$rank_4}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">3 Star</div>
@@ -406,7 +409,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
+
                                     <div class="right">{{$rank_3}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">2 Star</div>
@@ -417,7 +422,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
+
                                     <div class="right">{{$rank_2}}</div>
+
                                 </div>
                                 <div class="side">
                                     <div class="left">1 Star</div>
@@ -428,7 +435,9 @@
                                     </div>
                                 </div>
                                 <div class="side right">
+
                                     <div class="right">{{$rank_1}}</div>
+
                                 </div>
                             </div>
                         </div>
