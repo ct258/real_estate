@@ -3,19 +3,31 @@
     <div class="container">
         <div class="clients-slider owl-carousel">
             <a href="#">
-                <img src="{{asset('leramiz/img/partner/1.png')}}" alt="">
+                <img src="{{asset('leramiz/img/partner/batdongsan.png')}}" alt="">
             </a>
             <a href="#">
-                <img src="{{asset('leramiz/img/partner/2.png')}}" alt="">
+                <img src="{{asset('leramiz/img/partner/DotProperty.png')}}" alt="">
             </a>
             <a href="#">
-                <img src="{{asset('leramiz/img/partner/3.png')}}" alt="">
+                <img src="{{asset('leramiz/img/partner/Vinhomes-Central-Park-Logo.png')}}" alt="">
             </a>
             <a href="#">
-                <img src="{{asset('leramiz/img/partner/4.png')}}" alt="">
+                <img src="{{asset('leramiz/img/partner/alonhadat.png')}}" alt="">
             </a>
             <a href="#">
-                <img src="{{asset('leramiz/img/partner/5.png')}}" alt="">
+                <img src="{{asset('leramiz/img/partner/cafeland.png')}}" alt="">
+            </a>
+            <a href="#">
+                <img src="{{asset('leramiz/img/partner/homedy.png')}}" alt="">
+            </a>
+            <a href="#">
+                <img src="{{asset('leramiz/img/partner/muabannhadat.png')}}" alt="">
+            </a>
+            <a href="#">
+                <img src="{{asset('leramiz/img/partner/nhadatso.png')}}" alt="">
+            </a>
+            <a href="#">
+                <img src="{{asset('leramiz/img/partner/raovat321.png')}}" alt="">
             </a>
         </div>
     </div>
