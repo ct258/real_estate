@@ -57,15 +57,15 @@
             <div class="footer-nav">
                 <table style="color:white;">
                     <tr>
-                        <td>Online </td>
+                        <td>@lang('Online') </td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;: {{ $query_result_person[0]}}</td>
                     </tr>
                     <tr>
-                        <td>Visits today </td>
+                        <td>@lang('Visits today') </td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;: {{ $query_result_person[1]}}</td>
                     </tr>
                     <tr>
-                        <td>Access times </td>
+                        <td>@lang('Access times') </td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;: {{ $query_result_person[2]}}</td>
                     </tr>
                 </table>
