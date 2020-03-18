@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'locale' => \App\Http\Middleware\Locale::class,
         'checklogin' => \App\Http\Middleware\CheckLogin::class,
         'currency' => \App\Http\Middleware\Currency::class,
+        'checkAdmin' => \App\Http\Middleware\CheckAdmin::class,
     ];
 
     /**

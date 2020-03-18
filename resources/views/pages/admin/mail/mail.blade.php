@@ -9,15 +9,15 @@
             <div class="col-sm-3 com-w3ls">
                 <section class="panel">
                     <div class="panel-body">
-                        <a href="mail_compose.html"  class="btn btn-compose">
-                            Compose Mail
+                    <a href="{{route("email_compose")}}"  class="btn btn-compose">
+                            Soạn Thư
                         </a>
                         <ul class="nav nav-pills nav-stacked mail-nav">
-                            <li class="active"><a href="mail.html"> <i class="fa fa-inbox"></i> Inbox  <span class="label label-danger pull-right inbox-notification">9</span></a></li>
-                            <li><a href="#"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
-                            <li><a href="#"> <i class="fa fa-certificate"></i> Important</a></li>
-                            <li><a href="#"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-info pull-right inbox-notification">123</span></a></a></li>
-                            <li><a href="#"> <i class="fa fa-trash-o"></i> Trash</a></li>
+                            <li class="active"><a href="mail.html"> <i class="fa fa-inbox"></i> Hộp Thư Đến  <span class="label label-danger pull-right inbox-notification">9</span></a></li>
+                            <li><a href="#"> <i class="fa fa-envelope-o"></i> Đã Gửi</a></li>
+                            <li><a href="#"> <i class="fa fa-certificate"></i> Quan Trọng</a></li>
+                            <li><a href="#"> <i class="fa fa-file-text-o"></i> Thư Nháp <span class="label label-info pull-right inbox-notification">123</span></a></a></li>
+                            <li><a href="#"> <i class="fa fa-trash-o"></i> Thùng Rác</a></li>
                         </ul>
                     </div>
                 </section>
@@ -25,14 +25,14 @@
                 <section class="panel">
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked labels-info ">
-                            <li> <h4>Buddy online</h4> </li>
+                            <li> <h4>Bạn Bè online</h4> </li>
                             <li> <a href="#"> <i class="fa fa-comments-o text-success"></i> Jonathan Smith <p>I do not think</p></a>  </li>
                             <li> <a href="#"> <i class="fa fa-comments-o text-danger"></i> iRon <p>Busy with coding</p></a> </li>
                             <li> <a href="#"> <i class="fa fa-comments-o text-muted "></i> Anjelina Joli <p>I out of control</p></a></li>
                             <li> <a href="#"> <i class="fa fa-comments-o text-muted "></i> Samual Daren <p>I am not here</p></a></li>
                             <li> <a href="#"> <i class="fa fa-comments-o text-muted "></i> Tis man <p>I do not think</p></a>  </li>
                         </ul>
-                        <a href="#"> + Add More</a>
+                        <a href="#"> + Thêm Mới</a>
 
                         <div class="inbox-body text-center inbox-action">
                             <div class="btn-group">
@@ -52,7 +52,7 @@
             <div class="col-sm-9 mail-w3agile">
                 <section class="panel">
                     <header class="panel-heading wht-bg">
-                       <h4 class="gen-case">Inbox (34)
+                       <h4 class="gen-case">Hộp Thư (34)
                         <form action="#" class="pull-right mail-src-position">
                             <div class="input-append">
                                 <input type="text" class="form-control " placeholder="Search Mail">
@@ -69,13 +69,13 @@
 
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" href="#" class="btn mini all">
-                                        All
+                                        Tất cả
                                         <i class="fa fa-angle-down "></i>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#"> None</a></li>
-                                        <li><a href="#"> Read</a></li>
-                                        <li><a href="#"> Unread</a></li>
+                                        <li><a href="#"> Đã đọc</a></li>
+                                        <li><a href="#"> Chưa đọc</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -87,26 +87,26 @@
                             </div>
                             <div class="btn-group hidden-phone">
                                 <a data-toggle="dropdown" href="#" class="btn mini blue">
-                                    More
+                                    Thêm 
                                     <i class="fa fa-angle-down "></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
+                                    <li><a href="#"><i class="fa fa-pencil"></i> Đánh dấu đã đọc</a></li>
                                     <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                    <li><a href="#"><i class="fa fa-trash-o"></i> Xóa</a></li>
                                 </ul>
                             </div>
                             <div class="btn-group">
                                 <a data-toggle="dropdown" href="#" class="btn mini blue">
-                                    Move to
+                                    Chuyển Tiếp
                                     <i class="fa fa-angle-down "></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
+                                    <li><a href="#"><i class="fa fa-pencil"></i> Đánh dấu đã đọc</a></li>
                                     <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                    <li><a href="#"><i class="fa fa-trash-o"></i> Xóa</a></li>
                                 </ul>
                             </div>
 

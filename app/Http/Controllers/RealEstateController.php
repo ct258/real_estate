@@ -22,9 +22,15 @@ class RealEstateController extends Controller
      */
     public function index()
     {
-        $mytime = Carbon::now();
-        echo $mytime->toDateTimeString();
-        $real_estate = RealEstate::all();
+        $real_estate=RealEstate::join('real_estate_translation','real_estate.real_estate_id','real_estate_translation.real_estate_id')
+        ->join('status','status.status_id','real_estate.status_id')
+        ->select('real_estate.real_estate_id',
+        'real_estate_price',
+        'real_estate_acreage',
+        'translation_address',
+        'translation_name',
+        'status_name')
+        ->where('translation_locale','vi')->paginate(10);
 
         return view('pages.admin.real_estate.index', compact('real_estate'));
     }
