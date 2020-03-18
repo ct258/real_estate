@@ -25,7 +25,7 @@
                         <div class="curency">
                             <div class="dropdown">
                                 <p class="dropdown-toggle" data-toggle="dropdown">
-                                  VND
+                                    VND
                                 </p>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('currency',['USD']) }}">USD</a></li>
@@ -35,14 +35,14 @@
                                     <li><a href="{{route('currency',['JPY']) }}">JPY</a></li>
                                     <li><a href="{{route('currency',['GBP']) }}">GBP</a></li>
                                 </ul>
-                              </div>
+                            </div>
                         </div>
                         <a href="{{route('lang',['vi']) }}">Vi</a>
                         <a href="{{ route('lang',['en']) }}">En</a>
-                        <a href=""><i class="fa fa-user-circle-o"></i> Đăng ký</a>
-                        <a href=""><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                        <a href=""><i class="fa fa-user-circle-o"></i>@lang('Account')</a>
                         <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
-                        
+                        <a href="{{route('logout') }}"><i class="fa fa-sign-in"></i>Logout</a>
+
                     </div>
                 </div>
             </div>

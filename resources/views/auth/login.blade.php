@@ -237,12 +237,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             background-color: #3b5998;
         }
 
-            /* fix */
-            .card.card-signin.flex-row.my-5 {
-                width: 390px;
-                margin: auto;
-                background-color: white;
-            }
+        /* fix */
+        .card.card-signin.flex-row.my-5 {
+            width: 390px;
+            margin: auto;
+            background-color: white;
+        }
+
         /* fix */
         .card.card-signin.flex-row.my-5 {
             width: 390px;
@@ -307,6 +308,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  <!-- Background image for card set in CSS! -->
               </div> --}}
                     <div class="card-body">
+                        @if($message = Session::get('success'))
+                        <div class="alert alert-success" role="alert">
+                            <p>{{$message}}</p>
+                            <p class="mb-0"></p>
+                        </div>
+                        @endif
+                        @if($error = Session::get('error'))
+                        <div class="alert alert-danger" role="alert">
+                            <p>{{$error}}</p>
+                            <p class="mb-0"></p>
+                        </div>
+                        @endif
 
                         <h5 class="card-title text-center"><i class='fa fa-user-circle'></i>Login</h5>
                         <form class="form-signin" action="{{URL::route("postLogin")}} " method="POST">
@@ -329,7 +342,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     placeholder="Password" required>
                                 <label for="inputPassword">Password</label>
                             </div>
+                            <label class="anim">
+                                <input class="checkbox" type="checkbox" name="remember" id="remember"
+                                    {{ old('remember') ? 'checked' : '' }}>
 
+                                {{-- <input type="checkbox" class="checkbox"> --}}
+                                <span>Remember Me</span>
+
+                            </label>
                             {{-- <div class="form-label-group">
                     <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
                     <label for="inputConfirmPassword">Confirm password</label>
