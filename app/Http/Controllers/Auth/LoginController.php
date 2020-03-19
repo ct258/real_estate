@@ -53,7 +53,7 @@ class LoginController extends Controller
     public function showLoginForm(Request $request)
     {
         if (Auth::guard('account')->check()) {
-            $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->user_id)->first();
+            $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->account_id)->first();
             // dd($check_customer);
             if($check_customer){
 

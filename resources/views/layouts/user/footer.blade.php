@@ -4,73 +4,80 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 footer-widget">
                 <img src="{{asset('leramiz/img/logo.png')}}" alt="">
-                <p>Lorem ipsum dolo sit azmet, consecter dipise consult elit. Maecenas mamus antesme non anean a dolor
-                    sample tempor nuncest erat.</p>
+                <p>@lang('footer1')</p>
+                <p>@lang('footer2')</p>
                 <div class="social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    {{-- <i href="#"><i class="fa fa-facebook"></i></i>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-instagram"></i></a>
                     <a href="#"><i class="fa fa-pinterest"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a> --}}
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 footer-widget">
                 <div class="contact-widget">
-                    <h5 class="fw-title">CONTACT US</h5>
-                    <p><i class="fa fa-map-marker"></i>3711-2880 Nulla St, Mankato, Mississippi </p>
-                    <p><i class="fa fa-phone"></i>(+88) 666 121 4321</p>
-                    <p><i class="fa fa-envelope"></i>info.leramiz@colorlib.com</p>
-                    <p><i class="fa fa-clock-o"></i>Mon - Sat, 08 AM - 06 PM</p>
+                    <h5 class="fw-title">@lang('CONTACT US')</h5>
+                    <p><i class="fa fa-map-marker"></i>Khu II, đường 3/2, P. Xuân Khánh, Q. Ninh Kiều, TP. Cần Thơ.</p>
+                    <p><i class="fa fa-phone"></i>(+12) 345 678 9999</p>
+                    <p><i class="fa fa-envelope"></i>realestatect258@gmail.com</p>
+                    <p><i class="fas fa-clock"></i>Mon - Sat, 08 AM - 06 PM</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 footer-widget">
                 <div class="double-menu-widget">
-                    <h5 class="fw-title">POPULAR PLACES</h5>
+                    <h5 class="fw-title">@lang('POPULAR PLACES')</h5>
                     <ul>
-                        <li><a href="">Florida</a></li>
-                        <li><a href="">New York</a></li>
-                        <li><a href="">Washington</a></li>
-                        <li><a href="">Los Angeles</a></li>
-                        <li><a href="">Chicago</a></li>
+                        <li><a href="">Cần Thơ</a></li>
+                        <li><a href="">Hậu Giang</a></li>
+                        <li><a href="">Tiền Giang</a></li>
+                        <li><a href="">Long An</a></li>
+                        <li><a href="">Sóc Trăng</a></li>
                     </ul>
                     <ul>
-                        <li><a href="">St Louis</a></li>
-                        <li><a href="">Jacksonville</a></li>
-                        <li><a href="">San Jose</a></li>
-                        <li><a href="">San Diego</a></li>
-                        <li><a href="">Houston</a></li>
+                        <li><a href="">Hà Nội</a></li>
+                        <li><a href="">Đà Nặng</a></li>
+                        <li><a href="">Nha Trang</a></li>
+                        <li><a href="">Đà Lạt</a></li>
+                        <li><a href="">Hồ Chí Minh</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6  footer-widget">
                 <div class="newslatter-widget">
-                    <h5 class="fw-title">NEWSLETTER</h5>
-                    <p>Subscribe your email to get the latest news and new offer also discount</p>
+                    <h5 class="fw-title">@lang('NEWSLETTER')</h5>
+                    <p>@lang('Subscribe your email to get the latest news and new offer also discount')</p>
                     <form class="footer-newslatter-form">
-                        <input type="text" placeholder="Email address">
-                        <button><i class="fa fa-send"></i></button>
+                        <input type="text" placeholder="@lang('Email address')">
+                        <button><i class="fas fa-paper-plane" style="color:white"></i></button>
                     </form>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="footer-nav">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Featured Listing</a></li>
-                    <li><a href="">About us</a></li>
-                    <li><a href="">Pages</a></li>
-                    <li><a href="">Blog</a></li>
-                    <li><a href="">Contact</a></li>
-                </ul>
+                <table style="color:white;">
+                    <tr>
+                        <td>@lang('Online') </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;: {{ $query_result_person[0]}}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('Visits today') </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;: {{ $query_result_person[1]}}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('Access times') </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;: {{ $query_result_person[2]}}</td>
+                    </tr>
+                </table>
             </div>
             <div class="copyright">
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </script> All rights reserved | This template is made with <i class="far fa-heart"></i> by <a
+                        href="https://colorlib.com" target="_blank">Colorlib</a>
+
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>
@@ -79,5 +86,5 @@
 </footer>
 <!-- Footer section end -->
 <div class="scrollupp">
-    <i id ='scrollupp'class="fa fa-angle-up"></i>
- </div>
+    <i id='scrollupp' class="fa fa-angle-up"></i>
+</div>
