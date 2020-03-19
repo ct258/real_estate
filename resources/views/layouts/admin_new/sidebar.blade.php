@@ -17,20 +17,25 @@
                         <span>Bất Động Sản</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{route('real_estate.create')}}">Tạo BĐS</a></li>
-                    <li><a href="{{route('real_estate.index')}}">Cập nhật BĐS</a></li>
+                        <li><a href="{{route('real_estate.index')}}">Hiển Thị BĐS</a></li>
+                        <li><a href="{{route('real_estate.create')}}">Duyệt BĐS</a></li>
+                        <li><a href="">Xóa BĐS</a></li>
+                        <li><a href="">Liên Hệ Chủ BĐS</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <span>Khách Hàng </span>
+                        <span>Khuyến Mãi </span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Cập Nhật Khách Hàng</a></li>
-                        <li><a href="">Ý Kiến Phản Hồi</a></li>
+                        <li><a href="">Hiển Thị Danh Sách</a></li>
+                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
                     </ul>
                 </li>
+
+
+                
 
                 <li class="sub-menu">
                     <a href="javascript:;">
@@ -45,12 +50,23 @@
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-cog"></i>
-                        <span>Cài Đặt</span>
+                        <span>Giao Diện</span>
                     </a>
                     <ul class="sub">
                     <li><a href="{{route('banner')}}">Cập Nhật Ảnh Bìa</a></li>
-                        <li><a href="">Cập Nhật Trạng Thái</a></li>
-                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
+                    <li><a href="">Cập Nhật Trang Giới Thiệu</a></li>
+                    <li><a href="">Cập Nhật Logo</a></li>
+                    <li><a href="">Cập Nhật Slogan</a></li>
+                    </ul>
+                </li> 
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-cog"></i>
+                        <span>Giao Diện</span>
+                    </a>
+                    <ul class="sub">
+                    <li><a href="">Có các select để chọn</a></li>
+                    <li><a href="">Hiển thị biểu đồ</a></li>
                     </ul>
                 </li> 
                 <li class="sub-menu">
@@ -64,16 +80,7 @@
                         <li><a href="{{route('email_compose')}}"> Soạn mail</a></li>
                     </ul>
                 </li>
-                {{-- <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>Charts</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="chartjs.html">Chart js</a></li>
-                        <li><a href="flot_chart.html">Flot Charts</a></li>
-                    </ul>
-                </li> --}}
+              
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class=" fa fa-bar-chart-o"></i>
@@ -84,17 +91,7 @@
                         <li><a href="vector_map.html">Vector Map</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-glass"></i>
-                        <span>Extra</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="404.html">404 Error</a></li>
-                        <li><a href="registration.html">Registration</a></li>
-                    </ul>
-                </li>
+              
                 <li>
                     <a href="login.html">
                         <i class="fa fa-user"></i>
