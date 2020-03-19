@@ -1,18 +1,24 @@
+@include('layouts.admin.head')
 
-    @include('layouts.admin_new.admin')
-    
+<body>
+    <section id="container">
+        @include('layouts.admin.header')
+        @include('layouts.admin.sidebar')
+        <!-- main content start -->
+        <section id="main-content">
+            <section class="wrapper">
 
-    {{-- @include('layouts.admin.sidebar') --}}
-    {{-- <div class="wrap"> --}}
-        {{-- @include('layouts.admin.header') --}}
-         <div class="content container"> 
-            @yield('content')
-        </div>  
-        {{-- @include('layouts.admin.footer') --}}
+                @yield('content')
 
-        {{-- <div class="loader-wrap hiding hide">
-            <i class="fa fa-circle-o-notch fa-spin"></i>
-        </div> --}}
-    {{-- </div> --}}
+            </section>
+            <!--wrapper end-->
+            @include('layouts.admin.footer')
+        </section>
+        <!--main content end-->
 
-    {{-- @include('layouts.admin.script') --}}
+
+    </section>
+    @include('layouts.admin.script')
+</body>
+
+</html>
