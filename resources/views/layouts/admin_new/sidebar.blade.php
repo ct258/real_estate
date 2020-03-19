@@ -28,7 +28,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="">Cập Nhật Khách Hàng</a></li>
-                        <li><a href="">Ý Kiến Khách Hàng</a></li>
+                        <li><a href="">Ý Kiến Phản Hồi</a></li>
                     </ul>
                 </li>
 
@@ -48,7 +48,7 @@
                         <span>Cài Đặt</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Ảnh Bìa</a></li>
+                    <li><a href="{{route('banner')}}">Cập Nhật Ảnh Bìa</a></li>
                         <li><a href="">Cập Nhật Trạng Thái</a></li>
                         <li><a href="">Cập Nhật Khuyến Mãi</a></li>
                     </ul>
