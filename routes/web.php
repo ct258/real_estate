@@ -212,3 +212,9 @@ Route::group(['middleware' => ['currency']], function () {
         
 
     
+Route::get('feedback', function (){
+    return view('pages.admin.khachhang.feedback');
+});
+Route::get('banner', function (){
+    return view('pages.admin.caidat.banner');
+})->name('banner');
