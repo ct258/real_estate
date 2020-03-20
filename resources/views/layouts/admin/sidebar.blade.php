@@ -82,6 +82,18 @@
                         <li><a href="{{route('email_compose')}}"> Soạn mail</a></li>
                     </ul>
                 </li>
+                {{-- hợp đồng --}}
+                <li class="sub-menu">
+                    <a href="#">
+                        <i class="fa fa-file-text-o"></i>
+                        <span>Hợp đồng </span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{route('email')}}">Hợp đồng Đặt cọc</a></li>
+
+                        <li><a href="{{route('email_compose')}}">Hợp đồng Thanh toán</a></li>
+                    </ul>
+                </li>
                 {{-- thống kê --}}
                 <li class="sub-menu">
                     <a href="#">
