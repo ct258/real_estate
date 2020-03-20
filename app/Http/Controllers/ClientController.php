@@ -66,42 +66,6 @@ class ClientController extends Controller
         return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'standard_acreage'));
     }
 
-    //bỏ
-    public function list_ajax(Request $request)
-    {
-        if ($request->ajax()) {
-            $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-            ->join('image', 'image_real_estate.image_id', 'image.image_id')
-            ->join('district', 'real_estate.district_id', 'district.district_id')
-            ->join('province', 'district.province_id', 'province.province_id')
-            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-            ->select('real_estate.real_estate_id',
-            'real_estate_name',
-            'real_estate_description',
-            'real_estate_price',
-            'real_estate_acreage',
-            'real_estate.created_at',
-            'unit.unit_name_vi',
-            'image.image_path',
-            'province.province_name',
-            'district.district_name')
-            ->where('image_real_estate.image_real_estate_note', 'Avatar')
-            ->paginate(6);
-
-            // tính thời gian đăng
-            Carbon::setlocale('vi');
-            $now = Carbon::now();
-            $day = $real_estate[0]->created_at->diffForHumans(($now));
-            // if (Request::ajax()) {
-            //     return Response::json(View::make('pages.user.feature.list_ajax', array('real_estate' => $real_estate))->render());
-            // }
-
-            echo json_encode($real_estate);
-
-            // return view('pages.user.feature.list_ajax', compact('real_estate', 'day'));
-        }
-    }
-
     public function searchFullText(Request $request)
     {
         $real_estate = RealEstate::query();

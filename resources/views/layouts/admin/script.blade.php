@@ -1,97 +1,97 @@
-@yield('script')
-<!-- common libraries. required for every page-->
-<script src="{{asset('lib/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{asset('lib/jquery-pjax/jquery.pjax.js')}}"></script>
-<script src="{{asset('lib/bootstrap-sass/assets/javascripts/bootstrap.min.js')}}"></script>
-<script src="{{asset('lib/widgster/widgster.js')}}"></script>
-<script src="{{asset('lib/underscore/underscore.js')}}"></script>
-
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
-<!-- common application js -->
-<script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/settings.js')}}"></script>
-
-{{-- CKEditor --}}
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{asset('admin/js/bootstrap.js')}}"></script>
+<script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{asset('admin/js/scripts.js')}}"></script>
+<script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
+<script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
+{{-- <--[if lte IE 8]>
+    <script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script>
+    <![endif]--> --}}
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
+<!-- morris JavaScript -->
 {{-- <script>
-    CKEDITOR.replace('editor1'); 
-</script> --}}
-{{-- <script>
-    CKEDITOR.replace( 'editor1', {
-        filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+    $(document).ready(function() {
+		//BOX BUTTON SHOW AND CLOSE
+	   jQuery('.small-graph-box').hover(function() {
+		  jQuery(this).find('.box-button').fadeIn('fast');
+	   }, function() {
+		  jQuery(this).find('.box-button').fadeOut('fast');
+	   });
+	   jQuery('.small-graph-box .box-close').click(function() {
+		  jQuery(this).closest('.small-graph-box').fadeOut(200);
+		  return false;
+	   });
+	   
+	    //CHARTS
+	    function gd(year, day, month) {
+			return new Date(year, month - 1, day).getTime();
+		}
+		
+		graphArea2 = Morris.Area({
+			element: 'hero-area',
+			padding: 10,
+        behaveLikeLine: true,
+        gridEnabled: false,
+        gridLineColor: '#dddddd',
+        axes: true,
+        resize: true,
+        smooth:true,
+        pointSize: 0,
+        lineWidth: 0,
+        fillOpacity:0.85,
+			data: [
+				{period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
+				{period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
+				{period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
+				{period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
+				{period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
+				{period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
+				{period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
+				{period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
+				{period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
+			
+			],
+			lineColors:['#eb6f6f','#926383','#eb6f6f'],
+			xkey: 'period',
+            redraw: true,
+            ykeys: ['iphone', 'ipad', 'itouch'],
+            labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
+			pointSize: 2,
+			hideHover: 'auto',
+			resize: true
+		});
+		
+	   
+	});
+</script>  --}}
+<!-- calendar -->
+<script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
+<script type="text/javascript">
+    $(window).load( function() {
 
-} );
+			$('#mycalendar').monthly({
+				mode: 'event',
+				
+			});
+
+			$('#mycalendar2').monthly({
+				mode: 'picker',
+				target: '#mytarget',
+				setWidth: '250px',
+				startHidden: true,
+				showTrigger: '#mytarget',
+				stylePast: true,
+				disablePast: true
+			});
+
+		switch(window.location.protocol) {
+		case 'http:':
+		case 'https:':
+		// running on a server, should be good.
+		break;
+		case 'file:':
+		alert('Just a heads-up, events will not work when run locally.');
+		}
+
+		});
 </script>
-@include('ckfinder::setup') --}}
-@include('ckfinder::setup')
-
-<!-- common templates -->
-<script type="text/template" id="settings-template">
-    <div class="setting clearfix">
-        <div>Sidebar on the</div>
-        <div id="sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
-            <% onRight = sidebar == 'right'%>
-            <button type="button" data-value="left" class="btn btn-sm btn-default <%= onRight? '' : 'active' %>">Left</button>
-            <button type="button" data-value="right" class="btn btn-sm btn-default <%= onRight? 'active' : '' %>">Right</button>
-        </div>
-    </div>
-    <div class="setting clearfix">
-        <div>Sidebar</div>
-        <div id="display-sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
-            <% display = displaySidebar%>
-            <button type="button" data-value="true" class="btn btn-sm btn-default <%= display? 'active' : '' %>">Show</button>
-            <button type="button" data-value="false" class="btn btn-sm btn-default <%= display? '' : 'active' %>">Hide</button>
-        </div>
-    </div>
-</script>
-
-<script type="text/template" id="sidebar-settings-template">
-    <% auto = sidebarState == 'auto'%>
-    <% if (auto) {%>
-    <button type="button"
-            data-value="icons"
-            class="btn-icons btn btn-transparent btn-sm">Icons</button>
-    <button type="button"
-            data-value="auto"
-            class="btn-auto btn btn-transparent btn-sm">Auto</button>
-    <%} else {%>
-    <button type="button"
-            data-value="auto"
-            class="btn btn-transparent btn-sm">Auto</button>
-    <% } %>
-</script>
-
-<!-- page specific scripts -->
-<!-- page libs -->
-<script src="{{asset('lib/slimScroll/jquery.slimscroll.min.js')}}"></script>
-<script src="{{asset('lib/jquery.sparkline/index.js')}}"></script>
-
-<script src="{{asset('lib/backbone/backbone.js')}}"></script>
-<script src="{{asset('lib/backbone.localStorage/build/backbone.localStorage.min.js')}}"></script>
-
-<script src="{{asset('lib/d3/d3.min.js')}}"></script>
-<script src="{{asset('lib/nvd3/build/nv.d3.min.js')}}"></script>
-
-<!-- page application js -->
-<script src="{{asset('js/index.js')}}"></script>
-<script src="{{asset('js/chat.js')}}"></script>
-
-<!-- page template -->
-<script type="text/template" id="message-template">
-    <div class="sender pull-left">
-        <div class="icon">
-            <img src="{{asset('img/2.png')}}" class="img-circle" alt="">
-        </div>
-        <div class="time">
-            just now
-        </div>
-    </div>          
-    <div class="chat-message-body">
-        <span class="arrow"></span>
-        <div class="sender"><a href="#">Tikhon Laninga</a></div>
-        <div class="text">
-            <%- text %>
-        </div>
-    </div>
-</script>
-@yield('script')
+<!-- //calendar -->
