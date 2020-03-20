@@ -267,41 +267,6 @@
             // });
         });
 </script>
-{{-- <script>
-        $(document).ready(function(){
-
-            // $(document).on('click', '.pagination a', function(event){
-            // event.preventDefault(); 
-            // var page = $(this).attr('href').split('page=')[1];
-            // getPosts(page);
-            // });
-        
-            $(document).on('click', '.pagination a', function (e) {
-                getPosts($(this).attr('href').split('page=')[1]);
-                e.preventDefault();
-            });
-        // });
-            function getPosts(page)
-            {
-                $.ajax({
-                    // type: "GET",
-                    // url:"{{ url('listajax?page=') }}" + page,
-url: 'listajax?page='+ page,
-// dataType: "json",
-success:function(data)
-{
-alert(data);
-$('#paginationa').html(data);
-$('#Avatar').attr('src', data.image_path);
-},
-error : function() {
-alert("Lỗi rồi");
-}
-});
-}
-});
-
-</script> --}}
 <script type="text/javascript">
     $('#header-search').on('keyup', function() {
             var search = $(this).serialize();
