@@ -96,44 +96,25 @@ Route::group(['middleware' => ['currency']], function () {
         //     Route::get('lang/{lang}', 'LangController@lang')->name('lang');
         // Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
     Route::group(['middleware' => 'checklogin'], function () {
+
+        //user
+        Route::group(['prefix' => ''], function () {
+            Route:: get('account/{account_id}', 'AccountController@show_info')->name('account');
+            Route::group(['prefix' => 'post'], function () {
+                Route:: get('/create', 'PostController@create')->name('post.create');
+                Route:: post('/create', 'PostController@store')->name('post.create.submit');
+            });
+
+            Route::group(['prefix' => 'payment'], function () {
+                Route:: get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
+                Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
+            });
+        
+        });
+        
+        //user end
         //admin
-        Route::group(['middleware' => ['checkAdmin']], function () {
-                
-            
-            //chỉ có admin mới vào được
-            //Bất động sản
-            Route::group(['prefix' => 'real_estate'], function () {
-                //index
-                Route:: get('/index', 'RealEstateController@index')->name('real_estate.index');
-                // thêm
-                Route:: get('/create', 'RealEstateController@create')->name('real_estate.create');
-                Route:: post('/create', 'RealEstateController@store')->name('real_estate.create.submit');
-                // xem chi tiết
-                Route:: get('/show/{real_estate_id}', 'RealEstateController@show')->name('real_estate.show');
-                // sửa
-                Route:: get('/edit/{real_estate_id}', 'RealEstateController@edit')->name('real_estate.edit');
-                Route:: post('/edit/submit/{real_estate_id}', 'RealEstateController@update')->name('real_estate.update');
-                // xóa mềm
-                Route:: post('/destroy/{real_estate_id}', 'RealEstateController@destroy')->name('real_estate.destroy');
-                //lấy loại bất động sản
-                Route:: get('/get_type/{form_id}', 'RealEstateController@get_type')->name('real_estate.type');
-            });
-            //evaluate
-            Route::group(['prefix' => 'evaluate'], function () {
-                //index
-                Route:: get('/', 'Admin\EvaluateController@index')->name('evaluate.index');
-                // thêm
-                Route:: get('/create', 'Admin\EvaluateController@create')->name('evaluate.create');
-                Route:: post('/create', 'Admin\EvaluateController@store')->name('evaluate.create.submit');
-                // xem chi tiết
-                Route:: get('/show/{evaluate_id}', 'Admin\EvaluateController@show')->name('evaluate.show');
-                // sửa
-                Route:: get('/edit/{evaluate_id}', 'Admin\EvaluateController@edit')->name('evaluate.edit');
-                Route:: post('/edit/submit/{evaluate_id}', 'Admin\EvaluateController@update')->name('evaluate.update');
-                // xóa mềm
-                Route:: post('/destroy/{evaluate_id}', 'Admin\EvaluateController@destroy')->name('evaluate.destroy');
-               
-            });
+        // Route::group(['middleware' => ['checkAdmin']], function () {
             //promotion
             Route::group(['prefix' => 'promotion'], function () {
                 //index
@@ -148,38 +129,6 @@ Route::group(['middleware' => ['currency']], function () {
                 Route:: post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
                 // xóa mềm
                 Route:: post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
-               
-            });
-            //blog
-            Route::group(['prefix' => 'blog'], function () {
-                //index
-                Route:: get('/index', 'Admin\BlogController@index')->name('blog.index');
-                // thêm
-                Route:: get('/create', 'Admin\BlogController@create')->name('blog.create');
-                Route:: post('/create', 'Admin\BlogController@store')->name('blog.create.submit');
-                // xem chi tiết
-                Route:: get('/show/{blog_id}', 'Admin\BlogController@show')->name('blog.show');
-                // sửa
-                Route:: get('/edit/{blog_id}', 'Admin\BlogController@edit')->name('blog.edit');
-                Route:: post('/edit/submit/{blog_id}', 'Admin\BlogController@update')->name('blog.update');
-                // xóa mềm
-                Route:: post('/destroy/{blog_id}', 'Admin\BlogController@destroy')->name('blog.destroy');
-               
-            });
-            //report
-            Route::group(['prefix' => 'report'], function () {
-                //index
-                Route:: get('/index', 'Admin\ReportController@index')->name('report.index');
-                // thêm
-                Route:: get('/create', 'Admin\ReportController@create')->name('report.create');
-                Route:: post('/create', 'Admin\ReportController@store')->name('report.create.submit');
-                // xem chi tiết
-                Route:: get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
-                // sửa
-                Route:: get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
-                Route:: post('/edit/submit/{report_id}', 'Admin\ReportController@update')->name('report.update');
-                // xóa mềm
-                Route:: post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
                
             });
             //customer
@@ -214,22 +163,6 @@ Route::group(['middleware' => ['currency']], function () {
                 Route:: post('/destroy/{staff_id}', 'Admin\StaffController@destroy')->name('staff.destroy');
                
             });
-            //hợp đồng
-            Route::group(['prefix' => 'contract'], function () {
-                //index
-                Route:: get('/index', 'Admin\ContractController@index')->name('contract.index');
-                // thêm
-                Route:: get('/create', 'Admin\ContractController@create')->name('contract.create');
-                Route:: post('/create', 'Admin\ContractController@store')->name('contract.create.submit');
-                // xem chi tiết
-                Route:: get('/show/{contract_id}', 'Admin\ContractController@show')->name('contract.show');
-                // sửa
-                Route:: get('/edit/{contract_id}', 'Admin\ContractController@edit')->name('contract.edit');
-                Route:: post('/edit/submit/{contract_id}', 'Admin\ContractController@update')->name('contract.update');
-                // xóa mềm
-                Route:: post('/destroy/{contract_id}', 'Admin\ContractController@destroy')->name('contract.destroy');
-               
-            });
             //statistic
             Route::group(['prefix' => 'statistic'], function () {
                 //index
@@ -246,36 +179,126 @@ Route::group(['middleware' => ['currency']], function () {
                     return view('pages.admin.display.banner');
                 })->name('banner');
             });
+            //setting
+            Route::group(['prefix' => 'setting'], function () {
+               
+                // Route::get('feedback', function (){
+                //     return view('pages.admin.khachhang.feedback');
+                // });
+                Route::get('setting', function (){
+                    return view('pages.admin.setting.index');
+                })->name('setting');
+            });
+          
+        // });
+        //admin end
 
-            
 
-            
 
+        //staff
+        // Route::group(['middleware' => ['checkStaff']], function () {
+            //Bất động sản
+            Route::group(['prefix' => 'real_estate'], function () {
+                //index
+                Route:: get('/index', 'RealEstateController@index')->name('real_estate.index');
+                // thêm
+                Route:: get('/create', 'RealEstateController@create')->name('real_estate.create');
+                Route:: post('/create', 'RealEstateController@store')->name('real_estate.create.submit');
+                // xem chi tiết
+                Route:: get('/show/{real_estate_id}', 'RealEstateController@show')->name('real_estate.show');
+                // sửa
+                Route:: get('/edit/{real_estate_id}', 'RealEstateController@edit')->name('real_estate.edit');
+                Route:: post('/edit/submit/{real_estate_id}', 'RealEstateController@update')->name('real_estate.update');
+                // xóa mềm
+                Route:: post('/destroy/{real_estate_id}', 'RealEstateController@destroy')->name('real_estate.destroy');
+                //lấy loại bất động sản
+                Route:: get('/get_type/{form_id}', 'RealEstateController@get_type')->name('real_estate.type');
+            });
+            //evaluate
+            Route::group(['prefix' => 'evaluate'], function () {
+                //index
+                Route:: get('/', 'Admin\EvaluateController@index')->name('evaluate.index');
+                // thêm
+                Route:: get('/create', 'Admin\EvaluateController@create')->name('evaluate.create');
+                Route:: post('/create', 'Admin\EvaluateController@store')->name('evaluate.create.submit');
+                // xem chi tiết
+                Route:: get('/show/{evaluate_id}', 'Admin\EvaluateController@show')->name('evaluate.show');
+                // sửa
+                Route:: get('/edit/{evaluate_id}', 'Admin\EvaluateController@edit')->name('evaluate.edit');
+                Route:: post('/edit/submit/{evaluate_id}', 'Admin\EvaluateController@update')->name('evaluate.update');
+                // xóa mềm
+                Route:: post('/destroy/{evaluate_id}', 'Admin\EvaluateController@destroy')->name('evaluate.destroy');
+               
+            });
+            //hợp đồng
+            Route::group(['prefix' => 'contract'], function () {
+                //index
+                Route:: get('/index', 'Admin\ContractController@index')->name('contract.index');
+                // thêm
+                Route:: get('/create', 'Admin\ContractController@create')->name('contract.create');
+                Route:: post('/create', 'Admin\ContractController@store')->name('contract.create.submit');
+                // xem chi tiết
+                Route:: get('/show/{contract_id}', 'Admin\ContractController@show')->name('contract.show');
+                // sửa
+                Route:: get('/edit/{contract_id}', 'Admin\ContractController@edit')->name('contract.edit');
+                Route:: post('/edit/submit/{contract_id}', 'Admin\ContractController@update')->name('contract.update');
+                // xóa mềm
+                Route:: post('/destroy/{contract_id}', 'Admin\ContractController@destroy')->name('contract.destroy');
+               
+            });
+            //blog
+            Route::group(['prefix' => 'blog'], function () {
+                //index
+                Route:: get('/index', 'Admin\BlogController@index')->name('blog.index');
+                // thêm
+                Route:: get('/create', 'Admin\BlogController@create')->name('blog.create');
+                Route:: post('/create', 'Admin\BlogController@store')->name('blog.create.submit');
+                // xem chi tiết
+                Route:: get('/show/{blog_id}', 'Admin\BlogController@show')->name('blog.show');
+                // sửa
+                Route:: get('/edit/{blog_id}', 'Admin\BlogController@edit')->name('blog.edit');
+                Route:: post('/edit/submit/{blog_id}', 'Admin\BlogController@update')->name('blog.update');
+                // xóa mềm
+                Route:: post('/destroy/{blog_id}', 'Admin\BlogController@destroy')->name('blog.destroy');
+               
+            });
+            //report
+            Route::group(['prefix' => 'report'], function () {
+                //index
+                Route:: get('/index', 'Admin\ReportController@index')->name('report.index');
+                // thêm
+                Route:: get('/create', 'Admin\ReportController@create')->name('report.create');
+                Route:: post('/create', 'Admin\ReportController@store')->name('report.create.submit');
+                // xem chi tiết
+                Route:: get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
+                // sửa
+                Route:: get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
+                Route:: post('/edit/submit/{report_id}', 'Admin\ReportController@update')->name('report.update');
+                // xóa mềm
+                Route:: post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
+               
+            });
+            //trash
             Route::group(['prefix' => 'removed'], function () {
                 //index
                 Route:: get('/real_estate', 'RealEstateController@index_trash')->name('removed.real_estate');
                 // thêm
                 Route:: get('/real_estate/{real_estate_id}', 'RealEstateController@restore')->name('removed.real_estate.restore');
             });
-            Route::group(['prefix' => 'post'], function () {
-                Route:: get('/create', 'PostController@create')->name('post.create');
-                Route:: post('/create', 'PostController@store')->name('post.create.submit');
-            });
+
+        // });
+        //staff end
+
+
+
+
+        //admin and staff
+        // Route::group(['middleware' => ['checkAdminStaff']], function () {
             Route::get('dashboard', function () {
                 return view('pages.admin.dashboard');
             })->name('dashboard');
-            Route::group(['prefix' => 'payment'], function () {
-                Route:: get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
-                Route:: get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
-            });
-        });
-
-        //user
-        Route::group(['prefix' => ''], function () {
-            Route:: get('account/{account_id}', 'AccountController@show_info')->name('account');
-        });
+        // });
     });
-        // End middleware check user
         
 
         Auth:: routes();

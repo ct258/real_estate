@@ -10,8 +10,8 @@
         <div class="loader"></div>
     </div>
     <!-- End Page Preloder -->
-    @if (Auth::guard('account')->check())
-
+    {{-- {{dd(\Auth::guard('account')->user()->load('customer')->customer->customer_id)}} --}}
+    @if (Auth::guard('account')->check()&&Auth::guard('account')->user()->hasRole('customer'))
     @include('layouts.user.header_user')
     @else
     @include('layouts.user.header')
