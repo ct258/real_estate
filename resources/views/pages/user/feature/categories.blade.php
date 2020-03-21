@@ -1,7 +1,7 @@
 @extends('layouts.user')
 @section('page')
 <!-- Page -->
-{{-- <section class="page-section categories-page">
+<section class="page-section categories-page">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6">
@@ -432,7 +432,6 @@
             <a href="#"><i class="fa fa-angle-right"></i></a>
         </div>
     </div>
-</section> --}}
+</section>
 <!-- Page end -->
-@include('layouts.user.category')
 @endsection

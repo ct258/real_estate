@@ -116,4 +116,21 @@ class AccountController extends Controller
             echo true;
         }
     }
+    public function show_info(Request $request,$account_id)
+    {
+        $info=Account::join('customer','customer.account_id','account.account_id')
+        ->where('account.account_id',$account_id)
+        ->first();
+        $locale="";
+        // if($info->ward_id){
+
+        //     $locale=Ward::join('district','district.district_id','ward.district_id')
+        //     ->join('province','province.province_id','ward.province_id')
+        //     ->select('ward_name','district_name','province_name')
+        //     ->where('ward_id',$info->ward_id)
+        //     ->get();
+        // }
+        // dd($info);
+        return view('pages.user.account.account',compact('info'));
+    }
 }

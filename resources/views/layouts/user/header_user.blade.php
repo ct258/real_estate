@@ -38,8 +38,9 @@
                             </div>
                         </div>
                         <a href="{{route('lang',['vi']) }}">Vi</a>
-                        <a href="{{ route('lang',['en']) }}">En</a>
-                        <a href=""><i class="fas fa-user-circle"></i></i>@lang('Account')</a>
+                        <a href="{{route('lang',['en']) }}">En</a>
+                        <a href="{{route('account',\Auth::guard('account')->user()->account_id) }}"><i
+                                class="fas fa-user-circle"></i></i>@lang('Account')</a>
                         <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                         <a href="{{route('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
 
@@ -52,7 +53,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="site-navbar">
-                    <a href="#" class="site-logo"><img src="{{asset('leramiz/img/logo.png')}}" alt=""></a>
+                    <a href="{{route('index')}}" class="site-logo"><img src="{{asset('leramiz/img/logo.png')}}"
+                            alt=""></a>
                     <div class="nav-switch">
                         <i class="fa fa-bars"></i>
                     </div>
