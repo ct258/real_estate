@@ -4,7 +4,8 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-
+                {{-- nhân viên --}}
+                {{-- @if( \Auth::guard('account')->user()->hasRole('Staff')) --}}
                 {{-- Bất động sản --}}
                 <li>
                     <a href="{{route('real_estate.index')}}">
@@ -26,17 +27,6 @@
                         <span>Bình luận</span>
                     </a>
                 </li>
-                {{-- khuyến mãi --}}
-                <li>
-                    <a href="#">
-                        <i class="fa fa-gift" aria-hidden="true"></i>
-                        <span>Khuyến Mãi </span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="">Danh sách khuyến mãi</a></li>
-                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
-                    </ul>
-                </li>
                 {{-- bài viết --}}
                 <li class="sub-menu">
                     <a href="#">
@@ -55,21 +45,6 @@
                         <li><a href="">Đã xử lý</a></li>
                     </ul>
                 </li>
-                {{-- thành viên --}}
-                <li class="sub-menu">
-                    <a href="#">
-                        <i class="fa fa-user"></i>
-                        <span>Thành viên</span>
-                    </a>
-                </li>
-                {{-- nhân viên --}}
-                <li class="sub-menu">
-                    <a href="#">
-                        <i class="fa fa-users"></i>
-                        <span>Nhân viên</span>
-                    </a>
-                </li>
-
                 {{-- mail --}}
                 <li class="sub-menu">
                     <a href="#">
@@ -93,6 +68,49 @@
 
                         <li><a href="{{route('email_compose')}}">Hợp đồng Thanh toán</a></li>
                     </ul>
+                </li>
+                {{-- đã xóa --}}
+                <li class="sub-menu">
+                    <a href="#">
+                        <i class="fa fa-trash-o"></i>
+                        <span>Đã xóa</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="">Bất động sản</a></li>
+                        <li><a href="">Bình luận</a></li>
+                        <li><a href="">Thành viên</a></li>
+                        <li><a href="">Nhân viên</a></li>
+                        <li><a href="">Bài viết</a></li>
+                    </ul>
+                </li>
+                {{-- @endif --}}
+
+                {{-- admin --}}
+                {{-- @if( \Auth::guard('account')->user()->hasRole('Admin')) --}}
+                {{-- khuyến mãi --}}
+                <li>
+                    <a href="#">
+                        <i class="fa fa-gift" aria-hidden="true"></i>
+                        <span>Khuyến Mãi </span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="">Danh sách khuyến mãi</a></li>
+                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
+                    </ul>
+                </li>
+                {{-- thành viên --}}
+                <li class="sub-menu">
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span>Thành viên</span>
+                    </a>
+                </li>
+                {{-- nhân viên --}}
+                <li class="sub-menu">
+                    <a href="#">
+                        <i class="fa fa-users"></i>
+                        <span>Nhân viên</span>
+                    </a>
                 </li>
                 {{-- thống kê --}}
                 <li class="sub-menu">
@@ -138,19 +156,17 @@
                     </ul>
                 </li>
                 {{-- đã xóa --}}
-                <li class="sub-menu">
+                {{-- <li class="sub-menu">
                     <a href="#">
                         <i class="fa fa-trash-o"></i>
                         <span>Đã xóa</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Bất động sản</a></li>
-                        <li><a href="">Bình luận</a></li>
                         <li><a href="">Thành viên</a></li>
                         <li><a href="">Nhân viên</a></li>
-                        <li><a href="">Bài viết</a></li>
                     </ul>
-                </li>
+                </li> --}}
+                {{-- @endif --}}
             </ul>
         </div>
         <!-- sidebar menu end-->

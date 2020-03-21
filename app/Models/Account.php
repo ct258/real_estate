@@ -71,6 +71,6 @@ class Account extends Authenticatable implements JWTSubject
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'account_id');
+        return $this->hasOne(Customer::class,'account_id');
     }
 }
