@@ -1,0 +1,129 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container.midd {
+    margin-bottom: 30px;
+}
+
+.submit button.btn.btn-success {
+    width: 150px;
+    /* margin: auto; */
+    margin-top: 10px;
+    margin-left: 24%;
+}
+
+.submit {
+    /* width: 143%; */
+}
+
+i.fa.fa-trash {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.card-header.contnet-header p {
+    margin-left: 15px;
+    font-size: 17px;
+    display: inline-block;
+    font-weight: bold;
+    /* line-height: 42px; */
+    height: 30px;
+    line-height: 43px;
+}
+
+
+.card-header.contnet-header {
+    width: 100%;
+    margin: auto;
+}
+
+.card-header.contnet-header p:nth-child(2) {
+    margin-left: 430px;
+    color: red;
+    cursor: pointer;
+}
+.wrap{
+    background: url("bg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    /* margin-bottom: 30px; */
+    height: 800px;
+}
+.card-body button.btn.btn-primary {
+    width: 156px;
+    margin-left: 17%;
+    /* background: #30cab6; */
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+.card-body {}
+
+.card.avatar img.card-img-top {
+    width: 95%;
+    border-radius: 30px;
+    margin: auto;
+    margin-top: 13px;
+}
+
+.card.avatar {}
+
+.card.avatar {
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 1px 5px 0 rgba(51,51,51,.15);
+    background: #166126;
+    border-radius: 10%;
+}
+.col-sm-12.update-icon p {
+    font-size: 25px;
+    /* margin-left: 9px; */
+    padding-left: 29px;
+    /* clear: initial; */
+    overflow: hidden;
+    font-weight: bold;
+    padding-top: 8px;
+    color: white;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid black; */
+    /* align-items: center; */
+    box-shadow: 0 1px 5px 0 rgba(51,51,51,.15);
+    cursor: pointer;
+    background: #fff!important;
+    border-radius: 20px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.col-sm-12.update-icon .icon i.fa.fa-user {
+    font-size: 35px;
+    /* float: left; */
+    /* margin-left: 10px; */
+    color: #464242;
+    margin: auto;
+    /* width: 85%; */
+    /* height: 100%; */
+    /* line-height: 35px; */
+    padding-left: 13px;
+    padding-top: 5px;
+    /* align-items: center; */
+}
+
+.col-sm-12.update-icon {
+    border-bottom: 1px solid #b7b6b6;
+    margin: 17px 0;
+}
+
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {}

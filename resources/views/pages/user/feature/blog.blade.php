@@ -1,7 +1,7 @@
 @extends('layouts.user')
 @section('page')
 <!-- Page -->
-{{-- <section class="page-section blog-page">
+<section class="page-section blog-page">
     <div class="container">
         <div class="row">
             <!-- blog post -->
@@ -116,7 +116,6 @@
             <a href="#"><i class="fa fa-angle-right"></i></a>
         </div>
     </div>
-</section> --}}
+</section>
 <!-- Page end -->
-@include('layouts.user.blog')
 @endsection
