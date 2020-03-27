@@ -19,6 +19,7 @@
 
     </section>
     @include('layouts.admin.script')
+    @stack('script')
 </body>
 
 </html>

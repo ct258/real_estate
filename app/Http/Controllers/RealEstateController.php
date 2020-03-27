@@ -43,10 +43,10 @@ class RealEstateController extends Controller
     public function create()
     {
         // $direction = Direction::select('direction_id', 'direction_name')->get();
-        $form = Form::select('form_id', 'form_name')->get();
+        // $form = Form::select('form_id', 'form_name')->get();
         $province = Province::select('province_id', 'province_name')->orderBy('province_name', 'asc')->get();
 
-        return view('pages.admin.real_estate.create', compact('province', 'form'));
+        return view('pages.admin.real_estate.create', compact('province'));
     }
 
     /**

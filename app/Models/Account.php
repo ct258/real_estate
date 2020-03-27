@@ -73,4 +73,8 @@ class Account extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(Customer::class,'account_id');
     }
+    public function staff()
+    {
+        return $this->hasOne(Staff::class,'account_id');
+    }
 }

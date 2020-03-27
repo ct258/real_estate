@@ -29,7 +29,7 @@
                 </li>
                 {{-- bài viết --}}
                 <li class="sub-menu">
-                    <a href="#">
+                    <a href="{{route('blog.index')}}">
                         <i class="fa fa-pencil"></i>
                         <span>Bài viết</span>
                     </a>
