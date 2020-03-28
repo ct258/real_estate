@@ -10,6 +10,7 @@ use App\Models\RealEstateTranslation;
 use App\Models\StandardAcreage;
 use App\Models\Currency;
 use App\Models\Evaluate;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -260,6 +261,22 @@ class ClientController extends Controller
         'rank_2',
         'rank_1',
         ));
+    }
+    public function single_blog(Request $request,$blog_id)
+    {
+        $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
+        ->join('staff','staff.staff_id','blog.staff_id')
+        ->select('blog_avatar',
+        'blog_translation_title',
+        'blog_translation_content',
+        'staff_name')
+        ->where([
+            ['blog_translation_locale',\Session::get('lang', config('app.locale'))],
+        ['blog.blog_id',$blog_id]
+        ])
+        ->first();
+        // dd($blog);
+        return view('pages.user.page.single_blog',compact('blog'));
     }
 
     public function subscription(Request $request, $user)

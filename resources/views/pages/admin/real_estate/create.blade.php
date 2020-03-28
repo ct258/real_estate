@@ -61,12 +61,12 @@
                         <tr>
                             <td>
                                 <label>Hình thức</label>
-                                <select name="form" id="form" class="form-control form-control-sm">
+                                {{-- <select name="form" id="form" class="form-control form-control-sm">
                                     <option value="form_id" selected>-- Chọn --</option>
                                     @foreach ($form as $item)
                                     <option value="{{$item->form_id}}">{{$item->form_name}}</option>
-                                    @endforeach
-                                </select>
+                                @endforeach
+                                </select> --}}
                         </tr>
                         <tr>
                             <td>
