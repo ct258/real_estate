@@ -12,9 +12,9 @@ class customer extends Seeder
     {
         $faker = Faker::create();
         //customer
-        for ($i = 4; $i <= 9; ++$i) {
+        for ($i = 4; $i <= 10; ++$i) {
             DB::table('customer')->insert([
-        'account_id' => $i + 1,
+        'account_id' => $i,
         // 'customer_code'          => str_random(10),
         'customer_name'          => $faker->unique()->name,
         'customer_email'         => $faker->unique()->safeEmail,

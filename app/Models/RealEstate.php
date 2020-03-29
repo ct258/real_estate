@@ -27,6 +27,7 @@ class RealEstate extends Model
         'street_id',
         'customer_id',
         'real_estate_id',
+        'real_estate_avatar',
         'real_estate_acreage',
         'real_estate_price',
         'created_at',

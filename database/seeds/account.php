@@ -58,7 +58,7 @@ class account extends Seeder
         //staff
         DB::table('staff')->insert([
             'account_id' => 2,
-            // 'staff_code' => str_random(10),
+            'staff_code' => str_random(10),
             'staff_name' => $faker->unique()->name,
             'staff_email' => $faker->unique()->safeEmail,
             'staff_tel' => $faker->phoneNumber,

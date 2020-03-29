@@ -16,6 +16,11 @@ class CreateImageTable extends Migration
                 $table->increments('image_id')->comment('id của hình ảnh');
                 $table->text('image_path')->index()->comment('đường dẫn');
 
+
+                $table->integer('real_estate_id')->index()->unsigned();
+
+                $table->foreign('real_estate_id')->references('real_estate_id')->on('real_estate')->onDelete('cascade');
+
                 //log time
                 // $table->timestamp('created_at')
                 // ->default(DB::raw('CURRENT_TIMESTAMP'))

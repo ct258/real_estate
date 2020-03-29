@@ -15,6 +15,7 @@ class CreateRealEstateTable extends Migration
             Schema::create('real_estate', function (Blueprint $table) {
                 $table->increments('real_estate_id')->comment('id của bất động sản');
                 $table->string('real_estate_acreage')->index()->comment('diện tích bất động sản');
+                $table->string('real_estate_avatar')->comment('hình dại diện');
                 $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá trị');
                 $table->decimal('real_estate_longitude', 8, 6)->nullable()->index()->comment('kinh độ');
                 $table->decimal('real_estate_latitude', 8, 6)->nullable()->index()->comment('vĩ độ');
