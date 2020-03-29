@@ -16,12 +16,9 @@ class Payment extends Model
         'payment_id',
         'payment_code',
         'payment_name',
-        'payment_description',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'payment_image',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

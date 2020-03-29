@@ -20,19 +20,19 @@ class CreateAboutTranslationTable extends Migration
                 //foreign key
                 $table->integer('about_id')->index()->unsigned();
 
-                $table->foreign('about_id')->references('about_id')->on('about');
+                $table->foreign('about_id')->references('about_id')->on('about')->onDelete('cascade');
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
+                // $table->timestamp('created_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP'))
+                // ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
+                // $table->timestamp('updated_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+                // ->comment('ngày cập nhật');
 
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                // $table->timestamp('deleted_at')
+                // ->nullable()
+                // ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `about_translation` comment 'Thông tin công ty'");
         }

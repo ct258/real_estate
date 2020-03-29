@@ -15,13 +15,8 @@ class Form extends Model
     protected $fillable = [
         'unit_id',
         'form_id',
-        // 'form_code',
-        // 'form_name',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

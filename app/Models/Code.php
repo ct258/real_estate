@@ -24,6 +24,7 @@ class Code extends Model
         'code_note',
         'code_code',
         'code_amount',
+        'code_count',
         'code_min',
         'code_max',
         'code_per',

@@ -17,11 +17,8 @@ class RankTranslation extends Model
         'rank_translation_name',
         'rank_translation_description',
         'rank_translation_locale',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

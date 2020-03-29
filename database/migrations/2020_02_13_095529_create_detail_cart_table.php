@@ -4,24 +4,26 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWishlistTable extends Migration
+class CreateDetailCartTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('wishlist')) {
-            Schema::create('wishlist', function (Blueprint $table) {
-                $table->increments('wishlist_id')->comment('id của danh sách yêu thích');
-                // $table->text('wishlist_list')->comment('danh sách');
+        if (!Schema::hasTable('detail_cart')) {
+            Schema::create('detail_cart', function (Blueprint $table) {
+                $table->increments('detail_cart_id')->comment('id của giỏ hàng');
+                $table->decimal('detail_cart_price',18,4)->comment('Giá sản phẩm');
 
                 //foreign key
+                $table->integer('cart_id')->index()->unsigned();
                 $table->integer('real_estate_id')->index()->unsigned();
-                $table->integer('customer_id')->index()->unsigned();
 
+                $table->foreign('cart_id')->references('cart_id')->on('cart');
                 $table->foreign('real_estate_id')->references('real_estate_id')->on('real_estate');
-                $table->foreign('customer_id')->references('customer_id')->on('customer');
                 //log time
                 // $table->timestamp('created_at')
                 // ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -34,16 +36,19 @@ class CreateWishlistTable extends Migration
                 // $table->timestamp('deleted_at')
                 // ->nullable()
                 // ->comment('ngày xóa tạm');
+                // Setting unique
             });
-            DB::statement("ALTER TABLE `wishlist` comment 'Danh sách yêu thích'");
+            DB::statement("ALTER TABLE `detail_cart` comment 'Chi tiết giỏ hàng'");
         }
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
-        // Schema::dropIfExists('wishlist');
+        // Schema::dropIfExists('detail_cart');
     }
 }

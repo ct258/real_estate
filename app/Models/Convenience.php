@@ -13,8 +13,9 @@ class Convenience extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'direction_id',
+        'real_estate_id',
         'convenience_id',
+        'convenience_direction',
         'convenience_facade',
         'convenience_way',
         'convenience_floor',
@@ -36,11 +37,8 @@ class Convenience extends Model
         'convenience_tennis',
         'convenience_wifi',
         'convenience_tivi',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

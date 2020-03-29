@@ -13,7 +13,7 @@ class BlogTranslation extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'staff_id',
+        'blog_id',
         'blog_translation_id',
         'blog_translation_title',
         'blog_translation_content',
@@ -23,6 +23,5 @@ class BlogTranslation extends Model
         'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
 }

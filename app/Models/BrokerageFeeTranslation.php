@@ -13,16 +13,11 @@ class BrokerageFeeTranslation extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'staff_id',
         'bft_id',
         'bft_name',
-        'bft_content',
+        'bft_note',
         'bft_locale',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
 }

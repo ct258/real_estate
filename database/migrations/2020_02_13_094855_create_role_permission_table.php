@@ -4,22 +4,26 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImageSaleContractTable extends Migration
+class CreateRolePermissionTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('image_sale_contract')) {
-            Schema::create('image_sale_contract', function (Blueprint $table) {
-                $table->increments('image_sale_contract_id');
-                //foreign key
-                $table->integer('image_id')->index()->unsigned();
-                $table->integer('sale_contract_id')->index()->unsigned();
+        if (!Schema::hasTable('role_permission')) {
+            Schema::create('role_permission', function (Blueprint $table) {
+                $table->increments('role_permission_id');
 
-                $table->foreign('image_id')->references('image_id')->on('image');
-                $table->foreign('sale_contract_id')->references('sale_contract_id')->on('sale_contract');
+                //foreign key
+                $table->integer('permission_id')->index()->unsigned();
+                $table->integer('role_id')->index()->unsigned();
+
+                $table->foreign('permission_id')->references('permission_id')->on('permission');
+                $table->foreign('role_id')->references('role_id')->on('role');
+
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -32,16 +36,18 @@ class CreateImageSaleContractTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
+
             });
-            DB::statement("ALTER TABLE `image_sale_contract` comment 'Hình ảnh hợp đồng mua bán'");
         }
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
-        // Schema::dropIfExists('image_sale_contract');
+        // Schema::dropIfExists('role_permission');
     }
 }

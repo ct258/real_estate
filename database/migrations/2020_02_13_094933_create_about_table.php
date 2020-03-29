@@ -14,25 +14,14 @@ class CreateAboutTable extends Migration
         if (!Schema::hasTable('about')) {
             Schema::create('about', function (Blueprint $table) {
                 $table->increments('about_id')->comment('id thông tin công ty');
-                // $table->string('about_name')->index()->comment('tên thông tin');
-                // $table->text('about_content')->index()->comment('mô tả công ty');
+                $table->string('about_code')->index()->comment('tên thông tin');
 
                 //foreign key
                 $table->integer('staff_id')->index()->unsigned();
 
                 $table->foreign('staff_id')->references('staff_id')->on('staff');
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
-
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
-
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                
             });
             DB::statement("ALTER TABLE `about` comment 'Thông tin công ty'");
         }

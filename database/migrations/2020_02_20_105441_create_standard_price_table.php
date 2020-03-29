@@ -11,33 +11,33 @@ class CreateStandardPriceTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('standard_price')) {
-            Schema::create('standard_price', function (Blueprint $table) {
-                $table->increments('standard_price_id');
-                $table->string('standard_price_name')->nullable()->index()->comment('Chuẩn của giá');
-                $table->decimal('standard_price_value1', 18, 4)->nullable()->unsigned()->index()->comment('Chuẩn của giá');
-                $table->decimal('standard_price_value2', 18, 4)->nullable()->unsigned()->index()->comment('Chuẩn của giá');
+        // if (!Schema::hasTable('standard_price')) {
+        //     Schema::create('standard_price', function (Blueprint $table) {
+        //         $table->increments('standard_price_id');
+        //         $table->string('standard_price_name')->nullable()->index()->comment('Chuẩn của giá');
+        //         $table->decimal('standard_price_value1', 18, 4)->nullable()->unsigned()->index()->comment('Chuẩn của giá');
+        //         $table->decimal('standard_price_value2', 18, 4)->nullable()->unsigned()->index()->comment('Chuẩn của giá');
 
-                //foreign key
-                $table->integer('form_id')->index()->unsigned();
+        //         //foreign key
+        //         $table->integer('form_id')->index()->unsigned();
 
-                $table->foreign('form_id')->references('form_id')->on('form');
+        //         $table->foreign('form_id')->references('form_id')->on('form');
 
-                //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
+        //         //log time
+        //         $table->timestamp('created_at')
+        //         ->default(DB::raw('CURRENT_TIMESTAMP'))
+        //         ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
+        //         $table->timestamp('updated_at')
+        //         ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+        //         ->comment('ngày cập nhật');
 
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
-            });
-            DB::statement("ALTER TABLE `standard_price` comment 'Tiêu chuẩn giá'");
-        }
+        //         $table->timestamp('deleted_at')
+        //         ->nullable()
+        //         ->comment('ngày xóa tạm');
+        //     });
+        //     DB::statement("ALTER TABLE `standard_price` comment 'Tiêu chuẩn giá'");
+        // }
     }
 
     /**

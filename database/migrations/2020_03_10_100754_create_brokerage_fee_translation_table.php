@@ -21,19 +21,19 @@ class CreateBrokerageFeeTranslationTable extends Migration
                 //foreign key
                 $table->integer('brokerage_fee_id')->index()->unsigned();
 
-                $table->foreign('brokerage_fee_id')->references('brokerage_fee_id')->on('brokerage_fee');
+                $table->foreign('brokerage_fee_id')->references('brokerage_fee_id')->on('brokerage_fee')->onDelete('cascade');
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
+                // $table->timestamp('created_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP'))
+                // ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
+                // $table->timestamp('updated_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+                // ->comment('ngày cập nhật');
 
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                // $table->timestamp('deleted_at')
+                // ->nullable()
+                // ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `brokerage_fee_translation` comment 'Chi tiết thời gian treo bài'");
         }

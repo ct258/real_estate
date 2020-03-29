@@ -19,22 +19,12 @@ class CreateWardTable extends Migration
 
                 //foreign key
                 $table->integer('district_id')->index()->unsigned();
-                $table->integer('province_id')->index()->unsigned();
+                // $table->integer('province_id')->index()->unsigned();
 
                 $table->foreign('district_id')->references('district_id')->on('district');
-                $table->foreign('province_id')->references('province_id')->on('province');
+                // $table->foreign('province_id')->references('province_id')->on('province');
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
-
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `ward` comment 'Phường xã'");
         }

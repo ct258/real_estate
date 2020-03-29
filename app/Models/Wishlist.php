@@ -14,13 +14,10 @@ class Wishlist extends Model
 
     protected $fillable = [
         'customer_id',
+        'real_estate_id',
         'wishlist_id',
-        'wishlist_list',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

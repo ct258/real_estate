@@ -13,14 +13,11 @@ class Permission extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'role_id',
-        'route_id',
         'permission_id',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'permission_name',
+        'permission_link',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

@@ -13,16 +13,16 @@ class Subscription extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'type_id',
         'customer_id',
-        'province_id',
-        'district_id',
+        // 'type_id',
+        // 'province_id',
+        // 'district_id',
         'subscription_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

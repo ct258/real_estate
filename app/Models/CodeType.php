@@ -15,11 +15,8 @@ class CodeType extends Model
     protected $fillable = [
         'code_type_id',
         'code_type_name',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

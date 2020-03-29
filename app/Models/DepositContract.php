@@ -13,7 +13,7 @@ class DepositContract extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'real_estate',
+        'real_estate_id',
         'deposit_contract_id',
         'deposit_contract_code',
         'deposit_contract_nameA',

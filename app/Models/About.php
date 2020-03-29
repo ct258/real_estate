@@ -15,12 +15,7 @@ class About extends Model
     protected $fillable = [
         'staff_id',
         'about_id',
-        'about_code',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
 }

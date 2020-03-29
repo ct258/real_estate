@@ -15,11 +15,8 @@ class Rank extends Model
     protected $fillable = [
         'rank_id',
         'rank_level',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

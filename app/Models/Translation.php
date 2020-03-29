@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RealEstateTranslation extends Model
+class Translation extends Model
 {
-    protected $table = 'real_estate_translation';
+    protected $table = 'translation';
 
     protected $primaryKey = 'translation_id';
 
@@ -24,6 +24,6 @@ class RealEstateTranslation extends Model
         'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

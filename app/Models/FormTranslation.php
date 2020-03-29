@@ -17,11 +17,8 @@ class FormTranslation extends Model
         'form_translation_id',
         'form_translation_name',
         'form_translation_locale',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }
