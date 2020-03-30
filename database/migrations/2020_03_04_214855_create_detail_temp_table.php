@@ -16,7 +16,7 @@ class CreateDetailTempTable extends Migration
         if (!Schema::hasTable('detail_temp')) {
             Schema::create('detail_temp', function (Blueprint $table) {
                 $table->increments('detail_temp_id')->comment('id của giỏ hàng tạm');
-                $table->decimal('detail_temp_price',18,4)->comment('giá');
+                $table->decimal('detail_temp_price',18,4)->nullable()->comment('giá');
 
 
                 //foreign key

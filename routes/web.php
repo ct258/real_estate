@@ -72,10 +72,8 @@ Route::group(['middleware' => ['currency']], function () {
         Route::get('subscription', function () {
             return view('pages.user.subscription.index');
         })->name('subscription');
-        Route::get('/', function () {
-            return view('pages.user.index');
-        })->name('index');
 
+        Route:: get('/', ['uses' => 'ClientController@view_product', 'as' => 'index']);
         Route:: get('/subscription/{customer_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription.submit']);
         
     });

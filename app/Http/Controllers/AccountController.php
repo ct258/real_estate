@@ -95,7 +95,7 @@ class AccountController extends Controller
             'password' => \Hash::make($request->password),
             'role_id'  => 3,
         ));
-        Customer::insert([
+        $customer_id=Customer::insertGetid([
             'customer_name'          => $request->fullname,
             'customer_email'         => $request->email,
             'customer_tel'           => $request->phone,
@@ -106,6 +106,9 @@ class AccountController extends Controller
             'rank_id'                => 1,
             'account_id'             => $account_id,
             'ward_id'                => $request->ward,
+        ]);
+        Cart::insert([
+            'customer_id'=>$customer_id,
         ]);
 
         return view('pages.user.index');
