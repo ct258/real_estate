@@ -11,6 +11,8 @@ use App\Models\StandardAcreage;
 use App\Models\Currency;
 use App\Models\Evaluate;
 use App\Models\Blog;
+use App\Models\CookieUser;
+use App\Models\ViewProduct;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -23,14 +25,14 @@ class ClientController extends Controller
         // \App::setLocale('vi');
         // $content = RealEstateTranslation::getTranslation('vi')->first();
         // dd($content);
-        $real_estate = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-            ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
-            ->join('image', 'image_real_estate.image_id', 'image.image_id')
+        $real_estate = RealEstate::join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+            // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
             ->join('district', 'real_estate.district_id', 'district.district_id')
             ->join('province', 'district.province_id', 'province.province_id')
             ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
             ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
             ->select('real_estate.real_estate_id',
+            'real_estate_avatar',
             'translation_name',
             'translation_address',
             'translation_description',
@@ -38,11 +40,10 @@ class ClientController extends Controller
             'real_estate_acreage',
             'real_estate.created_at',
             'unit_translation.unit_translation_name',
-            'image.image_path',
+            // 'image.image_path',
             'province.province_name',
             'district.district_name')
             ->where([
-                ['image_real_estate.image_real_estate_note', 'Avatar'],
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
                 ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
             // ->where('image_real_estate.image_real_estate_note', 'Avatar')
@@ -62,9 +63,8 @@ class ClientController extends Controller
         ->where('form_translation_locale', \Session::get('lang', config('app.locale')))
         ->get();
         $province = Province::select('province_id', 'province_name')->get();
-        $standard_acreage = StandardAcreage::select('standard_acreage_id', 'standard_acreage_name', 'standard_acreage_value1', 'standard_acreage_value2')->get();
 
-        return view('pages.user.feature.list', compact('real_estate', 'day', 'form', 'province', 'standard_acreage'));
+        return view('pages.user.page.list', compact('real_estate', 'day', 'form', 'province'));
     }
 
     public function searchFullText(Request $request)
@@ -156,11 +156,35 @@ class ClientController extends Controller
 
     public function single_list(Request $request, $real_estate_id)
     {
-        // Session::forget('currency');
-        // \Session::flash('currency', 'USD');
+        //thêm vào danh sách đã xem
+        
+        //tìm xem có lưu cookie hiện tại chưa
+        //nếu có rồi thì tìm xem đã có sp chưa
+        //nếu chưa thì thêm vào csdl
+        $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+        if($cookie){
+            $view_product=ViewProduct::where('cookie_user_id',$cookie->cookie_user_id)
+            ->first();
+            if(!$view_product){
+                ViewProduct::insert([
+                    'real_estate_id'=>$real_estate_id,
+                    'cookie_user_id'=>$cookie->cookie_user_id,
+                ]);
+            }
+        }
+        else{
+            $cookie=CookieUser::insertGetid([
+                'cookie_user_name'=>$request->cookie('Name_of_your_cookie'),
+            ]);
+            ViewProduct::insert([
+                'real_estate_id'=>$real_estate_id,
+                'cookie_user_id'=>$cookie->cookie_user_id,
+            ]);
+        }
+
         // dd($request);
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
-        ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
+        ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
         ->join('province', 'district.province_id', 'province.province_id')
         ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
         ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
@@ -198,12 +222,11 @@ class ClientController extends Controller
         $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
         // dd($count_rank);
         // dd($averageRank);
-        $image = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-        ->join('image', 'image_real_estate.image_id', 'image.image_id')
-        ->select('image.image_path')
+        $image = RealEstate::join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
+        ->select('image.image_path','real_estate.real_estate_avatar')
         ->where('real_estate.real_estate_id', $real_estate_id)
         ->get();
-
+// dd($image);
         $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
         ->select('customer.customer_avatar',
         'customer.customer_name',
@@ -248,7 +271,7 @@ class ClientController extends Controller
 
         // dd($real_estate);
 
-        return view('pages.user.feature.single_list', compact('real_estate',
+        return view('pages.user.page.single_list', compact('real_estate',
         'image',
         'rate',
         'evaluate',
