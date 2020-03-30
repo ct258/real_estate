@@ -309,11 +309,13 @@
                                     </div>
                                     <div class="col-sm">
                                         {{-- đăng ký --}}
-
-                                        <a href="{{route('subscription',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                        @if(\Auth::guard('account')->check())
+                                        <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
                                             class="rent-notic" id="subscription">Đăng ký</a>
-
-
+                                        @else
+                                        <a href="{{route('subscription')}}" class="rent-notic" id="subscription">Đăng
+                                            ký</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

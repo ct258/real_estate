@@ -59,7 +59,7 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div id="paginationa" class="paginationa">
-                        @include('pages.user.feature.list_ajax')
+                        @include('pages.user.page.list_ajax')
                     </div>
                 </div>
                 {{ $real_estate->links() }}
