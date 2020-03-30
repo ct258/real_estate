@@ -18,7 +18,7 @@ class real_estate extends Seeder
                 'street_id' => 1811,
                 'district_id' => 6,
                 'unit_id' => 3,
-                'status_id' => 3,
+                'real_estate_status' => 'Đang bán',
                 'real_estate_avatar' => 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg',
             ]);
             DB::table('translation')->insert([

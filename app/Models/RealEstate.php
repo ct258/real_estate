@@ -30,6 +30,7 @@ class RealEstate extends Model
         'real_estate_avatar',
         'real_estate_acreage',
         'real_estate_price',
+        'real_estate_status',
         'created_at',
         'updated_at',
         'deleted_at',
