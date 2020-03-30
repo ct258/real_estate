@@ -4,18 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRouteTable extends Migration
+class CreateCookieUserTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('route')) {
-            Schema::create('route', function (Blueprint $table) {
-                $table->increments('route_id')->comment('id của đường link');
-                $table->string('route_link')->index()->comment('đường link trong file web');
-                $table->string('route_name', 45)->index()->comment('tên chức năng đường link');
+        if (!Schema::hasTable('cookie_user')) {
+            Schema::create('cookie_user', function (Blueprint $table) {
+                $table->increments('cookie_user_id')->comment('id của cookie');
+                $table->string('cookie_user_name', 80)->comment('tên cookie');
 
                 //log time
                 $table->timestamp('created_at')
@@ -29,19 +30,18 @@ class CreateRouteTable extends Migration
                 $table->timestamp('deleted_at')
                 ->nullable()
                 ->comment('ngày xóa tạm');
-
-                //unique
-                $table->unique(['route_link']);
             });
-            DB::statement("ALTER TABLE `route` comment 'Đường link'");
+            DB:: statement("ALTER TABLE `cookie_user` comment 'Giỏ hàng tạm'");
         }
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
-        // Schema::dropIfExists('route');
+        // Schema::dropIfExists('cookie_user');
     }
 }

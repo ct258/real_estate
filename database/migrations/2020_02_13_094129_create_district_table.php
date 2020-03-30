@@ -21,18 +21,7 @@ class CreateDistrictTable extends Migration
                 $table->integer('province_id')->index()->unsigned();
 
                 $table->foreign('province_id')->references('province_id')->on('province');
-                //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
-
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `district` comment 'Quận huyện'");
         }

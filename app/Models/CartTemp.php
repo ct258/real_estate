@@ -14,9 +14,9 @@ class CartTemp extends Model
 
     protected $fillable = [
         'real_estate_id',
+        'cookie_user_id',
+        'code_id',
         'cart_temp_id',
-        'cart_temp_cookie_name',
-        'cart_temp_list',
         'created_at',
         'updated_at',
         'deleted_at',

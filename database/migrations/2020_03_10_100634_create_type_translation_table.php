@@ -20,19 +20,19 @@ class CreateTypeTranslationTable extends Migration
                 //foreign key
                 $table->integer('type_id')->index()->unsigned();
 
-                $table->foreign('type_id')->references('type_id')->on('type');
+                $table->foreign('type_id')->references('type_id')->on('type')->onDelete('cascade');
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
+                // $table->timestamp('created_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP'))
+                // ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
+                // $table->timestamp('updated_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+                // ->comment('ngày cập nhật');
 
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                // $table->timestamp('deleted_at')
+                // ->nullable()
+                // ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `type_translation` comment 'Loại bất động sản'");
         }

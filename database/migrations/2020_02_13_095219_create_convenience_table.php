@@ -38,18 +38,21 @@ class CreateConvenienceTable extends Migration
                 $table->tinyInteger('direction_code')->index()->unsigned()->comment('Phương hướng');
 
                 //foreign key
+                $table->integer('real_estate_id')->index()->unsigned();
+
+                $table->foreign('real_estate_id')->references('real_estate_id')->on('real_estate')->onDelete('cascade');
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
+                // $table->timestamp('created_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP'))
+                // ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
+                // $table->timestamp('updated_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+                // ->comment('ngày cập nhật');
 
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                // $table->timestamp('deleted_at')
+                // ->nullable()
+                // ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `convenience` comment 'Tiện nghi'");
         }

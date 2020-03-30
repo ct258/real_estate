@@ -17,11 +17,7 @@ class District extends Model
         'district_id',
         'district_name',
         'district_prefix',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
 }

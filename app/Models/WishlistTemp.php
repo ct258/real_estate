@@ -13,14 +13,11 @@ class WishlistTemp extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
+        'customer_id',
+        'real_estate_id',
         'wishlist_temp_id',
-        'wishlist_temp_cookie_name ',
-        'wishlist_list',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

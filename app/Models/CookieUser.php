@@ -4,23 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Route extends Model
+class CookieUser extends Model
 {
-    protected $table = 'route';
+    protected $table = 'cookie_user';
 
-    protected $primaryKey = 'route_id';
+    protected $primaryKey = 'cookie_user_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'route_id',
-        'route_link',
-        'route_name',
+        'cookie_user_id',
+        'cookie_user_name',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
     public $timestamps = true;
-    protected $dates = ['deleted_at'];
 }

@@ -42,17 +42,17 @@ Route::group(['middleware' => ['currency']], function () {
             Route:: get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
         });
         Route:: get('blog', function () {
-            return view('pages.user.feature.blog');
+            return view('pages.user.page.blog');
         });
         
         Route::get('about', function () {
-            return view('pages.user.feature.about');
+            return view('pages.user.page.about');
         });
         Route::get('category', function () {
-            return view('pages.user.feature.categories');
+            return view('pages.user.page.categories');
         });
         Route::get('contact', function () {
-            return view('pages.user.feature.contact');
+            return view('pages.user.page.contact');
         });
 
         Route::get('mail/mail_compose', function () {
@@ -327,13 +327,13 @@ Route::group(['middleware' => ['currency']], function () {
         
     });
     Route::get('map', function () {
-        return view('pages.user.feature.map');
+        return view('pages.user.page.map');
     });
     Route::get('map2', function () {
-        return view('pages.user.feature.map2');
+        return view('pages.user.page.map2');
     });
     Route::get('map3', function () {
-        return view('pages.user.feature.map3');
+        return view('pages.user.page.map3');
     });
         });
 

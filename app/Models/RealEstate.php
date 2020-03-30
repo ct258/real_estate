@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+// use Cviebrock\EloquentSluggable\Sluggable;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RealEstate extends Model
 {
+    // use Sluggable;
     // use Translatable;
     protected $table = 'real_estate';
 
@@ -20,12 +22,12 @@ class RealEstate extends Model
         'status_id',
         'brokerage_fee_id',
         'unit_id',
-        'convenience_id',
         'district_id',
         'ward_id',
         'street_id',
         'customer_id',
         'real_estate_id',
+        'real_estate_avatar',
         'real_estate_acreage',
         'real_estate_price',
         'created_at',
@@ -36,8 +38,14 @@ class RealEstate extends Model
     public $timestamps = true;
     protected $dates = ['deleted_at'];
 
-    // public $translatedAttributes = ['ret_name', 'ret_description'];
-
+    // public function sluggable()
+    // {
+    //     return [
+    //         'slug' => [
+    //             'source' => 'title'
+    //         ]
+    //     ];
+    // }
     protected function fullTextWildcards($term)
     {
         // removing symbols used by MySQL

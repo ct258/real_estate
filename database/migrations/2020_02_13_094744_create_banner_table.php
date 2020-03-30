@@ -19,22 +19,22 @@ class CreateBannerTable extends Migration
                 $table->text('banner_link')->nullable()->index()->comment('link khi click vào');
 
                 //foreign key
-                $table->integer('status_id')->index()->unsigned();
+                // $table->integer('status_id')->index()->unsigned();
 
-                $table->foreign('status_id')->references('status_id')->on('status');
+                // $table->foreign('status_id')->references('status_id')->on('status');
 
                 //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
+                // $table->timestamp('created_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP'))
+                // ->comment('ngày tạo');
 
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
+                // $table->timestamp('updated_at')
+                // ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+                // ->comment('ngày cập nhật');
 
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                // $table->timestamp('deleted_at')
+                // ->nullable()
+                // ->comment('ngày xóa tạm');
             });
             DB::statement("ALTER TABLE `banner` comment 'hình banner'");
         }

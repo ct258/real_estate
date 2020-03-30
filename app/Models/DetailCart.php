@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type extends Model
+class DetailCart extends Model
 {
-    protected $table = 'type';
+    protected $table = 'detail_cart';
 
-    protected $primaryKey = 'type_id';
+    protected $primaryKey = 'detail_cart_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'form_id',
-        'type_id',
-        // 'type_code',
+        'real_estate_id',
+        'detail_cart_id',
+        'detail_cart_price',
     ];
 
     public $timestamps = false;

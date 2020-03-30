@@ -4,22 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bill extends Model
+class RolePermission extends Model
 {
-    protected $table = 'bill';
+    protected $table = 'role_permission';
 
-    protected $primaryKey = 'bill_id';
+    protected $primaryKey = 'role_permission_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
-        'status_id',
-        'staff_id',
-        'cart_id',
-        'payment_id',
-        'bill_id',
-        'bill_content',
-        'bill_total',
+        'role_id',
+        'permission_id',
+        'role_permission_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -27,4 +23,5 @@ class Bill extends Model
 
     public $timestamps = true;
     protected $dates = ['deleted_at'];
+
 }

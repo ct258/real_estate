@@ -107,13 +107,15 @@ class CartController extends Controller
 
     public function add_to_cart(Request $request, $real_estate_id)
     {
-        //nếu đã đăng nhập thì lưu vô Cart
+        /*
+        nếu đã đăng nhập thì lưu vô Cart
+        tìm trong cart_temp cùng cookie và chuyển hết vào giỏ hàng
+        nếu không tìn thấy giỏ hàng thì insert
+        */
         if (Auth::guard('account')->check()) {
-            //tìm trong cart_temp cùng cookie và chuyển hết vào giỏ hàng
             $find = Cart::where([['real_estate_id', $real_estate_id], ['customer_id', \Auth::guard('account')->user()->account_id]])->first();
             // dd($find);
             if (!$find) {
-                //nếu không tìn thấy giỏ hàng thì insert
                 Cart::insert([
                 'real_estate_id' => $real_estate_id,
                 'customer_id' => \Auth::guard('account')->user()->account_id,

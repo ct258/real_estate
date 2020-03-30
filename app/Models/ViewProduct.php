@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class ViewProduct extends Model
 {
-    protected $table = 'image';
+    protected $table = 'view_product';
 
-    protected $primaryKey = 'image_id';
+    protected $primaryKey = 'view_product_id';
 
     protected $keyType = 'int';
 
     protected $fillable = [
+        'view_product_id',
+        'cookie_user_id',
         'real_estate_id',
-        'image_id',
-        'image_path',
     ];
 
     public $timestamps = false;
-    // protected $dates = ['deleted_at'];
 }

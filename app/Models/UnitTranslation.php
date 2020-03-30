@@ -17,11 +17,8 @@ class UnitTranslation extends Model
         'unit_translation_id',
         'unit_translation_name',
         'unit_translation_locale',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

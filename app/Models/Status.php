@@ -14,15 +14,12 @@ class Status extends Model
 
     protected $fillable = [
         'status_id',
-        // 'status_code',
+        'status_code',
         'status_name',
-        'status_reason',
         'status_note',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'status_reason',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

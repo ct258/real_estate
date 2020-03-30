@@ -15,11 +15,8 @@ class Unit extends Model
     protected $fillable = [
         'unit_id',
         'unit_value',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

@@ -13,7 +13,7 @@ class Ward extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'province_id',
+        // 'province_id',
         'district_id',
         'ward_id',
         'ward_name',
@@ -23,6 +23,6 @@ class Ward extends Model
         'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

@@ -19,6 +19,7 @@ class Evaluate extends Model
         'evaluate_reply',
         'evaluate_title',
         'evaluate_content',
+        'evaluate_status',
         'evaluate_rank',
         'created_at',
         'updated_at',

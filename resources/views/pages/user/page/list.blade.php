@@ -92,10 +92,6 @@
                         <select name="acreage" id="acreage">
                             <option value="">-- Chọn Diện tích --</option>
                             <option value=""><button type="text" name="" id=""></button></option>
-                            @foreach ($standard_acreage as $item)
-                            <option value="{{$item->standard_acreage_value1}},{{$item->standard_acreage_value2}}">
-                                {{$item->standard_acreage_name}}</option>
-                            @endforeach
                         </select>
                     </div>
                     <div class="left">

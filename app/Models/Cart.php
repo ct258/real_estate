@@ -14,13 +14,15 @@ class Cart extends Model
 
     protected $fillable = [
         'customer_id',
+        'payment_id',
+        'status_id',
+        'code_id',
         'cart_id',
-        'cart_list',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
     public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 }

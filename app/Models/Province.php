@@ -16,11 +16,8 @@ class Province extends Model
         'province_id',
         'province_name',
         'province_prefix',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

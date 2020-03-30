@@ -15,14 +15,8 @@ class BrokerageFee extends Model
     protected $fillable = [
         'brokerage_fee_id',
         'brokerage_fee_code',
-        'brokerage_fee_name',
         'brokerage_fee_price',
-        'brokerage_fee_description',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
 }

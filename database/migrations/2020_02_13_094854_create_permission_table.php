@@ -13,28 +13,15 @@ class CreatePermissionTable extends Migration
     {
         if (!Schema::hasTable('permission')) {
             Schema::create('permission', function (Blueprint $table) {
-                $table->increments('permission_id')->comment('id quyền');
+                $table->increments('permission_id')->comment('id của đường link');
+                $table->string('permission_link')->index()->comment('đường link trong file web');
+                $table->string('permission_name', 45)->index()->comment('tên chức năng đường link');
 
-                //foreign key
-                $table->integer('route_id')->index()->unsigned();
-                $table->integer('role_id')->index()->unsigned();
 
-                $table->foreign('route_id')->references('route_id')->on('route');
-                $table->foreign('role_id')->references('role_id')->on('role');
-                //log time
-                $table->timestamp('created_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('ngày tạo');
-
-                $table->timestamp('updated_at')
-                ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('ngày cập nhật');
-
-                $table->timestamp('deleted_at')
-                ->nullable()
-                ->comment('ngày xóa tạm');
+                //unique
+                $table->unique(['permission_link']);
             });
-            DB::statement("ALTER TABLE `permission` comment 'Quyền'");
+            DB::statement("ALTER TABLE `permission` comment 'Đường link'");
         }
     }
 

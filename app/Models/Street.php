@@ -13,7 +13,7 @@ class Street extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'province_id',
+        // 'province_id',
         'district_id',
         'street_id',
         'street_name',
@@ -23,6 +23,6 @@ class Street extends Model
         'deleted_at',
     ];
 
-    public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    public $timestamps = false;
+    // protected $dates = ['deleted_at'];
 }

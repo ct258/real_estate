@@ -21,7 +21,7 @@ class CreateBlogTranslationTable extends Migration
                 //foreign key
                 $table->integer('blog_id')->index()->unsigned();
 
-                $table->foreign('blog_id')->references('blog_id')->on('blog');
+                $table->foreign('blog_id')->references('blog_id')->on('blog')->onDelete('cascade');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))
