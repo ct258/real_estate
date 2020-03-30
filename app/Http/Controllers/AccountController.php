@@ -45,28 +45,32 @@ class AccountController extends Controller
             //Chuyển giỏ hàng ảo vào giỏ hàng thật
             //kiểm tra xem tài khoản này phải tài khoản khách hàng hay không
             //nếu phải thì chuyển giỏ không thì bỏ qua
-            $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->account_id)->first();
+
+            // $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->account_id)->first();
             // dd(Auth::guard('account')->user()->account_id);
-            if($check_customer){
+
+
+            // if($check_customer){
             //tìm xem khách hàng này có giỏ hàng ảo không
-                $item = CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->first();
+
+                // $item = CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->first();
 
             //Nếu trong giỏ hàng ảo của khách hàng này có sp 
             //thi kiểm tra khách có giỏ hàng chưa 
             //nếu khách chưa có giỏ hàng thì chuyển giỏ hàng ảo sang giỏ hàng thật
-                if ($item) {
-                    $find = Cart::where('customer_id', \Auth::guard('account')->user()->load('customer')->customer->customer_id)
-                    ->first();
-                    if (!$find) {
-                        Cart::insert([
-                            'customer_id' => \Auth::guard('account')->user()->account_id,
-                            'cart_list'   => $item->cart_temp_list,
-                        ]);
-                    }
-                    CartTemp:: where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->delete();
-                }
-                return redirect('/');
-            }
+            //     if ($item) {
+            //         $find = Cart::where('customer_id', \Auth::guard('account')->user()->load('customer')->customer->customer_id)
+            //         ->first();
+            //         if (!$find) {
+            //             Cart::insert([
+            //                 'customer_id' => \Auth::guard('account')->user()->account_id,
+            //                 'cart_list'   => $item->cart_temp_list,
+            //             ]);
+            //         }
+            //         CartTemp:: where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->delete();
+            //     }
+            //     return redirect('/');
+            // }
         //nếu là admin thì chuyển vào trang admin
         return redirect('/dashboard');
 

@@ -262,11 +262,13 @@
         <div class="row single_list">
             <div class="col-lg-8 single-list-page">
                 <div class="single-list-slider owl-carousel" id="sl-slider">
+                    <div class="sl-item set-bg" data-setbg="{{asset($image[0]->real_estate_avatar)}}"></div>
                     @foreach ($image as $item)
                     <div class="sl-item set-bg" data-setbg="{{asset($item->image_path)}}"></div>
                     @endforeach
                 </div>
                 <div class="owl-carousel sl-thumb-slider" id="sl-slider-thumb">
+                    <div class="sl-thumb set-bg" data-setbg="{{asset($image[0]->real_estate_avatar)}}"></div>
                     @foreach ($image as $item)
                     <div class="sl-thumb set-bg" data-setbg="{{asset($item->image_path)}}"></div>
                     @endforeach
@@ -298,7 +300,7 @@
                                             <div style="font-weight: bold;
                                             display: inline-block;
                                             color: #30caa0;
-                                            font-size: 18px;}"> {{$rate->currency_symbol}}
+                                            font-size: 18px;"> {{$rate->currency_symbol}}
                                             </div>
                                             {{-- <i class="fas fa-dollar-sign"></i> --}}
                                             {{number_format($real_estate->real_estate_price)}}
@@ -308,8 +310,8 @@
                                     <div class="col-sm">
                                         {{-- đăng ký --}}
 
-                                        <a href="{{route('subscription',$user=1)}}" class="rent-notic"
-                                            id="subscription">Đăng ký</a>
+                                        <a href="{{route('subscription',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                            class="rent-notic" id="subscription">Đăng ký</a>
 
 
                                     </div>
@@ -386,140 +388,140 @@
                                     </div>
                                 </div>
 
-                                </div>
-                                <div class="side">
-                                    <div class="left">4 Star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-4"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_4}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">3 Star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-3"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_3}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">2 Star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-2"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_2}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">1 Star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-1"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_1}}</div>
-
+                            </div>
+                            <div class="side">
+                                <div class="left">4 Star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-4"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="share_comment">
-                                <h3>Chia sẻ nhận xét về sản phẩm</h3>
-                                <button class="btn btn-default">Viết nhận xét của bạn</button>
+                            <div class="side right">
+
+                                <div class="right">{{$rank_4}}</div>
+
+                            </div>
+                            <div class="side">
+                                <div class="left">3 Star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-3"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+
+                                <div class="right">{{$rank_3}}</div>
+
+                            </div>
+                            <div class="side">
+                                <div class="left">2 Star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-2"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+
+                                <div class="right">{{$rank_2}}</div>
+
+                            </div>
+                            <div class="side">
+                                <div class="left">1 Star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-1"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+
+                                <div class="right">{{$rank_1}}</div>
+
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                        <div class="share_comment">
+                            <h3>Chia sẻ nhận xét về sản phẩm</h3>
+                            <button class="btn btn-default">Viết nhận xét của bạn</button>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="sl-sp-title">Đánh giá</h3>
-                <div class="comment-warp">
-                    {{-- <h4 class="comment-title">3 Comments</h4> --}}
-                    <ul class="comment-list">
-                        {{-- <li>
+            </div>
+            <h3 class="sl-sp-title">Đánh giá</h3>
+            <div class="comment-warp">
+                {{-- <h4 class="comment-title">3 Comments</h4> --}}
+                <ul class="comment-list">
+                    {{-- <li>
                             <div class="comment">
                                 <div class="comment-avator set-bg"
                                     data-setbg="{{asset('leramiz/img/blog/comment/1.jpg')}}"></div>
-                <div class="comment-content">
-                    <h5>Lucia Mendes <span>24 Mar 2018</span></h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. finibus eros eget purus vulputate,
-                        sit amet ornare ipsum. Ut enim ad minim veniam. Donec tincidunt sem non odio
-                        congue.</p>
-                    <a href="" class="c-btn">Like</a>
-                    <a href="" class="c-btn">Reply</a>
-                </div>
+            <div class="comment-content">
+                <h5>Lucia Mendes <span>24 Mar 2018</span></h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. finibus eros eget purus vulputate,
+                    sit amet ornare ipsum. Ut enim ad minim veniam. Donec tincidunt sem non odio
+                    congue.</p>
+                <a href="" class="c-btn">Like</a>
+                <a href="" class="c-btn">Reply</a>
             </div>
-            <ul class="replay-comment-list">
-                <li>
-                    <div class="comment">
-                        <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/2.jpg')}}">
-                        </div>
-                        <div class="comment-content">
-                            <h5>Peter Simon<span>25 Jun 2018</span></h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod
-                                tempor incididunt ut labore iron man dolore magna aliqua. fpurus
-                                vulputate, sit amet ornare ipsum. Ut enim ad minim veniam. Donec
-                                tincidunt sem non odio congue.</p>
-                            <a href="" class="c-btn">Like</a>
-                            <a href="" class="c-btn">Reply</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            </li> --}}
-            @foreach ($evaluate as $item)
-
-
+        </div>
+        <ul class="replay-comment-list">
             <li>
                 <div class="comment">
-                    <div class="comment-avator set-bg" data-setbg="{{asset($item->customer_avatar)}}"></div>
+                    <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/2.jpg')}}">
+                    </div>
                     <div class="comment-content">
-                        <h5>{{$item->evaluate_title}}</h5>
-                        <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
-                        <p>{{$item->evaluate_content}}</p>
+                        <h5>Peter Simon<span>25 Jun 2018</span></h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod
+                            tempor incididunt ut labore iron man dolore magna aliqua. fpurus
+                            vulputate, sit amet ornare ipsum. Ut enim ad minim veniam. Donec
+                            tincidunt sem non odio congue.</p>
                         <a href="" class="c-btn">Like</a>
                         <a href="" class="c-btn">Reply</a>
                     </div>
                 </div>
             </li>
-            @endforeach
-            </ul>
-            <div class="comment-form-warp">
-                <h4 class="comment-title">Leave Your Comment</h4>
-                <form class="comment-form">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" placeholder="Your Name">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="email" placeholder="Your Email">
-                        </div>
-                        <div class="col-lg-9">
-                            <textarea placeholder="Your Message"></textarea>
-                            <button class="site-btn">SEND COMMENT</button>
-                        </div>
-                    </div>
-                </form>
+        </ul>
+        </li> --}}
+        @foreach ($evaluate as $item)
+
+
+        <li>
+            <div class="comment">
+                <div class="comment-avator set-bg" data-setbg="{{asset($item->customer_avatar)}}"></div>
+                <div class="comment-content">
+                    <h5>{{$item->evaluate_title}}</h5>
+                    <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
+                    <p>{{$item->evaluate_content}}</p>
+                    <a href="" class="c-btn">Like</a>
+                    <a href="" class="c-btn">Reply</a>
+                </div>
             </div>
+        </li>
+        @endforeach
+        </ul>
+        <div class="comment-form-warp">
+            <h4 class="comment-title">Leave Your Comment</h4>
+            <form class="comment-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" placeholder="Your Name">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" placeholder="Your Email">
+                    </div>
+                    <div class="col-lg-9">
+                        <textarea placeholder="Your Message"></textarea>
+                        <button class="site-btn">SEND COMMENT</button>
+                    </div>
+                </div>
+            </form>
         </div>
+    </div>
 
     </div>
     <!-- sidebar -->

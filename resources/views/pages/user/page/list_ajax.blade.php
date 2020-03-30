@@ -3,8 +3,8 @@
 <div class="col-lg-4 col-md-6">
     <!-- feature -->
     <div class="feature-item">
-        <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->image_path)}}"
-            style="background-image: url(&quot;{{$item->image_path}}&quot;);">
+        <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
+            style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
             <div class="sale-notic">FOR SALE</div>
         </div>
         <div class="feature-text">

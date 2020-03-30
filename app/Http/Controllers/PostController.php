@@ -29,7 +29,7 @@ class PostController extends Controller
         $form = Form::all();
         $province = Province::select('province_id', 'province_name')->orderBy('province_name', 'asc')->get();
 
-        return view('pages.user..feature.post', compact('type', 'form', 'province'));
+        return view('pages.user.feature.post', compact('type', 'form', 'province'));
     }
 
     /**
