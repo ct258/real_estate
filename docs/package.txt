@@ -5,6 +5,9 @@ php artisan vendor:publish --tag=ckfinder
 
 
 
-//composer require dimsav/laravel-translatable
 
 composer require anhskohbo/no-captcha
+
+composer require cviebrock/eloquent-sluggable:^4.8.*
+
+php artisan vendor:publish --provider="Cviebrock\EloquentSluggable\ServiceProvider"
