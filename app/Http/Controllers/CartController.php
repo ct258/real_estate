@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartTemp;
 use App\Models\Account;
+use App\Models\Customer;
+use App\Models\DetailCart;
 use App\Models\RealEstate;
 use App\Models\CookieUser;
 use App\Models\DetailTemp;
@@ -32,13 +34,14 @@ class CartController extends Controller
 
             if (!empty($check)) {
                 // $list = json_decode($check->cart_list, true);
-                $cart = RealEstate::join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
-            ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+                $cart = RealEstate::join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+                // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
             ->join('district', 'real_estate.district_id', 'district.district_id')
             ->join('province', 'district.province_id', 'province.province_id')
             // ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
             // ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
-            ->join('cart', 'cart.real_estate_id', 'real_estate.real_estate_id')
+            ->join('detail_cart', 'detail_cart.real_estate_id', 'real_estate.real_estate_id')
+            ->join('cart', 'cart.cart_id', 'detail_cart.cart_id')
             ->join('customer', 'customer.customer_id', 'cart.customer_id')
             ->select('real_estate.real_estate_id',
             'real_estate_price',
@@ -46,16 +49,17 @@ class CartController extends Controller
             'real_estate_avatar',
             'translation_name',
             // 'unit_translation.unit_translation_name',
-            'image.image_path',
+            // 'image.image_path',
             'province.province_name',
             'district.district_name')
             ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
                 // ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
                 ['customer.customer_id', $customer_id],
+                ['cart.cart_status', null],
                 ])
             ->get();
-
+// dd($cart);
                 foreach ($cart as $value) {
                     $total_money +=  $value->real_estate_price;
                 }
@@ -128,21 +132,12 @@ class CartController extends Controller
                 ])
                 ->first();
             $re_cart=DetailCart::where('real_estate_id',$real_estate_id)->first();
-            if (!$customer_cart) {
-                $cart_id=Cart::insertGetid([
-                'customer_id' => $customer_id,
-                ]);
-                DetailCart::insert([
-                    'real_estate_id' => $real_estate_id,
-                    'cart_id' => $cart_id,
-                ]);
-            } 
-            elseif($customer_cart&& $re_cart){
+            if (!$re_cart) {
                 DetailCart::insert([
                     'real_estate_id' => $real_estate_id,
                     'cart_id' => $customer_cart->cart_id,
-                    ]);
-            }
+                ]);
+            } 
             else {
                 return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
             }

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartTemp;
 use App\Models\Customer;
+use App\Models\CookieUser;
+use App\Models\DetailTemp;
+use App\Models\DetailCart;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -40,45 +43,63 @@ class AccountController extends Controller
             Account::where('account_id', \Auth::guard('account')->user()->account_id)->update([
                 'remember_token' => $JWT,
             ]);
-
-            //---------------------------------------------//
-            //Chuyển giỏ hàng ảo vào giỏ hàng thật
-            //kiểm tra xem tài khoản này phải tài khoản khách hàng hay không
-            //nếu phải thì chuyển giỏ không thì bỏ qua
-
-            // $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->account_id)->first();
-            // dd(Auth::guard('account')->user()->account_id);
-
-
-            // if($check_customer){
-            //tìm xem khách hàng này có giỏ hàng ảo không
-
-                // $item = CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->first();
-
-            //Nếu trong giỏ hàng ảo của khách hàng này có sp 
-            //thi kiểm tra khách có giỏ hàng chưa 
-            //nếu khách chưa có giỏ hàng thì chuyển giỏ hàng ảo sang giỏ hàng thật
-            //     if ($item) {
-            //         $find = Cart::where('customer_id', \Auth::guard('account')->user()->load('customer')->customer->customer_id)
-            //         ->first();
-            //         if (!$find) {
-            //             Cart::insert([
-            //                 'customer_id' => \Auth::guard('account')->user()->account_id,
-            //                 'cart_list'   => $item->cart_temp_list,
-            //             ]);
-            //         }
-            //         CartTemp:: where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->delete();
-            //     }
-            //     return redirect('/');
-            // }
-        //nếu là admin thì chuyển vào trang admin
-        return redirect('/dashboard');
+            $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->account_id)->first();
+                if($check_customer){
+                    $this->tran_cart($request,$check_customer);
+                    return redirect('/');
+                }
+                else{
+                    //nếu là admin thì chuyển vào trang admin
+                    return redirect('/dashboard');
+                }
 
         } else {
             return Redirect::back()->withInput(Input::all())->with('error','Login fail!');
             //...code tùy chọn
             //đăng nhập thất bại hiển thị đăng nhập thất bại
         }
+    }
+    public function tran_cart(Request $request,$customer)
+    {
+            /*
+            Chuyển giỏ hàng ảo vào giỏ hàng thật
+
+            tìm xem có giỏ hàng ảo không lấy các sp trong đó
+            tìm xem có giỏ hàng chưa
+            tìm các sp trong giỏ thật
+            so sánh và thêm vào
+            */
+            
+                $cart = Cart::where([['customer_id',$customer->customer_id],['cart_status',null]])->first();
+                $cookie_user = CookieUser::where('cookie_user_name', $request->cookie('Name_of_your_cookie'))->first();
+                if($cookie_user){
+
+                    $cart_temp = CartTemp::where('cookie_user_id', $cookie_user->cookie_user_id)->first();
+                }
+                else{
+                    $cart_temp=false;
+                }
+            /*
+            Nếu trong giỏ hàng ảo của khách hàng này có sp 
+            thi kiểm tra khách có giỏ hàng chưa 
+            nếu khách chưa có giỏ hàng thì chuyển giỏ hàng ảo sang giỏ hàng thật
+            */
+                if ($cart_temp) {
+                    $detail_temp = DetailTemp::where('cart_temp_id',$cart_temp->cart_temp_id)->get();
+                    if ($detail_temp->isNotEmpty()) {
+                        foreach($detail_temp as $value){
+                            $find=DetailCart::where([['real_estate_id',$value->real_estate_id],['cart_id',$cart->cart_id]])->first();
+                            if(!$find){
+                                DetailCart::insert([
+                                    'real_estate_id' => $value->real_estate_id,
+                                    'cart_id'   => $cart->cart_id,
+                                ]);
+                                DetailTemp::where('detail_temp_id',$value->detail_temp_id)
+                                ->delete();
+                            }
+                        }
+                    }
+                }
     }
 
     public function logout()
@@ -109,6 +130,7 @@ class AccountController extends Controller
         ]);
         Cart::insert([
             'customer_id'=>$customer_id,
+            'cart_status'=>null,
         ]);
 
         return view('pages.user.index');
