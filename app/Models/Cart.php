@@ -18,6 +18,7 @@ class Cart extends Model
         'status_id',
         'code_id',
         'cart_id',
+        'cart_status',
         'created_at',
         'updated_at',
         'deleted_at',

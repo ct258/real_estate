@@ -14,19 +14,20 @@ class CreateCartTable extends Migration
         if (!Schema::hasTable('cart')) {
             Schema::create('cart', function (Blueprint $table) {
                 $table->increments('cart_id')->comment('id của giỏ hàng');
+                $table->string('cart_status')->index()->nullable()->default(null);
 
                 //foreign key
-                $table->integer('code_id')->index()->unsigned();
+                $table->integer('code_id')->index()->unsigned()->nullable();
                 $table->integer('customer_id')->index()->unsigned();
-                $table->integer('payment_id')->index()->unsigned();
-                $table->integer('staff_id')->index()->unsigned();
-                $table->integer('status_id')->index()->unsigned();
+                $table->integer('payment_id')->index()->unsigned()->nullable();
+                $table->integer('staff_id')->index()->unsigned()->nullable();
+                // $table->integer('status_id')->index()->unsigned();
 
                 $table->foreign('code_id')->references('code_id')->on('code');
                 $table->foreign('customer_id')->references('customer_id')->on('customer');
                 $table->foreign('payment_id')->references('payment_id')->on('payment');
                 $table->foreign('staff_id')->references('staff_id')->on('staff');
-                $table->foreign('status_id')->references('status_id')->on('status');
+                // $table->foreign('status_id')->references('status_id')->on('status');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))

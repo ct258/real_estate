@@ -156,11 +156,14 @@ class ClientController extends Controller
 
     public function single_list(Request $request, $real_estate_id)
     {
-        //thêm vào danh sách đã xem
-        
-        //tìm xem có lưu cookie hiện tại chưa
-        //nếu có rồi thì tìm xem đã có sp chưa
-        //nếu chưa thì thêm vào csdl
+        /*
+        thêm vào danh sách đã xem
+
+        tìm xem đã có cookie trong csdl chưa
+        tìm trong sp đã xem có cookie đó chưa
+        nếu chưa thì tạo
+        nếu có rồi thì tìm sp đã xem có sp đó chưa
+        */
         $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
         if($cookie){
             $view_product=ViewProduct::where('cookie_user_id',$cookie->cookie_user_id)
@@ -170,6 +173,14 @@ class ClientController extends Controller
                     'real_estate_id'=>$real_estate_id,
                     'cookie_user_id'=>$cookie->cookie_user_id,
                 ]);
+            }else{
+                $re_vp=ViewProduct::where('real_estate_id',$real_estate_id)->first();
+                if(!$re_vp){
+                    ViewProduct::insert([
+                        'real_estate_id'=>$real_estate_id,
+                        'cookie_user_id'=>$cookie->cookie_user_id,
+                    ]);
+                }
             }
         }
         else{
@@ -305,5 +316,45 @@ class ClientController extends Controller
     public function subscription(Request $request, $user)
     {
         dd($request);
+    }
+
+    public function view_product(Request $request)
+    {
+        $view_product=ViewProduct::join('cookie_user','view_product.cookie_user_id','cookie_user.cookie_user_id')
+        ->join('real_estate','view_product.real_estate_id','real_estate.real_estate_id')
+        ->join('translation','real_estate.real_estate_id','translation.real_estate_id')
+        ->join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('province', 'district.province_id', 'province.province_id')
+        ->select(
+        'real_estate.real_estate_id',
+        'real_estate_avatar',
+        'real_estate_avatar',
+        'real_estate.created_at',
+        'real_estate_price',
+        'translation_name',
+        'translation_address',
+        'translation_description',
+        'translation.translation_name',
+        'province.province_name',
+        'district.district_name',)
+        ->where([['cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie')],
+        ['translation_locale', \Session::get('lang', config('app.locale'))],
+        ['real_estate_status','Đang bán']])
+        ->limit(6)
+        ->get();
+        // dd($view_product);
+        // dd($view_product->real_estate_price);
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+        Carbon::setlocale('vi');
+        $now = Carbon::now();
+        foreach ($view_product as $key => $value) {
+            // dd(Carbon::parse($value->created_at));
+            // dd($value['real_estate_id']);
+            // $value['real_estate_id'] = $value->created_at->diffForHumans(($now));
+
+            $value->created_at= Carbon::parse($value->created_at)->diffForHumans($now);
+            $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
+        }
+        return view('pages.user.index',compact('view_product','rate'));
     }
 }

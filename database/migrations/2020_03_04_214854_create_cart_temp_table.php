@@ -17,9 +17,11 @@ class CreateCartTempTable extends Migration
 
 
                 //foreign key
-                $table->integer('code_id')->unsigned();
+                $table->integer('code_id')->nullable()->unsigned();
+                $table->integer('cookie_user_id')->unsigned();
 
                 $table->foreign('code_id')->references('code_id')->on('code')->onDelete('cascade');
+                $table->foreign('cookie_user_id')->references('cookie_user_id')->on('cookie_user')->onDelete('cascade');
                 //log time
                 $table->timestamp('created_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP'))

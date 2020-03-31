@@ -309,7 +309,8 @@
                                     </div>
                                     <div class="col-sm">
                                         {{-- đăng ký --}}
-                                        @if(\Auth::guard('account')->check())
+                                        @if(\Auth::guard('account')->check() &&
+                                        \Auth::guard('account')->user()->hasRole('Customer'))
                                         <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
                                             class="rent-notic" id="subscription">Đăng ký</a>
                                         @else

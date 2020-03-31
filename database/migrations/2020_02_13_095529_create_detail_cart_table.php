@@ -16,7 +16,7 @@ class CreateDetailCartTable extends Migration
         if (!Schema::hasTable('detail_cart')) {
             Schema::create('detail_cart', function (Blueprint $table) {
                 $table->increments('detail_cart_id')->comment('id của giỏ hàng');
-                $table->decimal('detail_cart_price',18,4)->comment('Giá sản phẩm');
+                $table->decimal('detail_cart_price',18,4)->nullable()->comment('Giá sản phẩm');
 
                 //foreign key
                 $table->integer('cart_id')->index()->unsigned();

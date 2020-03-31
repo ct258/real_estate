@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2020 at 04:09 AM
+-- Generation Time: Mar 31, 2020 at 01:11 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -69,10 +69,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin', '$2y$10$/FWef56v43vPgJMpPUIDnOHthF0g22YsdLyRyR1Cwwm27OZM.y7Ca', NULL, 1, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
+(1, 'admin', '$2y$10$/FWef56v43vPgJMpPUIDnOHthF0g22YsdLyRyR1Cwwm27OZM.y7Ca', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg1NTM2NDQ4LCJleHAiOjE1ODU1NDAwNDgsIm5iZiI6MTU4NTUzNjQ0OCwianRpIjoiTUhGVlhaOGkwbW5vZTFsbyIsInN1YiI6MSwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.GKj4DuVJ8-A3ihrcDpNm4KgDnUW6d50IS33eEs_FjD4', 1, '2020-03-29 07:09:32', '2020-03-30 02:47:28', NULL),
 (2, 'staff', '$2y$10$CHxRiBZ4LaFn5eq16nLYT.wWhVN451kITiu5lwFUDQEcUvoXk3F7i', NULL, 2, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (3, 'collaborator', '$2y$10$P0DedvJRZwgxyO5KXW2X/uJ21W26TgetoGn82wTeAA2ONdg4ORTBe', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
-(4, 'customer4', '$2y$10$YfQGFJEk1u0awnOncEA65u5pZCa.qao0mblqgkOsjXchVqdzUeJMi', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg1NDY3OTU0LCJleHAiOjE1ODU0NzE1NTQsIm5iZiI6MTU4NTQ2Nzk1NCwianRpIjoiZlh6NXFhMEtNSmVsNXdXayIsInN1YiI6NCwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.rQsZdJUJyOgBHj1W4ewVN1j9JyGHefkOvLGwHgwTMY4', 3, '2020-03-29 07:09:32', '2020-03-29 07:45:55', NULL),
+(4, 'customer4', '$2y$10$YfQGFJEk1u0awnOncEA65u5pZCa.qao0mblqgkOsjXchVqdzUeJMi', 'h7uhav6t9CM1YddcRnCYtnp0rGevjvRFlNuvVQJJ5QBWwONzPYTPyvuLtQhF', 3, '2020-03-29 07:09:32', '2020-03-31 11:04:22', NULL),
 (5, 'customer5', '$2y$10$af3EMzhOnn1dADV3I.o94OHf7os.1zABofuiPY2HUhXdhqJ1atec2', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (6, 'customer6', '$2y$10$FDZehMPk60hI5n.QDYUKP.kqJzsHc110JlGYtOBkzqNSFutBcJbym', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (7, 'customer7', '$2y$10$4M8lNXDVUyNVSBuH3xSW/OU/In6fAoOLbqc4M6ugMjQJ4VShM9PtK', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
@@ -158,15 +158,28 @@ CREATE TABLE `brokerage_fee_translation` (
 
 CREATE TABLE `cart` (
   `cart_id` int(10) UNSIGNED NOT NULL COMMENT 'id của giỏ hàng',
-  `code_id` int(10) UNSIGNED NOT NULL,
+  `cart_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_id` int(10) UNSIGNED DEFAULT NULL,
   `customer_id` int(10) UNSIGNED NOT NULL,
-  `payment_id` int(10) UNSIGNED NOT NULL,
-  `staff_id` int(10) UNSIGNED NOT NULL,
-  `status_id` int(10) UNSIGNED NOT NULL,
+  `payment_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `staff_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày cập nhật',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Giỏ hàng';
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_status`, `code_id`, `customer_id`, `payment_id`, `staff_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(8, NULL, NULL, 1, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(9, NULL, NULL, 2, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(10, NULL, NULL, 3, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(11, NULL, NULL, 4, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(12, NULL, NULL, 5, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(13, NULL, NULL, 6, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(14, NULL, NULL, 7, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -176,11 +189,19 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `cart_temp` (
   `cart_temp_id` int(10) UNSIGNED NOT NULL COMMENT 'id của giỏ hàng tạm',
-  `code_id` int(10) UNSIGNED NOT NULL,
+  `code_id` int(10) UNSIGNED DEFAULT NULL,
+  `cookie_user_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày cập nhật',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Giỏ hàng tạm';
+
+--
+-- Dumping data for table `cart_temp`
+--
+
+INSERT INTO `cart_temp` (`cart_temp_id`, `code_id`, `cookie_user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, NULL, 1, '2020-03-30 08:54:25', '2020-03-30 08:54:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -371,10 +392,19 @@ CREATE TABLE `deposit_contract` (
 
 CREATE TABLE `detail_cart` (
   `detail_cart_id` int(10) UNSIGNED NOT NULL COMMENT 'id của giỏ hàng',
-  `detail_cart_price` decimal(18,4) NOT NULL COMMENT 'Giá sản phẩm',
+  `detail_cart_price` decimal(18,4) DEFAULT NULL COMMENT 'Giá sản phẩm',
   `cart_id` int(10) UNSIGNED NOT NULL,
   `real_estate_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Chi tiết giỏ hàng';
+
+--
+-- Dumping data for table `detail_cart`
+--
+
+INSERT INTO `detail_cart` (`detail_cart_id`, `detail_cart_price`, `cart_id`, `real_estate_id`) VALUES
+(1, NULL, 8, 3),
+(2, NULL, 8, 2),
+(3, NULL, 8, 5);
 
 -- --------------------------------------------------------
 
@@ -402,10 +432,17 @@ CREATE TABLE `detail_fee` (
 
 CREATE TABLE `detail_temp` (
   `detail_temp_id` int(10) UNSIGNED NOT NULL COMMENT 'id của giỏ hàng tạm',
-  `detail_temp_price` decimal(18,4) NOT NULL COMMENT 'giá',
+  `detail_temp_price` decimal(18,4) DEFAULT NULL COMMENT 'giá',
   `cart_temp_id` int(10) UNSIGNED NOT NULL,
   `real_estate_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Giỏ hàng tạm';
+
+--
+-- Dumping data for table `detail_temp`
+--
+
+INSERT INTO `detail_temp` (`detail_temp_id`, `detail_temp_price`, `cart_temp_id`, `real_estate_id`) VALUES
+(3, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -1438,63 +1475,63 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2020_01_22_061242_create_user_onlines_table', 1),
-(2, '2020_02_13_094119_create_province_table', 1),
-(3, '2020_02_13_094129_create_district_table', 1),
-(4, '2020_02_13_094140_create_ward_table', 1),
-(5, '2020_02_13_094152_create_street_table', 1),
-(6, '2020_02_13_094520_create_form_table', 1),
-(7, '2020_02_13_094522_create_unit_table', 1),
-(8, '2020_02_13_094616_create_type_table', 1),
-(9, '2020_02_13_094626_create_rank_table', 1),
-(10, '2020_02_13_094715_create_brokerage_fee_table', 1),
-(11, '2020_02_13_094733_create_status_table', 1),
-(12, '2020_02_13_094744_create_banner_table', 1),
-(13, '2020_02_13_094758_create_image_table', 1),
-(14, '2020_02_13_094831_create_role_table', 1),
-(15, '2020_02_13_094854_create_permission_table', 1),
-(16, '2020_02_13_094855_create_role_permission_table', 1),
-(17, '2020_02_13_094907_create_account_table', 1),
-(18, '2020_02_13_094923_create_staff_table', 1),
-(19, '2020_02_13_094933_create_about_table', 1),
-(20, '2020_02_13_094947_create_mail_template_table', 1),
-(21, '2020_02_13_094957_create_mail_log_table', 1),
-(22, '2020_02_13_095016_create_customer_table', 1),
-(23, '2020_02_13_095041_create_subscription_table', 1),
-(24, '2020_02_13_095102_create_payment_table', 1),
-(25, '2020_02_13_095218_create_real_estate_table', 1),
-(26, '2020_02_13_095219_create_convenience_table', 1),
-(27, '2020_02_13_095221_create_translation_table', 1),
-(28, '2020_02_13_095229_create_wishlist_table', 1),
-(29, '2020_02_13_095259_create_evaluate_table', 1),
-(30, '2020_02_13_095328_create_promotion_table', 1),
-(31, '2020_02_13_095348_create_sale_contract_table', 1),
-(32, '2020_02_13_095407_create_deposit_contract_table', 1),
-(33, '2020_02_13_095454_create_image_contract_table', 1),
-(34, '2020_02_13_095521_create_code_type_table', 1),
-(35, '2020_02_13_095522_create_code_table', 1),
-(36, '2020_02_13_095528_create_cart_table', 1),
-(37, '2020_02_13_095529_create_detail_cart_table', 1),
-(38, '2020_02_13_095925_create_payment_log_table', 1),
-(39, '2020_02_20_105441_create_standard_price_table', 1),
-(40, '2020_02_20_105501_create_standard_acreage_table', 1),
-(41, '2020_03_04_214853_create_cookie_user_table', 1),
-(42, '2020_03_04_214854_create_cart_temp_table', 1),
-(43, '2020_03_04_214855_create_detail_temp_table', 1),
-(44, '2020_03_08_113616_create_wishlist_temp_table', 1),
-(45, '2020_03_08_113833_create_view_product_table', 1),
-(46, '2020_03_09_122732_create_detail_fee_table', 1),
-(47, '2020_03_10_095538_create_blog_table', 1),
-(48, '2020_03_10_100540_create_form_translation_table', 1),
-(49, '2020_03_10_100623_create_unit_translation_table', 1),
-(50, '2020_03_10_100634_create_type_translation_table', 1),
-(51, '2020_03_10_100651_create_blog_translation_table', 1),
-(52, '2020_03_10_100703_create_about_translation_table', 1),
-(53, '2020_03_10_100717_create_rank_translation_table', 1),
-(54, '2020_03_10_100733_create_promotion_translation_table', 1),
-(55, '2020_03_10_100754_create_brokerage_fee_translation_table', 1),
-(56, '2020_03_10_100821_create_report_table', 1),
-(57, '2020_03_11_133544_create_currency_table', 1);
+(115, '2020_01_22_061242_create_user_onlines_table', 1),
+(116, '2020_02_13_094119_create_province_table', 1),
+(117, '2020_02_13_094129_create_district_table', 1),
+(118, '2020_02_13_094140_create_ward_table', 1),
+(119, '2020_02_13_094152_create_street_table', 1),
+(120, '2020_02_13_094520_create_form_table', 1),
+(121, '2020_02_13_094522_create_unit_table', 1),
+(122, '2020_02_13_094616_create_type_table', 1),
+(123, '2020_02_13_094626_create_rank_table', 1),
+(124, '2020_02_13_094715_create_brokerage_fee_table', 1),
+(125, '2020_02_13_094733_create_status_table', 1),
+(126, '2020_02_13_094744_create_banner_table', 1),
+(127, '2020_02_13_094758_create_image_table', 1),
+(128, '2020_02_13_094831_create_role_table', 1),
+(129, '2020_02_13_094854_create_permission_table', 1),
+(130, '2020_02_13_094855_create_role_permission_table', 1),
+(131, '2020_02_13_094907_create_account_table', 1),
+(132, '2020_02_13_094923_create_staff_table', 1),
+(133, '2020_02_13_094933_create_about_table', 1),
+(134, '2020_02_13_094947_create_mail_template_table', 1),
+(135, '2020_02_13_094957_create_mail_log_table', 1),
+(136, '2020_02_13_095016_create_customer_table', 1),
+(137, '2020_02_13_095041_create_subscription_table', 1),
+(138, '2020_02_13_095102_create_payment_table', 1),
+(139, '2020_02_13_095218_create_real_estate_table', 1),
+(140, '2020_02_13_095219_create_convenience_table', 1),
+(141, '2020_02_13_095221_create_translation_table', 1),
+(142, '2020_02_13_095229_create_wishlist_table', 1),
+(143, '2020_02_13_095259_create_evaluate_table', 1),
+(144, '2020_02_13_095328_create_promotion_table', 1),
+(145, '2020_02_13_095348_create_sale_contract_table', 1),
+(146, '2020_02_13_095407_create_deposit_contract_table', 1),
+(147, '2020_02_13_095454_create_image_contract_table', 1),
+(148, '2020_02_13_095521_create_code_type_table', 1),
+(149, '2020_02_13_095522_create_code_table', 1),
+(150, '2020_02_13_095528_create_cart_table', 1),
+(151, '2020_02_13_095529_create_detail_cart_table', 1),
+(152, '2020_02_13_095925_create_payment_log_table', 1),
+(153, '2020_02_20_105441_create_standard_price_table', 1),
+(154, '2020_02_20_105501_create_standard_acreage_table', 1),
+(155, '2020_03_04_214853_create_cookie_user_table', 1),
+(156, '2020_03_04_214854_create_cart_temp_table', 1),
+(157, '2020_03_04_214855_create_detail_temp_table', 1),
+(158, '2020_03_08_113616_create_wishlist_temp_table', 1),
+(159, '2020_03_08_113833_create_view_product_table', 1),
+(160, '2020_03_09_122732_create_detail_fee_table', 1),
+(161, '2020_03_10_095538_create_blog_table', 1),
+(162, '2020_03_10_100540_create_form_translation_table', 1),
+(163, '2020_03_10_100623_create_unit_translation_table', 1),
+(164, '2020_03_10_100634_create_type_translation_table', 1),
+(165, '2020_03_10_100651_create_blog_translation_table', 1),
+(166, '2020_03_10_100703_create_about_translation_table', 1),
+(167, '2020_03_10_100717_create_rank_translation_table', 1),
+(168, '2020_03_10_100733_create_promotion_translation_table', 1),
+(169, '2020_03_10_100754_create_brokerage_fee_translation_table', 1),
+(170, '2020_03_10_100821_create_report_table', 1),
+(171, '2020_03_11_133544_create_currency_table', 1);
 
 -- --------------------------------------------------------
 
@@ -1506,8 +1543,15 @@ CREATE TABLE `payment` (
   `payment_id` int(10) UNSIGNED NOT NULL COMMENT 'id của phương thức thanh toán',
   `payment_code` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'mã phương thức thanh toán',
   `payment_name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'tên phương thức thanh toán',
-  `payment_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Hình ảnh đại diện'
+  `payment_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Hình ảnh đại diện'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Phương thức thanh toán';
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `payment_code`, `payment_name`, `payment_image`) VALUES
+(1, 'TTKNH', 'Thanh toán khi nhận hàng', NULL);
 
 -- --------------------------------------------------------
 
@@ -1663,12 +1707,12 @@ INSERT INTO `rank_translation` (`rank_translation_id`, `rank_translation_name`, 
 CREATE TABLE `real_estate` (
   `real_estate_id` int(10) UNSIGNED NOT NULL COMMENT 'id của bất động sản',
   `real_estate_acreage` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'diện tích bất động sản',
-  `real_estate_avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `real_estate_avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'hình dại diện',
   `real_estate_price` decimal(18,4) UNSIGNED NOT NULL COMMENT 'giá trị',
   `real_estate_longitude` decimal(8,6) DEFAULT NULL COMMENT 'kinh độ',
   `real_estate_latitude` decimal(8,6) DEFAULT NULL COMMENT 'vĩ độ',
+  `real_estate_status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'trạng thái',
   `type_id` int(10) UNSIGNED NOT NULL,
-  `status_id` int(10) UNSIGNED NOT NULL,
   `brokerage_fee_id` int(10) UNSIGNED DEFAULT NULL,
   `district_id` int(10) UNSIGNED DEFAULT NULL,
   `ward_id` int(10) UNSIGNED DEFAULT NULL,
@@ -1684,17 +1728,17 @@ CREATE TABLE `real_estate` (
 -- Dumping data for table `real_estate`
 --
 
-INSERT INTO `real_estate` (`real_estate_id`, `real_estate_acreage`, `real_estate_avatar`, `real_estate_price`, `real_estate_longitude`, `real_estate_latitude`, `type_id`, `status_id`, `brokerage_fee_id`, `district_id`, `ward_id`, `street_id`, `unit_id`, `customer_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(2, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(3, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(4, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(5, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(6, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(7, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(8, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(9, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL),
-(10, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 1, 3, NULL, 6, NULL, 1811, 3, NULL, '2020-03-29 07:25:36', '2020-03-29 07:25:36', NULL);
+INSERT INTO `real_estate` (`real_estate_id`, `real_estate_acreage`, `real_estate_avatar`, `real_estate_price`, `real_estate_longitude`, `real_estate_latitude`, `real_estate_status`, `type_id`, `brokerage_fee_id`, `district_id`, `ward_id`, `street_id`, `unit_id`, `customer_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(2, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(3, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(4, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(5, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(6, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(7, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(8, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(9, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
+(10, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -33737,7 +33781,8 @@ CREATE TABLE `user_onlines` (
 
 INSERT INTO `user_onlines` (`uo_id`, `uo_session`, `uo_time`, `uo_active`) VALUES
 (1, 'aemvtnso8t6p0sctsv0eguv2o4', 1585472444, 1),
-(2, 'abq4b19onf3ola9a0f9d4mjit6', 1585533941, 0);
+(2, 'abq4b19onf3ola9a0f9d4mjit6', 1585564842, 1),
+(3, '0j02jg6h66k7p407ptceg9i9pf', 1585652674, 0);
 
 -- --------------------------------------------------------
 
@@ -33756,7 +33801,9 @@ CREATE TABLE `view_product` (
 --
 
 INSERT INTO `view_product` (`view_product_id`, `real_estate_id`, `cookie_user_id`) VALUES
-(1, 2, 1);
+(1, 3, 1),
+(2, 2, 1),
+(3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -45172,18 +45219,19 @@ ALTER TABLE `brokerage_fee_translation`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `cart_cart_status_index` (`cart_status`),
   ADD KEY `cart_code_id_index` (`code_id`),
   ADD KEY `cart_customer_id_index` (`customer_id`),
   ADD KEY `cart_payment_id_index` (`payment_id`),
-  ADD KEY `cart_staff_id_index` (`staff_id`),
-  ADD KEY `cart_status_id_index` (`status_id`);
+  ADD KEY `cart_staff_id_index` (`staff_id`);
 
 --
 -- Indexes for table `cart_temp`
 --
 ALTER TABLE `cart_temp`
   ADD PRIMARY KEY (`cart_temp_id`),
-  ADD KEY `cart_temp_code_id_foreign` (`code_id`);
+  ADD KEY `cart_temp_code_id_foreign` (`code_id`),
+  ADD KEY `cart_temp_cookie_user_id_foreign` (`cookie_user_id`);
 
 --
 -- Indexes for table `code`
@@ -45432,10 +45480,7 @@ ALTER TABLE `real_estate`
   ADD PRIMARY KEY (`real_estate_id`),
   ADD KEY `real_estate_real_estate_acreage_index` (`real_estate_acreage`),
   ADD KEY `real_estate_real_estate_price_index` (`real_estate_price`),
-  ADD KEY `real_estate_real_estate_longitude_index` (`real_estate_longitude`),
-  ADD KEY `real_estate_real_estate_latitude_index` (`real_estate_latitude`),
   ADD KEY `real_estate_type_id_index` (`type_id`),
-  ADD KEY `real_estate_status_id_index` (`status_id`),
   ADD KEY `real_estate_brokerage_fee_id_index` (`brokerage_fee_id`),
   ADD KEY `real_estate_district_id_index` (`district_id`),
   ADD KEY `real_estate_ward_id_index` (`ward_id`),
@@ -45662,13 +45707,13 @@ ALTER TABLE `brokerage_fee_translation`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng';
+  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `cart_temp`
 --
 ALTER TABLE `cart_temp`
-  MODIFY `cart_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm';
+  MODIFY `cart_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `code`
@@ -45716,7 +45761,7 @@ ALTER TABLE `deposit_contract`
 -- AUTO_INCREMENT for table `detail_cart`
 --
 ALTER TABLE `detail_cart`
-  MODIFY `detail_cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng';
+  MODIFY `detail_cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `detail_fee`
@@ -45728,7 +45773,7 @@ ALTER TABLE `detail_fee`
 -- AUTO_INCREMENT for table `detail_temp`
 --
 ALTER TABLE `detail_temp`
-  MODIFY `detail_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm';
+  MODIFY `detail_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `district`
@@ -45782,13 +45827,13 @@ ALTER TABLE `mail_template`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của phương thức thanh toán';
+  MODIFY `payment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của phương thức thanh toán', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `permission`
@@ -45902,13 +45947,13 @@ ALTER TABLE `unit_translation`
 -- AUTO_INCREMENT for table `user_onlines`
 --
 ALTER TABLE `user_onlines`
-  MODIFY `uo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của đường', AUTO_INCREMENT=3;
+  MODIFY `uo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của đường', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `view_product`
 --
 ALTER TABLE `view_product`
-  MODIFY `view_product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của danh sách yêu thích', AUTO_INCREMENT=2;
+  MODIFY `view_product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của danh sách yêu thích', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ward`
@@ -45975,14 +46020,14 @@ ALTER TABLE `cart`
   ADD CONSTRAINT `cart_code_id_foreign` FOREIGN KEY (`code_id`) REFERENCES `code` (`code_id`),
   ADD CONSTRAINT `cart_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   ADD CONSTRAINT `cart_payment_id_foreign` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`payment_id`),
-  ADD CONSTRAINT `cart_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`),
-  ADD CONSTRAINT `cart_status_id_foreign` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`);
+  ADD CONSTRAINT `cart_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`);
 
 --
 -- Constraints for table `cart_temp`
 --
 ALTER TABLE `cart_temp`
-  ADD CONSTRAINT `cart_temp_code_id_foreign` FOREIGN KEY (`code_id`) REFERENCES `code` (`code_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `cart_temp_code_id_foreign` FOREIGN KEY (`code_id`) REFERENCES `code` (`code_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_temp_cookie_user_id_foreign` FOREIGN KEY (`cookie_user_id`) REFERENCES `cookie_user` (`cookie_user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `code`
@@ -46088,7 +46133,6 @@ ALTER TABLE `real_estate`
   ADD CONSTRAINT `real_estate_brokerage_fee_id_foreign` FOREIGN KEY (`brokerage_fee_id`) REFERENCES `brokerage_fee` (`brokerage_fee_id`),
   ADD CONSTRAINT `real_estate_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   ADD CONSTRAINT `real_estate_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `district` (`district_id`),
-  ADD CONSTRAINT `real_estate_status_id_foreign` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`),
   ADD CONSTRAINT `real_estate_street_id_foreign` FOREIGN KEY (`street_id`) REFERENCES `street` (`street_id`),
   ADD CONSTRAINT `real_estate_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `type` (`type_id`),
   ADD CONSTRAINT `real_estate_unit_id_foreign` FOREIGN KEY (`unit_id`) REFERENCES `unit` (`unit_id`),

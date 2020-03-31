@@ -7,96 +7,106 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartTemp;
 use App\Models\Account;
+use App\Models\Customer;
+use App\Models\DetailCart;
 use App\Models\RealEstate;
+use App\Models\CookieUser;
+use App\Models\DetailTemp;
 
 class CartController extends Controller
 {
     public function cart(Request $request)
     {
-        // dd($request);
-        //nếu đã đăng nhập
+        /*
+
+        nếu đã đăng nhập thì lấy giỏ hàng
+        chưa đăng nhập thì lấy giỏ hàng tạm
+        */
+
         if (Auth::guard('account')->check()) {
-            $info = Account::join('customer', 'customer.account_id', 'account.account_id')
-            ->select('customer_name', 'customer_address')
-            ->where('account.account_id', Auth::guard('account')->user()->account_id)->first();
-            // dd(Auth::guard('account')->user()->load('customer')->customer->customer_id);
+            $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id;
+            $info = Customer::select('customer_id','customer_name', 'customer_address')
+            ->where('customer_id', $customer_id)->first();
             //kiểm tra khách hàng này có gì trong giỏ hàng chưa
-            $check = Cart::where('customer_id', Auth::guard('account')->user()->load('customer')->customer->customer_id)->first();
             $total_money = 0;
             $cart = null;
+            $check=Cart::where([['customer_id',$customer_id],['cart_status',null]])->get();
 
-            if ($check) {
+            if (!empty($check)) {
                 // $list = json_decode($check->cart_list, true);
-                $cart = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-            ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
-            ->join('image', 'image_real_estate.image_id', 'image.image_id')
+                $cart = RealEstate::join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+                // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
             ->join('district', 'real_estate.district_id', 'district.district_id')
             ->join('province', 'district.province_id', 'province.province_id')
-            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-            ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
-            ->join('cart', 'cart.real_estate_id', 'real_estate.real_estate_id')
+            // ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+            // ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
+            ->join('detail_cart', 'detail_cart.real_estate_id', 'real_estate.real_estate_id')
+            ->join('cart', 'cart.cart_id', 'detail_cart.cart_id')
             ->join('customer', 'customer.customer_id', 'cart.customer_id')
             ->select('real_estate.real_estate_id',
-            'translation_name',
             'real_estate_price',
             'real_estate_acreage',
-            'unit_translation.unit_translation_name',
-            'image.image_path',
+            'real_estate_avatar',
+            'translation_name',
+            // 'unit_translation.unit_translation_name',
+            // 'image.image_path',
             'province.province_name',
             'district.district_name')
             ->where([
-                ['image_real_estate.image_real_estate_note', 'Avatar'],
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
-                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
-                ['customer.customer_id', Auth::guard('account')->user()->load('customer')->customer->customer_id],
-                // ['customer.customer_id', Auth::guard('account')->user()->load('customer')->customer->customer_id],
+                // ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
+                ['customer.customer_id', $customer_id],
+                ['cart.cart_status', null],
                 ])
-            // ->whereIn('real_estate.real_estate_id', $list['real_estate_id'])
-                // ->whereNotNull('customer_id', Auth::guard('account')->check())
             ->get();
-                // dd($cart);
-
+// dd($cart);
                 foreach ($cart as $value) {
-                    $total_money = $total_money + $value->real_estate_price;
+                    $total_money +=  $value->real_estate_price;
                 }
 
                 // dd($cart);
             }
         } else { //nếu chưa đăng nhập thì lấy dữ liệu bảng tạm
             $info = null;
-            $check = CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->first();
-            // dd($check->cart_temp_list);
+            $cookie_user=CookieUser::where('cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+            if($cookie_user){
+
+                $check = CartTemp::where('cookie_user_id', $cookie_user->cookie_user_id)->first();
+            }
+            else{
+                $check=false;
+            }
             if ($check) {
-                $list = json_decode($check->cart_temp_list, true);
-                // dd($list);
-                $cart = RealEstate::join('image_real_estate', 'real_estate.real_estate_id', 'image_real_estate.real_estate_id')
-            ->join('real_estate_translation', 'real_estate.real_estate_id', 'real_estate_translation.real_estate_id')
-            ->join('image', 'image_real_estate.image_id', 'image.image_id')
-            ->join('district', 'real_estate.district_id', 'district.district_id')
-            ->join('province', 'district.province_id', 'province.province_id')
-            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-            ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
-            ->select('real_estate.real_estate_id',
-            'translation_name',
-            'real_estate_price',
-            'real_estate_acreage',
-            'unit_translation.unit_translation_name',
-            'image.image_path',
-            'province.province_name',
-            'district.district_name')
-            ->where([
-                ['image_real_estate.image_real_estate_note', 'Avatar'],
-                ['translation_locale', \Session::get('lang', config('app.locale'))],
-                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
-                ])
-            ->whereIn('real_estate.real_estate_id', $list['real_estate_id'])
-            ->get();
+                $cart = CookieUser::join('cart_temp', 'cart_temp.cookie_user_id', 'cookie_user.cookie_user_id')
+                ->join('detail_temp', 'detail_temp.cart_temp_id', 'cart_temp.cart_temp_id')
+                ->join('real_estate', 'real_estate.real_estate_id', 'detail_temp.real_estate_id')
+                ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+                // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
+                ->join('district', 'real_estate.district_id', 'district.district_id')
+                ->join('province', 'district.province_id', 'province.province_id')
+                // ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+                // ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
+                ->select('real_estate.real_estate_id',
+                'real_estate_price',
+                'real_estate_acreage',
+                'real_estate_avatar',
+                'translation_name',
+                // 'unit_translation.unit_translation_name',
+                // 'image.image_path',
+                'province.province_name',
+                'district.district_name')
+                ->where([
+                    ['translation_locale', \Session::get('lang', config('app.locale'))],
+                    ['cookie_user_name',$request->cookie('Name_of_your_cookie')]
+                    // ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
+                    ])
+                ->get();
             } else {
                 $cart = [];
             }
             $total_money = 0;
             foreach ($cart as $value) {
-                $total_money = $total_money + $value->real_estate_price;
+                $total_money +=$value->real_estate_price;
             }
             // dd($total_money);
         }
@@ -109,51 +119,69 @@ class CartController extends Controller
     {
         /*
         nếu đã đăng nhập thì lưu vô Cart
+        nếu khách hàng chưa có cart thì tạo
+        nếu khách hàng chưa có sp đó thì thêm vào
         tìm trong cart_temp cùng cookie và chuyển hết vào giỏ hàng
         nếu không tìn thấy giỏ hàng thì insert
         */
         if (Auth::guard('account')->check()) {
-            $find = Cart::where([['real_estate_id', $real_estate_id], ['customer_id', \Auth::guard('account')->user()->account_id]])->first();
-            // dd($find);
-            if (!$find) {
-                Cart::insert([
-                'real_estate_id' => $real_estate_id,
-                'customer_id' => \Auth::guard('account')->user()->account_id,
-            ]);
-            } else {
+            $customer_id=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+            $customer_cart = Cart::where([
+                ['customer_id', $customer_id],
+                ['cart_status',null]
+                ])
+                ->first();
+            $re_cart=DetailCart::where('real_estate_id',$real_estate_id)->first();
+            if (!$re_cart) {
+                DetailCart::insert([
+                    'real_estate_id' => $real_estate_id,
+                    'cart_id' => $customer_cart->cart_id,
+                ]);
+            } 
+            else {
                 return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
             }
-        } else { //nếu chưa  đăng nhập thì lưu vô cart temp
-            $find = CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))->first();
-            //không tìm thấy thì thêm vào
-            if (!$find) {
-                $arr = array('real_estate_id' => array($real_estate_id));
-                $cart_temp_list = json_encode($arr, true);
-                CartTemp::insert([
-                    'cart_temp_cookie_name' => $request->cookie('Name_of_your_cookie'),
-                    'cart_temp_list' => $cart_temp_list,
-                ]);
-            } else {
-                $list = json_decode($find->cart_temp_list, true);
-
-                // dd($list['real_estate_id']);
-                //nếu sản phẩm đã có
-                if (in_array($real_estate_id, $list['real_estate_id'])) {
-                    return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
-                }
-                // nếu chưa có
-                else {
-                    array_push($list['real_estate_id'], $real_estate_id);
-                    CartTemp::where('cart_temp_cookie_name', $request->cookie('Name_of_your_cookie'))
-                    ->update([
-                        'cart_temp_list' => json_encode($list, true),
+        } else { 
+            /*
+            Nếu khách hàng chưa đăng nhập thì tìm có lưu cookie chưa
+            nếu đã lưu thì tìm xem có giỏ hàng chưa
+            nếu có giỏ hàng thì tìm xem có sp đó trong giỏ chưa
+            nếu chưa luu thì tạo và thêm vào giỏ hàng
+            nếu đã lưu thì tìm xem có giỏ hàng chưa
+            nếu có giỏ hàng thì tìm xem sp có trong giỏ chưa
+            nếu chưa thì lưu vào 
+            */
+            
+            $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+            if($cookie){
+                $cart_temp = CartTemp::where('cookie_user_id', $cookie->cookie_user_id)->first();
+                if($cart_temp){
+                    $detail_cart=DetailTemp::where([
+                        ['cart_temp_id',$cart_temp->cart_temp_id],
+                        ['real_estate_id',$real_estate_id]
+                        ])->first();
+                    if($detail_cart){
+                        return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
+                    }
+                    else{
+                        DetailTemp::insert([
+                            'cart_temp_id'=>$cart_temp->cart_temp_id,
+                            'real_estate_id'=>$real_estate_id,
+                            ]);
+                        }
+                }else{
+                    $cart_temp=CartTemp::insertGetid([
+                        'cookie_user_id'=>$cookie->cookie_user_id,
                     ]);
-
-                    return redirect('single_list/'.$real_estate_id)->with('success', 'Thêm sản phẩm thành công');
+                    DetailTemp::insert([
+                        'cart_temp_id'=>$cart_temp,
+                        'real_estate_id'=>$real_estate_id,
+                        ]);
                 }
             }
         }
+        
 
-        return redirect('single_list/'.$real_estate_id);
+        return redirect('single_list/'.$real_estate_id)->with('success', 'Đã thêm thành công sản phẩm');
     }
 }
