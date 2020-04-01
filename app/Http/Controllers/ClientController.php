@@ -294,9 +294,9 @@ class ClientController extends Controller
     }
     public function single_list(Request $request, $real_estate_id)
     {
-        $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+        // $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
         //gọi function thêm danh sách sp đã xem
-        $this->add_view_product($cookie,$real_estate_id);
+        // $this->add_view_product($cookie,$real_estate_id);
 
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
         ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
@@ -322,7 +322,7 @@ class ClientController extends Controller
 
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
         // lấy hàm kiểm tra đã thích hay chưa
-        $heart=$this->check_wishlist($cookie,$real_estate_id);
+        // $heart=$this->check_wishlist($cookie,$real_estate_id);
         // gọi là dấy danh sách tương tác
         list($image,
         $evaluate,
@@ -346,7 +346,7 @@ class ClientController extends Controller
         'rank_3',
         'rank_2',
         'rank_1',
-        'heart',
+        // 'heart',
         ));
     }
 
