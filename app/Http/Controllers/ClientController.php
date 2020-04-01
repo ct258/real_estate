@@ -13,6 +13,10 @@ use App\Models\Evaluate;
 use App\Models\Blog;
 use App\Models\CookieUser;
 use App\Models\ViewProduct;
+use App\Models\WishList;
+use App\Models\WishListTemp;
+use App\Models\Cart;
+use App\Models\DetailCart;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -153,8 +157,7 @@ class ClientController extends Controller
         ->with('direction', $direction)
         ->with('standard_acreage', $standard_acreage);
     }
-
-    public function single_list(Request $request, $real_estate_id)
+    public function add_view_product($cookie,$real_estate_id)
     {
         /*
         thêm vào danh sách đã xem
@@ -164,7 +167,7 @@ class ClientController extends Controller
         nếu chưa thì tạo
         nếu có rồi thì tìm sp đã xem có sp đó chưa
         */
-        $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+        
         if($cookie){
             $view_product=ViewProduct::where('cookie_user_id',$cookie->cookie_user_id)
             ->first();
@@ -192,32 +195,35 @@ class ClientController extends Controller
                 'cookie_user_id'=>$cookie->cookie_user_id,
             ]);
         }
+    }
+    public function check_wishlist($cookie,$real_estate_id)
+    {
+        $checklogin1=false;
+            if(\Auth::guard('account')->check()){
 
-        // dd($request);
-        $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
-        ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
-        ->join('province', 'district.province_id', 'province.province_id')
-        ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-        ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
-        ->select('real_estate.real_estate_id',
-        'translation_name',
-        'translation_address',
-        'translation_description',
-        'real_estate_price',
-        'real_estate_acreage',
-        'real_estate.created_at',
-        'unit_translation.unit_translation_name',
-        'province.province_name',
-        'district.district_name')
-        ->where([
-            ['real_estate.real_estate_id', $real_estate_id],
-            ['translation_locale', \Session::get('lang', config('app.locale'))],
-            ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
-        ->first();
-        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
-
-        $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
-        // dd($real_estate->real_estate_price * $rate->currency_rate);
+                $checklogin1=\Auth::guard('account')->user()->hasRole('Customer');
+            }
+            if($checklogin1){
+                $check_wishlist=WishList::where([
+                    ['customer_id',\Auth::guard('account')->user()->load('customer')->customer->customer_id],
+                    ['real_estate_id',$real_estate_id]])->first();
+            }
+            else{
+                $check_wishlist=WishListTemp::where([
+                    ['cookie_user_id',$cookie->cookie_user_id],
+                    ['real_estate_id',$real_estate_id]])->first();
+            }
+            if($check_wishlist){
+                $heart=true;
+            }
+            else{
+                $heart=false;
+            }
+            return $heart;
+    }
+    public function get_evaluate($request,$real_estate,$real_estate_id)
+    {
+        //Đánh giá
         $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
         ->select('customer.customer_avatar',
         'customer.customer_name',
@@ -229,15 +235,11 @@ class ClientController extends Controller
         ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
         ->get();
         $count_rank = count($evaluate);
-        // dd($evaluate);
         $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
-        // dd($count_rank);
-        // dd($averageRank);
         $image = RealEstate::join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
         ->select('image.image_path','real_estate.real_estate_avatar')
-        ->where('real_estate.real_estate_id', $real_estate_id)
+        ->where('real_estate.real_estate_id', $real_estate->real_estate_id)
         ->get();
-// dd($image);
         $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
         ->select('customer.customer_avatar',
         'customer.customer_name',
@@ -272,7 +274,6 @@ class ClientController extends Controller
                 break;
             }
         }
-        //5 5 5 2 3 3
         //bao nhiêu phản hồi
         $count_rank = count($evaluate);
         //số sao trung bình
@@ -280,8 +281,59 @@ class ClientController extends Controller
         //tính %
         $average_rank_per = $average_rank * 100 / 5;
 
-        // dd($real_estate);
+        return [$image,
+        $evaluate,
+        $count_rank,
+        $average_rank,
+        $average_rank_per,
+        $rank_5,
+        $rank_4,
+        $rank_3, 
+        $rank_2,
+        $rank_1];
+    }
+    public function single_list(Request $request, $real_estate_id)
+    {
+        $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+        //gọi function thêm danh sách sp đã xem
+        $this->add_view_product($cookie,$real_estate_id);
 
+        $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+        ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+        ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
+        ->select('real_estate.real_estate_id',
+        'translation_name',
+        'translation_address',
+        'translation_description',
+        'real_estate_price',
+        'real_estate_acreage',
+        'real_estate.created_at',
+        'unit_translation.unit_translation_name',
+        'province.province_name',
+        'district.district_name')
+        ->where([
+            ['real_estate.real_estate_id', $real_estate_id],
+            ['translation_locale', \Session::get('lang', config('app.locale'))],
+            ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
+        ->first();
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+
+        $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
+        // lấy hàm kiểm tra đã thích hay chưa
+        $heart=$this->check_wishlist($cookie,$real_estate_id);
+        // gọi là dấy danh sách tương tác
+        list($image,
+        $evaluate,
+        $count_rank,
+        $average_rank,
+        $average_rank_per,
+        $rank_5,
+        $rank_4,
+        $rank_3, 
+        $rank_2,
+        $rank_1)=$this->get_evaluate($request, $real_estate, $real_estate);
         return view('pages.user.page.single_list', compact('real_estate',
         'image',
         'rate',
@@ -294,8 +346,11 @@ class ClientController extends Controller
         'rank_3',
         'rank_2',
         'rank_1',
+        'heart',
         ));
     }
+
+
     public function single_blog(Request $request,$blog_id)
     {
         $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
@@ -356,5 +411,58 @@ class ClientController extends Controller
             $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
         }
         return view('pages.user.index',compact('view_product','rate'));
+    }
+
+    public function wishlist_customer(Request $request)
+    {
+        if(request()->ajax())
+        {
+            $real_estate_id = $request->get('real_estate_id');
+            $customer_id = $request->get('customer_id');
+
+                $check_product=WishList::where([['customer_id',$customer_id],['real_estate_id',$real_estate_id]])->first();
+                if($check_product){
+                    echo "alert('sản phẩm đã có trong danh sách yêu thích')";
+                }
+                else{
+                    WishList::insert([
+                        'real_estate_id'=>$real_estate_id,
+                        'customer_id'=>$customer_id,
+                    ]);
+                }
+            echo "<i class='fas fa-heart' id='heart'>";
+        }
+    }
+    public function wishlist_cookie(Request $request)
+    {
+        if(request()->ajax())
+        {
+            $real_estate_id = $request->get('real_estate_id');
+            $cookie_name = $request->get('cookie_name');
+            $cookie_user=CookieUser::where('cookie_user_name',$cookie_name)->first();
+            if(!$cookie_user){
+                $cookie_user=CookieUser::insertGetid([
+                    'cookie_user_name'=>$cookie_name,
+                    ]);
+                    WishListTemp::insert([
+                        'real_estate_id'=>$real_estate_id,
+                        'cookie_user_id'=>$cookie_user,
+                    ]);
+            }
+            else{
+
+                $check_product=WishListTemp::where('cookie_user_id',$cookie_user->cookie_user_id)->first();
+                    if($check_product){
+                        echo "alert('sản phẩm đã có trong danh sách yêu thích')";
+                    }
+                    else{
+                        WishListTemp::insert([
+                            'real_estate_id'=>$real_estate_id,
+                            'cookie_user_id'=>$cookie_user->cookie_user_id,
+                        ]);
+                    }
+            }
+            echo "<i class='fas fa-heart' id='heart'>";
+            }
     }
 }

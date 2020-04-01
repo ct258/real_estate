@@ -1,4 +1,4 @@
-@if (empty($view_product))
+@if ($view_product->isNotempty())
 <!-- feature section -->
 <section class="feature-section spad">
     <div class="container">
