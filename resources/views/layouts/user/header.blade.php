@@ -1,5 +1,5 @@
 <!-- Header section -->
-<header class="header-section">
+{{-- <header class="header-section">
     <div class="header-top">
         <div class="container">
             <div class="row">
@@ -15,11 +15,11 @@
                 </div>
                 <div class="col-lg-8 text-lg-right header-top-right">
                     <div class="top-social">
-                        {{-- <i href=""><i class="fa fa-facebook"></i></i>
+                        <i href=""><i class="fa fa-facebook"></i></i>
                         <a href=""><i class="fa fa-twitter"></i></a>
                         <a href=""><i class="fa fa-instagram"></i></a>
                         <a href=""><i class="fa fa-pinterest"></i></a>
-                        <a href=""><i class="fa fa-linkedin"></i></a> --}}
+                        <a href=""><i class="fa fa-linkedin"></i></a>
                     </div>
                     <div class="user-panel">
                         <div class="curency">
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-</header>
+</header> --}}
 <!-- Header section end -->
 
 

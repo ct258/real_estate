@@ -8,7 +8,7 @@
             <div class="sale-notic">FOR SALE</div>
         </div>
         <div class="feature-text">
-            <div class="text-center feature-title">
+            <div class="feature-title">
                 <h5>{{$item->translation_name}}</h5>
                 <p><i class="fas fa-map-marked"></i> {{$item->district_name}},
                     {{$item->province_name}}</p>
@@ -16,7 +16,7 @@
             <div class="room-info-warp">
                 <div class="room-info">
                     <div class="rf-left">
-                        <p><i class="fas fa-expand-arrows-alt"></i>{{$item->real_estate_acreage}}
+                        <p><i class="fas fa-expand-arrows-alt"></i>&nbsp;&nbsp;{{$item->real_estate_acreage}}
                             m<sup>2</sup></p>
                         {{-- <p><i class="fas fa-dollar-sign"></i>{{number_format($item->real_estate_price)}}
                         {{$item->unit_name}}</p> --}}

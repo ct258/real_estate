@@ -38,21 +38,8 @@
       padding: 15px 35px;
     }
 
-    .header-top {
-      padding: 12px 0;
-      border-bottom: 1px solid #667792;
-      margin-bottom: 20px;
-    }
 
-    .page-top-section {
-      height: 130px;
-      text-align: none;
-      padding-top: 0px;
-    }
 
-    element.style {
-      height: 100px;
-    }
 
     .scrollupp {
       width: 40px;
