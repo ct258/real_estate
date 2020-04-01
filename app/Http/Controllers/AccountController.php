@@ -12,6 +12,8 @@ use App\Models\Customer;
 use App\Models\CookieUser;
 use App\Models\DetailTemp;
 use App\Models\DetailCart;
+use App\Models\WishList;
+use App\Models\WishListTemp;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -44,8 +46,10 @@ class AccountController extends Controller
                 'remember_token' => $JWT,
             ]);
             $check_customer = Customer::where('account_id',\Auth::guard('account')->user()->account_id)->first();
+            $cookie_user = CookieUser::where('cookie_user_name', $request->cookie('Name_of_your_cookie'))->first();
                 if($check_customer){
-                    $this->tran_cart($request,$check_customer);
+                    $this->tran_cart($request,$check_customer,$cookie_user);
+                    $this->tran_wishlist($request,$check_customer,$cookie_user);
                     return redirect('/');
                 }
                 else{
@@ -59,7 +63,7 @@ class AccountController extends Controller
             //đăng nhập thất bại hiển thị đăng nhập thất bại
         }
     }
-    public function tran_cart(Request $request,$customer)
+    public function tran_cart(Request $request,$customer,$cookie_user)
     {
             /*
             Chuyển giỏ hàng ảo vào giỏ hàng thật
@@ -71,7 +75,6 @@ class AccountController extends Controller
             */
             
                 $cart = Cart::where([['customer_id',$customer->customer_id],['cart_status',null]])->first();
-                $cookie_user = CookieUser::where('cookie_user_name', $request->cookie('Name_of_your_cookie'))->first();
                 if($cookie_user){
 
                     $cart_temp = CartTemp::where('cookie_user_id', $cookie_user->cookie_user_id)->first();
@@ -94,12 +97,28 @@ class AccountController extends Controller
                                     'real_estate_id' => $value->real_estate_id,
                                     'cart_id'   => $cart->cart_id,
                                 ]);
-                                DetailTemp::where('detail_temp_id',$value->detail_temp_id)
-                                ->delete();
                             }
+                            DetailTemp::where('detail_temp_id',$value->detail_temp_id)
+                            ->delete();
                         }
                     }
                 }
+    }
+    public function tran_wishlist(Request $request,$customer,$cookie_user)
+    {
+        $wishlist_temp = WishListTemp::where('cookie_user_id',$cookie_user->cookie_user_id)->get();
+        foreach($wishlist_temp as $value){
+            $find=WishList::where([['real_estate_id',$value->real_estate_id],['customer_id',$customer->customer_id]])->first();
+            if(!$find){
+                WishList::insert([
+                    'real_estate_id' => $value->real_estate_id,
+                    'customer_id'   => $customer->customer_id,
+                ]);
+            }
+            WishListTemp::where('wishlist_temp_id',$value->wishlist_temp_id)
+            ->delete();
+        }
+                    
     }
 
     public function logout()

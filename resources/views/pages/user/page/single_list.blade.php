@@ -308,15 +308,45 @@
 
                                     </div>
                                     <div class="col-sm">
+                                        {{-- <a type="button" id="wishlist"
+                                            data-real_estate_id="{{$real_estate->real_estate_id}}"><i
+                                            class="far fa-heart" id='heart'></i></a> --}}
+                                        {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
+                                        id="subscription"><i class="fas fa-heart"></i></a> --}}
                                         {{-- đăng ký --}}
                                         @if(\Auth::guard('account')->check() &&
                                         \Auth::guard('account')->user()->hasRole('Customer'))
-                                        <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
-                                            class="rent-notic" id="subscription">Đăng ký</a>
-                                        @else
-                                        <a href="{{route('subscription')}}" class="rent-notic" id="subscription">Đăng
-                                            ký</a>
-                                        @endif
+
+                                        <a type='button' id="wishlist_customer"
+                                            data-real_estate_id="{{$real_estate->real_estate_id}}"
+                                            data-customer_id="{{\Auth::guard('account')->user()->load('customer')->customer->customer_id}}">
+                                            <?php if($heart){
+
+                                                echo "<i class='fas fa-heart' id='heart'></i></a>";
+                                            }
+                                            else{
+
+                                                echo "<i class='far fa-heart' id='heart'></i></a>";
+                                            }?>
+                                            <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                                class="rent-notic" id="subscription">Đăng ký</a>
+                                            @else
+                                            <a type='button' id="wishlist_cookie"
+                                                data-real_estate_id="{{$real_estate->real_estate_id}}"
+                                                data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
+                                                <?php if($heart){
+
+                                                    echo "<i class='fas fa-heart' id='heart'></i></a>";
+                                                }
+                                                else{
+    
+                                                    echo "<i class='far fa-heart' id='heart'></i></a>";
+                                                }?>
+                                                <a href="{{route('subscription')}}" class="rent-notic"
+                                                    id="subscription">Đăng
+                                                    ký</a>
+                                                @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -558,46 +588,47 @@
 <!-- Page end -->
 @endsection
 @push('script')
-{{-- <script>
-    $(document).ready(function(){
+<script>
+    $(document).ready(function () {
+        $('#wishlist_cookie').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
+            var real_estate_id = $('#wishlist_cookie').attr("data-real_estate_id");
+            var cookie_name = $('#wishlist_cookie').attr("data-cookie_name");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                }
+                });
+            $.ajax({
+                url:"{{ route('wishlist.cookie') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
+                type: "POST", // phương thức gửi dữ liệu.
+                // dataType: "JSON",
+                data:{real_estate_id:real_estate_id,cookie_name:cookie_name},
+                success:function(data){ //dữ liệu nhận về
+                    $('#heart').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+                }
+            });
+   
+        }); 
+        $('#wishlist_customer').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
+            var real_estate_id = $('#wishlist_customer').attr("data-real_estate_id");
+            var customer_id = $('#wishlist_customer').attr("data-customer_id");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                }
+                });
+            $.ajax({
+                url:"{{ route('wishlist.customer') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
+                type: "POST", // phương thức gửi dữ liệu.
+                // dataType: "JSON",
+                data:{real_estate_id:real_estate_id,customer_id:customer_id},
+                success:function(data){ //dữ liệu nhận về
+                    $('#heart').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+                }
+            });
+   
+        }); 
 
-    $("#buy").click(function(event){
-        alert(123222);
-        if(Auth::guard('account')->check()){
-
-            // var user_id = $("input[name=user_id]").val();
-            // var real_estate_id = $("input[name=real_estate_id]").val();
-            var real_estate_id = {{$real_estate->real_estate_id}};
-// var real_estate_id = {{$real_estate->real_estate_id}};
-// $.ajaxSetup({
-// headers: {
-// 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-// }
-// });
-alert(real_estate_id);
-// alert(user_id);
-// $.ajax({
-// type: "GET",
-// cache: false,
-// url: "'/cart/"+real_estate_id,
-// data: {
-// user_id,
-// password
-// },
-// dataType: "json",
-// success: function(data){
-// alert('đã thêm vào giỏ hàng');
-// },
-// error: function(error){
-// alert('lỗi');
-// }
-// });
-}
-else{
-alert(123);
-var login = "{{route('getLogin')}}";
-}
-});
-});
-</script> --}}
+    });
+</script>
 @endpush

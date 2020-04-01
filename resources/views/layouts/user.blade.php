@@ -24,6 +24,7 @@
     @include('layouts.user.client')
     @include('layouts.user.footer')
     @include('layouts.user.script')
+    @stack('script')
 </body>
 
 </html>
