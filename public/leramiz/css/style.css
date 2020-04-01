@@ -238,7 +238,8 @@ ol {
 }
 
 .top-info:first-child {
-	margin-right: 13px;
+	margin-left: 20px;
+	padding: 0 15px;
 }
 
 .top-social {
@@ -253,7 +254,7 @@ ol {
 
 .user-panel {
 	display: inline-block;
-	margin-left: 20px;
+	margin-right: 35px;
 }
 
 .user-panel > a {
@@ -281,6 +282,7 @@ ol {
 .main-menu {
 	float: right;
 	list-style: none;
+	margin-right: 10px;
 }
 
 .main-menu li {
@@ -540,12 +542,15 @@ ol {
 }
 
 .feature-title h5 {
-	font-weight: 400;
+	font-weight: bold;
 	margin-bottom: 5px;
+	padding:  0 6px;
+	font-size: 16px;
 }
 
 .feature-title p {
 	margin-bottom: 0;
+	padding-left: 9px;
 }
 
 .feature-title p i {
@@ -1042,6 +1047,9 @@ ol {
 
 .page-section {
 	padding-bottom: 100px;
+	/* margin-top: 111px; */
+	position: relative;
+	top: 110px;
 }
 
 .site-pagination {

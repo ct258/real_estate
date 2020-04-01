@@ -24,7 +24,7 @@
 
 
 <section>
-    <div class="container-fruid">
+    <div class="container-fruid cart">
         <div class="row">
             <div class="col-lg-9">
                 <div id="title-1">
@@ -187,7 +187,9 @@
 
     </div>
 </section>
-
+<div class="end_cart">
+    
+</div>
 @endsection
 @push('script')
 <script src="{{ asset('user/cart/js/1.js') }}"></script>

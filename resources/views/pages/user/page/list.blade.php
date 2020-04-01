@@ -55,6 +55,7 @@
 <section class="page-section">
     <div class="container-fruid">
         <div class="row">
+            <h2>Danh sách bất động sản</h2>
             {{-- main page --}}
             <div class="col-lg-9">
                 <div class="row">
