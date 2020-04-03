@@ -4,7 +4,7 @@
 
 <style>
     path {
-        color: #30caa0;
+        color: white ;
     }
 
     .buy {
@@ -49,12 +49,11 @@
     }
 
     .row.customer_rating {
-        /* border: 1px solid #13110f; */
-        font-family: 'Source Sans Pro', sans-serif;
-        margin-top: 78px;
-        background: #e4e4e459;
-    }
-
+    /* border: 1px solid #13110f; */
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 0;
+    background: #e4e4e459;
+}
 
     .product-customer-col-1 p.total-review-point {
         font-size: 48px;
@@ -191,12 +190,12 @@
     }
 
     .share_comment button.btn.btn-default {
-        background: #f9f955;
-        /* margin: auto; */
-        width: 72%;
-        margin-left: 30px;
-        margin-top: 11px;
-    }
+    background: #f9f955;
+    /* margin: auto; */
+    /* width: 72%; */
+    margin-left: -6px;
+    /* margin-top: 11px; */
+}
 
     .row.customer_rating path {
         color: #ffc120;
@@ -257,7 +256,7 @@
 @endif
 
 <!-- Page -->
-<section class="page-section">
+<section class="page-section single_list">
     <div class="container">
         <div class="row single_list">
             <div class="col-lg-8 single-list-page">
@@ -388,7 +387,7 @@
 
                 </div>
                 <h3 class="sl-sp-title">Đánh giá</h3>
-                <div class="container">
+                <div class="container-fuild">
                     <div class="row customer_rating" class="rating">
                         <div class="col-lg-3">
                             <div class="product-customer-col-1">
@@ -425,68 +424,73 @@
                                         <div class="bar-5"></div>
                                     </div>
                                 </div>
+                                <div class="side right">
 
-                            </div>
-                            <div class="side">
-                                <div class="left">4 Star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-4"></div>
+                                    <div class="right">{{$rank_4}}</div>
+
                                 </div>
-                            </div>
-                            <div class="side right">
-
-                                <div class="right">{{$rank_4}}</div>
-
-                            </div>
-                            <div class="side">
-                                <div class="left">3 Star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-3"></div>
+                                <div class="side">
+                                    <div class="left">4 Star</div>
                                 </div>
-                            </div>
-                            <div class="side right">
-
-                                <div class="right">{{$rank_3}}</div>
-
-                            </div>
-                            <div class="side">
-                                <div class="left">2 Star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-2"></div>
+                                <div class="middle">
+                                    <div class="bar-container">
+                                        <div class="bar-4"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="side right">
+                                <div class="side right">
 
-                                <div class="right">{{$rank_2}}</div>
+                                    <div class="right">{{$rank_4}}</div>
 
-                            </div>
-                            <div class="side">
-                                <div class="left">1 Star</div>
-                            </div>
-                            <div class="middle">
-                                <div class="bar-container">
-                                    <div class="bar-1"></div>
                                 </div>
-                            </div>
-                            <div class="side right">
+                                <div class="side">
+                                    <div class="left">3 Star</div>
+                                </div>
+                                <div class="middle">
+                                    <div class="bar-container">
+                                        <div class="bar-3"></div>
+                                    </div>
+                                </div>
+                                <div class="side right">
 
-                                <div class="right">{{$rank_1}}</div>
+                                    <div class="right">{{$rank_3}}</div>
 
+                                </div>
+                                <div class="side">
+                                    <div class="left">2 Star</div>
+                                </div>
+                                <div class="middle">
+                                    <div class="bar-container">
+                                        <div class="bar-2"></div>
+                                    </div>
+                                </div>
+                                <div class="side right">
+
+                                    <div class="right">{{$rank_2}}</div>
+
+                                </div>
+                                <div class="side">
+                                    <div class="left">1 Star</div>
+                                </div>
+                                <div class="middle">
+                                    <div class="bar-container">
+                                        <div class="bar-1"></div>
+                                    </div>
+                                </div>
+                                <div class="side right">
+
+                                    <div class="right">{{$rank_1}}</div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="share_comment">
+                        <div class="col-lg-3">
+                        <div class="share_comment float-right">
                             <h3>Chia sẻ nhận xét về sản phẩm</h3>
                             <button class="btn btn-default">Viết nhận xét của bạn</button>
                         </div>
                     </div>
+                    </div>
+                    
                 </div>
             </div>
             <h3 class="sl-sp-title">Đánh giá</h3>
