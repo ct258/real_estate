@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\LangMiddleware::class,
             \App\Http\Middleware\Currency::class,
+            \App\Http\Middleware\Cookie::class,
         ],
 
         'api' => [
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'checkAdmin' => \App\Http\Middleware\CheckAdmin::class,
         'checkStaff' => \App\Http\Middleware\CheckStaff::class,
         'checkAdminStaff' => \App\Http\Middleware\CheckAdminStaff::class,
+        'cookie' => \App\Http\Middleware\Cookie::class,
     ];
 
     /**
