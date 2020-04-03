@@ -23,6 +23,8 @@ Route::group(['prefix' => ''], function () {
     Route::post('/register/submit', ['as' => 'register.submit', 'uses' => 'AccountController@register']);
     Route::get('/find_username/{username}', ['as' => 'find_username', 'uses' => 'AccountController@find_username']);
 });
+Route::group(['middleware' => ['cookie']], function () {
+    
 
 Route::group(['middleware' => ['currency']], function () {
 //người đùng
@@ -342,4 +344,4 @@ Route::group(['middleware' => ['currency']], function () {
         })->name('error');
         
 
-    
+    });
