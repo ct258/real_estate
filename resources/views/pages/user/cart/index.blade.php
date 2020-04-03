@@ -33,7 +33,7 @@
                     <h3>Giỏ hàng <span>({{count($cart)}} sản phẩm)</span></h3>
                     @else
 
-                    <h3>Giỏ hàng <span>0 sản phẩm)</span></h3>
+                    <h3>Giỏ hàng <span>(0 sản phẩm)</span></h3>
                     @endif
                 </div>
                 @if($cart)
@@ -188,7 +188,7 @@
     </div>
 </section>
 <div class="end_cart">
-    
+
 </div>
 @endsection
 @push('script')

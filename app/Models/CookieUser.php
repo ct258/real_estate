@@ -14,7 +14,7 @@ class CookieUser extends Model
 
     protected $fillable = [
         'cookie_user_id',
-        'cookie_user_name',
+        // 'cookie_user_name',
         'created_at',
         'updated_at',
         'deleted_at',
