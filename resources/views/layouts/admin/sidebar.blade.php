@@ -94,7 +94,7 @@
                         <span>Khuyến Mãi </span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Danh sách khuyến mãi</a></li>
+                    <li><a href="{{route('test')}}">Danh sách khuyến mãi</a></li>
                         <li><a href="">Cập Nhật Khuyến Mãi</a></li>
                     </ul>
                 </li>
@@ -107,7 +107,7 @@
                 </li>
                 {{-- nhân viên --}}
                 <li class="sub-menu">
-                    <a href="#">
+                <a href="{{route('staff.index')}}">
                         <i class="fa fa-users"></i>
                         <span>Nhân viên</span>
                     </a>

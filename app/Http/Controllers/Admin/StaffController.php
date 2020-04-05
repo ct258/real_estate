@@ -14,7 +14,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.nhanvien.index');
     }
 
     /**

@@ -342,4 +342,6 @@ Route::group(['middleware' => ['currency']], function () {
         })->name('error');
         
 
-    
+    Route::get('test', function (){
+        return view('pages.admin.promotion.index');
+    })->name('test');

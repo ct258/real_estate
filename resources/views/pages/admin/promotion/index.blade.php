@@ -1,5 +1,6 @@
-@extends('layouts.admin')
 
+
+@extends('layouts.admin')
 
 @section('content')
 
@@ -40,9 +41,6 @@
                                         <i class="fa fa-info-circle"></i></a>
                                     <a href="">
                                         <i class="fa fa-edit"></i></a>
-                                    &nbsp;
-                                    &nbsp;
-                                    &nbsp;
                                     <button type="submit"
                                         style="border: none;background-color: Transparent;color: red;">
                                         <i class="fa fa-trash-o"></i></a>
@@ -63,8 +61,15 @@
 
 
                 </table>
+             
+
+
+                
+                
+
             </div>
         </section>
+  
     </div>
 </div>
 
