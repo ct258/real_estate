@@ -67,45 +67,51 @@ class CartController extends Controller
                 // dd($cart);
             }
         } else { //nếu chưa đăng nhập thì lấy dữ liệu bảng tạm
-            
-            $info = null;
-            $check=false;
-            if(\Cookie::get('real_estate')){
-                $check = CartTemp::where('cookie_user_id', \Cookie::get('real_estate'))->first();
-            }
-            if ($check) {
-                $cart = CookieUser::join('cart_temp', 'cart_temp.cookie_user_id', 'cookie_user.cookie_user_id')
-                ->join('detail_temp', 'detail_temp.cart_temp_id', 'cart_temp.cart_temp_id')
-                ->join('real_estate', 'real_estate.real_estate_id', 'detail_temp.real_estate_id')
-                ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
-                ->join('district', 'real_estate.district_id', 'district.district_id')
-                ->join('province', 'district.province_id', 'province.province_id')
-                // ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-                // ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
-                ->select('real_estate.real_estate_id',
-                'real_estate_price',
-                'real_estate_acreage',
-                'real_estate_avatar',
-                'translation_name',
-                // 'unit_translation.unit_translation_name',
-                'province.province_name',
-                'district.district_name')
-                ->where([
-                    ['translation_locale', \Session::get('lang', config('app.locale'))],
-                    ['cart_temp.cookie_user_id',\Cookie::get('real_estate')]
-                    // ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
-                    ])
-                ->get();
-            } else {
-                $cart = [];
-            }
-            $total_money = 0;
-            foreach ($cart as $value) {
-                $total_money +=$value->real_estate_price;
-            }
-            
+            // $info = null;
+            // $cookie_user=CookieUser::where('cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+            // if($cookie_user){
+
+            //     $check = CartTemp::where('cookie_user_id', $cookie_user->cookie_user_id)->first();
+            // }
+            // else{
+            //     $check=false;
+            // }
+            // if ($check) {
+            //     $cart = CookieUser::join('cart_temp', 'cart_temp.cookie_user_id', 'cookie_user.cookie_user_id')
+            //     ->join('detail_temp', 'detail_temp.cart_temp_id', 'cart_temp.cart_temp_id')
+            //     ->join('real_estate', 'real_estate.real_estate_id', 'detail_temp.real_estate_id')
+            //     ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+            //     // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
+            //     ->join('district', 'real_estate.district_id', 'district.district_id')
+            //     ->join('province', 'district.province_id', 'province.province_id')
+            //     // ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
+            //     // ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
+            //     ->select('real_estate.real_estate_id',
+            //     'real_estate_price',
+            //     'real_estate_acreage',
+            //     'real_estate_avatar',
+            //     'translation_name',
+            //     // 'unit_translation.unit_translation_name',
+            //     // 'image.image_path',
+            //     'province.province_name',
+            //     'district.district_name')
+            //     ->where([
+            //         ['translation_locale', \Session::get('lang', config('app.locale'))],
+            //         ['cookie_user_name',$request->cookie('Name_of_your_cookie')]
+            //         // ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
+            //         ])
+            //     ->get();
+            // } else {
+            //     $cart = [];
+            // }
+            // $total_money = 0;
+            // foreach ($cart as $value) {
+            //     $total_money +=$value->real_estate_price;
+            // }
             // dd($total_money);
+            $cart=$info=$total_money=null;
         }
+        // dd($cart);
 
         return view('pages.user.cart.index', compact('cart', 'info', 'total_money'));
     }
@@ -137,34 +143,34 @@ class CartController extends Controller
                 return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
             }
         } else { 
-            // return redirect('single_list/'.$real_estate_id)->with('error', 'Bạn phải đăng nhập');
-            if(\Cookie::get('real_estate')){
-                $cart_temp = CartTemp::where('cookie_user_id', \Cookie::get('real_estate'))->first();
-                if($cart_temp){
-                    
-                    $detail_cart=DetailTemp::where([
-                        ['cart_temp_id',$cart_temp->cart_temp_id],
-                        ['real_estate_id',$real_estate_id]
-                        ])->first();
-                    if($detail_cart){
-                        return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
-                    }
-                    else{
-                        DetailTemp::insert([
-                            'cart_temp_id'=>$cart_temp->cart_temp_id,
-                            'real_estate_id'=>$real_estate_id,
-                            ]);
-                        }
-                }else{
-                    $cart_temp=CartTemp::insertGetid([
-                        'cookie_user_id'=>\Cookie::get('real_estate'),
-                    ]);
-                    DetailTemp::insert([
-                        'cart_temp_id'=>$cart_temp,
-                        'real_estate_id'=>$real_estate_id,
-                        ]);
-                }
-            }
+            return redirect('single_list/'.$real_estate_id)->with('error', 'Bạn phải đăng nhập');
+            // $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+            // if($cookie){
+            //     $cart_temp = CartTemp::where('cookie_user_id', $cookie->cookie_user_id)->first();
+            //     if($cart_temp){
+            //         $detail_cart=DetailTemp::where([
+            //             ['cart_temp_id',$cart_temp->cart_temp_id],
+            //             ['real_estate_id',$real_estate_id]
+            //             ])->first();
+            //         if($detail_cart){
+            //             return redirect('single_list/'.$real_estate_id)->with('error', 'Sản phẩm đã có trong giỏ hàng');
+            //         }
+            //         else{
+            //             DetailTemp::insert([
+            //                 'cart_temp_id'=>$cart_temp->cart_temp_id,
+            //                 'real_estate_id'=>$real_estate_id,
+            //                 ]);
+            //             }
+            //     }else{
+            //         $cart_temp=CartTemp::insertGetid([
+            //             'cookie_user_id'=>$cookie->cookie_user_id,
+            //         ]);
+            //         DetailTemp::insert([
+            //             'cart_temp_id'=>$cart_temp,
+            //             'real_estate_id'=>$real_estate_id,
+            //             ]);
+            //     }
+            // }
         }
         
 

@@ -19,7 +19,6 @@ use App\Models\Cart;
 use App\Models\DetailCart;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Http\Response;
 
 class ClientController extends Controller
 {
@@ -158,7 +157,7 @@ class ClientController extends Controller
         ->with('direction', $direction)
         ->with('standard_acreage', $standard_acreage);
     }
-    public function add_view_product($real_estate_id)
+    public function add_view_product($cookie,$real_estate_id)
     {
         /*
         thêm vào danh sách đã xem
@@ -169,18 +168,35 @@ class ClientController extends Controller
         nếu có rồi thì tìm sp đã xem có sp đó chưa
         */
         
-            $view_product=ViewProduct::where('cookie_user_id',\Cookie::get('real_estate'))
+        if($cookie){
+            $view_product=ViewProduct::where('cookie_user_id',$cookie->cookie_user_id)
             ->first();
-            $re_vp=ViewProduct::where('real_estate_id',$real_estate_id)->first();
-            if(!$view_product || (!$re_vp&& $view_product)){
+            if(!$view_product){
                 ViewProduct::insert([
                     'real_estate_id'=>$real_estate_id,
-                    'cookie_user_id'=>\Cookie::get('real_estate'),
+                    'cookie_user_id'=>$cookie->cookie_user_id,
                 ]);
+            }else{
+                $re_vp=ViewProduct::where('real_estate_id',$real_estate_id)->first();
+                if(!$re_vp){
+                    ViewProduct::insert([
+                        'real_estate_id'=>$real_estate_id,
+                        'cookie_user_id'=>$cookie->cookie_user_id,
+                    ]);
+                }
             }
-        
+        }
+        else{
+            $cookie=CookieUser::insertGetid([
+                'cookie_user_name'=>$request->cookie('Name_of_your_cookie'),
+            ]);
+            ViewProduct::insert([
+                'real_estate_id'=>$real_estate_id,
+                'cookie_user_id'=>$cookie->cookie_user_id,
+            ]);
+        }
     }
-    public function check_wishlist($real_estate_id)
+    public function check_wishlist($cookie,$real_estate_id)
     {
         $checklogin1=false;
             if(\Auth::guard('account')->check()){
@@ -194,7 +210,7 @@ class ClientController extends Controller
             }
             else{
                 $check_wishlist=WishListTemp::where([
-                    ['cookie_user_id',\Cookie::get('real_estate')],
+                    ['cookie_user_id',$cookie->cookie_user_id],
                     ['real_estate_id',$real_estate_id]])->first();
             }
             if($check_wishlist){
@@ -278,8 +294,9 @@ class ClientController extends Controller
     }
     public function single_list(Request $request, $real_estate_id)
     {
-        //thêm vào danh sách sp đã xem
-        $this->add_view_product($real_estate_id);
+        // $cookie=CookieUser::where('cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie'))->first();
+        //gọi function thêm danh sách sp đã xem
+        // $this->add_view_product($cookie,$real_estate_id);
 
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
         ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
@@ -305,7 +322,7 @@ class ClientController extends Controller
 
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
         // lấy hàm kiểm tra đã thích hay chưa
-        $heart=$this->check_wishlist($real_estate_id);
+        // $heart=$this->check_wishlist($cookie,$real_estate_id);
         // gọi là dấy danh sách tương tác
         list($image,
         $evaluate,
@@ -329,7 +346,7 @@ class ClientController extends Controller
         'rank_3',
         'rank_2',
         'rank_1',
-        'heart',
+        // 'heart',
         ));
     }
 
@@ -358,7 +375,6 @@ class ClientController extends Controller
 
     public function view_product(Request $request)
     {
-        // dd($request);
         $view_product=ViewProduct::join('cookie_user','view_product.cookie_user_id','cookie_user.cookie_user_id')
         ->join('real_estate','view_product.real_estate_id','real_estate.real_estate_id')
         ->join('translation','real_estate.real_estate_id','translation.real_estate_id')
@@ -376,11 +392,13 @@ class ClientController extends Controller
         'translation.translation_name',
         'province.province_name',
         'district.district_name',)
-        ->where([['cookie_user.cookie_user_id',\Cookie::get('real_estate')],
+        ->where([['cookie_user.cookie_user_name',$request->cookie('Name_of_your_cookie')],
         ['translation_locale', \Session::get('lang', config('app.locale'))],
         ['real_estate_status','Đang bán']])
         ->limit(6)
         ->get();
+        // dd($view_product);
+        // dd($view_product->real_estate_price);
         $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
         Carbon::setlocale('vi');
         $now = Carbon::now();
@@ -420,19 +438,30 @@ class ClientController extends Controller
         if(request()->ajax())
         {
             $real_estate_id = $request->get('real_estate_id');
-            
+            $cookie_name = $request->get('cookie_name');
+            $cookie_user=CookieUser::where('cookie_user_name',$cookie_name)->first();
+            if(!$cookie_user){
+                $cookie_user=CookieUser::insertGetid([
+                    'cookie_user_name'=>$cookie_name,
+                    ]);
+                    WishListTemp::insert([
+                        'real_estate_id'=>$real_estate_id,
+                        'cookie_user_id'=>$cookie_user,
+                    ]);
+            }
+            else{
 
-                $check_product=WishListTemp::where('cookie_user_id',\Cookie::get('real_estate'))->first();
+                $check_product=WishListTemp::where('cookie_user_id',$cookie_user->cookie_user_id)->first();
                     if($check_product){
                         echo "alert('sản phẩm đã có trong danh sách yêu thích')";
                     }
                     else{
                         WishListTemp::insert([
                             'real_estate_id'=>$real_estate_id,
-                            'cookie_user_id'=>\Cookie::get('real_estate')
+                            'cookie_user_id'=>$cookie_user->cookie_user_id,
                         ]);
                     }
-            
+            }
             echo "<i class='fas fa-heart' id='heart'>";
             }
     }

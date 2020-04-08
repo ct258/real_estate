@@ -16,7 +16,7 @@ class CreateCookieUserTable extends Migration
         if (!Schema::hasTable('cookie_user')) {
             Schema::create('cookie_user', function (Blueprint $table) {
                 $table->increments('cookie_user_id')->comment('id của cookie');
-                // $table->string('cookie_user_name', 80)->comment('tên cookie');
+                $table->string('cookie_user_name', 80)->comment('tên cookie');
 
                 //log time
                 $table->timestamp('created_at')
@@ -31,7 +31,7 @@ class CreateCookieUserTable extends Migration
                 ->nullable()
                 ->comment('ngày xóa tạm');
             });
-            DB:: statement("ALTER TABLE `cookie_user` comment 'tài khoản tạm'");
+            DB:: statement("ALTER TABLE `cookie_user` comment 'Giỏ hàng tạm'");
         }
     }
 
