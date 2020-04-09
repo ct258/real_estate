@@ -344,16 +344,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <label class="anim">
                                 <input class="checkbox" type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
+                                   >
 
                                 {{-- <input type="checkbox" class="checkbox"> --}}
                                 <span>Remember Me</span>
 
                             </label>
-                            {{-- <div class="form-label-group">
+                            <div class="form-label-group">
                     <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
                     <label for="inputConfirmPassword">Confirm password</label>
-                  </div> --}}
+                  </div>
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase"
                                 type="submit">Submit</button>

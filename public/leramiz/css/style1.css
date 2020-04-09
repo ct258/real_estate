@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+h4.comment-title {
+    text-align: center;
+}
+
+div#exampleModal {margin-top: 110px;/* width: 450px; *//* margin: auto; *//* position: absolute; *//* top: 39px; */}
+
 .end_cart {
     /* height: 300px; */
     margin-bottom: 302px;
@@ -276,4 +282,5 @@ div#curency a:hover {
     z-index: 99999;
     /* bottom: 0px; */
     /* margin-bottom: 5px; */
+    top: 0;
     }
