@@ -37,6 +37,13 @@ Route::group(['middleware' => ['currency']], function () {
         Route::post('list', 'ClientController@searchFullText')->name('list.sort');
         Route::get('listajax', 'ClientController@list_ajax')->name('list.ajax');
         Route::get('single_list/{real_estate_id}', 'ClientController@single_list')->name('single_list');
+
+        //Viết coment
+        Route::post('write_comment/{idsp}/{idkh}','ClientController@write_cmt')->name('write_cmt');
+        //reply
+        Route::post('write_comment/{idsp}/{idcmt}/{idrep}','ClientController@reply_cmt')->name('reply_cmt');
+       
+
         // Route::get('single_blog/', 'ClientController@single_blog')->name('single_blog');
         Route::get('single_blog/{blog_id}', 'ClientController@single_blog')->name('single_blog');
         Route::group(['prefix' => 'cart'], function () {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\RealEstate;
 use App\Models\Form;
 use App\Models\Province;
@@ -208,6 +208,7 @@ class ClientController extends Controller
     public function get_evaluate($request,$real_estate,$real_estate_id)
     {
         //Đánh giá
+        
         $evaluate = Evaluate::join('customer', 'evaluate.customer_id', 'customer.customer_id')
         ->select('customer.customer_avatar',
         'customer.customer_name',
@@ -230,7 +231,8 @@ class ClientController extends Controller
         'evaluate.evaluate_rank',
         'evaluate.evaluate_title',
         'evaluate.evaluate_content',
-        'evaluate.updated_at'
+        'evaluate.updated_at',
+        'evaluate.customer_id'
         )
         ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
         ->get();
@@ -279,6 +281,7 @@ class ClientController extends Controller
     public function single_list(Request $request, $real_estate_id)
     {
         //thêm vào danh sách sp đã xem
+        $real_id=$real_estate_id;
         $this->add_view_product($real_estate_id);
 
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
@@ -330,8 +333,46 @@ class ClientController extends Controller
         'rank_2',
         'rank_1',
         'heart',
+        'real_id'
         ));
     }
+
+    //write Comment
+    public function write_cmt (Request $request, $idsp, $idkh){
+        $title = $request->title;
+        $content = $request->content;
+        $data = DB::table('evaluate')->insert(
+            [
+                'evaluate_title' => $title,
+                'evaluate_content' => $content,
+                'real_estate_id' => $idsp,
+                'customer_id' => $idkh,
+                //gán cứng khách hàng có id là 1
+                'evaluate_rank' => 5
+                //gán cứng 5 sao
+            ]
+        );
+        return redirect()->route('single_list', ['real_estate_id' => $idsp]);
+    }
+    // write reply comment
+    public function reply_cmt (Request $request , $idsp, $idcmt,$idrep)
+    {
+        $title = $request->title;
+        $content = $request->content;
+        $data = DB::table('evaluate')->insert(
+            [
+                'evaluate_title' => $title,
+                'evaluate_content' => $content,
+                'real_estate_id' => $idsp,
+                'customer_id' => $idcmt,
+                'evaluate_reply' => $idrep,
+                'evaluate_rank' => 5
+                //gán cứng 5 sao
+            ]
+        );
+        return redirect()->route('single_list', ['real_estate_id' => $idsp]);
+    }
+
 
 
     public function single_blog(Request $request,$blog_id)

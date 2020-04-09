@@ -496,68 +496,63 @@
             <div class="comment-warp">
                 {{-- <h4 class="comment-title">3 Comments</h4> --}}
                 <ul class="comment-list">
-                    {{-- <li>
+                    @foreach ($evaluate as $item)
+                  
+                        <li>
+                           
+
+                          
                             <div class="comment">
-                                <div class="comment-avator set-bg"
-                                    data-setbg="{{asset('leramiz/img/blog/comment/1.jpg')}}"></div>
-            <div class="comment-content">
-                <h5>Lucia Mendes <span>24 Mar 2018</span></h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. finibus eros eget purus vulputate,
-                    sit amet ornare ipsum. Ut enim ad minim veniam. Donec tincidunt sem non odio
-                    congue.</p>
-                <a href="" class="c-btn">Like</a>
-                <a href="" class="c-btn">Reply</a>
-            </div>
-        </div>
-        <ul class="replay-comment-list">
-            <li>
-                <div class="comment">
-                    <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/2.jpg')}}">
-                    </div>
-                    <div class="comment-content">
-                        <h5>Peter Simon<span>25 Jun 2018</span></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod
-                            tempor incididunt ut labore iron man dolore magna aliqua. fpurus
-                            vulputate, sit amet ornare ipsum. Ut enim ad minim veniam. Donec
-                            tincidunt sem non odio congue.</p>
-                        <a href="" class="c-btn">Like</a>
-                        <a href="" class="c-btn">Reply</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        </li> --}}
-        @foreach ($evaluate as $item)
-
-
-        <li>
-            <div class="comment">
-                <div class="comment-avator set-bg" data-setbg="{{asset($item->customer_avatar)}}"></div>
-                <div class="comment-content">
-                    <h5>{{$item->evaluate_title}}</h5>
-                    <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
-                    <p>{{$item->evaluate_content}}</p>
-                    <a href="" class="c-btn">Like</a>
-                    <a href="" class="c-btn">Reply</a>
-                </div>
-            </div>
-        </li>
-        @endforeach
-        </ul>
+                                <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}"></div>
+                                <div class="comment-content">
+                                    <h5>{{$item->evaluate_title}}</h5>
+                                    <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
+                                    <p>{{$item->evaluate_content}}</p>
+                                    <a href="" class="c-btn">Like</a>
+                                    <a data-toggle="modal" data-target="#exampleModal" class="c-btn">Reply</a>
+                                </div>
+                            </div>
+                       
+                         
+                             <ul class="replay-comment-list">
+                                    <li>
+                                        <div class="comment">
+                                            <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/2.jpg')}}">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5>Peter Simon<span>25 Jun 2018</span></h5>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod
+                                                    tempor incididunt ut labore iron man dolore magna aliqua. fpurus
+                                                    vulputate, sit amet ornare ipsum. Ut enim ad minim veniam. Donec
+                                                    tincidunt sem non odio congue.</p>
+                                                <a href="" class="c-btn">Like</a>
+                                                <a href="" class="c-btn">Reply</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            
+                            
+                               
+                        </li>
+                    @endforeach
+                </ul>
         <div class="comment-form-warp">
+            {{-- Auth::gruad('ten') --}}
             <h4 class="comment-title">Leave Your Comment</h4>
-            <form class="comment-form">
+            <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}" method="post">
+                @csrf
                 <div class="row">
+                    {{-- <div class="col-md-6">
+                        <input type="text" name="name_customer" placeholder="Your Name">
+                    </div> --}}
                     <div class="col-md-6">
-                        <input type="text" placeholder="Your Name">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="email" placeholder="Your Email">
+                        <label for="">Title</label>
+                        <input type="text" name="title" placeholder="Enter title here . . .">
                     </div>
                     <div class="col-lg-9">
-                        <textarea placeholder="Your Message"></textarea>
-                        <button class="site-btn">SEND COMMENT</button>
+                        <textarea placeholder="Your Message" name="content"></textarea>
+                        <button class="site-btn">SEND</button>
                     </div>
                 </div>
             </form>
@@ -594,6 +589,45 @@
 
 </section>
 <!-- Page end -->
+
+{{-- reply comment --}}
+<div class="modal fade reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="comment-form-warp">
+            {{-- Auth::gruad('ten') --}}
+            <h4 class="comment-title">Reply Comment</h4>
+            <form class="comment-form" action="{{ route('reply_cmt', ['idsp'=> $real_id,'idcmt'=>1,'idrep'=>1]) }}" method="post">
+                @csrf
+                <div class="row">
+                    {{-- <div class="col-md-6">
+                        <input type="text" name="name_customer" placeholder="Your Name">
+                    </div> --}}
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Title</label>
+                            <input type="text" name="title" placeholder="Enter title here . . .">
+                          </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Content</label>
+                            <textarea class="form-control" name="content" rows="3"></textarea>
+                          </div>
+                        <button class="site-btn">SEND</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- reply comment --}}
 @endsection
 @push('script')
 <script>
