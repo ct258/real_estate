@@ -1,3 +1,5 @@
+
+
 <script src="{{asset('admin/js/bootstrap.js')}}"></script>
 <script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 <script src="{{asset('admin/js/scripts.js')}}"></script>
@@ -7,6 +9,14 @@
     <script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script>
     <![endif]--> --}}
 <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
+
+
+
+
+
+
+
+
 <!-- morris JavaScript -->
 {{-- <script>
     $(document).ready(function() {
@@ -95,3 +105,14 @@
 		});
 </script>
 <!-- //calendar -->
+
+{{-- loadtrang --}}
+	<script>
+		$(window).on('load', function(event) {
+	$('body').removeClass('preloading');
+	$('.load').delay(200).fadeOut('fast');
+	// $('.loader').delay(1000).fadeOut('fast');
+});
+	</script>
+
+{{-- loadtrang --}}

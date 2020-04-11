@@ -350,5 +350,3 @@ Route::group(['middleware' => ['currency']], function () {
             return view('pages.admin.error');
         })->name('error');
         
-
-    });

@@ -1,0 +1,30 @@
+.load{
+	width: 100%;
+	height: 100%;
+	/* background: #f0bcb4; */
+    background:#f0bcb4;
+    position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100000000000;
+	display: block;
+	overflow: hidden;
+}
+.load img{
+	width: 150px;
+	height: 150px;
+	position: absolute; 
+	top: 50%;
+	left: 50%;
+	margin-top: -75px;
+	margin-left: -75px;
+}
+ul.sub {
+    color: beige;
+    background-color: #776464 !important;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    font-size: 0.9em;
+    color: #3b3434 !important;
+    border-top: none !important;
+}

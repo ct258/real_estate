@@ -1,6 +1,11 @@
 @include('layouts.admin.head')
 
-<body>
+<body class="preloading">
+    {{-- hieuungloadtrang --}}
+    <div class="load">
+        <img src="{{asset('admin\images\loader.gif')}}">
+    </div>
+
     <section id="container">
         @include('layouts.admin.header')
         @include('layouts.admin.sidebar')

@@ -24,7 +24,7 @@ class RealEstateController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.real_estate.create');
     }
 
     /**
@@ -55,9 +55,10 @@ class RealEstateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        // return view('pages.admin.real_estate.edit');
+
     }
 
     /**
