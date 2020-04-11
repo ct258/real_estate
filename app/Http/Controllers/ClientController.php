@@ -280,13 +280,9 @@ class ClientController extends Controller
     }
     public function single_list(Request $request, $real_estate_id)
     {
-<<<<<<< HEAD
 
         //thêm vào danh sách sp đã xem
         $real_id=$real_estate_id;
-=======
-        //thêm vào danh sách sp đã xem
->>>>>>> parent of d801d59... Revert "Merge branch 'master' into phuc.nguyen"
         $this->add_view_product($real_estate_id);
 
         $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
@@ -338,10 +334,7 @@ class ClientController extends Controller
         'rank_2',
         'rank_1',
         'heart',
-<<<<<<< HEAD
         'real_id'
-=======
->>>>>>> parent of d801d59... Revert "Merge branch 'master' into phuc.nguyen"
         ));
     }
 
