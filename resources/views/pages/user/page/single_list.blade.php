@@ -320,36 +320,35 @@
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"
                                             data-customer_id="{{\Auth::guard('account')->user()->load('customer')->customer->customer_id}}">
                                             <?php 
-                                            // if($heart){
+                                            if($heart){
 
-                                            //     echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                            // }
-                                            // else{
+                                                echo "<i class='fas fa-heart' id='heart'></i></a>";
+                                            }
+                                            else{
 
-                                            //     echo "<i class='far fa-heart' id='heart'></i></a>";
-                                            // }
+                                                echo "<i class='far fa-heart' id='heart'></i></a>";
+                                            }
                                             ?>
-                                            <i class='fas fa-heart' id='heart'></i></a>
-                                        <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
-                                            class="rent-notic" id="subscription">Đăng ký</a>
-                                        @else
-                                        <a type='button' id="wishlist_cookie"
-                                            data-real_estate_id="{{$real_estate->real_estate_id}}"
-                                            data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
-                                            <?php 
-                                            // if($heart){
+                                            <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                                class="rent-notic" id="subscription">Đăng ký</a>
+                                            @else
+                                            <a type='button' id="wishlist_cookie"
+                                                data-real_estate_id="{{$real_estate->real_estate_id}}"
+                                                data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
+                                                <?php 
+                                            if($heart){
 
-                                            //         echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                            //     }
-                                            //     else{
+                                                    echo "<i class='fas fa-heart' id='heart'></i></a>";
+                                                }
+                                                else{
     
-                                            //         echo "<i class='far fa-heart' id='heart'></i></a>"; --}}
-                                            //     }
+                                                    echo "<i class='far fa-heart' id='heart'></i></a>";
+                                                }
                                                 ?>
-                                            <i class='fas fa-heart' id='heart'></i></a>
-                                        <a href="{{route('subscription')}}" class="rent-notic" id="subscription">Đăng
-                                            ký</a>
-                                        @endif
+                                                <a href="{{route('subscription')}}" class="rent-notic"
+                                                    id="subscription">Đăng
+                                                    ký</a>
+                                                @endif
 
                                     </div>
                                 </div>
