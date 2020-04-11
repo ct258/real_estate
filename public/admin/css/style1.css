@@ -19,3 +19,12 @@
 	margin-top: -75px;
 	margin-left: -75px;
 }
+ul.sub {
+    color: beige;
+    background-color: #776464 !important;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    font-size: 0.9em;
+    color: #3b3434 !important;
+    border-top: none !important;
+}

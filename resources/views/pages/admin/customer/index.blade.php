@@ -3,7 +3,7 @@
 
 @section('content')
 
-<h2 class="page-title">Title<br><br></h2>
+<h2 class="page-title">Khách hàng<br><br></h2>
 
 
 <small><a href="" class="tst4 btn btn-success">{{ __('Create') }}
@@ -16,17 +16,23 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
+                            <th>Họ tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Giới tính</th>
+                            <th>Địa chỉ</th>
+                            <th>CMND</th>
+                            <th>CMND</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{-- @foreach ($real_estate as $item) --}}
                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

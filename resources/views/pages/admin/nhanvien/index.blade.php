@@ -3,6 +3,19 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+  .v-middle{
+    padding-left: 25px;
+  }
+    
+    .error {
+        color: red;
+    }
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        color:#0000009e;
+    
+  }
+</style>
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -26,12 +39,12 @@
         </style>
         <select class="input-md form-control w-sm inline v-middle ">
             
-            <option value="0">Họ tên</option>
-            <option value="1">ID</option>
-            <option value="2">Ngày sinh</option>
-            <option value="2">Giới tính</option>
-            <option value="2">Địa chỉ</option>
-            <option value="2">SĐT</option>
+            <option value="">Họ tên</option>
+            <option value="">ID</option>
+            <option value="">Ngày sinh</option>
+            <option value="">Giới tính</option>
+            <option value="">Địa chỉ</option>
+            <option value="">SĐT</option>
           </select>
       </div>
       <div class="col-sm-3" style="margin-left:-79px;">
@@ -47,7 +60,7 @@
         
       </div>
       <div class="col-sm-2">
-        <div class="col-sm-5" ><small><a href="" class="tst4 btn btn-success">Thêm nhân viên
+      <div class="col-sm-5" ><small><a href="{{route('staff.create')}}" class="tst4 btn btn-success">Thêm nhân viên
         </a></small>
         </div>
         
@@ -90,9 +103,10 @@
             <td>
                 <form action="" method="post" class="delete_form">
                     @csrf
-                    <a href="">&nbsp;&nbsp;
-                        <i class="fa fa-info-circle"></i></a>
-                    <a href="">
+                    &nbsp;
+                    {{-- <a href="">&nbsp;
+                        <i class="fa fa-info-circle"></i></a> --}}
+                    <a href="{{route('staff.index')}}">
                         <i class="fa fa-edit"></i></a>
                     <button type="submit"
                         style="border: none;background-color: Transparent;color: red;">
@@ -100,7 +114,7 @@
                     </button>
 
                 </form>
-              <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+              {{-- <i href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></i> --}}
             </td>
           </tr>
         </thead>

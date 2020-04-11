@@ -1,5 +1,7 @@
 @extends('layouts.admin')
+
 @section('content')
+
 
 <!-- page start-->
 <h2>CẬP NHẬT ẢNH BÌA</h2>
@@ -144,6 +146,16 @@
             height: 400px !important;
         }
     </style>
+    <script>
+        $(function(){
+            $('.panel-body').slideUp();
+            $('.panel-heading').click(function(e){
+                $(this).next().slideToggle();
+            });
+           
+
+        });
+    </script>
 
     {{-- page end --}}
 
