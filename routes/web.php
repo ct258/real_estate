@@ -170,7 +170,7 @@ Route::group(['middleware' => ['currency']], function () {
                 Route::get('/edit/{staff_id}', 'Admin\StaffController@edit')->name('staff.edit');
                 Route::post('/edit/submit/{staff_id}', 'Admin\StaffController@update')->name('staff.update');
                 // xóa mềm
-                Route::post('/destroy/{staff_id}', 'Admin\StaffController@destroy')->name('staff.destroy');
+                Route::get('/destroy/{staff_id}', 'Admin\StaffController@destroy')->name('staff.destroy');
                
             });
             //statistic
@@ -344,9 +344,9 @@ Route::group(['middleware' => ['currency']], function () {
     Route::get('map3', function () {
         return view('pages.user.page.map3');
     });
-        });
+ });
 
         Route::get('error', function () {
             return view('pages.admin.error');
         })->name('error');
-        
+});
