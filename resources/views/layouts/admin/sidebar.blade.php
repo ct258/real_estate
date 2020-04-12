@@ -105,7 +105,7 @@
                         <span>Khuyến Mãi </span>
                     </a>
                     <ul class="sub">
-                    <li><a href="{{route('test')}}">Danh sách khuyến mãi</a></li>
+                    <li><a href="">Danh sách khuyến mãi</a></li>
                         <li><a href="">Cập Nhật Khuyến Mãi</a></li>
                     </ul>
                 </li>
