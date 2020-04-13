@@ -1,78 +1,148 @@
+
+
 @extends('layouts.admin')
 
-
 @section('content')
-
-<h2 class="page-title">Khách hàng<br><br></h2>
-
-
-<small><a href="" class="tst4 btn btn-success">{{ __('Create') }}
-    </a></small><br><br>
-<div class="row">
-    <div class="col-lg-12">
-        <section class="widget">
-            <div class="table-responsive-fluid">
-                <table class="table table-agile-info">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Họ tên</th>
-                            <th>Ngày sinh</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Giới tính</th>
-                            <th>Địa chỉ</th>
-                            <th>CMND</th>
-                            <th>CMND</th>
-                            <th>Chức năng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- @foreach ($real_estate as $item) --}}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <form action="" method="post" class="delete_form">
-                                    @csrf
-                                    <a href="">&nbsp;&nbsp;
-                                        <i class="fa fa-info-circle"></i></a>
-                                    <a href="">
-                                        <i class="fa fa-edit"></i></a>
-                                    &nbsp;
-                                    &nbsp;
-                                    &nbsp;
-                                    <button type="submit"
-                                        style="border: none;background-color: Transparent;color: red;">
-                                        <i class="fa fa-trash-o"></i></a>
-                                    </button>
-
-                                </form>
-                            </td>
-                        </tr>
-                        {{-- @endforeach --}}
-                        <tr>
-                            <td align="center" colspan="10">
-
-                                {{-- {{ $real_estate->links() }} --}}
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-
-                </table>
-            </div>
-        </section>
-    </div>
+<style>
+  .v-middle{
+    padding-left: 25px;
+  }
+    
+    .error {
+        color: red;
+    }
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        color:#0000009e;
+    
+  }
+</style>
+<div class="container-fuild">
+  <div class="row">
+    <div class="col-sm-12">
+      @if (Session::has('mess'))
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{Session::get('mess')}}</strong>
+      </div>
+      {{Session::put('mess',null)}}
+    @endif
+  </div>
 </div>
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Quản lý khách hàng
+    </div>
+    <div class="row w3-res-tb">
+      {{-- <div class="col-sm-5 m-b-xs">
+        <select class="input-sm form-control w-sm inline v-middle">
+          <option value="0">Bulk action</option>
+          <option value="1">Delete selected</option>
+          <option value="2">Bulk edit</option>
+          <option value="3">Export</option>
+        </select>
+        <button class="btn btn-sm btn-default">Apply</button>                
+      </div> --}}
+    <div class="col-sm-2">
+        <style>
+            .w-sm{
+                width:121px!important;
+            }
+        </style>
+        <select class="input-md form-control w-sm inline v-middle ">
+            
+            <option value="">Họ tên</option>
+            <option value="">Ngày sinh</option>
+            <option value="">Email</option>
+            <option value="">Giới tính</option>
+            <option value="">Địa chỉ</option>
+            <option value="">SĐT</option>
+            <option value="">CMND</option>
+          </select>
+      </div>
+      <div class="col-sm-3" style="margin-left:-79px;">
+       
+        <div class="input-group">
+          <input type="text" class="input-md form-control" placeholder="Tìm kiếm">
+          <span class="input-group-btn">
+            <button class="btn btn-md btn-default" type="button">Tìm kiếm</button>
+          </span>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        
+      </div>
+      <div class="col-sm-2">
+      <div class="col-sm-5" >
+        <small>
+          <a href="{{route('customer.create')}}" class="tst4 btn btn-success">Thêm khách hàng
+        </a></small>
+        </div>
+        
+        
+    </div>
 
+    </div>
+  
 
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>CMND</th>
+            <th>RANK</th>
+            <th style="width:100px;">Chức năng</th>
+          </tr>
+          @foreach ($customer as $val)
+          <tr>
+           <td>{{$val->customer_name}}</td>
+           <td>{{$val->customer_email}}</td>
+           <td>{{date('d-m-Y', strtotime($val->customer_birth)) }}</td>
+           {{-- <td>{{$val->customer_gender}}</td> --}}
+           @if($val->customer_gender==1)
+              <td>Nam</td>
+            @else
+            <td>Nữ</td>
+            @endif
+           <td>{{$val->customer_address}}</td>
+           <td>{{$val->customer_tel}}</td>
+           <td>{{$val->customer_identity_card}}</td>
+           <td>{{$val->rank_id}}</td>
+            <td>
+              <a href="{{ route('customer.edit', ['id'=>$val->customer_id]) }}"> <i class="fa fa-edit"></i></a>&nbsp;  &nbsp;  &nbsp;
+             <a href="{{ route('customer.destroy', ['id'=>$val->customer_id]) }}"  style="border: none;background-color: Transparent;color: red;"><i class="fa fa-trash-o"></i></a>
+            </td>
+          </tr>
+          @endforeach
+         
+        </thead>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        
+        <div class="col-sm-5 ">
+          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong>{{count($customer)}}</strong> khách hàng.</small>
+        </div>
+        <div class="col-sm-7 text-right text-center-xs">                
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a>
+                
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 @endsection
