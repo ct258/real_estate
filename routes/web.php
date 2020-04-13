@@ -154,7 +154,7 @@ Route::group(['middleware' => ['currency']], function () {
                 Route::get('/edit/{customer_id}', 'Admin\CustomerController@edit')->name('customer.edit');
                 Route::post('/edit/submit/{customer_id}', 'Admin\CustomerController@update')->name('customer.update');
                 // xóa mềm
-                Route::post('/destroy/{customer_id}', 'Admin\CustomerController@destroy')->name('customer.destroy');
+                Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')->name('customer.destroy');
                
             });
             //staff

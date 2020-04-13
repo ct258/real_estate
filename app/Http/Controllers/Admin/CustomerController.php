@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use DB;
+use App\Models\Customer;
+use App\Models\Account;
+use App\Models\Rank;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Session; 
+use Hash;
 class CustomerController extends Controller
 {
     /**
@@ -14,7 +18,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.customer.index');
+        $customer = Customer::all();
+      
+        return view('pages.admin.customer.index',compact('customer'));
+
     }
 
     /**
@@ -24,7 +31,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.customer.create');
     }
 
     /**
@@ -35,7 +42,29 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //vì dây là thêm kh nên role_id=3
+        $account['username'] =$request->username;
+        $account['password'] =  Hash::make($request->password);
+        $account['role_id'] = 3;
+        
+        $customer_id = DB::table('account')->insertGetId( $account);
+        $customer['rank_id'] =$request->rank_id;
+        $customer['customer_name'] =$request->customer_name;
+        $customer['customer_birth'] =$request->customer_birth;
+        $customer['customer_tel'] =$request->customer_tel;
+        $customer['customer_gender'] =$request->customer_gender;
+        $customer['customer_email'] =$request->customer_email;
+        $customer['customer_address'] =$request->customer_address;
+        $customer['customer_identity_card'] =$request->customer_identity_card;
+        $customer['account_id'] = $customer_id;
+        
+        
+         $result = DB::table('customer')->insert($customer);
+         if($result)
+         {
+             Session::put('mess','Thêm Khách hàng thành công !');
+             return redirect()->route('customer.create');
+         }
     }
 
     /**
@@ -57,7 +86,14 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::where('customer_id',$id)->get();
+        foreach($customer as $i)
+        {
+            $ac_id = $i->account_id;
+        }
+       $ac = DB::table('account')->where('account_id',$ac_id)->first();
+       
+        return view('pages.admin.customer.edit',compact('customer','ac'));
     }
 
     /**
@@ -69,7 +105,89 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //vì dây là thêm kh nên role_id=3
+        // dd($request->customer_birth );
+        
+        if($request->password != ''&& $request->customer_birth != null)
+        {
+            $account['username'] =$request->username;
+            $account['password'] =  Hash::make($request->password);
+            $account['role_id'] = 3;
+            $customer_id = DB::table('customer')->where('customer_id',$id)->first();
+            $ac_id = $customer_id->account_id;
+            //    dd($ac_id);
+            DB::table('account')->where('account_id',$ac_id)->update($account);
+            $customer['rank_id'] =$request->rank_id;
+            $customer['customer_name'] =$request->customer_name;
+            $customer['customer_birth'] =$request->customer_birth;
+            $customer['customer_tel'] =$request->customer_tel;
+            $customer['customer_gender'] =$request->customer_gender;
+            $customer['customer_email'] =$request->customer_email;
+            $customer['customer_address'] =$request->customer_address;
+            $customer['customer_identity_card'] =$request->customer_identity_card;
+            $customer['account_id'] =  $ac_id;
+            // dd($st[ff);
+            $result =  DB::table('customer')->where('customer_id',$id)->update($customer);
+            if($result)
+            {
+                Session::put('mess','Cập nhật nhân viên thành công !');
+                return redirect()->route('customer.index');
+            }
+
+
+        }
+     
+       if($request->password == '' && $request->customer_birth != null)
+           { 
+
+            $customer_id = DB::table('customer')->where('customer_id',$id)->first();
+            $ac_id = $customer_id->account_id;
+            //    dd($ac_id);
+            DB::table('account')->where('account_id',$ac_id)->update($account);
+            $customer['rank_id'] =$request->rank_id;
+            $customer['customer_name'] =$request->customer_name;
+            $customer['customer_birth'] =$request->customer_birth;
+            $customer['customer_tel'] =$request->customer_tel;
+            $customer['customer_gender'] =$request->customer_gender;
+            $customer['customer_email'] =$request->customer_email;
+            $customer['customer_address'] =$request->customer_address;
+            $customer['customer_identity_card'] =$request->customer_identity_card;
+            $customer['account_id'] =  $ac_id;
+            // dd($st[ff);
+            $result =DB::table('customer')->where('customer_id',$id)->update($customer);
+            if($result)
+            {
+                Session::put('mess','Cập nhật nhân viên thành công !');
+                return redirect()->route('customer.index');
+            }
+        }
+        
+       if($request->password == '' && $request->customer_birth == null)
+           { 
+
+        
+            $customer_id = DB::table('customer')->where('customer_id',$id)->first();
+            $ac_id = $customer_id->account_id;
+            $customer_birth=$customer_id->customer_birth;
+           
+            $customer['rank_id'] =$request->rank_id;
+            $customer['customer_name'] =$request->customer_name;
+            $customer['customer_birth'] =$customer_birth;
+            $customer['customer_tel'] =$request->customer_tel;
+            $customer['customer_gender'] =$request->customer_gender;
+            $customer['customer_email'] =$request->customer_email;
+            $customer['customer_address'] =$request->customer_address;
+            $customer['customer_identity_card'] =$request->customer_identity_card;
+            $customer['account_id'] =  $ac_id;
+            // dd($customer);
+            $result = DB::table('customer')->where('customer_id',$id)->update($customer);
+            if($result)
+            {
+                Session::put('mess','Cập nhật nhân viên thành công !');
+                
+            }
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -79,7 +197,22 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+       
+
+        $data =  Customer::where('customer_id',$id)->get();
+        $customer = Customer::where('customer_id',$id)->delete();
+        foreach($data as $val)
+        {
+            $ac_id = $val->account_id;
+        }
+       
+        $account = Account::where('account_id',$ac_id)->delete();
+       
+       
+        if($customer){
+            Session::put('mess','Xóa nhân viên thành công !');
+            return redirect()->route('customer.index');
+        }
     }
 }
