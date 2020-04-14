@@ -38,9 +38,6 @@
       padding: 15px 35px;
     }
 
-
-
-
     .scrollupp {
       width: 40px;
       background-color: #30caa8;
@@ -76,6 +73,100 @@
       margin: auto;
       width: 90%;
       color: white;
+    }
+
+    .container-fuild.bg_top1 {
+      position: relative;
+    }
+
+    .curency {
+      position: static;
+      display: inherit;
+    }
+
+    /* dropdown hover top */
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+    }
+
+    .dropdown>.dropdown-toggle:active {
+      /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+    }
+
+    p.dropdown-toggle {
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .dropbtn {
+      /* background-color: #4CAF50; */
+      color: black;
+      /* padding: 16px; */
+      font-size: 16px;
+      text-shadow: 0 0 0.5px;
+      /* border: none; */
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      padding-right: 15px
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      width: 250px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 5px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      color: #30caa8;
+    }
+
+    .news {
+      color: black;
+      text-decoration: none !important;
+      text-shadow: 0 0 0.5px;
+    }
+
+    .news:hover {
+      color: #30caa8 !important;
+    }
+
+    .container.header {
+      padding-top: 20px;
+    }
+
+    p.dropdown-toggle {
+      color: black;
+    }
+
+    .logo {
+      padding-right: 30px;
+
     }
   </style>
 </head>

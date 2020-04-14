@@ -204,7 +204,7 @@
                 <ul class="dropdown-menu extended logout">
                     <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ Sơ</a></li>
                     <li><a href="#"><i class="fa fa-cog"></i> Cài Đặt</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out"></i> Đăng Xuất</a></li>
+                    <li><a href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Đăng Xuất</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

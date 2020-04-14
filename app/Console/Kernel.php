@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('backupcommand')->everyMinute();
         // $schedule->command('demo:cron')
         // ->everyMinute();
-        $schedule->command('backup:run')->timezone('Asia/Ho_Chi_Minh')->everyMinute();
+        $schedule->command('backup:run')->timezone('Asia/Ho_Chi_Minh')->weeklyOn(1, '8:00');
         // $schedule->command('backup:run')->weekly()->mondays()->at('07:00');
     }
 

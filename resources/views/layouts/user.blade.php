@@ -11,13 +11,14 @@
     </div>
     <!-- End Page Preloder -->
     {{-- {{dd(\Auth::guard('account')->user()->load('customer')->customer->customer_id)}} --}}
-    @if (Auth::guard('account')->check()&&Auth::guard('account')->user()->hasRole('customer'))
+    {{-- {{dd(\Auth::guard('account')->check())}} --}}
+    @if (\Auth::guard('account')->check()&&\Auth::guard('account')->user()->hasRole('customer'))
     @include('layouts.user.header_user')
     @else
     @include('layouts.user.header')
-
     @endif
-    @include('layouts.user.top')
+
+    {{-- @include('layouts.user.top') --}}
     {{-- @include('layouts.user.breadcrumb') --}}
     @yield('page')
     {{-- @include('layouts.user.page') --}}
