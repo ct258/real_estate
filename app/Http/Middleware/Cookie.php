@@ -16,11 +16,13 @@ class Cookie
      */
     public function handle($request, Closure $next)
     {
-if(\Cookie::get('real_estate')==null){
-    $id=CookieUser::insertGetId([]);
-    \Cookie::queue('real_estate', $id, 43200);
-}
+        // dd(\Cookie::get('real_estate'));
+        if(\Cookie::get('real_estate')==null || \Cookie::get('real_estate')==''){
+            $id=CookieUser::insertGetId([]);
+            \Cookie::queue('real_estate', $id, 43200);
+            return redirect(\Request::url());
+        }
+        
         return $next($request);
-
     }
 }
