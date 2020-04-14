@@ -2,6 +2,47 @@
 
 @push('css')
 <link href="{{ asset('user/account/style.css') }}" rel="stylesheet">
+<style>
+    .list-group-item a {
+        color: black !important;
+        text-decoration: none !important;
+        display: flex;
+    }
+
+    .list-group-item.active {
+        background-color: #e9ecef !important;
+        border-color: #e9ecef !important;
+    }
+
+    .list-group-item:hover {
+        background-color: #e9ecef !important;
+        border-color: #e9ecef !important;
+    }
+
+    .list-group-item .badge-danger {
+        color: #fff;
+        background-color: #30caa8 !important;
+    }
+
+    img.card-img-top {
+        /* height: 100px; */
+        /* width: 100px; */
+        background-size: 32px 32px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        height: 100px;
+        width: 100px;
+        z-index: 0;
+    }
+
+    .avatar {
+        color: black;
+        text-decoration: none;
+    }
+</style>
 @endpush
 
 @section('page')
@@ -26,9 +67,6 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 update-icon">
-                <div class="icon">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                </div>
                 <p>Thông Tin Cá Nhân</p>
             </div>
         </div>
@@ -36,13 +74,43 @@
     <div class="container midd">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card avatar">
-                    <img class="card-img-top" src="{{asset($info->customer_avatar)}}" />
-                    <div class="card-body">
-                        <button class="btn btn-primary">Change Avatar</button>
-                    </div>
+                <div class="card content-card">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="{{route('post.create')}}">
+                                <span>Đăng bán bất động sản</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item active">
+                            <a href="">
+                                <span>Thông tin cơ bản</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">
+                                <span>Đánh giá và nhận xét</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item disabled">
+                            <a href="">
+                                <span>Bất động sản của bạn</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item disabled">
+                            <a href="">
+                                <span>Cuộc hẹn</span> <span class="badge badge-danger badge-pill">14</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{route('logout') }}"><span>Đăng xuất</span> </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+
+
+
             <div class="col-sm-8">
                 <div class="card content-card">
                     <div class="card-header contnet-header">
@@ -53,6 +121,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="card-body">
+                                    <div class="form-group lang  col-md-12  ">
+
+                                        <img id="image" class="card-img-top" src="{{asset($info->customer_avatar)}}" />
+                                        <input type="file" id="upload-image" name='avatar' accept="image/*" value=""
+                                            required
+                                            onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
+                                    </div>
                                     <div class="form-group col-md-12">
                                         <label for="" class="control-label">Họ và Tên</label>
                                         <input type="text" class="form-control" placeholder="{{$info->customer_name}}">
@@ -82,14 +157,15 @@
                                         <label for="" class="control-label">Email</label>
                                         <input type="text" class="form-control" placeholder="{{$info->customer_email}}">
                                     </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Số Điện Thoại</label>
-                                        <input type="text" class="form-control" placeholder="{{$info->customer_tel}}">
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="card-body">
+                                    <div class="form-group col-md-12">
+                                        <label for="" class="control-label">Số Điện Thoại</label>
+                                        <input type="text" class="form-control" placeholder="{{$info->customer_tel}}">
+                                    </div>
                                     <div class="form-group lang  col-md-12  ">
                                         <label class="control-label">Ngày Sinh</label>
                                         <input class="form-control" type="date" value="{{$info->customer_birth}}">
