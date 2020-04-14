@@ -125,9 +125,7 @@ div#curency a:hover {
 }
 .slider{
     position: relative;
-    /* border: 1px solid black; */
     height: 640px;
-    top: 111px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -272,14 +270,18 @@ div#curency a:hover {
 
 
 .container-fuild.bg_top1 {
-    background-image: url("../img/bg/page-top-bg.jpg");
+    background-color: white;
+    color: #30caa8;
+    /* background-image: url("../img/bg/page-top-bg.jpg"); */
     width: 100%;
-    background-position: center;
+    /* background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     /* margin-bottom: 1px; */
     position: fixed;
+    height: 80px;
     z-index: 99999;
+    display: block;
     /* bottom: 0px; */
     /* margin-bottom: 5px; */
     top: 0;
