@@ -82,7 +82,7 @@ Route::group(['middleware' => ['currency']], function () {
             return view('pages.user.subscription.index');
         })->name('subscription');
 
-        Route::get('/', ['uses' => 'ClientController@view_product', 'as' => 'index']);
+        Route::get('/', ['uses' => 'IndexController@index', 'as' => 'index']);
         Route::get('/subscription/{customer_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription.submit']);
         Route::post('/wishlist_customer', ['uses' => 'ClientController@wishlist_customer', 'as' => 'wishlist.customer']);
         Route::post('/wishlist_cookie', ['uses' => 'ClientController@wishlist_cookie', 'as' => 'wishlist.cookie']);
