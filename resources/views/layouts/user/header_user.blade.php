@@ -13,34 +13,22 @@
                             alt=""></a>
 
 
+                    @foreach ($data['form'] as $key1=>$value1)
                     <div class="dropdown">
-                        <p class="dropbtn">Nhà đất bán</p>
+                        <p class="dropbtn">{{$value1->form_translation_name}}</p>
                         <div class="dropdown-content">
-                            <a href="#">Bán căn hộ chung cư</a>
-                            <a href="#">Bán nhà riêng</a>
-                            <a href="#">Bán nhà biệt thự, liền kề</a>
-                            <a href="#">Bán nhà mặt phố</a>
-                            <a href="#">Bán đất nền dự án</a>
-                            <a href="#">Bán đất</a>
-                            <a href="#">Bán trang trại, khu
-                                nghỉ dưỡng</a>
-                            <a href="#">Bán kho, nhà xưởng</a>
-                            <a href="#">Bán loại bất động sản
-                                khác</a>
+                            @foreach ($data['type'] as $key2=>$value2)
+
+                            @if($value2->form_id==$value1->form_id)
+                            <a href="{{route('list',$value2->type_id)}}">{{$value2->type_translation_name}}</a>
+                            <?php continue; ?>
+                            @endif
+
+                            @endforeach
+
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <p class="dropbtn">Nhà đất cho thuê</p>
-                        <div class="dropdown-content">
-                            <a c href="#">Cho thuê căn hộ chung cư</a>
-                            <a c href="#">Cho thuê nhà riêng</a>
-                            <a c href="#">Cho thuê nhà trọ, phòng trọ</a>
-                            <a c href="#">Cho thuê văn phòng</a>
-                            <a c href="#">Cho thuê cửa hàng - ki ốt</a>
-                            <a c href="#">Cho thuê kho, nhà xưởng, đất</a>
-                            <a c href="#">Cho thuê loại bất động sản khác</a>
-                        </div>
-                    </div>
+                    @endforeach
 
                     <a href="" class="news">Tin tức</a>
                 </div>
@@ -84,7 +72,7 @@
                     <a href=""><i class="fas fa-bell"></i></i><span class="badge badge-danger badge-pill">14</span></a>
                     <a href="{{route('account',\Auth::guard('account')->user()->account_id) }}"><i
                             class="fas fa-user-circle"></i></i>@lang('Account')</a>
-                    <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                    <a href="{{url('cart/') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
 
 
                 </div>

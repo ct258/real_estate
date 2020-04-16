@@ -76,7 +76,7 @@
     }
 
     .container-fuild.bg_top1 {
-      position: relative;
+      /* position: relative; */
       box-shadow: 0px 0px 15px 0px #D6D6D6;
     }
 

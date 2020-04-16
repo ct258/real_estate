@@ -39,5 +39,13 @@
     "Visits today": "Lượt truy cập hôm nay",
     "Access times": "Lượt truy cập",
     "footer1": "BatDongSanCanTho là trang đăng tin miễn phí mua bán bất động sản, cho thuê nhà đất, căn hộ giá rẻ với hàng triệu tin đăng và hàng trăm ngàn lượt truy cập mỗi ngày. Kênh thông tin hot nhất về bất động sản tại Việt Nam. Cập nhật tin tức bất động sản nhanh nhất và chính xác nhất.",
-    "footer2": "BatDongSanCanTho – Bất Động Sản Cần Thơ – Mua Bán Nhà Đất, Địa Ốc Online lớn nhất Cần Thơ"
+    "footer2": "BatDongSanCanTho – Bất Động Sản Cần Thơ – Mua Bán Nhà Đất, Địa Ốc Online lớn nhất Cần Thơ",
+    "E": "Đông",
+    "W": "Tây",
+    "S": "Nam",
+    "N": "Bắc",
+    "SE": "Đông - Nam",
+    "NE": "Đông - Bắc",
+    "SW": "Tây - Nam",
+    "NW": "Tây - Bắc"
 }
