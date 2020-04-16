@@ -34,8 +34,6 @@ class ClientController extends Controller
             // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
             ->join('district', 'real_estate.district_id', 'district.district_id')
             ->join('province', 'district.province_id', 'province.province_id')
-            ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
-            ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
             ->select('real_estate.real_estate_id',
             'real_estate_avatar',
             'translation_name',
@@ -44,23 +42,19 @@ class ClientController extends Controller
             'real_estate_price',
             'real_estate_acreage',
             'real_estate.created_at',
-            'unit_translation.unit_translation_name',
-            // 'image.image_path',
             'province.province_name',
             'district.district_name')
             ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
-                ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
-            // ->where('image_real_estate.image_real_estate_note', 'Avatar')
-            // ->groupBy('real_estate.real_estate_id')
+                ['real_estate_status','Đang bán'] ])
             ->paginate(6);
-        // dd($real_estate);
         // tính thời gian đăng
-        Carbon::setlocale('vi');
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+        Carbon::setlocale(\Session::get('lang', config('app.locale')));
         $now = Carbon::now();
         foreach ($real_estate as $key => $value) {
-            // dd($value['real_estate_id']);
             $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
+            $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
         }
         // lấy dữ liệu cho search form
         $form = Form::join('form_translation', 'form.form_id', 'form_translation.form_id')
@@ -69,7 +63,7 @@ class ClientController extends Controller
         ->get();
         $province = Province::select('province_id', 'province_name')->get();
 
-        return view('pages.user.page.list', compact('real_estate', 'day', 'form', 'province'));
+        return view('pages.user.page.list', compact('real_estate', 'day', 'form', 'province','rate'));
     }
 
     public function searchFullText(Request $request)

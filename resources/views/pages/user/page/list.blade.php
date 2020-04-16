@@ -46,6 +46,11 @@
     button.btn.btn-primary.mn:hover {
         color: aquamarine;
     }
+
+    section.page-section {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
 </style>
 @endpush
 
@@ -55,9 +60,11 @@
 <section class="page-section">
     <div class="container-fruid">
         <div class="row">
-            <h2>Danh sách bất động sản</h2>
+            <div class="section-title">
+                <h2>Danh sách bất động sản</h2>
+            </div>
             {{-- main page --}}
-            <div class="col-lg-9">
+            <div class="col-lg-9 frame">
                 <div class="row">
                     <div id="paginationa" class="paginationa">
                         @include('pages.user.page.list_ajax')
