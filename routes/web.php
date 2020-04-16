@@ -33,7 +33,7 @@ Route::group(['middleware' => ['currency']], function () {
         Route::get('user', function () {
             return view('pages.user.index');
         });
-        Route::get('list', 'ClientController@list')->name('list');
+        Route::get('list/{type_id}', 'ClientController@list')->name('list');
         Route::post('list', 'ClientController@searchFullText')->name('list.sort');
         Route::get('listajax', 'ClientController@list_ajax')->name('list.ajax');
         Route::get('single_list/{real_estate_id}', 'ClientController@single_list')->name('single_list');

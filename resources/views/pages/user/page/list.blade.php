@@ -47,8 +47,8 @@
         color: aquamarine;
     }
 
-    section.page-section {
-        margin-top: 50px;
+    .list {
+        margin-top: 100px;
         margin-bottom: 100px;
     }
 </style>
@@ -57,7 +57,7 @@
 @section('page')
 
 <!-- Page -->
-<section class="page-section">
+<section class="page-section list">
     <div class="container-fruid">
         <div class="row">
             <div class="section-title">
@@ -87,7 +87,7 @@
                         <select name="form" id="form">
                             <option value="">-- Chọn loại tin rao --</option>
                             @foreach ($form as $item)
-                            <option value="{{$item->form_id}}">{{$item->form_name}}</option>
+                            <option value="{{$item->form_translation_id}}">{{$item->form_translation_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -99,7 +99,18 @@
                     <div class="left">
                         <select name="acreage" id="acreage">
                             <option value="">-- Chọn Diện tích --</option>
-                            <option value=""><button type="text" name="" id=""></button></option>
+                            <option value=""><button type="text" name="" id="">Chưa xác định</button></option>
+                            <option value=""><button type="text" name="" id="">
+                                    <= 30 m2</button> </option> <option value=""><button type="text" name="" id="">30 -
+                                            50 m2</button></option>
+                            <option value=""><button type="text" name="" id="">50 - 80 m2</button></option>
+                            <option value=""><button type="text" name="" id="">80 - 100 m2</button></option>
+                            <option value=""><button type="text" name="" id="">100 - 150 m2</button></option>
+                            <option value=""><button type="text" name="" id="">150 - 200 m2</button></option>
+                            <option value=""><button type="text" name="" id="">200 - 250 m2</button></option>
+                            <option value=""><button type="text" name="" id="">250 - 300 m2</button></option>
+                            <option value=""><button type="text" name="" id="">300 - 500 m2</button></option>
+                            <option value=""><button type="text" name="" id="">>= 500 m2</button></option>
                         </select>
                     </div>
                     <div class="left">
@@ -134,14 +145,25 @@
                         <div class="left">
                             <select name="bedroom" id="bedroom">
                                 <option value="">-- Chọn số phòng ngủ --</option>
+                                <option value="">Không xác định</option>
+                                <option value="">1+</option>
+                                <option value="">2+</option>
+                                <option value="">3+</option>
+                                <option value="">4+</option>
+                                <option value="">5+</option>
                             </select>
                         </div>
                         <div class="left">
                             <select name="direction" id="direction">
                                 <option value="">-- Chọn hướng nhà --</option>
-                                {{-- @foreach ($direction as $item)
-                                    <option value="{{$item->direction_id}}">{{$item->direction_name}}</option>
-                                @endforeach --}}
+                                <option value="E">@lang('E')</option>
+                                <option value="W">@lang('W')</option>
+                                <option value="S">@lang('S')</option>
+                                <option value="N">@lang('N')</option>
+                                <option value="SE">@lang('SE')</option>
+                                <option value="NE">@lang('NE')</option>
+                                <option value="SW">@lang('SW')</option>
+                                <option value="NW">@lang('NW')</option>
                             </select>
                         </div>
                     </div>
@@ -176,12 +198,12 @@
 <script>
     $(document).ready(function () {
             //lấy đơn vị
-            // $("#form").change(function(){
-            //     var form_id = $(this).val();
-            //     $.get("./unit/"+form_id, function(data){
-            //         $("#unit").html(data);
-            //     });
-            // });
+            $("#form").change(function(){
+                var form_id = $(this).val();
+                $.get("./unit/"+form_id, function(data){
+                    $("#unit").html(data);
+                });
+            });
             
             //lấy loại bất động sản
             $("#form").change(function(){
@@ -262,13 +284,6 @@
                     $("#price").html(data);
                 });
             });
-            //lấy diện tích
-            // $("#form").change(function(){
-            //     var form_id = $(this).val();
-            //     $.get("./acreage/"+form_id, function(data){
-            //         $("#acreage").html(data);
-            //     });
-            // });
         });
 </script>
 <script type="text/javascript">
