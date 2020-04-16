@@ -21,23 +21,15 @@
                         {{-- <p><i class="fas fa-dollar-sign"></i>{{number_format($item->real_estate_price)}}
                         {{$item->unit_name}}</p> --}}
                     </div>
-                    {{-- <div class="rf-right">
-                                    <p><i class="fa fa-car"></i> 2 Garages</p>
-                                    <p><i class="fa fa-bath"></i> 6 Bathrooms</p>
-                                </div>	 --}}
-                </div>
-                <div class="room-info">
-                    <div class="rf-left">
-                        <p><i class="fa fa-user"></i> Tony Holland</p>
-                    </div>
                     <div class="rf-right">
                         <p><i class="far fa-clock"></i></i> {{$day[$item->real_estate_id]}}</p>
                     </div>
                 </div>
+
             </div>
             <a href="{{route('single_list',$item->real_estate_id)}}" class="room-price"><i
-                    class="fas fa-dollar-sign"></i>{{number_format($item->real_estate_price)}}
-                {{$item->unit_translation_name}}</a>
+                    class="fas fa-dollar-sign"></i>{{$rate->currency_symbol}}
+                {{number_format($item->real_estate_price)}}</a>
         </div>
     </div>
 </div>

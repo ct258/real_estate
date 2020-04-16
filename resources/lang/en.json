@@ -39,5 +39,13 @@
     "Visits today": "Visits today",
     "Access times": "Access times",
     "footer1": "BatDongSanCanTho is a free news site for buying and selling real estate, renting houses, cheap apartments with millions of listings and hundreds of thousands of visits every day. The hottest information channel about real estate in Vietnam. Update real estate news fastest and most accurate.",
-    "footer2": "BatDongSanCanTho - Real Estate Can Tho - Buy and Sell Real Estate, Real Estate largest Can Tho"
+    "footer2": "BatDongSanCanTho - Real Estate Can Tho - Buy and Sell Real Estate, Real Estate largest Can Tho",
+    "E": "East",
+    "W": "West",
+    "S": "South",
+    "N": "North",
+    "SE": "South - East",
+    "NE": "North - East",
+    "SW": "South - West",
+    "NW": "North - West"
 }

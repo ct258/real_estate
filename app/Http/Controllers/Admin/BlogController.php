@@ -53,7 +53,6 @@ class BlogController extends Controller
         //     ]);
             
             
-            
         if ($request->hasFile('avatar')) {
             $staff_id=\Auth::guard('account')->user()->load('staff')->staff->staff_id;
             $file=$request->file('avatar')->getClientOriginalName();
@@ -75,11 +74,13 @@ class BlogController extends Controller
                     'blog_id'=>$blog_id,
                     'blog_translation_title'=>$request->title_vi,
                     'blog_translation_content'=>$request->content_vi,
+                    'blog_translation_content'=>$request->intro_vi,
                     'blog_translation_locale'=>'vi',
                 ],[
                     'blog_id'=>$blog_id,
                     'blog_translation_title'=>$request->title_en,
                     'blog_translation_content'=>$request->content_en,
+                    'blog_translation_intro'=>$request->intro_en,
                     'blog_translation_locale'=>'en',
                 ]
             ]);

@@ -11,3 +11,5 @@ composer require anhskohbo/no-captcha
 composer require cviebrock/eloquent-sluggable:^4.8.*
 
 php artisan vendor:publish --provider="Cviebrock\EloquentSluggable\ServiceProvider"
+
+composer remove vendor/cviebrock/eloquent-sluggable

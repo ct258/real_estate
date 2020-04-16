@@ -95,14 +95,15 @@
                             <p>Phí thủ tục:
                                 @if($total_money==0) 0đ</p>
                             @else
-                            123456đ</p>
+                            {{number_format($total_money*0.02)}}đ</p>
 
                             @endif
                             <p>Khuyến mãi: 0đ</p>
+                            <input type="text" class="" placeholder="Mã giảm giá">
                         </div>
                         <div class="price-bottom">
                             <p>Thành tiền: </p>
-                            <p>&nbsp;&nbsp;&nbsp; {{$total_money}}đ</p>
+                            <p>&nbsp;&nbsp;&nbsp; {{number_format($total_money*1.02)}}đ</p>
                         </div>
                     </div>
                 </div>
@@ -116,7 +117,7 @@
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
-                            <div class="modal-content modal-pay">
+                            <div class="modal-content modal-pay" style="    margin-top: 150px;">
 
                                 <!-- Modal Header -->
                                 <div class="modal-header">
@@ -133,59 +134,63 @@
                                         <p>Ứng dụng VNPay</p>
                                     </div>
                                     <div class="pay-1">
-                                        <img src="{{ asset('user/cart/images/atm.png') }}" alt="">
-                                        <p>Thẻ ATM và tài khoản ngân hàng</p>
-                                        <div class="pay-1-1">
-                                            <ul>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/SCB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/VTB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/VCB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/SGCB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/MB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/TCB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/VPB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/VIB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/HDB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/OJB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/SHB.jpg?v=2"
-                                                            alt=""></a></li>
-                                                <li><a href=""><img
-                                                            src="https://salt.tikicdn.com/assets/img/zalopaygw/TPB.jpg?v=2"
-                                                            alt=""></a></li>
-                                            </ul>
-                                        </div>
+
+                                        <a href=""><img src="{{ asset('user/cart/images/vnpay.png') }}" alt=""></a>
+                                        <p>Thanh toán tiền mặt</p>
                                     </div>
-                                </div>
+                                    {{-- <div class="pay-1">
+                                        <img src="{{ asset('user/cart/images/atm.png') }}" alt="">
+                                    <p>Thẻ ATM và tài khoản ngân hàng</p>
+                                    <div class="pay-1-1">
+                                        <ul>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/SCB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VTB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VCB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/SGCB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/MB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/TCB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VPB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VIB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/HDB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/OJB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/SHB.jpg?v=2"
+                                                        alt=""></a></li>
+                                            <li><a href=""><img
+                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/TPB.jpg?v=2"
+                                                        alt=""></a></li>
+                                        </ul>
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
-
     </div>
+
 </section>
 <div class="end_cart">
 

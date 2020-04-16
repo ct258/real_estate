@@ -161,7 +161,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\UserOnlineProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        Cviebrock\EloquentSluggable\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
