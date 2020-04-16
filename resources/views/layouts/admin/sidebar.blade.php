@@ -116,6 +116,13 @@
                         <span>Thành viên</span>
                     </a>
                 </li>
+                {{-- Loại khách hàng--}}
+                <li class="sub-menu">
+                <a href="{{route('rank.index')}}">
+                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                        <span>Loại thành viên</span>
+                    </a>
+                </li>
                 {{-- nhân viên --}}
                 <li class="sub-menu">
                 <a href="{{route('staff.index')}}">
