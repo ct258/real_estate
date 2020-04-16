@@ -85,7 +85,7 @@ ol {
 -----------------------*/
 
 .section-title {
-	margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .section-title h3 {
@@ -464,7 +464,8 @@ ol {
 ---------------------*/
 
 .services-section .section-title {
-	margin-bottom: 40px;
+	/* margin-bottom: 40px; */
+	margin-top: 100px;
 	padding-top: 15px;
 }
 
@@ -814,6 +815,7 @@ ol {
 .clients-section {
 	position: relative;
 	margin-bottom: -60px;
+	margin-top: 100px;
 }
 
 .clients-slider {
