@@ -141,7 +141,6 @@ class IndexController extends Controller
         }
 
 
-
         //lấy sp đã xem
         $view=$real_estate
         ->join('view_product','view_product.real_estate_id','real_estate.real_estate_id')
@@ -154,6 +153,10 @@ class IndexController extends Controller
             ])
         ->limit(6)
         ->get();
+        if($view_product->isEmpty()){
+            $day_view=null;
+            $price_view=null;
+        }
         foreach ($view_product as $key => $value) {
             $day_view[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
             $price_view[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate;
@@ -171,7 +174,7 @@ class IndexController extends Controller
             $day_blog[$value['blog_id']] = $value->created_at->diffForHumans(($now));
         }
         return view('pages.user.index',
-        compact(
+        \compact(
         'rate',
         'product',
         'day_product',
@@ -180,7 +183,7 @@ class IndexController extends Controller
         'day_view',
         'price_view',
         'blog',
-        'day_blog'));
+        'day_blog',));
 
     }
 }

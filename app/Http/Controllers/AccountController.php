@@ -123,13 +123,13 @@ class AccountController extends Controller
     }
 
     public function register(Request $request)
-    {
+    {       
         $account_id = Account::insertGetId(array(
             'username' => $request->username,
             'password' => \Hash::make($request->password),
             'role_id'  => 3,
         ));
-        $customer_id=Customer::insertGetid([
+        $customer_id=Customer::insertGetId(array(
             'customer_name'          => $request->fullname,
             'customer_email'         => $request->email,
             'customer_tel'           => $request->phone,
@@ -139,14 +139,14 @@ class AccountController extends Controller
             'customer_identity_card' => $request->IDCard,
             'rank_id'                => 1,
             'account_id'             => $account_id,
-            'ward_id'                => $request->ward,
-        ]);
+            'ward_id'                => $request->ward
+        ));
         Cart::insert([
             'customer_id'=>$customer_id,
             'cart_status'=>null,
         ]);
 
-        return view('pages.user.index');
+        return redirect()->route('index');
     }
 
     public function find_username($username)
