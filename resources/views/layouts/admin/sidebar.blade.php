@@ -105,8 +105,8 @@
                         <span>Khuyến Mãi </span>
                     </a>
                     <ul class="sub">
-                    <li><a href="">Danh sách khuyến mãi</a></li>
-                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
+                    <li><a href="{{ route('promotion.index') }}">Loại khuyến mãi</a></li>
+                        <li><a href="">Danh sách Khuyến Mãi</a></li>
                     </ul>
                 </li>
                 {{-- thành viên --}}
