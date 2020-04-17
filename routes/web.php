@@ -157,6 +157,22 @@ Route::group(['middleware' => ['currency']], function () {
                 Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')->name('customer.destroy');
                
             });
+            //loại khách hàng
+            Route::group(['prefix' => 'rank'], function () {
+                //index
+                Route::get('/index', 'Admin\RankController@index')->name('rank.index');
+                // thêm
+                Route::get('/create', 'Admin\RankController@create')->name('rank.create');
+                Route::post('/create', 'Admin\RankController@store')->name('rank.create.submit');
+                // xem chi tiết
+                Route::get('/show/{rank_id}', 'Admin\RankController@show')->name('rank.show');
+                // sửa
+                Route::get('/edit/{rank_id}', 'Admin\RankController@edit')->name('rank.edit');
+                Route::post('/edit/submit/{rank_id}', 'Admin\RankController@update')->name('rank.update');
+                // xóa mềm
+                Route::get('/destroy/{rank_id}', 'Admin\RankController@destroy')->name('rank.destroy');
+               
+            });
             //staff
             Route::group(['prefix' => 'staff'], function () {
                 //index
