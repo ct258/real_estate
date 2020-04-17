@@ -44,14 +44,11 @@ Route::group(['middleware' => ['currency']], function () {
         Route::post('write_comment/{idsp}/{idcmt}/{idrep}','ClientController@reply_cmt')->name('reply_cmt');
        
 
-        // Route::get('single_blog/', 'ClientController@single_blog')->name('single_blog');
-        Route::get('single_blog/{blog_id}', 'ClientController@single_blog')->name('single_blog');
+        Route::get('blog/', 'ClientController@list_blog')->name('list_blog');
+        Route::get('blog/{blog_id}', 'ClientController@single_blog')->name('single_blog');
         Route::group(['prefix' => 'cart'], function () {
             Route::get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
             Route::get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
-        });
-        Route::get('blog', function () {
-            return view('pages.user.page.blog');
         });
         
         Route::get('about', function () {
@@ -333,9 +330,9 @@ Route::group(['middleware' => ['currency']], function () {
         //DOM lấy dữ liệu
         Route::group(['prefix' => ''], function () {
             Route::get('/district/{province_id}', 'DOMController@get_district')->name('district');
-            Route::get('/ward/{province_id}/{district_id}', 'DOMController@get_ward')->name('ward');
+            Route::get('/ward/{district_id}', 'DOMController@get_ward')->name('ward');
             Route::get('/street/{district_id}', 'DOMController@get_street_1')->name('street_1');
-            Route::get('/street/{province_id}/{district_id}', 'DOMController@get_street_2')->name('street_2');
+            // Route::get('/street/{province_id}/{district_id}', 'DOMController@get_street_2')->name('street_2');
             Route::get('/type/{form_id}', 'DOMController@get_type')->name('type');
             Route::get('/unit/{form_id}', 'DOMController@get_unit')->name('unit');
             Route::get('/price/{form_id}', 'DOMController@get_price')->name('price');
