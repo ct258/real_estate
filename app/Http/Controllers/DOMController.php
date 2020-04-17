@@ -23,12 +23,10 @@ class DOMController extends Controller
         }
     }
 
-    public function get_ward($province_id, $district_id)
+    public function get_ward($district_id)
     {
         $ward = Ward::select('ward_id', 'ward_name')
-        ->where([
-            ['province_id', $province_id],
-            ['district_id', $district_id], ])
+        ->where('district_id', $district_id)
         ->orderBy('ward_name', 'asc')->get();
         echo "<option value=''>-- Chọn Phường/Xã --</option>";
         foreach ($ward as $item) {
