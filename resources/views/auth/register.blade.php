@@ -374,7 +374,7 @@
             </form>
           </div>
         </div>
-        </div>
+      </div>
     </div>
 
     <div class="footer-w3l">
@@ -451,11 +451,9 @@ if (input.attr("type") == "password") {
          
           //lấy phường xã theo tỉnh,huyện
           $("#district").change(function(){
-              var province_id = "";
               var district_id = "";
-              var province_id = $("#province").val();
               var district_id = $("#district").val();
-              $.get("./ward/"+province_id+'/'+district_id, function(data){
+              $.get("./ward/"+district_id, function(data){
                   $("#ward").html(data);
               });
           });
