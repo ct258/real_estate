@@ -359,14 +359,33 @@ class ClientController extends Controller
     }
 
 
-
+    public function list_blog(Request $request)
+    {
+        Carbon::setlocale(\Session::get('lang', config('app.locale')));
+        $now = Carbon::now();
+        
+        $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
+        ->join('staff','staff.staff_id','blog.staff_id')
+        ->select('blog_translation.*','blog.*','staff.staff_name')
+        ->where('blog_translation.blog_translation_locale', \Session::get('lang', config('app.locale')))
+        ->orderBy('blog.created_at', 'desc')
+        ->paginate(5);
+        // dd($blog);
+        foreach ($blog as $key => $value) {
+            $day_blog[$value['blog_id']] = $value->created_at->diffForHumans(($now));
+        }
+        return view('pages.user.blog.list',compact('blog','day_blog'));
+    }
     public function single_blog(Request $request,$blog_id)
     {
+        Carbon::setlocale(\Session::get('lang', config('app.locale')));
+        $now = Carbon::now();
         $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
         ->join('staff','staff.staff_id','blog.staff_id')
         ->select('blog_avatar',
         'blog_translation_title',
         'blog_translation_content',
+        'blog.created_at',
         'staff_name')
         ->where([
             ['blog_translation_locale',\Session::get('lang', config('app.locale'))],
@@ -374,7 +393,8 @@ class ClientController extends Controller
         ])
         ->first();
         // dd($blog);
-        return view('pages.user.page.single_blog',compact('blog'));
+            $day_blog = $blog->created_at->diffForHumans(($now));
+        return view('pages.user.blog.single_blog',compact('blog','day_blog'));
     }
 
     public function subscription(Request $request, $user)
@@ -401,7 +421,7 @@ class ClientController extends Controller
         'translation_description',
         'translation.translation_name',
         'province.province_name',
-        'district.district_name',)
+        'district.district_name')
         ->where([['cookie_user.cookie_user_id',\Cookie::get('real_estate')],
         ['translation_locale', \Session::get('lang', config('app.locale'))],
         ['real_estate_status','Đang bán']])
