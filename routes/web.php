@@ -20,6 +20,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/login', function () {return view('auth.login');})->name('getLogin');
     Route::post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
     Route::get('/logout', 'AccountController@logout')->name('logout');
+    Route::post('/register/verty', ['as' => 'register.verty', 'uses' => 'AccountController@phone']);
     Route::post('/register/submit', ['as' => 'register.submit', 'uses' => 'AccountController@register']);
     Route::get('/find_username/{username}', ['as' => 'find_username', 'uses' => 'AccountController@find_username']);
 });

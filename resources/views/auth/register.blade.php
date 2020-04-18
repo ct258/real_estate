@@ -257,7 +257,7 @@
         <div class="card card-signin flex-row my-5 register-top">
           <div class="card-img-left d-none d-md-flex">
             <!-- Background image for card set in CSS! -->
-            <form class="form-signin" action="{{route('register.submit')}}" method="post" name='form_register'
+            <form class="form-signin" action="{{route('register.verty')}}" method="post" name='form_register'
               onsubmit="return validateForm()">
               @csrf
               <div class="card-body">
@@ -265,32 +265,33 @@
                 <div class="form-label-group">
                   <input type="text" id="inputUserame" name="username" class="form-control" placeholder="Username"
                     autofocus required>
-                  <label for="inputUserame">Username*</label>
+                  <label for="inputUserame">Username <font color="red">*</font></label>
                 </div>
                 <div class="form-label-group">
                   <input type="password" id="inputPassword" name='password' class="form-control" placeholder="Password"
                     required>
                   <span toggle="#inputPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                  <label for="inputPassword">Password* </label>
+                  <label for="inputPassword">Password <font color="red">*</font> </label>
                 </div>
                 <div class="form-label-group">
                   <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
                   <span toggle="#inputConfirmPassword"
                     class="fa fa-fw fa-eye field-icon toggle-confirm-password"></span>
-                  <label for="inputConfirmPassword">Confirm password*</label>
+                  <label for="inputConfirmPassword">Confirm password <font color="red">*</font></label>
                 </div>
                 <div class="form-label-group">
                   <input type="text" id="inputFullname" name="fullname" class="form-control" placeholder="Fullname"
                     autofocus required>
-                  <label for="inputFullname">Fullname*</label>
+                  <label for="inputFullname">Fullname <font color="red">*</font></label>
                 </div>
                 <div class="form-label-group">
                   <input type="email" id="inputEmail" name='email' class="form-control" placeholder="Email address">
                   <label for="inputEmail">Email address</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="number" id="inputPhone" name="phone" class="form-control" placeholder="Phone Number">
-                  <label for="inputPhone">Phone number</label>
+                  <input type="number" id="inputPhone" name="phone" class="form-control" placeholder="Phone Number"
+                    required>
+                  <label for="inputPhone">Phone number <font color="red">*</font> </label>
                 </div>
                 <div class="form-label-group">
                   <input type="number" id="inputId" name="IDCard" class="form-control" placeholder="ID Card" autofocus>
@@ -298,12 +299,14 @@
                 </div>
 
 
-                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                {{-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
                     class="fa fa-google mr-2"></i> Sign up with Google</button>
                 <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                    class="fa fa-facebook-f mr-2"></i> Sign up with Facebook</button>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>
-                <a class="d-block text-center mt-2 small" href="#">Sign In</a>
+                class="fa fa-facebook-f mr-2"></i> Sign up with Facebook</button> --}}
+                <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign Up</button>
+                <button class="btn btn-lg btn-info btn-block text-uppercase"
+                  onclick="window.location.href='{{url('login')}}'">Sign In</button>
+                {{-- <a class="d-block text-center mt-2 small" href="{{url('/login')}}">Sign In</a> --}}
                 <hr class="my-4">
               </div>
               <div class="card-body right">

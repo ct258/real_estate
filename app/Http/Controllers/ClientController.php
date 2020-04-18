@@ -482,4 +482,46 @@ class ClientController extends Controller
             echo "<i class='fas fa-heart' id='heart'>";
             }
     }
+    public function list_city(Request $request)
+    {
+        app()->setLocale(\Session::get('lang', config('app.locale')));
+        $real_estate = RealEstate::join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+            ->join('district', 'real_estate.district_id', 'district.district_id')
+            ->join('province', 'district.province_id', 'province.province_id')
+            ->join('type','type.type_id','real_estate.type_id')
+            ->select('real_estate.real_estate_id',
+            'real_estate_avatar',
+            'translation_name',
+            'translation_address',
+            'translation_description',
+            'real_estate_price',
+            'real_estate_acreage',
+            'real_estate.created_at',
+            'province.province_name',
+            'district.district_name')
+            ->where([
+                ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['real_estate_status','Đang bán'],
+                ['real_estate.type_id',$type_id] ])
+            ->paginate(6);
+        // tính thời gian đăng
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+        Carbon::setlocale(\Session::get('lang', config('app.locale')));
+        $now = Carbon::now();
+        $day=[];
+        if($real_estate->isNotEmpty()){
+        foreach ($real_estate as $key => $value) {
+            $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
+            $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
+        }
+        }
+        // lấy dữ liệu cho search form
+        $form = Form::join('form_translation', 'form.form_id', 'form_translation.form_id')
+        ->select('form.form_id', 'form_translation_name')
+        ->where('form_translation_locale', \Session::get('lang', config('app.locale')))
+        ->get();
+        
+        $province = Province::select('province_id', 'province_name')->get();
+        return view('pages.user.page.list', compact('real_estate', 'day', 'form', 'province','rate'));
+    }
 }
