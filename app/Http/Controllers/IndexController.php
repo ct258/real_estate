@@ -81,7 +81,7 @@ class IndexController extends Controller
         'translation_description',
         'translation.translation_name',
         'province.province_name',
-        'district.district_name',)
+        'district.district_name')
         ->where([['cookie_user.cookie_user_id',\Cookie::get('real_estate')],
         ['translation_locale', \Session::get('lang', config('app.locale'))],
         ['real_estate_status','Đang bán']])
