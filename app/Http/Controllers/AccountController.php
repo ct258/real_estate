@@ -158,8 +158,8 @@ class AccountController extends Controller
             'customer_identity_card' => $request->IDCard,
             'rank_id'                => 1,
             'account_id'             => $account_id,
-            'ward_id'                => $request->ward,
-        ]);
+            'ward_id'                => $request->ward
+        ));
         Cart::insert([
             'customer_id'=>$customer_id,
             'cart_status'=>null,
