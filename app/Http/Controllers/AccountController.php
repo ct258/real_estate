@@ -26,6 +26,7 @@ class AccountController extends Controller
 
     public function postLogin(Request $request)
     {
+
         $arr = [
             'username' => $request->username,
             'password' => $request->password,
@@ -121,15 +122,33 @@ class AccountController extends Controller
 
         return redirect('/');
     }
+    public function phone(Request $request)
+    {
+        $string=rand(1000,9999);
+        // $nexmo = app('Nexmo\Client');
 
+        // $nexmo->message()->send([
+        //     'to'   => '+84 522 970 498',
+        //     'from' => '+84 522 970 498',
+        //     'text' => 'BatdongsanCanTho: '.$string.', co hieu luc 5 phut',
+        // ]);
+        $request->merge(['text' => ($string)]);
+        // $request->merge(['text' => (\Hash::make($string))]);
+        return view('auth.verty',compact('request'));
+    }
     public function register(Request $request)
-    {       
+    {
+// dd($request);
+        $a=\Hash::make($request->code);
+        if(!\Hash::check($request->verify,$a)){
+            return view('auth.verty',compact('request'));
+        }
         $account_id = Account::insertGetId(array(
             'username' => $request->username,
             'password' => \Hash::make($request->password),
             'role_id'  => 3,
         ));
-        $customer_id=Customer::insertGetId(array(
+        $customer_id=Customer::insertGetId([
             'customer_name'          => $request->fullname,
             'customer_email'         => $request->email,
             'customer_tel'           => $request->phone,

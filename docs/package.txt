@@ -13,3 +13,8 @@ composer require cviebrock/eloquent-sluggable:^4.8.*
 php artisan vendor:publish --provider="Cviebrock\EloquentSluggable\ServiceProvider"
 
 composer remove vendor/cviebrock/eloquent-sluggable
+
+composer require nexmo/laravel
+composer require nexmo/client
+
+php artisan vendor:publish (chọn số tương ứng với nexmo)

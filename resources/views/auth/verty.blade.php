@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login | RealEstate</title>
+    <title>Register | RealEstate</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,11 +34,11 @@
         }
 
         /* .card-signin .card-img-left {
-            width: 45%;
-            
-            background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-            background-size: cover;
-            } */
+                width: 45%;
+                
+                background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+                background-size: cover;
+                } */
 
         .card-signin .card-body {
             padding: 2rem;
@@ -147,7 +147,7 @@
         }
 
         body {
-            background: url("leramiz/img/bg.jpg");
+            background: url("../leramiz/img/bg.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -188,6 +188,26 @@
                 transform: scale(var(--growth-to));
             }
         }
+
+        button.btn.btn-lg.btn-warning.btn-block.text-uppercase {
+            border-radius: 5rem;
+            font-size: 80%;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        button.btn.btn-lg.btn-info.btn-block.text-uppercase {
+            border-radius: 5rem;
+            font-size: 80%;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
     </style>
 </head>
 
@@ -210,45 +230,53 @@
                         </div>
                         @endif
 
-                        <h5 class="card-title text-center"><i class='fa fa-user-circle'></i>Login</h5>
-                        <form class="form-signin" action="{{URL::route("postLogin")}} " method="POST">
+                        <h5 class="card-title text-center"><i class='fa fa-user-circle'></i>Verify</h5>
+                        <form class="form-signin" action="{{route('register.submit')}}" method="POST">
                             @csrf
                             <div class="form-label-group">
-                                <input type="text" id="inputUserame" class="form-control" placeholder="Username"
-                                    required autofocus Name="username">
-                                <label for="inputUserame">Username</label>
+
+                                {{-- mẫu --}}
+                                {{$request->text}}
+                                <input type="hidden" name="code" value="{{$request->text}}">
+                                {{-- mẫu --}}
+                                <input type="hidden" name="username" value="{{$request->username}}">
+                                <input type="hidden" name="password" value="{{$request->password}}">
+                                <input type="hidden" name="fullname" value="{{$request->fullname}}">
+                                <input type="hidden" name="email" value="{{$request->email}}">
+                                <input type="hidden" name="phone" value="{{$request->phone}}">
+                                <input type="hidden" name="IDCard" value="{{$request->IDCard}}">
+                                <input type="hidden" name="gender" value="{{$request->gender}}">
+                                <input type="hidden" name="birth" value="{{$request->birth}}">
+                                <input type="hidden" name="ward" value="{{$request->ward}}">
+                                <input type="hidden" name="address" value="{{$request->address}}">
                             </div>
+                            <div class="form-label-group">
+                                <input type="text" id="verify" class="form-control" placeholder="Username" required
+                                    autofocus Name="verify">
+                                <label for="verify">Code</label>
+                            </div>
+                            <label for="captcha">Captcha</label>
+                            {!! NoCaptcha::renderJs() !!}
+                            {!! NoCaptcha::display() !!}
+
+
+                            <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
 
 
                             <hr>
 
-                            <div class="form-label-group">
-                                <input type="password" Name="password" id="inputPassword" class="form-control"
-                                    placeholder="Password" required>
-                                <label for="inputPassword">Password</label>
-                            </div>
-                            <label class="anim">
-                                <input class="checkbox" type="checkbox" name="remember" id="remember">
 
-                                {{-- <input type="checkbox" class="checkbox"> --}}
-                                <span>Remember Me</span>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
+                                Up</button><br>
 
-                            </label>
-                            {{-- <div class="form-label-group">
-                    <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
-                    <label for="inputConfirmPassword">Confirm password</label>
-                  </div> --}}
+                        </form>
+                        <form action="{{route('register.verty')}}" method="post">
+                            @csrf
+                            <button class="btn btn-lg btn-warning btn-block text-uppercase" type="submit">Send
+                                Again</button><br>
+                            <button type="button" class="btn btn-lg btn-info btn-block text-uppercase"
+                                onclick="window.location.href='{{url('login')}}'">Sign In</button>
 
-                            <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign
-                                In</button>
-                            {{-- <a class="d-block text-center mt-2 small" href="#">Sign In</a> --}}
-                            <button class="btn btn-lg btn-info btn-block text-uppercase"
-                                onclick="window.location.href='{{route('register')}}'">Sign Up</button>
-                            <hr class="my-4">
-                            {{-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                                    class="fa fa-google mr-2"></i> Sign up with Google</button>
-                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                                    class="fa fa-facebook-f mr-2"></i> Sign up with Facebook</button> --}}
                         </form>
                     </div>
                 </div>
