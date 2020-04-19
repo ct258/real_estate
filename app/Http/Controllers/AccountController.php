@@ -159,7 +159,7 @@ class AccountController extends Controller
             'rank_id'                => 1,
             'account_id'             => $account_id,
             'ward_id'                => $request->ward
-        ));
+        ]);
         Cart::insert([
             'customer_id'=>$customer_id,
             'cart_status'=>null,
