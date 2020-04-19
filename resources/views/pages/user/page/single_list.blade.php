@@ -33,6 +33,14 @@
     .single-list-content {
         padding: 40px 30px;
     }
+    #phananh{
+        color: #69bcff;
+        /* color: ; */
+    }
+    .phananh{
+        color: 69bcff;
+        cursor: pointer;
+    }
 
     /* rating  */
 
@@ -357,6 +365,46 @@
                     </div>
                 </div>
                 <br>
+                <span id="phananh" ><i class="far fa-comment-alt"></i></span>
+                       
+                            <span  id="inputGroupPrepend" class="phananh"  data-toggle="modal" data-target="#exampleModal">
+                                Phản ánh thông tin sản phẩm không chính xác.
+                            </span>
+                            
+                   
+
+                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tin</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các thông tin liên quan đến nội dung mô tả và 
+                                        thông tin sản phẩm. Các vấn đề liên quan đến vận hành (đơn hàng, chất lượng sản phẩm)
+                                         vui lòng liên hệ tổng đài 1900-6035 để được hỗ trợ.</label>
+                                    <form>
+                                  
+                                      <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Vui lòng mô tả vấn đề cần phản ánh</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary">Báo cáo</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <br>
+                            <br>
+                
                 <h3 class="sl-sp-title">Mô tả chi tiết</h3>
                 <div class="description" style="font-family: sans-serif;">
                     <p>{!!$real_estate->translation_description!!}</p>
@@ -672,5 +720,15 @@
         }); 
 
     });
+
+//     $('#exampleModal').on('show.bs.modal', function (event) {
+//   var button = $(event.relatedTarget) // Button that triggered the modal
+//   var recipient = button.data('whatever') // Extract info from data-* attributes
+//   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+//   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+//   var modal = $(this)
+//   modal.find('.modal-title').text('có tin nhắn')
+//   modal.find('.modal-body input').val(recipient)
+})
 </script>
 @endpush
