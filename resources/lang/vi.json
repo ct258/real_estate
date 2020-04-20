@@ -27,6 +27,7 @@
     "Tivi": "Tivi",
     "Bedroom": "Phòng ngủ",
     "Bathroom": "Phòng tắm",
+    "Swimming Pool": "Hồ bơi",
     "Year age": "Năm",
     "Buy": "Mua",
     "Customer reviews": "Khách hàng nhận xét",
@@ -47,5 +48,7 @@
     "SE": "Đông - Nam",
     "NE": "Đông - Bắc",
     "SW": "Tây - Nam",
-    "NW": "Tây - Bắc"
+    "NW": "Tây - Bắc",
+    "facade": "Mặt tiền",
+    "way": "Lối vào"
 }
