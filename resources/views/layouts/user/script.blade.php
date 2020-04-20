@@ -46,4 +46,83 @@
   s0.parentNode.insertBefore(s1,s0);
   })();
 </script>
-<!--End of Tawk.to Script-->
+<script>
+  $(document).ready(function () {
+      //lấy loại bất động sản
+      $("#form").change(function(){
+          var form_id = $(this).val();
+          $.get("../type/"+form_id, function(data){
+              $("#type").html(data);
+          });
+      });
+       //lấy đơn vị
+       $("#form").change(function(){
+          var form_id = $(this).val();
+          $.get("../unit/"+form_id, function(data){
+              $("#unit").html(data);
+          });
+      });
+      //lấy quận huyện theo tỉnh thành phố
+      $("#province").change(function(){
+          var province_id = $(this).val();
+          $.get("../district/"+province_id, function(data){
+              $("#district").html(data);
+          });
+      });
+      //lấy đường phố theo tỉnh
+      $("#province").change(function(){
+          var province_id = $(this).val();
+          $.get("../street/"+province_id, function(data){
+              $("#street").html(data);
+          });
+      });
+      //lấy phường xã theo tỉnh,huyện
+      $("#district").change(function(){
+          var district_id = "";
+          var district_id = $("#district").val();
+          $.get("../ward/"+district_id, function(data){
+              $("#ward").html(data);
+          });
+      });
+      //lấy đường phố theo tỉnh,huyện
+      $("#district").change(function(){
+          var district_id = $("#district").val();
+          $.get("../street/"+district_id, function(data){
+              $("#street").html(data);
+          });
+      });
+
+  });
+  //reset tất cả về ban đầu khi thay đổi tỉnh
+  $("#province").change(function(){
+      var province_id = $("#province").val();
+      if(province_id=='province_id'){
+          var data1="<option value='0'>-- Chọn Quận/Huyện --</option>";
+          var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+          var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
+          $("#district").html(data1);
+          $("#ward").html(data2);
+          $("#street").html(data3);
+      }
+  });
+  //reset tất cả về ban đầu khi thay đổi tỉnh
+  $("#district").change(function(){
+      var ward_id = $("#ward").val();
+      var province_id = $("#province").val();
+          
+      if(ward_id=='ward_id' && province_id!='province_id'){
+          var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+          $("#ward").html(data2);
+          $.get("../street/"+province_id, function(data){
+              $("#street").html(data);
+          });
+      }
+      else{
+          var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
+          var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
+          $("#ward").html(data2);
+          $("#street").html(data3);
+      }
+  });
+
+</script>
