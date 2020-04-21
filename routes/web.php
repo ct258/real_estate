@@ -116,7 +116,7 @@ Route::group(['middleware' => ['cookie']], function () {
                 Route::group(['prefix' => 'post'], function () {
                     Route::get('/create', 'PostController@create')->name('post.create');
                     Route::post('/create', 'PostController@store')->name('post.create.submit');
-                    Route::post('/edit/{real_estate_id}', 'PostController@edit')->name('post.edit');
+                    Route::get('/edit/{real_estate_id}', 'PostController@edit')->name('post.edit');
                     Route::post('/update', 'PostController@update')->name('post.update');
                 });
 
