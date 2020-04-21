@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@push('css')
+@section('css')
 <link href="{{ asset('user/account/style.css') }}" rel="stylesheet">
 <style>
     .list-group-item a {
@@ -43,7 +43,7 @@
         text-decoration: none;
     }
 </style>
-@endpush
+@endsection
 
 @section('page')
 
@@ -63,6 +63,9 @@
     </ul>
 </div>
 @endif
+
+
+
 <div class="wrap">
     <div class="container">
         <div class="row">
@@ -82,7 +85,7 @@
                             </a>
                         </li>
                         <li class="list-group-item active">
-                            <a href="">
+                            <a href="{{route('account')}}">
                                 <span>Thông tin cơ bản</span>
                             </a>
                         </li>
@@ -91,8 +94,8 @@
                                 <span>Đánh giá và nhận xét</span>
                             </a>
                         </li>
-                        <li class="list-group-item disabled">
-                            <a href="">
+                        <li class="list-group-item @if(!$check_re) disabled @endif">
+                            <a href="{{route('account.my_re')}}">
                                 <span>Bất động sản của bạn</span>
                             </a>
                         </li>

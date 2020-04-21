@@ -180,4 +180,5 @@
       padding-top: 20px;
     }
   </style>
+  @yield('css')
 </head>
