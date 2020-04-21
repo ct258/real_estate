@@ -416,7 +416,7 @@
 </section>
 <!-- Page end -->
 @endsection
-@push('script')
+@section('script')
 <script>
     $(document).ready(function () {
         //lấy bản đồ
@@ -677,4 +677,4 @@
     map.on('click', onMapClick);
 
 </script>
-@endpush
+@endsection

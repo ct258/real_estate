@@ -10,8 +10,8 @@
 <script src="{{asset('fontawesome/js/all.js')}}"></script>
 <script src="{{asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-  crossorigin=""></script>
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -24,7 +24,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-  $(document).ready(function () {
+    $(document).ready(function () {
     console.log("scrollup");
 
    $('.scrollupp').on('click', function () {
@@ -36,7 +36,7 @@
 </script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
   var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
   s1.async=true;
@@ -47,7 +47,7 @@
   })();
 </script>
 <script>
-  $(document).ready(function () {
+    $(document).ready(function () {
       //lấy loại bất động sản
       $("#form").change(function(){
           var form_id = $(this).val();
@@ -126,3 +126,4 @@
   });
 
 </script>
+@yield('script')
