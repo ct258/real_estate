@@ -6,7 +6,17 @@
     path {
         color: white ;
     }
-
+    #form01{
+        padding: 5px 10px;
+        margin-right: 25px;
+    }
+    div#form02 {
+    border: 1px solid darkslategrey;
+    padding: 2px;
+    padding-bottom: 10px;
+    padding-left: 45px;
+    padding-right: 5px;
+}
     .buy {
         border: none;
         white-space: nowrap;
@@ -371,37 +381,54 @@
                                 Phản ánh thông tin sản phẩm không chính xác.
                             </span>
                             
-                   
+                            <form action="{{ route('customer.report.create.submit',$real_estate->real_estate_id) }}" method="post">
+                                @csrf
 
-                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tin</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các thông tin liên quan đến nội dung mô tả và 
-                                        thông tin sản phẩm. Các vấn đề liên quan đến vận hành (đơn hàng, chất lượng sản phẩm)
-                                         vui lòng liên hệ tổng đài 1900-6035 để được hỗ trợ.</label>
-                                    <form>
-                                  
-                                      <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Vui lòng mô tả vấn đề cần phản ánh</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
-                                      </div>
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Báo cáo</button>
-                                  </div>
+                                <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                                {{-- <div class="col-sm-5 m-b-xs">
+                                                    <select name="content" class="input-sm form-control w-sm inline v-middle">
+                                                    <option >Bulk action</option>
+                                                    <option >Delete selected</option>
+                                                    <option value="2">Bulk edit</option>
+                                                    <option value="3">Export</option>
+                                                    </select>
+                                                </div> --}}
+                                    <div class="modal-body" >
+                                        <div class="col-md-7" id="form02">
+                                            <label for="recipient-name" class="col-form-label" style="font-weight:bold;">Thông tin khách hàng</label>
+                                            <br>
+                                            <label for="recipient-name" class="col-form-label">Họ tên:</label>
+                                            <button id="form01" disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
+                                            <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+                                            <button id="form01" disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
+                                           
+                                        </div>
+                                        <form>
+                                            <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các thông tin liên quan đến nội dung mô tả và 
+                                                thông tin địa ốc. Các vấn đề liên quan khác vui 
+                                                lòng liên hệ tổng đài 1900-6035 để được hỗ trợ.</label>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Vui lòng mô tả vấn đề cần phản ánh</label>
+                                            <textarea class="form-control" id="message-text" name="content" placeholder="Nhập..."></textarea>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                        <button type="submit" class="btn btn-primary"  >Báo cáo</button>
+                                    </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
-
+                                </div>
+                            </form>
                             <br>
                             <br>
                 

@@ -306,17 +306,10 @@ Route::group(['middleware' => ['currency']], function () {
             //report
             Route::group(['prefix' => 'report'], function () {
                 //index
-                Route::get('/index', 'CustomerReportController@index')->name('report.index');
+                Route::get('/index', 'CustomerReportController@index')->name('customer.report.index');
                 // thêm
-                Route::get('/create', 'Admin\CustomerReportController@create')->name('report.create');
-                Route::post('/create', 'Admin\CustomerReportController@store')->name('report.create.submit');
-                // xem chi tiết
-                Route::get('/show/{report_id}', 'Admin\CustomerReportController@show')->name('report.show');
-                // sửa
-                Route::get('/edit/{report_id}', 'Admin\CustomerReportController@edit')->name('report.edit');
-                Route::post('/edit/submit/{report_id}', 'Admin\CustomerReportController@update')->name('report.update');
-                // xóa mềm
-                Route::post('/destroy/{report_id}', 'Admin\CustomerReportController@destroy')->name('report.destroy');
+                Route::get('/create', 'CustomerReportController@create')->name('customer.report.create');
+                Route::post('/create/{id}', 'CustomerReportController@store')->name('customer.report.create.submit');
                
             });
             //trash
