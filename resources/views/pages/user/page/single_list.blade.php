@@ -118,7 +118,7 @@
     .side {
         float: left;
         width: 15%;
-        margin-top: 10px;
+        margin-top: 3px;
     }
 
     .middle {
@@ -396,32 +396,34 @@
 
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_facade!=0)
-                                        echo "@lang('facade')";
-                                        $convenience->convenience_facade;
+                                        ?>@lang('facade'): <?php
+                                        echo $convenience->convenience_facade;
+                                        echo "m";
                                         ?>
                                     </div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_way!=0)
-                                        echo "@lang('way')";
-                                        $convenience->convenience_way;
+                                        ?>@lang('way'): <?php
+                                        echo $convenience->convenience_way;
+                                        echo "m";
                                         ?>
                                     </div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_floor!=0)
-                                         echo "<i class='fas fa-building'></i>";
-                                        $convenience->convenience_floor;
+                                         ?><i class='fas fa-building'></i> <?php
+                                        echo $convenience->convenience_floor;
                                         ?>
                                     </div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_bedroom!=0)
-                                        echo "<i class='fa fa-bed'></i>";
-                                        $convenience->convenience_bedroom;
+                                        ?><i class='fa fa-bed'></i> <?php
+                                        echo $convenience->convenience_bedroom;
                                         ?>
                                     </div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_bathroom!=0)
-                                        echo "<i class='fa fa-bath'></i>";
-                                        $convenience->convenience_bathroom;
+                                       ?><i class='fa fa-bath'></i> <?php
+                                        echo $convenience->convenience_bathroom;
                                         ?>
                                     </div>
                                     @endif
@@ -553,70 +555,73 @@
 
                 <h3 class="sl-sp-title">Tiện nghi</h3>
                 <div class="row property-details-list">
-                    <?php if ($convenience->convenience_air_conditioning!=0) echo"
+                    <?php if ($convenience->convenience_air_conditioning!=0):?>
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wind'></i>
+                        @lang('Air Conditioning')</p><?php endif; ?>
 
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wind'></i> @lang('Air Conditioning')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_BBQ_area!=0) echo"
+                    <?php  if ($convenience->convenience_BBQ_area!=0) :?>
 
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-dumpster-fire'></i> @lang('BBQ Area')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_CCTV!=0) echo"
+                    <?php endif; ?>
 
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-video'></i> @lang('CCTV')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_concierge!=0) echo"
+                    <?php  if ($convenience->convenience_CCTV!=0):?>
+
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-video'></i> @lang('CCTV')</p><?php endif; ?>
+
+                    <?php  if ($convenience->convenience_concierge!=0):?>
 
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-concierge-bell'></i> @lang('Concierge')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_fitness!=0) echo"
+                    <?php endif; ?>
 
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumbbell'></i> @lang('Fitness')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_garden!=0) echo"
+                    <?php  if ($convenience->convenience_fitness!=0):?>
 
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-seedling'></i> @lang('Garden')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_library!=0) echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumbbell'></i> @lang('Fitness')</p><?php endif; ?>
 
-                    <p class='col-xs-12 col-sm-4'><i class='fa fa-book'></i> @lang('Library')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_mountain_view!=0) echo"
+                    <?php  if ($convenience->convenience_garden!=0):?>
+
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-seedling'></i> @lang('Garden')</p><?php endif; ?>
+
+                    <?php  if ($convenience->convenience_library!=0):?>
+
+                    <p class='col-xs-12 col-sm-4'><i class='fa fa-book'></i> @lang('Library')</p><?php endif; ?>
+
+                    <?php  if ($convenience->convenience_mountain_view!=0):?>
 
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-mountain'></i> @lang('Mountain View')</p>
-                   "?>
-                    <?php  if ($convenience->convenience_parking!=0) echo"
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-car'></i> @lang('Parking')</p>
+                    <?php endif; ?>
 
-                   "?>
-                    <?php  if ($convenience->convenience_playground!=0)echo"
+                    <?php  if ($convenience->convenience_parking!=0):?>
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-car'></i> @lang('Parking')</p><?php endif; ?>
+
+
+                    <?php  if ($convenience->convenience_playground!=0):?>
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-campground'></i> @lang('Playground')</p>
+                    <?php endif; ?>
 
-                   "?>
-                    <?php  if ($convenience->convenience_ocean_view!=0) echo"
+
+                    <?php  if ($convenience->convenience_ocean_view!=0):?>
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-umbrella-beach'></i> @lang('Sea/Ocean View')</p>
+                    <?php endif; ?>
 
-                   "?>
-                    <?php  if ($convenience->convenience_security!=0) echo"
+
+                    <?php  if ($convenience->convenience_security!=0):?>
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-user-shield'></i> @lang('Security')</p>
+                    <?php endif; ?>
 
-                   "?>
-                    <?php  if ($convenience->convenience_swimming_pool!=0)echo"
+                    <?php  if ($convenience->convenience_swimming_pool!=0):?>
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-swimming-pool'></i> @lang('Swimming Pool')</p>
+                    <?php endif; ?>
 
-                   "?>
-                    <?php  if ($convenience->convenience_tennis!=0)echo"
+                    <?php  if ($convenience->convenience_tennis!=0):?>
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-baseball-ball'></i> @lang('Tennis')</p>
+                    <?php endif; ?>
 
-                   "?>
-                    <?php  if ($convenience->convenience_wifi!=0)echo"
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wifi'></i> @lang('Wi Fi')</p>
 
-                   "?>
-                    <?php  if ($convenience->convenience_tivi!=0) echo"
+                    <?php  if ($convenience->convenience_wifi!=0):?>
+                    <p class='col-xs-12 col-sm-4'><i class="fas fa-wifi"></i> @lang('Wi Fi')</p><?php endif; ?>
 
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-tv'></i> @lang('Tivi')</p>
-                    "?>
+                    <?php  if ($convenience->convenience_tivi!=0):?>
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-tv'></i> @lang('Tivi')</p><?php endif; ?>
 
                 </div>
                 @endif
