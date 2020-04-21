@@ -81,9 +81,11 @@
                                         <div class="col-sm-10">
                                             <img id="image" alt="Chọn hình đại diện" /><br>
                                             <input type="file" name="avatar" id="avatar"
-                                                onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
+                                                onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"
+                                                required>
                                             <br>
-                                            <input type="file" name="photos[]" id="photos[]" multiple onchange=show()>
+                                            <input type="file" name="photos[]" id="photos[]" multiple onchange=show()
+                                                required>
                                         </div>
                                     </td>
                                 </tr>
@@ -93,7 +95,7 @@
                                             style="width:2%;" ;>
                                         <label>Tên Bất động sản</label>
                                         <input type="text" name="name_vi" size="100%" autofocus
-                                            class="form-control input-transparent"><br></td>
+                                            class="form-control input-transparent" required><br></td>
                                 </tr>
 
                                 <tr>
@@ -101,7 +103,8 @@
                                         <img src="https://lipis.github.io/flag-icon-css/flags/4x3/vn.svg"
                                             style="width:2%;" ;>
                                         <label>Địa chỉ</label>
-                                        <input type="text" name="address_vi" class="form-control input-transparent"><br>
+                                        <input type="text" name="address_vi" class="form-control input-transparent"
+                                            required><br>
                                     </td>
                                 </tr>
 
@@ -111,8 +114,8 @@
                                             style="width:2%;" ;>
                                         <label>Mô tả</label>
                                         <textarea name="description_vi" cols="30" id="editor1"
-                                            style="max-width:100%;height: 235px;"
-                                            class="form-control input-transparent"></textarea>
+                                            style="max-width:100%;height: 235px;" class="form-control input-transparent"
+                                            required></textarea>
                                     </td>
                                 </tr>
                                 <br><br>
@@ -178,10 +181,10 @@
                                     <tr>
                                         <td><label>Mặt tiền</label>
                                             <input type="number" name="convenience_facade" min="0" step="any"
-                                                class="form-control input-transparent"><br></td>
+                                                placeholder="mét" class="form-control input-transparent"><br></td>
                                         <td><label>Lối vào</label>
                                             <input type="number" name="convenience_way" min="0" step="any"
-                                                class="form-control input-transparent"><br></td>
+                                                placeholder="mét" class="form-control input-transparent"><br></td>
                                         <td><label>Số tầng</label>
                                             <input type="number" name="convenience_floor" min="0" step="any"
                                                 class="form-control input-transparent"><br></td>
@@ -192,7 +195,7 @@
                                                 class="form-control input-transparent"><br></td>
                                         <td><label>Số phòng tắm</label>
                                             <input type="number" name="convenience_bathroom" min="0" step="any"
-                                                class="form-control input-transparent"><br></td>
+                                                vclass="form-control input-transparent"><br></td>
                                         <td>
                                             <label>Phương hướng</label>
                                             <select name="direction" id="direction"
@@ -333,10 +336,11 @@
                                 <tr>
                                     <td>
                                         <label>Hình thức</label>
-                                        <select name="form" id="form" class="form-control form-control-md">
-                                            <option value="form_id" selected>-- Chọn --</option>
+                                        <select name="form" id="form" class="form-control form-control-md" required>
+                                            <option value="form_id" selected disabled>-- Chọn --</option>
                                             @foreach ($form as $item)
-                                            <option value="{{$item->form_id}}">{{$item->form_translation_name}}</option>
+                                            <option value="{{$item->form_id}}" aria-required="">
+                                                {{$item->form_translation_name}}</option>
                                             @endforeach
                                         </select>
                                 </tr>
@@ -344,7 +348,7 @@
                                     <td>
                                         <label>Loại bất động sản</label>
                                         <select name="type" id="type" class="form-control form-control-md">
-                                            <option value="form_id" selected>-- Chọn --</option>
+                                            <option value="form_id" selected disabled>-- Chọn --</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -352,21 +356,22 @@
                                     <td>
                                         <label>Đơn vị</label>
                                         <select name="unit" id="unit" class="form-control form-control-md">
-                                            <option value="unit_id" selected>-- Chọn --</option>
+                                            <option value="unit_id" selected disabled>-- Chọn --</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label>Diện tích</label>
-                                        <input type="text" name="acreage" class="form-control input-transparent"><br>
+                                        <input type="text" name="acreage" class="form-control input-transparent"
+                                            required><br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label>Giá dự án</label>
                                         <input type="number" name="price" min="0" step="any"
-                                            class="form-control input-transparent"><br>
+                                            class="form-control input-transparent" required><br>
                                     </td>
                                 </tr>
 
@@ -375,7 +380,7 @@
                                     <td>
                                         <label>Địa chỉ</label>
                                         <select name="province" id="province" class="form-control form-control-md">
-                                            <option value="province_id" selected>-- Chọn Tỉnh/TP --</option>
+                                            <option value="" selected disabled>-- Chọn Tỉnh/TP --</option>
                                             @foreach ($province as $item)
                                             <option value="{{$item->province_id}}">{{$item->province_name}}</option>
                                             @endforeach
@@ -384,19 +389,19 @@
                                         <br>
 
                                         <select name="district" id="district" class="form-control form-control-md">
-                                            <option value="district_id" selected>-- Chọn Quận/Huyện --</option>
+                                            <option value="" selected disabled>-- Chọn Quận/Huyện --</option>
                                         </select>
 
                                         <br>
 
                                         <select name="ward" id="ward" class="form-control form-control-md">
-                                            <option value="ward_id" selected>-- Chọn Phường/Xã --</option>
+                                            <option value="" selected disabled>-- Chọn Phường/Xã --</option>
                                         </select>
 
                                         <br>
 
                                         <select name="street" id="street" class="form-control form-control-md">
-                                            <option value="dp_id" selected>-- Chọn Đường/Phố --</option>
+                                            <option value="" selected disabled>-- Chọn Đường/Phố --</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -550,7 +555,7 @@
     //reset tất cả về ban đầu khi thay đổi tỉnh
     $("#province").change(function(){
         var province_id = $("#province").val();
-        if(province_id=='province_id'){
+        if(province_id==''){
             var data1="<option value='0'>-- Chọn Quận/Huyện --</option>";
             var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
             var data3="<option value='0'>-- Chọn Đường/Phố --</option>";
@@ -564,7 +569,7 @@
         var ward_id = $("#ward").val();
         var province_id = $("#province").val();
             
-        if(ward_id=='ward_id' && province_id!='province_id'){
+        if(ward_id=='' && province_id!=''){
             var data2="<option value='0'>-- Chọn Phường/Xã --</option>";
             $("#ward").html(data2);
             $.get("../street/"+province_id, function(data){
