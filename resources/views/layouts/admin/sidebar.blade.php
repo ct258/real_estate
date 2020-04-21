@@ -102,11 +102,13 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-gift" aria-hidden="true"></i>
-                        <span>Khuyến Mãi </span>
+                        <span>Khuyến mãi </span>
                     </a>
                     <ul class="sub">
-                    <li><a href="">Danh sách khuyến mãi</a></li>
-                        <li><a href="">Cập Nhật Khuyến Mãi</a></li>
+                        <li>
+                            <a href="{{ route('promotion.index') }}">Loại khuyến mãi</a>
+                        </li>
+                        <li><a href="{{ route('promotioncode.index') }}">Danh sách khuyến mãi</a></li>
                     </ul>
                 </li>
                 {{-- thành viên --}}

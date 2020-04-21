@@ -322,6 +322,19 @@
     button.btn.btn-primary.mn:hover {
         color: aquamarine;
     }
+
+        #rating{border:none;float:left;}
+        #rating>input{display:none;}
+        #rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}
+        #rating>.half:before{content:"\f089";position:absolute;}
+        #rating>label{color:#ddd;float:right;}
+        #rating>input:checked~label,
+        #rating:not(:checked)>label:hover, 
+        #rating:not(:checked)>label:hover~label{color:#FFD700;}
+        #rating>input:checked+label:hover,
+        #rating>input:checked~label:hover,
+        #rating>label:hover~input:checked~label,
+        #rating>input:checked~label:hover~label{color:#FFED85;}
 </style>
 @endpush
 @section('page')
@@ -625,7 +638,7 @@
 
                 </div>
                 @endif
-                <h3 class="sl-sp-title">Đánh giá</h3>
+                {{-- <h3 class="sl-sp-title">Đánh giá</h3> --}}
                 <div class="container-fuild">
                     <div class="row customer_rating" class="rating">
                         <div class="col-lg-3">
@@ -725,22 +738,44 @@
                         <div class="col-lg-3">
                             <div class="share_comment float-right">
                                 <h3>Chia sẻ nhận xét về sản phẩm</h3>
-                                <button class="btn btn-default">Viết nhận xét của bạn</button>
+                                <button class="btn btn-default"><a href="#cmt">Viết nhận xét của bạn</a> </button>
                             </div>
                         </div>
                     </div>
 
                 </div>
+              <div class="row">
+                <div class="col-sm-12">
+                <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
+                    method="post">
+                    @csrf
+                    <h3 class="sl-sp-title">Đánh giá</h3>
+                    <div id="rating">
+                        <input type="radio" id="star5" name="rating" value="5" />
+                        <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                     
+                        <input type="radio" id="star4" name="rating" value="4" />
+                        <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                     
+                        <input type="radio" id="star3" name="rating" value="3" />
+                        <label class = "full" for="star3" title="Meh - 3 stars"></label>
+                     
+                        <input type="radio" id="star2" name="rating" value="2" />
+                        <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                     
+                        <input type="radio" id="star1" name="rating" value="1" />
+                        <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    </div>
+                   
+                </div>
+              </div>
 
-
-                <h3 class="sl-sp-title">Đánh giá</h3>
+               
                 <div class="comment-warp">
                     <ul class="comment-list">
                         @foreach ($evaluate as $item)
 
                         <li>
-
-
 
                             <div class="comment">
                                 <div class="comment-avator set-bg"
@@ -764,23 +799,26 @@
                     </li>
                     @endforeach
                     </ul>
-                    <div class="comment-form-warp">
+
+                    
+                    <div class="comment-form-warp " id="cmt">
                         {{-- Auth::gruad('ten') --}}
-                        <h4 class="comment-title">Leave Your Comment</h4>
-                        <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
-                            method="post">
-                            @csrf
+                        <h4 class="comment-title" >Bình luận</h4>
+                     
                             <div class="row">
                                 {{-- <div class="col-md-6">
                             <input type="text" name="name_customer" placeholder="Your Name">
                         </div> --}}
                                 <div class="col-md-6">
-                                    <label for="">Title</label>
-                                    <input type="text" name="title" placeholder="Enter title here . . .">
+                                    <input type="text" name="title" placeholder="Tiêu đề...">
                                 </div>
                                 <div class="col-lg-9">
-                                    <textarea placeholder="Your Message" name="content"></textarea>
-                                    <button class="site-btn">SEND</button>
+                                    <textarea placeholder="Nội dung bình luận..." name="content"></textarea>
+                                    
+                                </div>
+                
+                                <div class="col-sm-12">
+                                    <button class="site-btn">Gửi</button>
                                 </div>
                             </div>
                         </form>

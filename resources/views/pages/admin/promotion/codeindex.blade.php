@@ -44,12 +44,7 @@
       </div>
       <div class="col-sm-3" style="margin-left:-79px;">
        
-        <div class="input-group">
-          <input type="text" class="input-md form-control" placeholder="Tìm kiếm">
-          <span class="input-group-btn">
-            <button class="btn btn-md btn-default" type="button">Tìm kiếm</button>
-          </span>
-        </div>
+       
       </div>
       <div class="col-sm-5">
         
@@ -57,7 +52,7 @@
       <div class="col-sm-2">
       <div class="col-sm-5" >
         <small>
-          <a href="{{ route('promotion.create')}}" class="tst4 btn btn-success">Thêm Loại khuyến mãi
+          <a href="{{ route('promotioncode.create')}}" class="tst4 btn btn-success">Thêm khuyến mãi
         </a></small>
         </div>
         
@@ -71,18 +66,26 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th>ID loại khuyến mãi</th>
-            <th>Tên loại loại khuyến mãi</th>
+            <th>Tên mã code</th>
+            <th>Mã code</th>
+            <th>Số lượng</th>
+            <th>Phần trăm khuyến mãi</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
             <th style="width:100px;">Chức năng</th>
           </tr>
-         @foreach ($data as $val)
+         @foreach ($code as $val)
              <tr>
-                 <td>{{$val->code_type_id}}</td>
-                 <td>{{$val->code_type_name}}</td>
+                 <td>{{$val->code_name}}</td>
+                 <td>{{$val->code_code}}</td>
+                 <td>{{$val->code_amount}}</td>
+                 <td>{{$val->code_per}}</td>
+                 <td>{{$val->code_begin}}</td>
+                 <td>{{$val->code_end}}</td>
                 
                  <td>
-                    <a href="{{ route('promotion.edit', ['id'=>$val->code_type_id]) }}"> <i class="fa fa-edit"></i></a>&nbsp;  &nbsp;  &nbsp;
-                   <a href="{{ route('promotion.destroy', ['id'=>$val->code_type_id]) }}"  style="border: none;background-color: Transparent;color: red;"><i class="fa fa-trash-o"></i></a>
+                    <a href="{{ route('promotioncode.edit', ['id'=>$val->code_id]) }}"> <i class="fa fa-edit"></i></a>&nbsp;  &nbsp;  &nbsp;
+                   <a href="{{ route('promotioncode.destroy', ['id'=>$val->code_id]) }}"  style="border: none;background-color: Transparent;color: red;"><i class="fa fa-trash-o"></i></a>
                   </td>
              </tr>
          @endforeach
@@ -93,21 +96,10 @@
       <div class="row">
         
         <div class="col-sm-5 ">
-          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> </strong> loại thành viên
+          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> </strong> khuyến mãi
           </small>
         </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a>
-                
-            </li>
-          </ul>
-        </div>
+       
       </div>
     </footer>
   </div>
