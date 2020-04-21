@@ -113,6 +113,8 @@ class CustomerController extends Controller
         join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
         ->join('district', 'real_estate.district_id', 'district.district_id')
         ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit','unit.unit_id','real_estate.unit_id')
+        ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
         ->select('real_estate.real_estate_id',
         'real_estate_avatar',
         'translation_name',
@@ -122,10 +124,13 @@ class CustomerController extends Controller
         'real_estate_acreage',
         'real_estate.created_at',
         'province.province_name',
-        'district.district_name');
+        'district.district_name',
+        'unit.*',
+        'unit_translation.*');
         $product=$real_estate
         ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
                 ['real_estate_status','Đang bán'],
                 ['customer_id',$id]
             ])
@@ -134,9 +139,58 @@ class CustomerController extends Controller
         ->get();
         foreach ($product as $key => $value) {
             $day_product[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-            $price_product[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate;
+            $price_product[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate/$value->unit_value;
         }
         return view('pages.user.account.list_re',
+        \compact(
+        'rate',
+        'product',
+        'day_product',
+        'price_product'));
+    }
+    public function my_wish(Request $request)
+    {
+        $id=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        Carbon::setlocale(\Session::get('lang', config('app.locale')));
+        $now = Carbon::now();
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+        
+        $real_estate = RealEstate::
+        join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+        ->join('ward', 'ward.district_id', 'district.district_id')
+        ->join('district', 'real_estate.district_id', 'district.district_id')
+        ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit','unit.unit_id','real_estate.unit_id')
+        ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
+        ->join('wishlist','wishlist.real_estate_id','real_estate.real_estate_id')
+        ->join('customer','customer.customer_id','wishlist.customer_id')
+        ->select('real_estate.real_estate_id',
+        'real_estate_avatar',
+        'translation_name',
+        'translation_address',
+        'translation_description',
+        'real_estate_price',
+        'real_estate_acreage',
+        'real_estate.created_at',
+        'province.province_name',
+        'district.district_name',
+        'unit.*',
+        'unit_translation.*');
+        $product=$real_estate
+        ->where([
+                ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
+                ['real_estate_status','Đang bán'],
+                ['customer_id',$id]
+            ])
+        ->orderBy('created_at', 'desc')
+        ->limit(6)
+        ->get();
+        foreach ($product as $key => $value) {
+            $day_product[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
+            $price_product[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate/$value->unit_value;
+        }
+        return view('pages.user.account.list_wish',
         \compact(
         'rate',
         'product',

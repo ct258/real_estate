@@ -378,20 +378,24 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <div><i class="fas fa-expand-arrows-alt"></i>
+                                        <div style="font-weight: bold;
+                                        display: inline-block;
+                                        font-size: 20px;"><i class="fas fa-expand-arrows-alt"></i>
                                             {{$real_estate->real_estate_acreage}}
                                             m<sup>2</sup></div>
                                     </div>
                                     <div class="col-sm-3">
+
                                         <div style="font-weight: bold;
                                             display: inline-block;
-                                            color: #30caa0;
-                                            font-size: 18px;"> {{$rate->currency_symbol}}
+                                            font-size: 20px;"> {{$rate->currency_symbol}}
+                                            {{-- <i class="fas fa-dollar-sign"></i> --}}
+                                            {{number_format($real_estate->real_estate_price)}}{{$real_estate->unit_translation_name}}
                                         </div>
-                                        {{-- <i class="fas fa-dollar-sign"></i> --}}
-                                        {{number_format($real_estate->real_estate_price)}}
 
                                     </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3"></div>
                                     @if ($convenience)
 
                                     <div class="col-sm-3">
@@ -408,6 +412,8 @@
                                         echo "m";
                                         ?>
                                     </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3"></div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_floor!=0)
                                          ?><i class='fas fa-building'></i> <?php
