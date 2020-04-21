@@ -112,6 +112,8 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::get('/', 'CustomerController@index')->name('account');
                     Route::get('/checkpass', 'CustomerController@checkpass')->name('account.checkpass');
                     Route::get('/re', 'CustomerController@my_re')->name('account.my_re');
+                    Route::get('/wishlist', 'CustomerController@my_wish')->name('account.my_wish');
+                    Route::get('/remove_wishlist/{real_estate_id}', 'CustomerController@remove_wish')->name('account.remove_wish');
                 });
                 Route::group(['prefix' => 'post'], function () {
                     Route::get('/create', 'PostController@create')->name('post.create');

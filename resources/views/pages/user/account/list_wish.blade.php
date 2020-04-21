@@ -40,19 +40,32 @@
         color: white;
 
     }
+
+    .sale-notic,
+    .sale-notic:hover {
+        text-decoration: none;
+        color: white;
+
+    }
+
+    section.feature-section.spad {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
 </style>
 @endpush
 @section('page')
 
-@if ($product->isNotempty())
 <!-- feature section -->
 <section class="feature-section spad">
     <div class="section-title text-center">
-        <h3>Bất động sản mới</h3>
+        <h3>Bất động sản yêu thích</h3>
     </div>
     <div class="container frame">
         <div class="row">
-            @foreach ($product as $item)
+
+
+            @forelse ($product as $item)
 
 
             <div class="col-lg-4 col-md-6">
@@ -60,7 +73,9 @@
                 <div class="feature-item">
                     <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
                         style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
-                        <a class="rent-notic" href="{{route('post.edit',$item->real_estate_id)}}">Chỉnh sửa</a>
+
+                        <a style="float:right" class="sale-notic"
+                            href="{{route('account.remove_wish',$item->real_estate_id)}}">Xóa</a>
                     </div>
                     <div class="feature-text">
                         <div class="text-center feature-title">
@@ -88,11 +103,18 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+            <div class="col-lg-4 col-md-6">
+                <!-- feature -->
+                <div class="feature-item">
+                    <p>Bạn chưa có sản phẩm yêu thích</p>
+                </div>
+            </div>
+
+            @endforelse
 
         </div>
     </div>
 </section>
 <!-- feature section end -->
-@endif
 @endsection

@@ -440,42 +440,36 @@
                                         {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
                                         id="subscription"><i class="fas fa-heart"></i></a> --}}
                                         {{-- đăng ký --}}
-                                        @if(\Auth::guard('account')->check() &&
-                                        \Auth::guard('account')->user()->hasRole('Customer'))
+                                        <?php if(\Auth::guard('account')->check() &&
+                                        \Auth::guard('account')->user()->hasRole('Customer')):?>
 
                                         <a type='button' id="wishlist_customer"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"
                                             data-customer_id="{{\Auth::guard('account')->user()->load('customer')->customer->customer_id}}">
-                                            <?php 
-                                            if($heart){
+                                            <?php  if($heart): ?>
+                                            <i class='fas fa-heart' id='heart'></i></a>
+                                        <?php else: ?>
+                                        <i class='far fa-heart' id='heart'></i></a>
+                                        <?php endif;?>
+                                        <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                            class="rent-notic" id="subscription">Đăng ký</a>
 
-                                                echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                            }
-                                            else{
 
-                                                echo "<i class='far fa-heart' id='heart'></i></a>";
-                                            }
-                                            ?>
-                                            <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
-                                                class="rent-notic" id="subscription">Đăng ký</a>
-                                            @else
-                                            <a type='button' id="wishlist_cookie"
-                                                data-real_estate_id="{{$real_estate->real_estate_id}}"
-                                                data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
-                                                <?php 
-                                            if($heart){
 
-                                                    echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                                }
-                                                else{
-    
-                                                    echo "<i class='far fa-heart' id='heart'></i></a>";
-                                                }
-                                                ?>
-                                                <a href="{{route('subscription')}}" class="rent-notic"
-                                                    id="subscription">Đăng
-                                                    ký</a>
-                                                @endif
+                                        <?php else: ?>
+                                        <a type='button' id="wishlist_cookie"
+                                            data-real_estate_id="{{$real_estate->real_estate_id}}"
+                                            data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
+                                            <?php if($heart):?>
+
+                                            <i class='fas fa-heart' id='heart'></i></a>
+                                        <?php else: ?>
+                                        <i class='far fa-heart' id='heart'></i></a>
+
+                                        <?php endif;?>
+                                        <a href="{{route('subscription')}}" class="rent-notic" id="subscription">Đăng
+                                            ký</a>
+                                        <?php endif;?>
 
                                     </div>
                                 </div>
@@ -899,7 +893,7 @@
 //   var modal = $(this)
 //   modal.find('.modal-title').text('có tin nhắn')
 //   modal.find('.modal-body input').val(recipient)
-})
+// })
 </script>
 <script>
     const longitude = $('#field').data("longitude");

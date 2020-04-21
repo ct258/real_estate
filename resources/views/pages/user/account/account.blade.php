@@ -99,6 +99,11 @@
                                 <span>Bất động sản của bạn</span>
                             </a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="{{route('account.my_wish')}}">
+                                <span>Danh sách yêu thích</span>
+                            </a>
+                        </li>
                         <li class="list-group-item disabled">
                             <a href="">
                                 <span>Cuộc hẹn</span> <span class="badge badge-danger badge-pill">14</span>
