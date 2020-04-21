@@ -1,42 +1,114 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin="">
-    </script>
-    <link rel="stylesheet" href="{{asset('map/css/TripgoRouting.css')}}" />
-    <script src="{{asset('map/dist/TripgoRouting.js')}}"></script>
-    <script src="{{asset('map/lib/jquery-3.2.1.js')}}"></script>
-    <script src="{{asset('map/lib/Polyline.encoded.js')}}"></script>
+        crossorigin=""></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
 
+        html,
+        body,
+        #map {
+            height: 99%;
+            width: 100vw;
+        }
+    </style>
 </head>
 
 <body>
+    <input id="value" data-LatLng='' value="123">
     <div id="map"></div>
     <script>
-        let options ={
-              "tripgoApiKey": "e03d67ee67971d70908108f636f439ed",
-              "mapId" : "map",
-              "googleTile": true,
-              "mapCenter" : {
-                "lat": 10.036200,
-                "lng": 105.788033
-              },
-              "floatPanel": false,
-          }
-          L.tripgoRouting.mapLayer.initialize(options);
+        var map = L.map('map').fitWorld();
+        // L.map('map').setView(e.latlng, 13).addTo(map);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibmdoaWEyMzExIiwiYSI6ImNrN3B0aGpnNjBuaGYzbW1pcnphOHY0ZW4ifQ.DJKI6Ck_xfaja3RDUPmCfQ'
+}).addTo(map);
+map.locate({setView: true, maxZoom: 16});
+
+//lấy vị trí cty
+var marker = L.marker([10.0310059,105.7513944]).addTo(map);
+
+
+    //vòng tròn
+    var circle = L.circle([10.0310059,105.7513944], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(map);
+
+var popup = L.popup()
+    .setLatLng([10.0310059,105.7513944])
+    .setContent("<b>Batdongsancantho</b>")
+    .openOn(map);
+
+//text
+marker.bindPopup("<b>Batdongsancantho</b>").openPopup();
+
+
+//gps
+
+
+function onLocationFound(e) {
+    var radius = e.accuracy;
+
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+}
+
+map.on('locationfound', onLocationFound);
+function onLocationError(e) {
+    alert(e.message);
+}
+
+map.on('locationerror', onLocationError);
+
+
+//click
+function onMapClick(e) {
+    var circle = L.circle(e.latlng, {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 100
+}).addTo(map);
+var marker = L.marker(e.latlng).addTo(map);
+var popup = L.popup()
+    .setLatLng(e.latlng)
+    .setContent("Now you chose here.")
+    .openOn(map);
+    document.getElementById("value").value = e.latlng;
+    alert("Now you chose here " + e.latlng);
+}
+
+map.on('click', onMapClick);
+
     </script>
 
-    {{-- <a href="https://github.com/skedgo/tripkit-leaflet" target="_blank">
-        <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1500"
-            src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
-            alt="Fork me on GitHub"
-            data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png">
-    </a> --}}
+
 </body>
 
 </html>

@@ -27,6 +27,7 @@
     "Tivi": "Tivi",
     "Bedroom": "Bedroom",
     "Bathroom": "Bathroom",
+    "Swimming Pool": "Swimming Pool",
     "Year age": "Year age",
     "Buy": "Buy",
     "Customer reviews": "Customer reviews",
@@ -47,5 +48,7 @@
     "SE": "South - East",
     "NE": "North - East",
     "SW": "South - West",
-    "NW": "North - West"
+    "NW": "North - West",
+    "facade": "Facade",
+    "way": "Way"
 }

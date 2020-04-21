@@ -220,32 +220,45 @@ class ClientController extends Controller
         )
         ->where('evaluate.real_estate_id', $real_estate->real_estate_id)
         ->get();
+        $count_rank = count($evaluate);
         $rank_5 = 0;
         $rank_4 = 0;
         $rank_3 = 0;
         $rank_2 = 0;
         $rank_1 = 0;
-        foreach ($evaluate as $item) {
-            switch ($item->evaluate_rank) {
-                case 5:
-                    $rank_5++;
-                break;
-                case 4:
-                    $rank_4++;
-                break;
-                case 3:
-                    $rank_3++;
-                break;
-                case 2:
-                    $rank_2++;
-                break;
-                case 1:
-                    $rank_1++;
-                break;
+        $per_rank_5 = 0;
+        $per_rank_4 = 0;
+        $per_rank_3 = 0;
+        $per_rank_2 = 0;
+        $per_rank_1 = 0;
+        if($count_rank!=0){
+            foreach ($evaluate as $item) {
+                switch ($item->evaluate_rank) {
+                    case 5:
+                        $rank_5++;
+                    break;
+                    case 4:
+                        $rank_4++;
+                    break;
+                    case 3:
+                        $rank_3++;
+                    break;
+                    case 2:
+                        $rank_2++;
+                    break;
+                    case 1:
+                        $rank_1++;
+                    break;
+                }
             }
+            $per_rank_5 = number_format($rank_5/$count_rank);
+            $per_rank_4 = number_format($rank_4/$count_rank);
+            $per_rank_3 = number_format($rank_3/$count_rank);
+            $per_rank_2 = number_format($rank_2/$count_rank);
+            $per_rank_1 = number_format($rank_1/$count_rank);
         }
         //bao nhiêu phản hồi
-        $count_rank = count($evaluate);
+        
         //số sao trung bình
         $average_rank = number_format($evaluate->avg('evaluate_rank'), 1);
         //tính %
@@ -260,27 +273,37 @@ class ClientController extends Controller
         $rank_4,
         $rank_3, 
         $rank_2,
-        $rank_1];
+        $rank_1,
+        $per_rank_5,
+        $per_rank_4,
+        $per_rank_3,
+        $per_rank_2,
+        $per_rank_1];
     }
     public function single_list(Request $request, $real_estate_id)
     {
+        $province=Province::all();
 
         //thêm vào danh sách sp đã xem
         $real_id=$real_estate_id;
         $this->add_view_product($real_estate_id);
 
-        $real_estate = RealEstate::join('district', 'real_estate.district_id', 'district.district_id')
-        ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+        $real_estate = RealEstate::
+        join('ward', 'real_estate.ward_id', 'ward.ward_id')
+        ->join('district', 'ward.district_id', 'district.district_id')
         ->join('province', 'district.province_id', 'province.province_id')
+        ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
         ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
         ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
+        ->leftjoin('convenience','convenience.real_estate_id','real_estate.real_estate_id')
         ->select('real_estate.real_estate_id',
-        'translation_name',
-        'translation_address',
-        'translation_description',
         'real_estate_price',
         'real_estate_acreage',
+        'real_estate_longitude',
+        'real_estate_latitude',
         'real_estate.created_at',
+        'translation.*',
+        'convenience.*',
         'unit_translation.unit_translation_name',
         'province.province_name',
         'district.district_name')
@@ -290,7 +313,6 @@ class ClientController extends Controller
             ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
         ->first();
         $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
-
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
         // lấy hàm kiểm tra đã thích hay chưa
         $heart=$this->check_wishlist($real_estate_id);
@@ -304,7 +326,12 @@ class ClientController extends Controller
         $rank_4,
         $rank_3, 
         $rank_2,
-        $rank_1)=$this->get_evaluate($request, $real_estate, $real_estate);
+        $rank_1,
+        $per_rank_5,
+        $per_rank_4,
+        $per_rank_3,
+        $per_rank_2,
+        $per_rank_1)=$this->get_evaluate($request, $real_estate, $real_estate);
         return view('pages.user.page.single_list', compact('real_estate',
         'image',
         'rate',
@@ -317,8 +344,14 @@ class ClientController extends Controller
         'rank_3',
         'rank_2',
         'rank_1',
+        'per_rank_5',
+        'per_rank_4',
+        'per_rank_3',
+        'per_rank_2',
+        'per_rank_1',
         'heart',
-        'real_id'
+        'real_id',
+        'province'
         ));
     }
 

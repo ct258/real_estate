@@ -1,10 +1,16 @@
 @extends('layouts.user')
 @push('css')
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
 
 <style>
     path {
-        color: white ;
+        color: white;
     }
     #form01{
         padding: 5px 10px;
@@ -67,11 +73,11 @@
     }
 
     .row.customer_rating {
-    /* border: 1px solid #13110f; */
-    font-family: 'Source Sans Pro', sans-serif;
-    margin-top: 0;
-    background: #e4e4e459;
-}
+        /* border: 1px solid #13110f; */
+        font-family: 'Source Sans Pro', sans-serif;
+        margin-top: 0;
+        background: #e4e4e459;
+    }
 
     .product-customer-col-1 p.total-review-point {
         font-size: 48px;
@@ -208,12 +214,12 @@
     }
 
     .share_comment button.btn.btn-default {
-    background: #f9f955;
-    /* margin: auto; */
-    /* width: 72%; */
-    margin-left: -6px;
-    /* margin-top: 11px; */
-}
+        background: #f9f955;
+        /* margin: auto; */
+        /* width: 72%; */
+        margin-left: -6px;
+        /* margin-top: 11px; */
+    }
 
     .row.customer_rating path {
         color: #ffc120;
@@ -253,6 +259,64 @@
         overflow: hidden;
         line-height: 1;
     }
+
+    path {
+        color: #30caa8;
+    }
+
+    #issMap {
+        height: 500px;
+    }
+
+    .page-section {
+        margin-top: 100px;
+    }
+
+    .scrollupp path {
+        color: white;
+    }
+
+
+
+    .filter-form input {
+        width: 100% !important;
+    }
+
+    .filter-form select {
+        width: 100% !important;
+    }
+
+    .search-form td {
+        padding: 5px 0;
+    }
+
+    .filter-form .fs-submit {
+        width: 100%;
+    }
+
+    #paginationa {
+        display: contents;
+    }
+
+    #search-form {
+        width: 100%;
+    }
+
+    .left {
+        margin: 10px 0;
+    }
+
+    button.btn.btn-primary.mn {
+        width: 86px;
+        height: 30px;
+        padding: 1px;
+        font-size: 14px;
+        margin-left: 75px;
+    }
+
+    button.btn.btn-primary.mn:hover {
+        color: aquamarine;
+    }
 </style>
 @endpush
 @section('page')
@@ -277,13 +341,14 @@
 <section class="page-section single_list">
     <div class="container">
         <div class="row single_list">
-            <div class="col-lg-8 single-list-page">
+            <div class="col-lg-8 single-list-page frame">
                 <div class="single-list-slider owl-carousel" id="sl-slider">
                     <div class="sl-item set-bg" data-setbg="{{asset($image[0]->real_estate_avatar)}}"></div>
                     @foreach ($image as $item)
                     <div class="sl-item set-bg" data-setbg="{{asset($item->image_path)}}"></div>
                     @endforeach
                 </div>
+
                 <div class="owl-carousel sl-thumb-slider" id="sl-slider-thumb">
                     <div class="sl-thumb set-bg" data-setbg="{{asset($image[0]->real_estate_avatar)}}"></div>
                     @foreach ($image as $item)
@@ -307,24 +372,52 @@
                         <div class="col-xl-12">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-sm" style="padding-left:0px">
+                                    <div class="col-sm-3">
                                         <div><i class="fas fa-expand-arrows-alt"></i>
                                             {{$real_estate->real_estate_acreage}}
                                             m<sup>2</sup></div>
                                     </div>
-                                    <div class="col-sm">
-                                        <div>
-                                            <div style="font-weight: bold;
+                                    <div class="col-sm-3">
+                                        <div style="font-weight: bold;
                                             display: inline-block;
                                             color: #30caa0;
                                             font-size: 18px;"> {{$rate->currency_symbol}}
-                                            </div>
-                                            {{-- <i class="fas fa-dollar-sign"></i> --}}
-                                            {{number_format($real_estate->real_estate_price)}}
                                         </div>
+                                        {{-- <i class="fas fa-dollar-sign"></i> --}}
+                                        {{number_format($real_estate->real_estate_price)}}
 
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-sm-3">
+                                        @if ($real_estate->convenience_facade!=0)
+                                        @lang('facade')
+                                        {{$real_estate->convenience_facade}}
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @if ($real_estate->convenience_way!=0)
+                                        @lang('way')
+                                        {{$real_estate->convenience_way}}
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @if ($real_estate->convenience_floor!=0)
+                                        <i class="fas fa-building"></i>
+                                        {{$real_estate->convenience_floor}}
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @if ($real_estate->convenience_bedroom!=0)
+                                        <i class="fa fa-bed"></i>
+                                        {{$real_estate->convenience_bedroom}}
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @if ($real_estate->convenience_bathroom!=0)
+                                        <i class="fa fa-bath"></i>
+                                        {{$real_estate->convenience_bathroom}}
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-3">
                                         {{-- <a type="button" id="wishlist"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"><i
                                             class="far fa-heart" id='heart'></i></a> --}}
@@ -436,28 +529,77 @@
                 <div class="description" style="font-family: sans-serif;">
                     <p>{!!$real_estate->translation_description!!}</p>
                 </div>
+
+                <h3 class="sl-sp-title">Bản đồ</h3>
+                <div id="field" data-longitude="{{$real_estate->real_estate_longitude}}"
+                    data-latitude="{{$real_estate->real_estate_latitude}}"></div>
+                <div id="issMap"></div>
                 <h3 class="sl-sp-title">Tiện nghi</h3>
                 <div class="row property-details-list">
-                    <p class="col-xs-12 col-sm-4"><i class="fa fa-bed"></i> {{ __('Bedroom') }} </p>
-                    <p class="col-xs-12 col-sm-4"><i class="fa fa-bath"></i> @lang('Bathroom')</p>
-                    <p class="col-xs-12 col-sm-4"><i class="fa fa-trophy"></i> @lang('Year age')</p>
+                    @if ($real_estate->convenience_air_conditioning!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-wind"></i> @lang('Air Conditioning')</p>
+                    @endif
+                    @if ($real_estate->convenience_BBQ_area!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-dumpster-fire"></i> @lang('BBQ Area')</p>
+                    @endif
+                    @if ($real_estate->convenience_CCTV!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-video"></i> @lang('CCTV')</p>
+                    @endif
+                    @if ($real_estate->convenience_concierge!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-concierge-bell"></i> @lang('Concierge')</p>
+                    @endif
+                    @if ($real_estate->convenience_fitness!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-dumbbell"></i> @lang('Fitness')</p>
+                    @endif
+                    @if ($real_estate->convenience_garden!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-seedling"></i> @lang('Garden')</p>
+                    @endif
+                    @if ($real_estate->convenience_library!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fa fa-book"></i> @lang('Library')</p>
+                    @endif
+                    @if ($real_estate->convenience_mountain_view!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-mountain"></i> @lang('Mountain View')</p>
+                    @endif
+                    @if ($real_estate->convenience_parking!=0)
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-car"></i> @lang('Parking')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_playground!=0)
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-campground"></i> @lang('Playground')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_ocean_view!=0)
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-umbrella-beach"></i> @lang('Sea/Ocean View')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_security!=0)
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-user-shield"></i> @lang('Security')</p>
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-building"></i> @lang('Single Storey')</p>
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-swimming-pool    "></i> @lang('Swimming Pool')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_swimming_pool!=0)
+                    <p class="col-xs-12 col-sm-4"><i class="fas fa-swimming-pool"></i> @lang('Swimming Pool')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_tennis!=0)
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-baseball-ball"></i> @lang('Tennis')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_wifi!=0)
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-wifi"></i> @lang('Wi Fi')</p>
+
+                    @endif
+                    @if ($real_estate->convenience_tivi!=0)
+
                     <p class="col-xs-12 col-sm-4"><i class="fas fa-tv"></i> @lang('Tivi')</p>
+                    @endif
 
                 </div>
                 <h3 class="sl-sp-title">Đánh giá</h3>
@@ -495,7 +637,7 @@
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
-                                        <div class="bar-5"></div>
+                                        <div class="bar-5" style="width: {{$per_rank_5}}"></div>
                                     </div>
                                 </div>
                                 <div class="side right">
@@ -508,7 +650,7 @@
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
-                                        <div class="bar-4"></div>
+                                        <div class="bar-4" style="width: {{$per_rank_4}}"></div>
                                     </div>
                                 </div>
                                 <div class="side right">
@@ -521,7 +663,7 @@
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
-                                        <div class="bar-3"></div>
+                                        <div class="bar-3" style="width: {{$per_rank_3}}"></div>
                                     </div>
                                 </div>
                                 <div class="side right">
@@ -534,7 +676,7 @@
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
-                                        <div class="bar-2"></div>
+                                        <div class="bar-2" style="width: {{$per_rank_2}}"></div>
                                     </div>
                                 </div>
                                 <div class="side right">
@@ -547,7 +689,7 @@
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
-                                        <div class="bar-1"></div>
+                                        <div class="bar-1" style="width: {{$per_rank_1}}"></div>
                                     </div>
                                 </div>
                                 <div class="side right">
@@ -558,27 +700,29 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                        <div class="share_comment float-right">
-                            <h3>Chia sẻ nhận xét về sản phẩm</h3>
-                            <button class="btn btn-default">Viết nhận xét của bạn</button>
+                            <div class="share_comment float-right">
+                                <h3>Chia sẻ nhận xét về sản phẩm</h3>
+                                <button class="btn btn-default">Viết nhận xét của bạn</button>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    
-                </div>
-            </div>
-            <h3 class="sl-sp-title">Đánh giá</h3>
-            <div class="comment-warp">
-                {{-- <h4 class="comment-title">3 Comments</h4> --}}
-                <ul class="comment-list">
-                    @foreach ($evaluate as $item)
-                  
-                        <li>
-                           
 
-                          
+                </div>
+
+
+                <h3 class="sl-sp-title">Đánh giá</h3>
+                <div class="comment-warp">
+                    <ul class="comment-list">
+                        @foreach ($evaluate as $item)
+
+                        <li>
+
+
+
                             <div class="comment">
-                                <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}"></div>
+                                <div class="comment-avator set-bg"
+                                    data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
+                                </div>
                                 <div class="comment-content">
                                     <h5>{{$item->evaluate_title}}</h5>
                                     <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
@@ -587,120 +731,89 @@
                                     <a data-toggle="modal" data-target="#exampleModal" class="c-btn">Reply</a>
                                 </div>
                             </div>
-                       
-                         
-                             <ul class="replay-comment-list">
-                                    <li>
-                                        <div class="comment">
-                                            <div class="comment-avator set-bg" data-setbg="{{asset('leramiz/img/blog/comment/2.jpg')}}">
-                                            </div>
-                                            <div class="comment-content">
-                                                <h5>Peter Simon<span>25 Jun 2018</span></h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod
-                                                    tempor incididunt ut labore iron man dolore magna aliqua. fpurus
-                                                    vulputate, sit amet ornare ipsum. Ut enim ad minim veniam. Donec
-                                                    tincidunt sem non odio congue.</p>
-                                                <a href="" class="c-btn">Like</a>
-                                                <a href="" class="c-btn">Reply</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            
-                            
-                               
+
+
                         </li>
+                    </ul>
+
+
+
+                    </li>
                     @endforeach
-                </ul>
-        <div class="comment-form-warp">
-            {{-- Auth::gruad('ten') --}}
-            <h4 class="comment-title">Leave Your Comment</h4>
-            <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}" method="post">
-                @csrf
-                <div class="row">
-                    {{-- <div class="col-md-6">
-                        <input type="text" name="name_customer" placeholder="Your Name">
-                    </div> --}}
-                    <div class="col-md-6">
-                        <label for="">Title</label>
-                        <input type="text" name="title" placeholder="Enter title here . . .">
-                    </div>
-                    <div class="col-lg-9">
-                        <textarea placeholder="Your Message" name="content"></textarea>
-                        <button class="site-btn">SEND</button>
+                    </ul>
+                    <div class="comment-form-warp">
+                        {{-- Auth::gruad('ten') --}}
+                        <h4 class="comment-title">Leave Your Comment</h4>
+                        <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
+                            method="post">
+                            @csrf
+                            <div class="row">
+                                {{-- <div class="col-md-6">
+                            <input type="text" name="name_customer" placeholder="Your Name">
+                        </div> --}}
+                                <div class="col-md-6">
+                                    <label for="">Title</label>
+                                    <input type="text" name="title" placeholder="Enter title here . . .">
+                                </div>
+                                <div class="col-lg-9">
+                                    <textarea placeholder="Your Message" name="content"></textarea>
+                                    <button class="site-btn">SEND</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    </div>
-    <!-- sidebar -->
-    <div class="col-lg-4 col-md-7 sidebar">
-        <div class="author-card">
-            <div class="author-img set-bg" data-setbg="{{asset('leramiz/img/author.jpg')}}"></div>
-            <div class="author-info">
-                <h5>Gina Wesley</h5>
-                <p>Real Estate Agent</p>
             </div>
-            <div class="author-contact">
-                <p><i class="fa fa-phone"></i>(567) 666 121 2233</p>
-                <p><i class="fa fa-envelope"></i>ginawesley26@gmail.com</p>
+
+
+            <!-- sidebar -->
+            <div class="col-lg-4 col-md-7 sidebar">
+
+                @include('pages.user.page.search')
             </div>
         </div>
-        <div class="contact-form-card">
-            <h5>Do you have any question?</h5>
-            <form>
-                <input type="text" placeholder="Your name">
-                <input type="text" placeholder="Your email">
-                <textarea placeholder="Your question"></textarea>
-                <button>SEND</button>
-            </form>
-        </div>
-
     </div>
-    </div>
-    </div>
-
 </section>
 <!-- Page end -->
 
 {{-- reply comment --}}
-<div class="modal fade reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="comment-form-warp">
-            {{-- Auth::gruad('ten') --}}
-            <h4 class="comment-title">Reply Comment</h4>
-            <form class="comment-form" action="{{ route('reply_cmt', ['idsp'=> $real_id,'idcmt'=>1,'idrep'=>1]) }}" method="post">
-                @csrf
-                <div class="row">
-                    {{-- <div class="col-md-6">
+<div class="modal fade reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="comment-form-warp">
+                    {{-- Auth::gruad('ten') --}}
+                    <h4 class="comment-title">Reply Comment</h4>
+                    <form class="comment-form"
+                        action="{{ route('reply_cmt', ['idsp'=> $real_id,'idcmt'=>1,'idrep'=>1]) }}" method="post">
+                        @csrf
+                        <div class="row">
+                            {{-- <div class="col-md-6">
                         <input type="text" name="name_customer" placeholder="Your Name">
                     </div> --}}
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Title</label>
-                            <input type="text" name="title" placeholder="Enter title here . . .">
-                          </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Content</label>
-                            <textarea class="form-control" name="content" rows="3"></textarea>
-                          </div>
-                        <button class="site-btn">SEND</button>
-                    </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input type="text" name="title" placeholder="Enter title here . . .">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Content</label>
+                                    <textarea class="form-control" name="content" rows="3"></textarea>
+                                </div>
+                                <button class="site-btn">SEND</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 {{-- reply comment --}}
 @endsection
@@ -757,5 +870,51 @@
 //   modal.find('.modal-title').text('có tin nhắn')
 //   modal.find('.modal-body input').val(recipient)
 })
+</script>
+<script>
+    const longitude = $('#field').data("longitude");
+    const latitude = $('#field').data("latitude");
+    var mymap = L.map('issMap').setView([longitude,latitude], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibmdoaWEyMzExIiwiYSI6ImNrN3B0aGpnNjBuaGYzbW1pcnphOHY0ZW4ifQ.DJKI6Ck_xfaja3RDUPmCfQ'
+}).addTo(mymap);
+//cty
+    var marker = L.marker([10.0310059,105.7513944]).addTo(mymap);
+    //vòng tròn
+    var circle = L.circle([10.0310059,105.7513944], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(mymap);
+
+    var popup = L.popup()
+        .setLatLng([10.0310059,105.7513944])
+        .setContent("BatdongsanCanTho!")
+        .openOn(mymap);
+//end cty
+
+//sp
+var marker = L.marker([longitude,latitude]).addTo(mymap);
+
+    //vòng tròn
+    var circle = L.circle([longitude,latitude], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(mymap);
+
+    var popup = L.popup()
+        .setLatLng([longitude,latitude])
+        .setContent("Here!")
+        .openOn(mymap);
+//end sp
 </script>
 @endpush
