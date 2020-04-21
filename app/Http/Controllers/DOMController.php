@@ -23,12 +23,10 @@ class DOMController extends Controller
         }
     }
 
-    public function get_ward($province_id, $district_id)
+    public function get_ward($district_id)
     {
         $ward = Ward::select('ward_id', 'ward_name')
-        ->where([
-            ['province_id', $province_id],
-            ['district_id', $district_id], ])
+        ->where('district_id', $district_id)
         ->orderBy('ward_name', 'asc')->get();
         echo "<option value=''>-- Chọn Phường/Xã --</option>";
         foreach ($ward as $item) {
@@ -36,10 +34,10 @@ class DOMController extends Controller
         }
     }
 
-    public function get_street_1($province_id)
+    public function get_street_1($district_id)
     {
         $street = Street::select('street_id', 'street_name')
-        ->where('province_id', $province_id)
+        ->where('district_id', $district_id)
         ->orderBy('street_name', 'asc')->get();
 
         echo "<option value=''>-- Chọn Đường/Phố --</option>";
@@ -66,19 +64,30 @@ class DOMController extends Controller
 
     public function get_type($form_id)
     {
-        $type = Type ::select('type_id', 'type_name')->where('form_id', $form_id)->get();
+        $type = Type::join('type_translation','type.type_id','type_translation.type_id')
+        ->select('type.type_id', 'type_translation_name')
+        ->where([
+            ["type_translation_locale",\Session::get('lang', config('app.locale'))],
+            ['form_id',$form_id]
+            ])
+        ->get();
 
         foreach ($type as $item) {
-            echo "<option value='".$item->type_id."'>".$item->type_name.'</option>';
+            echo "<option value='".$item->type_id."'>".$item->type_translation_name.'</option>';
         }
     }
 
     public function get_unit($form_id)
     {
-        $unit = Unit ::select('unit_id', 'unit_name')->where('form_id', $form_id)->groupBy('form_id')->get();
-
+        $unit = Unit::join('unit_translation','unit.unit_id','unit_translation.unit_id')
+        ->select('unit.unit_id', 'unit_translation_name')
+        ->where([
+            ["unit_translation_locale",\Session::get('lang', config('app.locale'))],
+            ['unit.form_id',$form_id]
+            ])
+        ->get();
         foreach ($unit as $item) {
-            echo "<option value='".$item->unit_id."'>".$item->unit_name.'</option>';
+            echo "<option value='".$item->unit_id."'>".$item->unit_translation_name.'</option>';
         }
     }
 

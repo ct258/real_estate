@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2020 at 01:11 PM
+-- Generation Time: Apr 21, 2020 at 09:51 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -69,16 +69,20 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin', '$2y$10$/FWef56v43vPgJMpPUIDnOHthF0g22YsdLyRyR1Cwwm27OZM.y7Ca', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg1NTM2NDQ4LCJleHAiOjE1ODU1NDAwNDgsIm5iZiI6MTU4NTUzNjQ0OCwianRpIjoiTUhGVlhaOGkwbW5vZTFsbyIsInN1YiI6MSwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.GKj4DuVJ8-A3ihrcDpNm4KgDnUW6d50IS33eEs_FjD4', 1, '2020-03-29 07:09:32', '2020-03-30 02:47:28', NULL),
-(2, 'staff', '$2y$10$CHxRiBZ4LaFn5eq16nLYT.wWhVN451kITiu5lwFUDQEcUvoXk3F7i', NULL, 2, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
+(1, 'admin', '$2y$10$/FWef56v43vPgJMpPUIDnOHthF0g22YsdLyRyR1Cwwm27OZM.y7Ca', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg2OTU2ODgxLCJleHAiOjE1ODY5NjA0ODEsIm5iZiI6MTU4Njk1Njg4MSwianRpIjoiVEJiSFJVSVEySXFFMnREOCIsInN1YiI6MSwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.R-yRxJE6BV-rSY4OeTmiiIZPrvO0uKDkWU6O5BmRqb4', 1, '2020-03-29 07:09:32', '2020-04-15 13:21:22', NULL),
+(2, 'staff', '$2y$10$CHxRiBZ4LaFn5eq16nLYT.wWhVN451kITiu5lwFUDQEcUvoXk3F7i', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg3Mjg0MTQ5LCJleHAiOjE1ODcyODc3NDksIm5iZiI6MTU4NzI4NDE0OSwianRpIjoibFNiMnVlbFFYRVRnRTBBVCIsInN1YiI6MiwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.-KXsj62KTv5PXZyAKzsXdcE2-rOsXO0RjNyXyk8a4a8', 2, '2020-03-29 07:09:32', '2020-04-19 08:15:49', NULL),
 (3, 'collaborator', '$2y$10$P0DedvJRZwgxyO5KXW2X/uJ21W26TgetoGn82wTeAA2ONdg4ORTBe', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
-(4, 'customer4', '$2y$10$YfQGFJEk1u0awnOncEA65u5pZCa.qao0mblqgkOsjXchVqdzUeJMi', 'h7uhav6t9CM1YddcRnCYtnp0rGevjvRFlNuvVQJJ5QBWwONzPYTPyvuLtQhF', 3, '2020-03-29 07:09:32', '2020-03-31 11:04:22', NULL),
+(4, 'customer4', '$2y$10$YfQGFJEk1u0awnOncEA65u5pZCa.qao0mblqgkOsjXchVqdzUeJMi', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg3NDM2OTUzLCJleHAiOjE1ODc0NDA1NTMsIm5iZiI6MTU4NzQzNjk1MywianRpIjoidnJ6SW9TUDNWcTFQeGVDdiIsInN1YiI6NCwicHJ2IjoiYzhlZTFmYzg5ZTc3NWVjNGM3Mzg2NjdlNWJlMTdhNTkwYjZkNDBmYyJ9.Jbfu09v8BNBCnnP3RvVnJzoJVeL30mhaLx8FD9U_oKI', 3, '2020-03-29 07:09:32', '2020-04-21 02:42:33', NULL),
 (5, 'customer5', '$2y$10$af3EMzhOnn1dADV3I.o94OHf7os.1zABofuiPY2HUhXdhqJ1atec2', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (6, 'customer6', '$2y$10$FDZehMPk60hI5n.QDYUKP.kqJzsHc110JlGYtOBkzqNSFutBcJbym', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (7, 'customer7', '$2y$10$4M8lNXDVUyNVSBuH3xSW/OU/In6fAoOLbqc4M6ugMjQJ4VShM9PtK', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (8, 'customer8', '$2y$10$uTbrZRSLMeIBmLSOvRwa3.pqJP1VHEclHRyLGgJ4VqpskXJ2JySXW', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
 (9, 'customer9', '$2y$10$/3hWtWOb7GO9wxq2dvxcguhxbcoQSR/9OAN5j5hGu2zdz.ncW9PzG', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
-(10, 'customer10', '$2y$10$a7WnCDgqHacgn9pwRvB9p.TwaQStSDPGpF94NIUo6iQZ9pyu9T42q', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL);
+(10, 'customer10', '$2y$10$a7WnCDgqHacgn9pwRvB9p.TwaQStSDPGpF94NIUo6iQZ9pyu9T42q', NULL, 3, '2020-03-29 07:09:32', '2020-03-29 07:09:32', NULL),
+(11, 'khachhang1', '$2y$10$iNDbnLB..sVblkZBXiF0AeeOFNHQYyMzQ3IqgimIWeirIy.iu6WfW', NULL, 3, '2020-04-17 07:58:33', '2020-04-17 07:58:33', NULL),
+(12, 'khachhang2', '$2y$10$8dXGoIe5G6DustfhS9HrjeW9zOuupXW9CbhaXXkyNbRjdifEqFmF6', NULL, 3, '2020-04-17 07:59:12', '2020-04-17 07:59:12', NULL),
+(26, 'khach8', '$2y$10$GLRzYSME9pkUzs.44NbzBOthZ45PIpUY3DVzMY/JehnesfUXcXK9C', NULL, 3, '2020-04-18 14:20:03', '2020-04-18 14:20:03', NULL),
+(27, '123123123', '$2y$10$eaA.D.hd5vd68kubqcEdt.kciupPq84eWP/kkDYON9bCpRtzEhGqy', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3JlYWxfZXN0YXRlXC9wdWJsaWNcL3hldGRhbmduaGFwIiwiaWF0IjoxNTg3MjY4NjIxLCJleHAiOjE1ODcyNzIyMjEsIm5iZiI6MTU4NzI2ODYyMSwianRpIjoiWVg2QndOWm1qNzdCemlyYiIsInN1YiI6MjcsInBydiI6ImM4ZWUxZmM4OWU3NzVlYzRjNzM4NjY3ZTViZTE3YTU5MGI2ZDQwZmMifQ.OLNZDvHpsL0EfsXHdRa70YzWq7Gzu1I_NXt_QwGAzJc', 3, '2020-04-19 03:56:37', '2020-04-19 03:57:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,10 +106,22 @@ CREATE TABLE `banner` (
 CREATE TABLE `blog` (
   `blog_id` int(10) UNSIGNED NOT NULL COMMENT 'id',
   `staff_id` int(10) UNSIGNED NOT NULL,
+  `blog_avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày cập nhật',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bài viết';
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`blog_id`, `staff_id`, `blog_avatar`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'img/blog/Staff_c4ca4238a0b923820dcc509a6f75849b_2020_04_15_20_38_37.jpg', '2020-04-15 13:38:37', '2020-04-15 13:38:37', NULL),
+(2, 1, 'img/blog/Staff_c4ca4238a0b923820dcc509a6f75849b_2020_04_15_20_49_37.jpg', '2020-04-15 13:49:37', '2020-04-15 13:49:37', NULL),
+(3, 1, 'img/blog/Staff_c4ca4238a0b923820dcc509a6f75849b_2020_04_15_20_50_46.jpg', '2020-04-15 13:50:46', '2020-04-15 13:50:46', NULL),
+(4, 1, 'img/blog/Staff_c4ca4238a0b923820dcc509a6f75849b_2020_04_15_20_51_49.jpg', '2020-04-15 13:51:49', '2020-04-15 13:51:49', NULL),
+(5, 1, 'img/blog/Staff_c4ca4238a0b923820dcc509a6f75849b_2020_04_15_20_52_39.jpg', '2020-04-15 13:52:39', '2020-04-15 13:52:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -117,12 +133,29 @@ CREATE TABLE `blog_translation` (
   `blog_translation_id` int(10) UNSIGNED NOT NULL COMMENT 'id',
   `blog_translation_title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiêu đề',
   `blog_translation_content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nội dung',
+  `blog_translation_intro` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `blog_translation_locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ngôn ngữ',
   `blog_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày cập nhật',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bài viết';
+
+--
+-- Dumping data for table `blog_translation`
+--
+
+INSERT INTO `blog_translation` (`blog_translation_id`, `blog_translation_title`, `blog_translation_content`, `blog_translation_intro`, `blog_translation_locale`, `blog_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Việt Nam đang trở thành điểm đến thứ hai cho người mua bất động sản quốc tế', '<p><img width=\"696\" alt=\"X2 Hội An X2 Cư trú thị trường bất động sản Việt Nam\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/14101753/X2-Hoi-AnX2-Residence-696x432.jpg\" /></p><p>Thị trường bất động sản du lịch Việt Nam đang được th&uacute;c đẩy bởi c&aacute;c dự &aacute;n như X2 Hội An X2</p><p>Thị trường bất động sản du lịch Việt Nam vẫn c&ograve;n tương đối mới, nhưng đ&oacute; l&agrave; một ph&acirc;n kh&uacute;c m&agrave; nhiều chuy&ecirc;n gia đ&atilde; chỉ ra l&agrave; c&oacute; tiềm năng ph&aacute;t triển mạnh mẽ.&nbsp;Đ&oacute; l&agrave; do sự gia tăng của du lịch nước ngo&agrave;i v&agrave; trong nước c&ugrave;ng với một số lượng lớn c&aacute;c điểm đến kỳ nghỉ hấp dẫn.</p><p>Trước khi dịch COVID-19 b&ugrave;ng ph&aacute;t, gần hai triệu kh&aacute;ch du lịch nước ngo&agrave;i đ&atilde; đến thăm đất nước n&agrave;y v&agrave;o th&aacute;ng 1 với hơn một nửa trong số n&agrave;y đến từ Trung Quốc, H&agrave;n Quốc v&agrave; Nhật Bản.&nbsp;Theo &ocirc;ng Kenneth Atkinson, người s&aacute;ng lập v&agrave; cố vấn hội đồng cấp cao tại Grant Thornton Việt Nam, chủ nh&agrave; nước ngo&agrave;i c&oacute; thể l&agrave; nh&acirc;n tố ch&iacute;nh duy tr&igrave; thị trường du lịch trong d&agrave;i hạn.</p><p><a href=\"https://www.vir.com.vn/vietnams-second-home-segment-on-the-rise-75468.html\">&Ocirc;ng n&oacute;i với Tạp ch&iacute; Đầu tư Việt Nam</a>&nbsp;rằng nước n&agrave;y c&oacute; tỷ lệ kh&aacute;ch quay trở lại kh&aacute; thấp khi so s&aacute;nh với Th&aacute;i Lan c&oacute; tỷ lệ ho&agrave;n vốn cho những kh&aacute;ch đến gần 70%.&nbsp;Với nhiều người mua nước ngo&agrave;i bị l&ocirc;i k&eacute;o đến c&aacute;c nh&agrave; nghỉ ở khu vực du lịch của Việt Nam, anh ta c&oacute; thể sẽ tăng trong những năm tới.</p><p>C&aacute;c chuy&ecirc;n gia thị trường cũng hy vọng sẽ thấy sự gia tăng số lượng nh&agrave; ở c&oacute; thương hiệu v&igrave; sự quan t&acirc;m từ những người mua gi&agrave;u hơn vẫn c&ograve;n cao.&nbsp;Việt Nam hiện c&oacute; số lượng dự &aacute;n cao thứ ba trong đường ống để đ&aacute;p ứng nhu cầu của họ.&nbsp;C&aacute;c nh&agrave; đầu tư nước ngo&agrave;i bị thu h&uacute;t v&agrave;o thị trường bất động sản du lịch Việt Nam do sản lượng cao đi k&egrave;m với c&aacute;c t&agrave;i sản cung cấp sử dụng linh hoạt cho c&aacute;c kỳ nghỉ.</p><p>Lợi suất cho thu&ecirc; của bất động sản tại th&agrave;nh phố vẫn ở mức 6-8% trong những ph&aacute;t triển tốt hơn v&agrave; nhiều nh&agrave; ph&aacute;t triển ở khu vực nghỉ m&aacute;t ven biển đ&atilde; thu h&uacute;t người mua với lợi nhuận cao được đảm bảo 8-10% trong 10 năm, mặc d&ugrave; dự kiến ​​những điều n&agrave;y sẽ quay trở lại với c&aacute;c gi&aacute; trị mặc định trong những th&aacute;ng tới, kh&ocirc;ng chỉ v&igrave; t&aacute;c động của COVID-19, m&agrave; &ocirc;ng Atkinson giải th&iacute;ch.&nbsp;Tuy nhi&ecirc;n, tổng cộng, sản lượng cho thu&ecirc; ở Việt Nam cao hơn đ&aacute;ng kể so với Bangkok v&agrave; c&aacute;c v&ugrave;ng kh&aacute;c của Th&aacute;i Lan v&agrave; Singapore.</p><p>&nbsp;C&aacute;c bước tiếp theo để tăng trưởng trong thị trường bất động sản du lịch Việt Nam</p><p>Một động lực ch&iacute;nh của thị trường bất động sản du lịch Việt Nam sẽ l&agrave; cơ sở hạ tầng tại c&aacute;c điểm đến nghỉ dưỡng.&nbsp;Đ&atilde; c&oacute; một số cơ sở hạ tầng du lịch được ph&aacute;t triển tại c&aacute;c địa điểm nổi tiếng như Đ&agrave; Nẵng.&nbsp;V&agrave; trong khi điều n&agrave;y đ&atilde; cho ph&eacute;p ph&aacute;t triển c&aacute;c dự &aacute;n ti&ecirc;u chuẩn quốc tế ở một số địa điểm, thị trường bất động sản du lịch Việt Nam c&oacute; chỗ cho sự tăng trưởng trong tương lai.</p><p>C&aacute;c ng&agrave;nh c&ocirc;ng nghiệp du lịch trong nước v&agrave; quốc tế nắm giữ cơ hội cho c&aacute;c nh&agrave; đầu tư do số lượng kh&aacute;ch h&agrave;ng mới tăng, &ocirc;ng Nguyễn Nguyễn Nam, Chủ tịch VNREA, n&oacute;i với truyền th&ocirc;ng tại một sự kiện gần đ&acirc;y.&nbsp;C&aacute;c dự &aacute;n ph&aacute;t triển theo c&aacute;ch cũ sẽ kh&ocirc;ng đảm bảo t&iacute;nh cạnh tranh hoặc ph&ugrave; hợp với nhu cầu của kh&aacute;ch h&agrave;ng.</p><p>Một c&aacute;ch để l&agrave;m điều n&agrave;y l&agrave; tạo ra c&aacute;c sản phẩm kh&aacute;ch sạn mới, điều m&agrave; Robert McIntosh, Gi&aacute;m đốc điều h&agrave;nh của CBRE Hotels tại ch&acirc;u &Aacute;-Th&aacute;i B&igrave;nh Dương, cho biết đ&atilde; xảy ra.&nbsp;&Ocirc;ng tr&iacute;ch dẫn việc x&acirc;y dựng c&aacute;c shophouse ven biển v&agrave; shopvillas ở Ph&uacute; Quốc v&agrave; Hạ Long l&agrave; một v&iacute; dụ về c&aacute;ch c&aacute;c nh&agrave; ph&aacute;t triển đảm bảo thị trường bất động sản du lịch Việt Nam đang th&iacute;ch nghi.</p><p>Để tiếp tục ph&aacute;t triển, c&aacute;c nh&agrave; ph&aacute;t triển bất động sản kh&aacute;ch sạn tại Việt Nam sẽ phải trải qua qu&aacute; tr&igrave;nh đa dạng h&oacute;a thị trường, ch&uacute; &yacute; đến c&aacute;c khu vực phi truyền thống tiềm năng như Nam Hội An, B&igrave;nh Thuận v&agrave; B&agrave; Rịa-Vũng T&agrave;u, cũng như đa dạng h&oacute;a sản phẩm của họ. v&agrave; đưa v&agrave;o c&aacute;c chuy&ecirc;n gia để quản l&yacute; t&agrave;i sản của họ, Mitch McIntosh n&oacute;i th&ecirc;m.</p>', 'Thị trường bất động sản du lịch Việt Nam vẫn còn tương đối mới, nhưng đó là một phân khúc mà nhiều chuyên gia đã chỉ ra là có tiềm năng phát triển mạnh mẽ. Đó là do sự gia tăng của du lịch nước ngoài và trong nước cùng với số lượng hấp dẫn ngày càng tăng', 'vi', 1, '2020-04-15 13:38:37', '2020-04-15 15:01:05', NULL),
+(2, 'Vietnam is becoming a second home destination for international property buyers', '<p><img width=\"696\" alt=\"X2 Hoi An X2 Residence Vietnam tourism property market\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/14101753/X2-Hoi-AnX2-Residence-696x432.jpg\" /></p><p>The Vietnam tourism property market is being driven by projects such as X2 Hoi An X2 Residence</p><p>The Vietnam tourism property market is still relatively new, but it is a segment many experts have pointed to as having the potential for strong development. That&rsquo;s due to rising foreign and domestic tourism alongside a growing number of appealing holiday destinations.</p><p>Prior to the COVID-19 outbreak, nearly two million foreign tourists visited the country in January with more than half of this total coming from China, South Korea, and Japan. According to Kenneth Atkinson, Founder and Senior Board Adviser at Grant Thornton Vietnam, foreign homeowners could be a major factor in sustaining the tourism market over the long term.</p><p><a href=\"https://www.vir.com.vn/vietnams-second-home-segment-on-the-rise-75468.html\">He told the Vietnam Investment Review</a>&nbsp;that the country has a rather low portion of returning visitors when compared to Thailand which has a return rate for arrivals that sits closer to 70 percent. With more foreign buyers being drawn to holiday homes in Vietnam&rsquo;s tourist areas, his could be set to rise in the coming years.</p><p>Market experts also expect to see a rise in the number of branded residences as the interest from more affluent buyers remains high. Vietnam currently has the third-highest number of projects in the pipeline to meet their demand. Overseas investors are attracted to the Vietnam tourism property market due to high yields that come with properties offering flexible usage for holidays.</p><p>&ldquo;Rental yields on city properties remain decent at 6-8 per cent in the better developments and many developers in the coastal resort areas have attracted buyers with high guaranteed returns of 8-10 per cent for 10 years, although it is expected that these will fall back on default values over the coming months, not only because of the impact of COVID-19,&rdquo; Atkinson explains. &ldquo;In total, however, rental yields in Vietnam are significantly higher than say in Bangkok and other parts of Thailand, and Singapore.&rdquo;</p><p>&nbsp;Next steps for growth in&nbsp;Vietnam tourism property market</p><p>A key driver of the Vietnam tourism property market will be infrastructure in resort destinations. There has been some tourism infrastructure developed in popular locations like Da Nang. And while this has allowed for the development of international-standard projects in some locations, the Vietnam tourism property market has room for future growth.</p><p>&ldquo;The domestic and international tourism industries held opportunities for investors due to the rising number of new customers,&rdquo; Nguyen Tran Nam, VNREA Chairman, told the media at a recent event. &ldquo;Developing projects in the old way would not ensure competitiveness or suit customers&rsquo; demands.&rdquo;</p><p>One way to do this is to create new hospitality products, something Robert McIntosh, Executive Director of CBRE Hotels in Asia-Pacific, said was already happening. He cited the building of coastal shophouses and shopvillas in Phu Quoc and Ha Long as an example of how developers were ensuring the Vietnam tourism property market was adapting.</p><p>&ldquo;To carry growth forward, hospitality real estate developers in Vietnam will have to go through market diversification, paying attention to potential non-traditional areas such as Nam Hoi An, Binh Thuan and Ba Ria-Vung Tau, as well as diversifying their product offerings and bringing in professionals to manage their properties,&rdquo; McIntosh added.</p>', 'The Vietnam tourism property market is still relatively new, but it is a segment many experts have pointed to as having the potential for strong development. That’s due to rising foreign and domestic tourism alongside a growing number of appealing', 'en', 1, '2020-04-15 13:38:37', '2020-04-15 15:01:05', NULL),
+(3, 'Đề cử giải thưởng bất động sản Dot vẫn mở, các buổi lễ trình bày để tiến hành vào năm 2020', '<p><img width=\"640\" alt=\"Giải thưởng tài sản Dot 2020\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/09095534/sddefault1.jpg\" /></p><p>Từ tất cả ch&uacute;ng t&ocirc;i tại Dot Property, ch&uacute;ng t&ocirc;i hy vọng th&ocirc;ng điệp n&agrave;y sẽ gi&uacute;p bạn c&oacute; sức khỏe v&agrave; tinh thần tốt.&nbsp;T&aacute;c động của COVID-19 trong khu vực của ch&uacute;ng t&ocirc;i vừa bất ngờ vừa qu&aacute; sức, nhưng ch&uacute;ng t&ocirc;i sẽ ki&ecirc;n tr&igrave;.&nbsp;Một tương lai tươi s&aacute;ng hơn đang chờ đợi một khi những thời gian thử th&aacute;ch n&agrave;y đ&atilde; qua.</p><p>Ch&uacute;ng t&ocirc;i hiểu rằng c&ocirc;ng việc c&oacute; thể cung cấp một thời gian nghỉ ngơi ch&agrave;o đ&oacute;n trong một t&igrave;nh huống như thế n&agrave;y.&nbsp;Với &yacute; nghĩ đ&oacute;, đ&acirc;y l&agrave; một bản cập nhật tr&ecirc;n loạt Giải thưởng t&agrave;i sản Dot của ch&uacute;ng t&ocirc;i.&nbsp;Hiện tại, c&aacute;c đề cử vẫn mở cho c&aacute;c giải thưởng tại Việt Nam, Th&aacute;i Lan v&agrave; Philippines.&nbsp;Ch&uacute;ng t&ocirc;i khuyến kh&iacute;ch bạn gửi biểu mẫu nhập cảnh ngay h&ocirc;m nay nếu bạn chưa nhập.</p><p><strong>Xem th&ecirc;m:&nbsp;</strong><a href=\"https://contact.dotpropertygroup.com/awards2020/?utm_source=ActiveCampaign&amp;utm_medium=email&amp;utm_content=Dot+Property+Awards+nominations+remain+open%2C+presentation+ceremonies+to+proceed+in+2020%21&amp;utm_campaign=DP+Awards+2020+%28TH%29+-+B2B+dev%2BAgents+02APR20\">Bấm v&agrave;o đ&acirc;y để biết th&ecirc;m th&ocirc;ng tin về việc tham gia Giải thưởng t&agrave;i sản Dot năm nay</a></p><p>&nbsp;</p><p><a href=\"https://www.dotproperty.international/blog/dot-property-awards-returns-2020-full-slate-events\">Lịch cho c&aacute;c buổi lễ giới thiệu Giải thưởng t&agrave;i sản Dot đ&atilde; được thiết lập</a>&nbsp;với c&aacute;c sự kiện được l&ecirc;n kế hoạch cho Việt Nam v&agrave;o th&aacute;ng Bảy, Th&aacute;i Lan v&agrave;o th&aacute;ng T&aacute;m v&agrave; Philippines v&agrave;o th&aacute;ng Ch&iacute;n.&nbsp;Ch&uacute;ng t&ocirc;i ch&acirc;n th&agrave;nh hy vọng những sự kiện n&agrave;y c&oacute; thể diễn ra theo kế hoạch nhưng hiểu được bản chất tr&ocirc;i chảy của t&igrave;nh trạng hiện tại.</p><p>Nh&oacute;m sự kiện Dot Property đang theo d&otilde;i cẩn thận t&igrave;nh h&igrave;nh đang diễn ra ở mỗi quốc gia v&agrave; sẽ cung cấp th&ocirc;ng tin cập nhật khi c&oacute; th&ecirc;m th&ocirc;ng tin.&nbsp;Điều đ&oacute; đang được n&oacute;i, ch&uacute;ng t&ocirc;i vẫn quyết t&acirc;m mang đến cho bạn Giải thưởng t&agrave;i sản Dot năm nay miễn l&agrave; an to&agrave;n để l&agrave;m điều đ&oacute;.</p><p>Trong thời gian n&agrave;y, vui l&ograve;ng tu&acirc;n thủ c&aacute;c nguy&ecirc;n tắc an to&agrave;n cơ bản v&agrave; tu&acirc;n thủ c&aacute;c quy định của địa phương v&igrave; tất cả ch&uacute;ng ta c&ugrave;ng tham gia để chống lại sự l&acirc;y lan của COVID-19.&nbsp;Ch&uacute;ng t&ocirc;i mong được gặp bạn khỏe mạnh v&agrave; hạnh ph&uacute;c v&agrave;o cuối năm nay tại Giải thưởng t&agrave;i sản Dot.</p><p><a href=\"https://contact.dotpropertygroup.com/awards2020/?utm_source=ActiveCampaign&amp;utm_medium=email&amp;utm_content=Dot+Property+Awards+nominations+remain+open%2C+presentation+ceremonies+to+proceed+in+2020%21&amp;utm_campaign=DP+Awards+2020+%28TH%29+-+B2B+dev%2BAgents+02APR20\">Nhấn v&agrave;o đ&acirc;y để v&agrave;o Giải thưởng t&agrave;i sản Dot năm nay</a></p>', 'Từ tất cả chúng tôi tại Dot Property, chúng tôi hy vọng thông điệp này sẽ giúp bạn có sức khỏe và tinh thần tốt. Tác động của COVID-19 trong khu vực của chúng tôi vừa bất ngờ vừa quá sức, nhưng chúng tôi sẽ kiên trì. Một tương lai tươi sáng hơn đang chờ đ', 'vi', 2, '2020-04-15 13:49:37', '2020-04-15 15:00:04', NULL),
+(4, 'Dot Property Awards nominations remain open, presentation ceremonies to proceed in 2020', '<p><img width=\"640\" alt=\"Dot Property Awards 2020\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/09095534/sddefault1.jpg\" /></p><p>From all of us at Dot Property, we hope this message finds you in good health and spirits. The impact of COVID-19 in our region has been both unexpected and overwhelming, but we will persevere. A brighter future awaits once these challenging times have passed.</p><p>We understand that work can provide a welcome respite in a situation such as this. With that in mind, here&rsquo;s an update on our Dot Property Awards series. Currently, nominations remain open for the awards in Vietnam, Thailand and the Philippines. We encourage you to submit your entry form today if you haven&rsquo;t already entered.</p><p><strong>See more:</strong>&nbsp;<a href=\"https://contact.dotpropertygroup.com/awards2020/?utm_source=ActiveCampaign&amp;utm_medium=email&amp;utm_content=Dot+Property+Awards+nominations+remain+open%2C+presentation+ceremonies+to+proceed+in+2020%21&amp;utm_campaign=DP+Awards+2020+%28TH%29+-+B2B+dev%2BAgents+02APR20\">Click here for more information on entering this year&rsquo;s Dot Property Awards</a></p><p>&nbsp;</p><p><a href=\"https://www.dotproperty.international/blog/dot-property-awards-returns-2020-full-slate-events\">The calendar for the Dot Property Awards presentation ceremonies has been set</a>&nbsp;with events scheduled for Vietnam in July, Thailand in August and the Philippines in September. We sincerely hope these events can carry on as planned but understand the fluid nature of the current state of affairs.</p><p>The Dot Property events team is carefully monitoring how the situation is unfolding in each country and will provide updates as more information becomes available. That being said, we remain determined to bring you the Dot Property Awards this year as long as it is safe to do so.</p><p>In the meantime, please follow basic safety principles and obey local regulations as we all join together to fight the spread of COVID-19. We look forward to seeing you healthy and happy later this year at the Dot Property Awards.</p><p><a href=\"https://contact.dotpropertygroup.com/awards2020/?utm_source=ActiveCampaign&amp;utm_medium=email&amp;utm_content=Dot+Property+Awards+nominations+remain+open%2C+presentation+ceremonies+to+proceed+in+2020%21&amp;utm_campaign=DP+Awards+2020+%28TH%29+-+B2B+dev%2BAgents+02APR20\">Click here to enter this year&rsquo;s Dot Property Awards</a></p>', 'From all of us at Dot Property, we hope this message finds you in good health and spirits. The impact of COVID-19 in our region has been both unexpected and overwhelming, but we will persevere. A brighter future awaits once these challenging times', 'en', 2, '2020-04-15 13:49:37', '2020-04-15 15:00:04', NULL),
+(5, 'Làm thế nào các chuyên gia tài sản có thể tồn tại COVID-19? 2 điều cần làm, 2 điều cần tránh', '<p><img width=\"696\" alt=\"chuyên gia tài sản tồn tại COVID-19\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/07123604/52808324_l-696x464.jpg\" /></p><p>C&aacute;c chuy&ecirc;n gia bất động sản cần phải b&igrave;nh tĩnh v&agrave; đo lường trong c&aacute;ch tiếp cận để sống s&oacute;t sau t&igrave;nh huống COVID-19</p><p>These are challenging times for everyone. Property professionals wanting to survive COVID-19 must act carefully to ensure their business emerges unscathed. There are no magical solutions or quick fixes. But you can make it through this if you&rsquo;re measured and calm in your approach. With that in mind, Dot Property has two things to do and two things to avoid for property professionals trying to survive COVID-19.</p><p>DO: Spend on marketing</p><p>Budgets are tight, but you have to spend in order to keep bringing in leads and closing deals. Property professionals can&rsquo;t sit idle during this time. That means spending on marketing, and more importantly spending on marketing via the right channels, is paramount.</p><p>Vẫn c&oacute; những người c&oacute; tiền trong tay hiểu rằng đ&oacute; l&agrave; thị trường của người mua.&nbsp;V&iacute; dụ,&nbsp;<a href=\"https://www.dotproperty.com.ph/blog/experts-bullish-philippine-property-market-rebound-covid-19-passes\">một l&agrave;n s&oacute;ng c&aacute;c nh&agrave; đầu tư bất động sản v&agrave; người d&ugrave;ng cuối ở Philippines hiện đang chuyển sang đ&oacute;ng giao dịch bất động sản</a>&nbsp;trong khi điều kiện thuận lợi.&nbsp;L&agrave;m thế n&agrave;o để bạn tiếp cận đối tượng n&agrave;y?</p><p>&nbsp;</p><p>Bằng c&aacute;ch chi ti&ecirc;u cho tiếp thị với c&aacute;c k&ecirc;nh đ&aacute;ng tin cậy, chẳng hạn như Dot Property.&nbsp;Ch&uacute;ng t&ocirc;i l&agrave; nền tảng duy nhất ở Đ&ocirc;ng Nam &Aacute; kết nối người mua v&agrave; người b&aacute;n bất động sản từ khắp nơi tr&ecirc;n thế giới.&nbsp;Tuy nhi&ecirc;n, nếu người mua tiềm năng kh&ocirc;ng thể t&igrave;m thấy t&agrave;i sản của bạn tr&ecirc;n c&aacute;c nền tảng như của ch&uacute;ng t&ocirc;i, bạn sẽ kh&ocirc;ng tiếp cận được với kh&aacute;ch h&agrave;ng.</p><p>TR&Aacute;NH: Bị lừa bởi những người cố gắng kiếm tiền nhanh ch&oacute;ng</p><p>Trong thời kỳ khủng hoảng, nhiều doanh nghiệp cố gắng tận dụng c&aacute;c chuy&ecirc;n gia bất động sản bằng c&aacute;ch cung cấp c&aacute;c dịch vụ họ kh&ocirc;ng cần hoặc đưa ra những lời hứa m&agrave; họ kh&ocirc;ng thể giữ.&nbsp;Đừng để bị lừa bởi điều n&agrave;y v&agrave; cuối c&ugrave;ng chi ti&ecirc;u cho một c&aacute;i g&igrave; đ&oacute; kh&ocirc;ng cung cấp.</p><p>Một số c&ocirc;ng ty c&oacute; t&ecirc;n nghe c&oacute; vẻ buồn cười c&oacute; thể đưa ra những tuy&ecirc;n bố ho&agrave;nh tr&aacute;ng về c&aacute;ch họ c&oacute; thể gi&uacute;p đỡ c&aacute;c chuy&ecirc;n gia bất động sản như ch&iacute;nh bạn.&nbsp;Thật kh&ocirc;ng may, c&aacute;c c&ocirc;ng ty n&agrave;y kh&ocirc;ng c&oacute; hồ sơ theo d&otilde;i hoặc hỗ trợ để hỗ trợ những g&igrave; họ cung cấp.&nbsp;Kết quả cuối c&ugrave;ng l&agrave; bạn bị mắc kẹt với một đối t&aacute;c lấy tiền của bạn nhưng kh&ocirc;ng cung cấp kết quả.</p><p>Bạn cũng sẽ thấy một số c&ocirc;ng ty c&ocirc;ng nghệ cung cấp sản phẩm hoặc dịch vụ với mức gi&aacute; chiết khấu s&acirc;u.&nbsp;H&atilde;y chắc chắn rằng bạn kiểm tra kỹ lưỡng c&aacute;c c&ocirc;ng ty n&agrave;y v&agrave; t&igrave;m hiểu xem những g&igrave; họ đang b&aacute;n thực sự c&oacute; thể gi&uacute;p &iacute;ch cho doanh nghiệp của bạn.</p><p>N&Ecirc;N: Thử những điều mới</p><p>Nhận tr&ecirc;n TikTok.&nbsp;<a href=\"https://www.dotproperty.international/blog/use-instagram-sell-property\">Để t&agrave;i khoản Instagram đ&oacute; hoạt động</a>&nbsp;.&nbsp;C&oacute; rất nhiều điều bạn c&oacute; thể thử trong t&igrave;nh huống COVID-19 m&agrave; bạn kh&ocirc;ng thực sự phải trả bất cứ điều g&igrave;.&nbsp;C&oacute; thể bạn t&igrave;m thấy một c&aacute;i g&igrave; đ&oacute; gi&uacute;p doanh nghiệp của bạn l&acirc;u d&agrave;i.&nbsp;Những thời điểm kh&oacute; khăn như thế n&agrave;y đ&ograve;i hỏi bạn phải s&aacute;ng tạo v&agrave; thử những điều mới.&nbsp;Ngay cả khi một c&aacute;i g&igrave; đ&oacute; nghe c&oacute; vẻ xa lạ b&acirc;y giờ, n&oacute; chỉ c&oacute; thể l&agrave; l&agrave;n s&oacute;ng của tương lai.&nbsp;H&atilde;y suy nghĩ về tất cả những chuy&ecirc;n gia bất động sản đ&atilde; x&acirc;y dựng Facebook của họ sớm.&nbsp;N&oacute; c&oacute; thể c&oacute; vẻ kỳ lạ v&agrave;o thời điểm đ&oacute;, nhưng những nỗ lực n&agrave;y đ&atilde; được đền đ&aacute;p xứng đ&aacute;ng.</p><p>TR&Aacute;NH: G&acirc;y &aacute;p lực cho người mua hoặc đưa ra tối hậu thư</p><p>Nghe c&oacute; vẻ như lẽ thường, nhưng đừng g&acirc;y &aacute;p lực cho kh&aacute;ch h&agrave;ng hoặc đưa cho họ bất kỳ loại tối hậu thư hay thời hạn n&agrave;o cho quyết định mua.&nbsp;Đầu ti&ecirc;n, những người t&igrave;m kiếm bất động sản đ&atilde; biết đ&oacute; l&agrave; thị trường của người mua v&agrave; họ sẽ kh&ocirc;ng đ&aacute;p ứng với chiến thuật n&agrave;y.&nbsp;Rốt cuộc, c&oacute; rất nhiều chuy&ecirc;n gia bất động sản kh&aacute;c m&agrave; họ c&oacute; thể chuyển sang thay thế.</p><p>Thứ hai, t&igrave;nh h&igrave;nh COVID-19 đ&atilde; khiến mọi thứ trở n&ecirc;n kh&oacute; mua hơn.&nbsp;Mọi người c&oacute; thể kh&ocirc;ng thể trực tiếp đến một đơn vị hoặc ph&ograve;ng trưng b&agrave;y v&agrave; điều n&agrave;y c&oacute; thể ảnh hưởng đến qu&aacute; tr&igrave;nh ra quyết định.&nbsp;C&oacute; lẽ họ c&oacute; những thứ kh&aacute;c đang diễn ra trong cuộc sống.&nbsp;D&ugrave; l&agrave; trường hợp n&agrave;o, chỉ cần tr&aacute;nh g&acirc;y &aacute;p lực cho người mua hoặc đưa ra tối hậu thư cho họ v&agrave;o l&uacute;c n&agrave;y.</p>', 'Đây là thời gian thử thách cho tất cả mọi người. Các chuyên gia bất động sản muốn tồn tại COVID-19 phải hành động cẩn thận để đảm bảo hoạt động kinh doanh của họ không bị ảnh hưởng. Không có giải pháp kỳ diệu hoặc sửa chữa nhanh chóng. Nhưng bạn có thể vư', 'vi', 3, '2020-04-15 13:50:46', '2020-04-15 15:01:51', NULL),
+(6, 'How can property professionals survive COVID-19? 2 things to do, 2 things to avoid', '<p><img width=\"696\" alt=\"property professionals survive COVID-19\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/07123604/52808324_l-696x464.jpg\" /></p><p>Property professionals need to be calm and measured in their approach to surviving the COVID-19 situation</p><p>These are challenging times for everyone. Property professionals wanting to survive COVID-19 must act carefully to ensure their business emerges unscathed. There are no magical solutions or quick fixes. But you can make it through this if you&rsquo;re measured and calm in your approach. With that in mind, Dot Property has two things to do and two things to avoid for property professionals trying to survive COVID-19.</p><p>DO: Spend on marketing</p><p>Budgets are tight, but you have to spend in order to keep bringing in leads and closing deals. Property professionals can&rsquo;t sit idle during this time. That means spending on marketing, and more importantly spending on marketing via the right channels, is paramount.</p><p>There are still people with cash in hand who understand it is a buyer&rsquo;s market. For example,&nbsp;<a href=\"https://www.dotproperty.com.ph/blog/experts-bullish-philippine-property-market-rebound-covid-19-passes\">a wave of property investors and end users in the Philippines are now moving to close real estate deals</a>&nbsp;while the conditions are favorable. How do you reach this audience?</p><p>&nbsp;</p><p>By spending on marketing with trusted channels, such as Dot Property. We are the only platform in Southeast Asia connecting real estate buyers and sellers from around the world. However, if potential buyers can&rsquo;t find your properties on platforms such as ours, you won&rsquo;t reach clients.</p><p>AVOID: Be fooled by people trying to make a quick buck</p><p>In times of crisis, many businesses try to take advantage of property professionals by offering services they don&rsquo;t need or making promises they can&rsquo;t keep. Don&rsquo;t be fooled by this and end up spending on something that doesn&rsquo;t deliver.</p><p>Some companies with funny sounding names may be making grandiose claims about how they can help property professionals such as yourself. Unfortunately, these firms don&rsquo;t have the track record or backing to support what they offer. The end result is you&rsquo;re stuck with a partner that takes your money but doesn&rsquo;t deliver results.</p><p>You will also see a number of technology companies offering products or services at deeply discounted prices. Make sure you vet these firms thoroughly and find out if what they are selling can actually help your business.</p><p>DO: Try new things</p><p>Get on TikTok.&nbsp;<a href=\"https://www.dotproperty.international/blog/use-instagram-sell-property\">Get that Instagram account active</a>. There are a lot of things you can try during the COVID-19 situation that don&rsquo;t really cost you anything. Maybe you find something that helps your business long term. Difficult times like this require you to be creative and try new things. Even if something sounds foreign now, it just may be the wave of the future. Think about all those property professionals who built up their Facebook following early. It probably seemed weird at the time, but these efforts paid off big time.</p><p>AVOID: Pressuring buyers or give ultimatums</p><p>It may sound like common sense, but don&rsquo;t pressure clients or give them any sort of ultimatums or deadlines for a buying decision. Firstly, property seekers already know it&rsquo;s a buyer&rsquo;s market and they won&rsquo;t respond to this tactic. After all, there are plenty of other property professionals they can turn to instead.</p><p>Secondly, the COVID-19 situation has made things more difficult to buy. People may not be able to visit a unit or showroom in person and this could impact the decision making process. Maybe they have other things going on in life. Whatever the case is, just avoid pressuring buyers or giving them ultimatums at this time.</p>', 'These are challenging times for everyone. Property professionals wanting to survive COVID-19 must act carefully to ensure their business emerges unscathed. There are no magical solutions or quick fixes. But you can make it through this if you’re meas', 'en', 3, '2020-04-15 13:50:46', '2020-04-15 15:01:51', NULL),
+(7, 'Những lợi ích của quốc tịch kép là gì?', '<p><img width=\"696\" alt=\"quốc tịch kép Síp\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/07075201/dual-citizenship-Cyrpus-696x464.jpg\" /></p><p>Quốc tịch k&eacute;p ở một quốc gia như S&iacute;p c&oacute; nhiều lợi thế</p><p><em>B&agrave;i viết đến với ch&uacute;ng t&ocirc;i từ Malvern Consulting, một nh&agrave; l&atilde;nh đạo trong c&aacute;c giải ph&aacute;p t&ugrave;y chỉnh v&agrave; c&aacute; nh&acirc;n h&oacute;a cho c&aacute;c c&aacute; nh&acirc;n c&oacute; gi&aacute; trị r&ograve;ng cao.&nbsp;<a href=\"https://contact.dotpropertygroup.com/malvern-consulting-cyprus/\">Nhấn v&agrave;o đ&acirc;y để biết th&ecirc;m th&ocirc;ng tin về c&aacute;ch họ c&oacute; thể hỗ trợ bạn</a>&nbsp;.</em></p><p>A second passport, if correctly chosen, can provide a whole new world of opportunities. Your second passport can be a key to living the lifestyle you always dreamed of along with the possibility of becoming a truly global citizen with no boundaries.&nbsp; In our view, dual citizenship serves as both an insurance policy and a method of unlocking new opportunities.&nbsp;Receiving dual citizenship can also open up other doors for you, such as easier access to overseas markets.</p><p>If you&rsquo;re considering dual citizenship, but aren&rsquo;t sure if it&rsquo;s for you, take a look at some of the ways you can benefit from a second passport, especially one from a European Union country like Cyprus:</p><p>&nbsp;</p><p><strong>A SECOND CITIZENSHIP GIVES YOU A SECOND RESIDENCE</strong></p><p>One of the most obvious &ndash; but underrated &ndash; benefits of receiving dual citizenship is that it gives you guaranteed residence in that country.&nbsp;If you have citizenship in a particular country, then you have the freedom to live there as you choose. You don&rsquo;t need to worry about residency requirements or visas to get in.</p><p>Dual citizenship also ensures that you have somewhere to go if you need to get out of your home country. We all love our home country, but having a fail-safe, back-up plan in case you need to leave your country of residence is a good idea.</p><p>If you choose to become dual citizen of an EU country like Cyprus, then you cannot only&nbsp;<strong>permanently</strong>&nbsp;live in Cyprus as well as&nbsp;<strong>ANY of the 27 EU countries</strong>&nbsp;including Switzerland, Italy, France, Germany and the other EU members.&nbsp;In our view, this ability to treat the entire European Union as your second residence if probably the strongest benefit of a top-tier second passport.</p><p><strong>GETTING DUAL CITIZENSHIP CAN HELP REDUCE YOUR TAXES</strong></p><p>Many people opt for a dual citizenship because it helps them significantly reduce their tax bills. In countries such as Cyprus, there are ZERO taxes for people not domiciled in the country for income that has been generated outside of the country. For example, if a Thai citizen takes Cypriot citizenship and does not live more than 182 days in Cyprus during a one-year period, then the dividends and profits earned outside of Cyprus remain tax free in the country.</p><p>In many cases, it may also make sense for people to move their business center for trading to a low-tax, EU country like Cyprus. For example, if a business owner from the Philippines sets up a company in Cyprus with a maximum corporate tax rate of 12.5 percent on profits and conducts his primary operations from this EU base, he or she may be in a position to significantly save on his tax bill as this tax rate may be significantly lower than that of the home country.&nbsp;Additionally, Cyprus has no inheritance, wealth, giﬅ&nbsp;and immovable property taxes. Dual citizenship therefore serves as an insurance policy for your tax plan.&nbsp;It gives you an exit strategy in case of difficulties and it allows you to cut ties when necessary.</p><p><strong>A SECOND PASSPORT CAN MAKE TRAVELING EASIER</strong></p><p>Applying for visas and waiting can be very frustrating,&nbsp;especially when you need to travel for business in a hurry or for an emergency. This is where dual citizenship can make a huge difference in your lifestyle. However, you can enjoy visa free travel to more than 155 countries, including of course the right to permanently stay in any of the 27 EU countries, with a passport from Cyprus.</p><p><strong>GETTING DUAL CITIZENSHIP GRANTS YOU ACCESS TO NEW SOCIAL BENEFITS</strong></p><p>Ngay cả khi bạn đ&atilde; th&agrave;nh c&ocirc;ng, sự ổn định được cung cấp bởi c&aacute;c quốc gia c&oacute; dịch vụ x&atilde; hội ph&aacute;t triển cao c&oacute; thể rất đ&aacute;ng mong đợi.&nbsp;Nếu bạn hoặc con c&aacute;i của bạn chuyển đến một quốc gia ở EU, chẳng hạn như S&iacute;p, bạn c&oacute; thể được chăm s&oacute;c sức khỏe với chi ph&iacute; thấp, gửi con bạn đến trường ở bất kỳ quốc gia EU n&agrave;o với gi&aacute; rẻ v&agrave; hưởng trợ cấp hưu tr&iacute; khi bạn nghỉ hưu.&nbsp;Mặc d&ugrave; những lợi &iacute;ch n&agrave;y c&oacute; vẻ kh&ocirc;ng đ&aacute;ng kể ng&agrave;y h&ocirc;m nay, ch&uacute;ng t&ocirc;i kh&ocirc;ng biết tương lai sẽ ra sao cho thế hệ tương lai của ch&uacute;ng t&ocirc;i.&nbsp;Bằng c&aacute;ch đảm bảo Di sản Ch&acirc;u &Acirc;u th&ocirc;ng qua hộ chiếu EU thứ hai, bạn c&oacute; thể đảm bảo phạm vi khả năng tốt nhất cho con bạn v&agrave; c&aacute;c thế hệ của ch&uacute;ng.</p><p><strong>C&Ocirc;NG D&Acirc;N DUAL C&Oacute; THỂ &Yacute; NGH OPA CƠ HỘI KINH DOANH MỚI</strong></p><p>Cuối c&ugrave;ng, hộ chiếu thứ hai của bạn c&oacute; thể cung cấp cho bạn quyền truy cập v&agrave;o c&aacute;c thị trường mới v&agrave; cơ hội kinh doanh.&nbsp;L&agrave; c&ocirc;ng d&acirc;n của một quốc gia cụ thể, bạn c&oacute; thể đầu tư tự do v&agrave;o quốc gia đ&oacute; v&agrave; c&oacute; thể c&oacute; thời gian đầu tư dễ d&agrave;ng hơn v&agrave;o c&aacute;c quốc gia l&aacute;ng giềng.&nbsp;L&agrave; c&ocirc;ng d&acirc;n của một quốc gia EU như S&iacute;p, bạn c&oacute; to&agrave;n quyền truy cập v&agrave;o Li&ecirc;n minh Ch&acirc;u &Acirc;u về h&agrave;ng h&oacute;a v&agrave; dịch vụ cũng như tự do di chuyển vốn m&agrave; kh&ocirc;ng c&oacute; bất kỳ c&acirc;u hỏi hoặc biến chứng n&agrave;o.&nbsp;Lợi &iacute;ch n&agrave;y c&oacute; thể l&agrave;m phong ph&uacute; th&ecirc;m doanh nghiệp của bạn v&agrave; mở ra thế giới cơ hội cho bạn.</p><p>Do đ&oacute;, nếu bạn muốn giảm thuế một c&aacute;ch hợp ph&aacute;p, tận dụng c&aacute;c cơ hội kinh doanh quốc tế v&agrave; sống một lối sống tự do hơn, bạn n&ecirc;n bắt đầu xem x&eacute;t để c&oacute; được hộ chiếu thứ hai.&nbsp;Bước đầu ti&ecirc;n bạn c&oacute; thể li&ecirc;n hệ với ch&uacute;ng t&ocirc;i tại Malvern Consulting Ltd. v&agrave; ch&uacute;ng t&ocirc;i c&oacute; thể c&ugrave;ng nhau bắt đầu cuộc h&agrave;nh tr&igrave;nh n&agrave;y để bạn c&oacute; thể thực hiện ước mơ của m&igrave;nh trong thời gian ngắn nhất với &iacute;t nỗ lực nhất.</p>', 'Bài viết đến với chúng tôi từ Malvern Consulting, một nhà lãnh đạo trong các giải pháp tùy chỉnh và cá nhân hóa cho các cá nhân có giá trị ròng cao. Nhấn vào đây để biết thêm thông tin về cách họ có thể hỗ trợ bạn. Hộ chiếu thứ hai, nếu được chọn chính xá', 'vi', 4, '2020-04-15 13:51:49', '2020-04-15 15:02:39', NULL),
+(8, 'What are the benefits of dual citizenship?', '<p><img width=\"696\" alt=\"dual citizenship Cyprus\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/07075201/dual-citizenship-Cyrpus-696x464.jpg\" /></p><p>Dual citizenship in a country like Cyprus comes with many advantages</p><p><em>The article comes to us from Malvern Consulting, a leader in customized and personalized solutions for high net-worth individuals.&nbsp;<a href=\"https://contact.dotpropertygroup.com/malvern-consulting-cyprus/\">Click here for more information on how they can assist you</a>.</em></p><p>A second passport, if correctly chosen, can provide a whole new world of opportunities. Your second passport can be a key to living the lifestyle you always dreamed of along with the possibility of becoming a truly global citizen with no boundaries.&nbsp; In our view, dual citizenship serves as both an insurance policy and a method of unlocking new opportunities.&nbsp;Receiving dual citizenship can also open up other doors for you, such as easier access to overseas markets.</p><p>If you&rsquo;re considering dual citizenship, but aren&rsquo;t sure if it&rsquo;s for you, take a look at some of the ways you can benefit from a second passport, especially one from a European Union country like Cyprus:</p><p>&nbsp;</p><p><strong>A SECOND CITIZENSHIP GIVES YOU A SECOND RESIDENCE</strong></p><p>One of the most obvious &ndash; but underrated &ndash; benefits of receiving dual citizenship is that it gives you guaranteed residence in that country.&nbsp;If you have citizenship in a particular country, then you have the freedom to live there as you choose. You don&rsquo;t need to worry about residency requirements or visas to get in.</p><p>Dual citizenship also ensures that you have somewhere to go if you need to get out of your home country. We all love our home country, but having a fail-safe, back-up plan in case you need to leave your country of residence is a good idea.</p><p>If you choose to become dual citizen of an EU country like Cyprus, then you cannot only&nbsp;<strong>permanently</strong>&nbsp;live in Cyprus as well as&nbsp;<strong>ANY of the 27 EU countries</strong>&nbsp;including Switzerland, Italy, France, Germany and the other EU members.&nbsp;In our view, this ability to treat the entire European Union as your second residence if probably the strongest benefit of a top-tier second passport.</p><p><strong>GETTING DUAL CITIZENSHIP CAN HELP REDUCE YOUR TAXES</strong></p><p>Many people opt for a dual citizenship because it helps them significantly reduce their tax bills. In countries such as Cyprus, there are ZERO taxes for people not domiciled in the country for income that has been generated outside of the country. For example, if a Thai citizen takes Cypriot citizenship and does not live more than 182 days in Cyprus during a one-year period, then the dividends and profits earned outside of Cyprus remain tax free in the country.</p><p>In many cases, it may also make sense for people to move their business center for trading to a low-tax, EU country like Cyprus. For example, if a business owner from the Philippines sets up a company in Cyprus with a maximum corporate tax rate of 12.5 percent on profits and conducts his primary operations from this EU base, he or she may be in a position to significantly save on his tax bill as this tax rate may be significantly lower than that of the home country.&nbsp;Additionally, Cyprus has no inheritance, wealth, giﬅ&nbsp;and immovable property taxes. Dual citizenship therefore serves as an insurance policy for your tax plan.&nbsp;It gives you an exit strategy in case of difficulties and it allows you to cut ties when necessary.</p><p><strong>A SECOND PASSPORT CAN MAKE TRAVELING EASIER</strong></p><p>Applying for visas and waiting can be very frustrating,&nbsp;especially when you need to travel for business in a hurry or for an emergency. This is where dual citizenship can make a huge difference in your lifestyle. However, you can enjoy visa free travel to more than 155 countries, including of course the right to permanently stay in any of the 27 EU countries, with a passport from Cyprus.</p><p><strong>GETTING DUAL CITIZENSHIP GRANTS YOU ACCESS TO NEW SOCIAL BENEFITS</strong></p><p>Even if you&rsquo;re already successful, the stability offered by countries with highly developed social services can be quite desirable. If you or your children move to a country in the EU, such as Cyprus, you can enjoy low-cost health care, send your kids to school in any EU country inexpensively and enjoy pension benefits when you retire.&nbsp;While these benefits may not seem significant today, we do not know what the future holds for our future generations. By ensuring a European Legacy via a second EU passport, you can guarantee the best range of possibilities for your children and their generations.</p><p><strong>DUAL CITIZENSHIP CAN MEAN NEW BUSINESS OPPORTUNITIES</strong></p><p>Finally, your second passport can give you access to new markets and business opportunities.&nbsp;As a citizen of a particular country, you can invest freely in that country, and may have an easier time investing in neighboring countries as well.&nbsp;As a citizen of an EU country like Cyprus, you have full access to the European Union for goods and services as well as free movement of capital without any questions or complications.&nbsp;This benefit can enrich your business and open up the world of opportunities for you.</p><p>Therefore, if you want to legally reduce your taxes, take advantage of international business opportunities and live a freer lifestyle, you should start to look into getting a second passport. As a first step you may contact us at Malvern Consulting Ltd. and we can embark on this journey together so that you may realize your dreams in the shortest possible time with the least amount of effort.</p>', 'The article comes to us from Malvern Consulting, a leader in customized and personalized solutions for high net-worth individuals. Click here for more information on how they can assist you. A second passport, if correctly chosen, can provide a whole', 'en', 4, '2020-04-15 13:51:49', '2020-04-15 15:02:39', NULL),
+(9, 'Tập đoàn Ánh Dương mang siêu nhân sống đến Việt Nam', '<p><img width=\"696\" alt=\"Nắng Venicia\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/02112927/Sunshine-Venicia-luxury-696x391.jpg\" /></p><p>Sunshine Venicia l&agrave; dự &aacute;n khu d&acirc;n cư superluxury đầu ti&ecirc;n tại Việt Nam</p><p>Tập đo&agrave;n &Aacute;nh Dương đ&atilde; đặt ra mục ti&ecirc;u ph&aacute;t triển khu d&acirc;n cư cao cấp tại Việt Nam trong v&agrave;i năm qua v&agrave; người l&agrave;m nh&agrave; đang chuẩn bị vượt qua ch&iacute;nh m&igrave;nh một lần nữa.&nbsp;Nh&agrave; ph&aacute;t triển tiết lộ rằng họ sẽ sớm ra mắt Sunshine Venicia,&nbsp;<a href=\"https://www.dotproperty.com.vn/en/condo/15896/sunshine-venicia\">một dự &aacute;n chung cư si&ecirc;u sang tại Quận 2 của Th&agrave;nh phố Hồ Ch&iacute; Minh</a>&nbsp;.</p><p>Độc quyền sẽ l&agrave; một trong những t&iacute;nh năng ch&iacute;nh tại Sunshine Venicia với dự &aacute;n chỉ c&oacute; 245 căn hộ v&agrave; biệt thự tr&ecirc;n bầu trời.&nbsp;Việc tập trung v&agrave;o cuộc sống mật độ thấp đảm bảo cư d&acirc;n c&oacute; thể tận hưởng sự ri&ecirc;ng tư v&agrave; kh&ocirc;ng gian họ cần để cảm thấy thoải m&aacute;i.</p><p>Sunshine Venicia lấy thiết kế từ hoa huệ.&nbsp;Khu vực sinh hoạt chung đ&oacute;ng vai tr&ograve; l&agrave; trung t&acirc;m với c&aacute;c ph&ograve;ng trải d&agrave;i từ giữa như c&aacute;nh hoa.&nbsp;Thiết kế hiếm hoi n&agrave;y cho ph&eacute;p kh&ocirc;ng gian s&acirc;n vườn v&agrave; c&aacute;c yếu tố thiết kế kh&aacute;c t&aacute;ch biệt từng ph&ograve;ng.</p><p>&nbsp;</p><p>Cư d&acirc;n c&oacute; thể thư gi&atilde;n tr&ecirc;n ban c&ocirc;ng của Sunshine Venicia, kh&ocirc;ng giống như bất cứ điều g&igrave; hiện đang thấy ở th&agrave;nh phố Hồ Ch&iacute; Minh.&nbsp;Ch&uacute;ng đ&atilde; được chế t&aacute;c như những lối đi nhỏ l&oacute;t vườn hoa v&agrave; ph&ograve;ng triển l&atilde;m ảnh.&nbsp;C&aacute;c lối đi nhỏ, m&agrave;u xanh l&aacute; c&acirc;y cũng t&aacute;ch biệt c&aacute;c đơn vị với nhau c&oacute; nghĩa l&agrave; kh&ocirc;ng c&oacute; cửa đối diện trực tiếp hoặc x&acirc;m phạm quyền ri&ecirc;ng tư kh&aacute;c.</p><p>Kiến tr&uacute;c sư nổi tiếng Ho&agrave;ng Thy Phon được giao ph&oacute; thiết kế dự &aacute;n.&nbsp;Mục ti&ecirc;u của anh l&agrave; mang si&ecirc;u nh&acirc;n sống đến Việt Nam v&agrave; tạo ra một thiết kế chung cư kh&ocirc;ng t&igrave;m thấy ở bất kỳ nơi n&agrave;o kh&aacute;c ở Đ&ocirc;ng Nam &Aacute;.</p><p>Thiết kế superluxury n&agrave;y mở rộng đến c&aacute;c khu vực chung cho Sunshine Venicia, tự h&agrave;o mang phong c&aacute;ch &Yacute; tuyệt đẹp.&nbsp;Bạn sẽ t&igrave;m thấy những vườn chanh v&agrave; nho nơi mặt trời chiếu xuy&ecirc;n qua, những vườn hoa huệ v&agrave; đ&agrave;i phun nước lấy cảm hứng từ thời Phục hưng cũng như những con hẻm kỳ lạ được trang tr&iacute; với bệ hoa hồng.</p><p>Dự &aacute;n cũng c&oacute; một khu vực b&aacute;n lẻ sẽ tổ chức c&aacute;c cửa h&agrave;ng tr&agrave;, spa v&agrave; nh&agrave; h&agrave;ng theo phong c&aacute;ch kiến ​​tr&uacute;c ch&acirc;u &Acirc;u v&agrave; ph&ograve;ng trưng b&agrave;y nghệ thuật của sảnh ch&iacute;nh.&nbsp;C&aacute;c c&ocirc;ng ty hoạt động trong lĩnh vực b&aacute;n lẻ sẽ được tuyển chọn c&aacute;c thương hiệu ph&ugrave; hợp với kh&aacute;i niệm superluxury được h&igrave;nh dung bởi nh&agrave; ph&aacute;t triển.</p><p><a href=\"https://www.dotproperty.com.vn/en/condo/15896/sunshine-venicia\">Superluxury sống đang đến Việt Nam nhờ Tập đo&agrave;n &Aacute;nh Dương</a>&nbsp;.&nbsp;Sunshine Venicia c&oacute; những dự &aacute;n l&agrave; một trong những dự &aacute;n d&acirc;n cư độc quyền v&agrave; c&oacute; nhu cầu cao nhất từng được triển khai tại nước n&agrave;y.</p>', 'Tập đoàn Ánh Dương đã đặt ra mục tiêu phát triển khu dân cư cao cấp tại Việt Nam trong vài năm qua và người làm nhà đang chuẩn bị vượt qua chính mình một lần nữa. Nhà phát triển tiết lộ rằng họ sẽ sớm ra mắt Sunshine Venicia, một dự án chung cư siêu sang', 'vi', 5, '2020-04-15 13:52:39', '2020-04-15 15:03:32', NULL),
+(10, 'Sunshine Group brings superluxury living to Vietnam', '<p><img width=\"696\" alt=\"Sunshine Venicia\" src=\"https://wp-assets.dotproperty-kh.com/wp-content/uploads/sites/7/2020/04/02112927/Sunshine-Venicia-luxury-696x391.jpg\" /></p><p>Sunshine Venicia is the first superluxury residential project in Vietnam</p><p>Sunshine Group has set the bar for luxury residential development in Vietnam during the last few years and homebuilder is preparing to outdo itself once more. The developer revealed that it will soon launch Sunshine Venicia,&nbsp;<a href=\"https://www.dotproperty.com.vn/en/condo/15896/sunshine-venicia\">a superluxury condo project in Ho Chi Minh City&rsquo;s District 2</a>.</p><p>Exclusivity will be one of the key features at Sunshine Venicia with the project featuring only 245 condo units and sky villas. The focus on low-density living ensures residents can enjoy privacy and the space they need to feel comfortable.</p><p>Sunshine Venicia takes its design from a lily. The common living area acts as the center with rooms stretching out from the middle like petals. This rare design allows for garden spaces and other design elements to separate each room.</p><p>&nbsp;</p><p>Residents can relax on the balconies of Sunshine Venicia which are unlike anything currently seen in Ho Chi Minh City. They have been crafted as small pathways lined with flower gardens and photo galleries. The small, green pathways also separate units from one another meaning there are no directly facing doors or other intrusions of privacy.</p><p>Popular architect Hoang Thy Phon was entrusted with the design of the project. His goal was to bring superluxury living to Vietnam and create a condominium design not found anywhere else in Southeast Asia.</p><p>This superluxury design extends to the common areas for Sunshine Venicia which boast a scenic Italian style. You will find lemon and grape gardens where the sun shines through, lily gardens and Renaissance-inspired water fountains as well as quaint alleys decorated with rose pedestals.</p><p>The project also has a retail area that will host boutique tea shops, spas and restaurants under the European-style arch and art galleries of the main lobby. The companies operating in the retail area will be curated selection of brands that match the superluxury concept envisioned by the developer.</p><p><a href=\"https://www.dotproperty.com.vn/en/condo/15896/sunshine-venicia\">Superluxury living is coming to Vietnam thanks to Sunshine Group</a>. Sunshine Venicia has the makings of being among the most exclusive and in-demand residential projects ever launched in the country.</p>', 'Sunshine Group has set the bar for luxury residential development in Vietnam during the last few years and homebuilder is preparing to outdo itself once more. The developer revealed that it will soon launch Sunshine Venicia, a superluxury condo project', 'en', 5, '2020-04-15 13:52:39', '2020-04-15 15:03:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -179,7 +212,14 @@ INSERT INTO `cart` (`cart_id`, `cart_status`, `code_id`, `customer_id`, `payment
 (11, NULL, NULL, 4, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
 (12, NULL, NULL, 5, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
 (13, NULL, NULL, 6, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
-(14, NULL, NULL, 7, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL);
+(14, NULL, NULL, 7, 1, NULL, '2020-03-30 08:11:59', '2020-03-30 08:11:59', NULL),
+(15, NULL, NULL, 9, 1, NULL, '2020-04-17 07:59:12', '2020-04-17 07:59:12', NULL),
+(16, NULL, NULL, 10, 1, NULL, '2020-04-17 08:09:00', '2020-04-17 08:09:00', NULL),
+(17, NULL, NULL, 11, 1, NULL, '2020-04-17 08:10:00', '2020-04-17 08:10:00', NULL),
+(18, NULL, NULL, 12, 1, NULL, '2020-04-17 08:10:23', '2020-04-17 08:10:23', NULL),
+(19, NULL, NULL, 13, 1, NULL, '2020-04-18 14:19:05', '2020-04-18 14:19:05', NULL),
+(20, NULL, NULL, 14, 1, NULL, '2020-04-18 14:20:03', '2020-04-18 14:20:03', NULL),
+(21, NULL, NULL, 15, 1, NULL, '2020-04-19 03:56:38', '2020-04-19 03:56:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -195,13 +235,6 @@ CREATE TABLE `cart_temp` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày cập nhật',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Giỏ hàng tạm';
-
---
--- Dumping data for table `cart_temp`
---
-
-INSERT INTO `cart_temp` (`cart_temp_id`, `code_id`, `cookie_user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, 1, '2020-03-30 08:54:25', '2020-03-30 08:54:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -275,9 +308,16 @@ CREATE TABLE `convenience` (
   `convenience_tennis` tinyint(3) UNSIGNED DEFAULT NULL COMMENT 'tennis',
   `convenience_wifi` tinyint(3) UNSIGNED DEFAULT NULL COMMENT 'wifi',
   `convenience_tivi` tinyint(3) UNSIGNED DEFAULT NULL COMMENT 'tivi',
-  `direction_code` tinyint(3) UNSIGNED NOT NULL COMMENT 'Phương hướng',
+  `direction_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Phương hướng',
   `real_estate_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tiện nghi';
+
+--
+-- Dumping data for table `convenience`
+--
+
+INSERT INTO `convenience` (`convenience_id`, `convenience_facade`, `convenience_way`, `convenience_floor`, `convenience_bedroom`, `convenience_bathroom`, `convenience_air_conditioning`, `convenience_BBQ_area`, `convenience_CCTV`, `convenience_concierge`, `convenience_fitness`, `convenience_garden`, `convenience_library`, `convenience_mountain_view`, `convenience_parking`, `convenience_playground`, `convenience_ocean_view`, `convenience_security`, `convenience_swimming_pool`, `convenience_tennis`, `convenience_wifi`, `convenience_tivi`, `direction_code`, `real_estate_id`) VALUES
+(1, 10, 10, 5, 2, 2, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, NULL, 'E', 1);
 
 -- --------------------------------------------------------
 
@@ -287,7 +327,6 @@ CREATE TABLE `convenience` (
 
 CREATE TABLE `cookie_user` (
   `cookie_user_id` int(10) UNSIGNED NOT NULL COMMENT 'id của cookie',
-  `cookie_user_name` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'tên cookie',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ngày tạo',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'ngày cập nhật',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
@@ -297,8 +336,25 @@ CREATE TABLE `cookie_user` (
 -- Dumping data for table `cookie_user`
 --
 
-INSERT INTO `cookie_user` (`cookie_user_id`, `cookie_user_name`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'nVWn1cR2qeIqBNxrS5pA3HUrUoTaQzBVAZsKB3LEN76D5GYVQt6hpbHzLyz64kZTuj9XzipzNSv3AscQ', '2020-03-29 08:44:11', '2020-03-29 08:44:11', NULL);
+INSERT INTO `cookie_user` (`cookie_user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '2020-04-03 13:26:04', '2020-04-03 13:26:04', NULL),
+(2, '2020-04-03 13:29:16', '2020-04-03 13:29:16', NULL),
+(3, '2020-04-06 10:29:54', '2020-04-06 10:29:54', NULL),
+(4, '2020-04-09 12:27:13', '2020-04-09 12:27:13', NULL),
+(5, '2020-04-09 12:40:22', '2020-04-09 12:40:22', NULL),
+(13, '2020-04-14 05:15:52', '2020-04-14 05:15:52', NULL),
+(14, '2020-04-14 10:16:47', '2020-04-14 10:16:47', NULL),
+(15, '2020-04-14 10:16:47', '2020-04-14 10:16:47', NULL),
+(16, '2020-04-14 10:17:17', '2020-04-14 10:17:17', NULL),
+(17, '2020-04-14 10:17:17', '2020-04-14 10:17:17', NULL),
+(18, '2020-04-14 10:17:38', '2020-04-14 10:17:38', NULL),
+(19, '2020-04-14 10:17:38', '2020-04-14 10:17:38', NULL),
+(20, '2020-04-14 10:19:59', '2020-04-14 10:19:59', NULL),
+(21, '2020-04-14 10:21:33', '2020-04-14 10:21:33', NULL),
+(22, '2020-04-14 10:21:45', '2020-04-14 10:21:45', NULL),
+(23, '2020-04-14 10:22:21', '2020-04-14 10:22:21', NULL),
+(24, '2020-04-20 03:11:50', '2020-04-20 03:11:50', NULL),
+(25, '2020-04-20 07:59:51', '2020-04-20 07:59:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -356,13 +412,17 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_avatar`, `customer_email`, `customer_tel`, `customer_birth`, `customer_gender`, `customer_address`, `customer_identity_card`, `rank_id`, `account_id`, `ward_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Dr. Damian Wolff MD', NULL, 'feest.erin@example.com', '4044965006', NULL, 1, '38105 Enoch Streets\nEast Brantchester, SD 88235-6816', '3838097478', 4, 4, 7604, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
+(1, 'Dr. Damian Wolff MD', 'img/avatar.png', 'feest.erin@example.com', '4044965006', '2020-04-01', 1, '38105 Enoch Streets\nEast Brantchester, SD 88235-6816', '3838097478', 4, 4, 7604, '2020-03-29 07:29:20', '2020-04-19 06:36:10', NULL),
 (2, 'Jaron O\'Connell', NULL, 'fschuppe@example.com', '7563140061', NULL, 1, '6268 Toy Ramp Suite 671\nSheafort, DC 92355', '6315928679', 5, 5, 5356, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
 (3, 'Colleen Streich', NULL, 'kareem.klein@example.com', '4295385716', NULL, 1, '193 Sandy Springs\nWest Jace, MT 06344-2392', '7508129059', 5, 6, 4179, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
 (4, 'Dr. Daren Goldner PhD', NULL, 'quigley.aisha@example.com', '8660952890', NULL, 1, '60495 Rutherford Mountains Apt. 519\nLeschchester, CO 09390', '8217415776', 1, 7, 9653, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
 (5, 'Mr. Lloyd Friesen I', NULL, 'weimann.laverne@example.net', '5945737002', NULL, 1, '476 Franco Flat Apt. 114\nLake Billyside, WI 26157', '1103920621', 1, 8, 6595, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
 (6, 'Odell Jenkins', NULL, 'clifford25@example.net', '4030497619', NULL, 1, '957 Freeda Ramp Apt. 684\nYosthaven, AL 78750-4335', '6196733201', 3, 9, 8695, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
-(7, 'Markus Hand', NULL, 'erath@example.com', '7894829911', NULL, 1, '96673 Armand Forks Suite 811\nNorth Shad, ID 92785', '2628725458', 5, 10, 9056, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL);
+(7, 'Markus Hand', NULL, 'erath@example.com', '7894829911', NULL, 1, '96673 Armand Forks Suite 811\nNorth Shad, ID 92785', '2628725458', 5, 10, 9056, '2020-03-29 07:29:20', '2020-03-29 07:29:20', NULL),
+(8, 'khachhang1', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 11, 1, '2020-04-17 07:58:33', '2020-04-17 07:58:33', NULL),
+(9, 'khachhang2', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 12, 1, '2020-04-17 07:59:12', '2020-04-17 07:59:12', NULL),
+(14, 'khach8', NULL, NULL, '0123123123', NULL, 0, NULL, NULL, 1, 26, NULL, '2020-04-18 14:20:03', '2020-04-18 14:20:03', NULL),
+(15, '123123123', NULL, NULL, '13123123123', NULL, 0, NULL, NULL, 1, 27, 7698, '2020-04-19 03:56:38', '2020-04-19 03:56:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -397,15 +457,6 @@ CREATE TABLE `detail_cart` (
   `real_estate_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Chi tiết giỏ hàng';
 
---
--- Dumping data for table `detail_cart`
---
-
-INSERT INTO `detail_cart` (`detail_cart_id`, `detail_cart_price`, `cart_id`, `real_estate_id`) VALUES
-(1, NULL, 8, 3),
-(2, NULL, 8, 2),
-(3, NULL, 8, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -436,13 +487,6 @@ CREATE TABLE `detail_temp` (
   `cart_temp_id` int(10) UNSIGNED NOT NULL,
   `real_estate_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Giỏ hàng tạm';
-
---
--- Dumping data for table `detail_temp`
---
-
-INSERT INTO `detail_temp` (`detail_temp_id`, `detail_temp_price`, `cart_temp_id`, `real_estate_id`) VALUES
-(3, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -1192,72 +1236,6 @@ CREATE TABLE `evaluate` (
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'ngày xóa tạm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Đánh giá';
 
---
--- Dumping data for table `evaluate`
---
-
-INSERT INTO `evaluate` (`evaluate_id`, `evaluate_title`, `evaluate_content`, `evaluate_status`, `evaluate_rank`, `real_estate_id`, `customer_id`, `evaluate_reply`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'SBITXcHvPkpkTsz9B2y8NIAIcAg37LPfeSRhp1JB3Wc2dKmWUQ', '76v4iKlVetWvd7N1o17MHZ2hHKcoUfE0zamHDWbWBpXJkpnTOM8WLa4KEfW0qaqO3l1JsA1AEBaGXWhvfTUI5pbL5wpQqyxM0WUu', NULL, 3, 1, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(2, '2ILxsI0CFrdT3YosA1UrZwa1fNPlQlf1724zqPb2agZ3l3pCvW', 'svlvUaSeMKivlp21dCZdaqKT4B66rRZOQTmcHF5UTeowpp8PyplCqa38rc7LHQtmsuBfWGQotyK1j9eUjfzh1PrdLT5EFTDn7BIQ', NULL, 3, 1, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(3, 'YKh9l4iFMvbvfwE97Vxi46PKQ4V8v0WkdjmdOQcpwx9yTQoOwA', 'VjBNW72qCBUBKpsRrrriC5uMehYvGhDA1k9zTU5yBJJZGFCYhhW0QSgyWzLI6GKliMRidUP2u0YaL5Ewj16Imvz0KPeeVQJOp8X3', NULL, 5, 1, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(4, 'eybBydBqE6O8SdXIwaBnVNRWlDa6MiK7u1fYgd65rRINj5yqWu', 'IpfM2voVjbg3UUbz2Gu9aa6l9U2zgxSB6Nb6zn9HJDq5X6pK9z3M5H0svQbCztWTD952fORf1xwUS7ZYrK740wJbzM3OzPP2j37j', NULL, 3, 1, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(5, '4lPG0rThByufqUQfiauT4U1Zn5tbZKGyPjJ8RZ7kRLk8FUdeGp', 'XAePdXSfpDkSu2POPtVYkLNJ4KFS1aj1IP0p7uNdInYWQUUeLuocog0sEtTBTIcczweqB4DGNnfnJMB2qJH6n31NatkDMtpZANgv', NULL, 1, 1, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(6, 'mWM2WKa5p4ugJXKiD9sxqHvzF6F4Ja5kK28U0ws2IaSQ1YwHOq', 'pmiGcs4b6rTu3nLBQQWnzJDPntXh7tRN8olyORTllPQybGzsxQ75nLIw6JXho3WRgq009N7rGrL76abiFWfCI8hWEev7NMcwpT0J', NULL, 4, 1, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(7, '9zAEyZ988WTl6ksUvBhJeHTGKWIqqBxX2r3ZWCkCaqmFPv9lnL', '3PPHvNYRkO2r9qIqqECZCrdBvFvc5VK1aC0m6yfKBVYaWRMnIcxEfZjoiBvTKF8FOErmQg1kJQtl3q1jS4vCkpilaLe3HtuGe1c6', NULL, 2, 2, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(8, 'EclpangQ1UKPSJpwWCVOLpSbWlUrlqRdpt5FVJ3Dr6XXlPpMTs', 'CUMUmH53epde9ZQJ1a9dY8PHR3diidSOXXNmMZEJlomwqrSQNU5zScKELssuB4bhTAXIhBzxVsjoIurDNp09NaKTODVoxrgfVezr', NULL, 2, 2, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(9, 'pZKEJSvDj9ccY5LBAjAlmWDeTci7rnLxJ7ZHQ5sYvncWaiz7VF', 'knInCdQvJIMotZDPw7d4zjrwzRFUhSrM93hdz0ggsVyt0JRuTVduiTMTFWjYustWuPd6V3SZcRnhRyWS7cvhk0xwfokCwa4oTel8', NULL, 3, 2, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(10, 'MOSQ5ol1Kde9aas9oH6MX0RtmqEdEPbgA5xfQIM79ZYqntuLP4', 'ZqqfhFZVUqhhofR27h8S1qVk2RfXKkC0qk2VhfOMKQJA17oHkBiBxoeJBm5zCaU3AzxXKLJjyhJ9YBPZvi0nEsZPipVpvdXDpgSK', NULL, 4, 2, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(11, 'qWQHigebMLQvfxh65X4kqAwcsCqupFRc8jxekA0OSj5xp4PbGQ', 'lHTTh9jj4wFNjjN63axrFR8Ncu1KBOQ4JWfgS47ati8vCLTb4YqrcEBqCwcC37IZo4QrpXMLoQ1eTYaUymj4eukTaZ3zzvTv75vd', NULL, 1, 2, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(12, '07z17OgRWQaeOpCYCWQmJ2aDowAIdufVWZkghN47xXaYXo40Uw', 'XLFyMLmL1rBOFLkQ0Nf2hsIsqc7KLqHvRjXm2W21WJYKxSwO0hl4Iqb6Cr7ECSjxdn4M42sRSZjQFI2KC6MbXTOBkMFu70Xp8NmJ', NULL, 2, 2, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(13, 'aPMBb3tC7zejHhEmjxlbigM45WvKhIUhIFaAxwsqVnEs8g6kNr', 'MUb6NqBclVPlb88wXa7G3hhKSfbt5rhuUiIHqvQA6bEshSizIKJz9wj3sLAxCu0TsLOXCiupADA7q5SuRO0jEctBqOwf3kTuTnt2', NULL, 4, 3, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(14, 'OJgnJyD5nPGyPz7zfFozjHKID27y4iJXltbb8E86cjACaiwY5M', 'YQoTeXlWbZfGsEmOeS1R7edP5cgMlPbVGdOlGGjhM1UUxDLOMNGFSvRpkQuebEnzohi13awGQVQk8pOlAgRGWuG49Sjyaex3Qgym', NULL, 1, 3, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(15, 'r8yRWTcwazfjqES6WRmP5kFRrIZSyRlxyjtEi4O0ufwDF9o2zQ', 'C96Wy2PVJMmSRYP2uplM1RCBxcChCPlQ7U1Y0vO3NdHKSEWZW7mlV2at7i30HCq0xopHoxYT8VgXCvfWRjBCUEQ1xtDKpG6MUSVB', NULL, 2, 3, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(16, 'NnzQPTVVzylHy5PxfMj1SdzBX6Mem5HH44VTKZUCoU3szNwKdu', 'ewJ1f2qz55slv5vtHkWWbdtZSrWPWA6xLvJab2cZ6bKXoMZctTNQ7h2G0dgHdxXJ2dW0V6gTB6NXhQHkWsvqo2lV9M69dY56RJX3', NULL, 1, 3, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(17, 'Frz8XgjIO1ZzHR9lHHqzCkkvn5rEeY7n2ajkjZ49sucrd9FEgY', '3fYwiQBd3G5AfQcb22yr59pf8LhQ3RL8t6J7zmNceSDMyfylbFZJ3FhmyRm8pZbdT3QiMv4xfgTPLtipgY42pimFM01BBWuOaEFp', NULL, 1, 3, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(18, 'pe83eGHTVgU9qbx7y85A5e8ZC18hygFFZdhhNUJBhmKVc2vGau', 'kS1fLJOfmIH3jdT6pCW4L8h7rrTsLhscI4kY5E4BbhkEk3lpIYniYpBbY5E6gWY6METI0w5ekSbHeEnUP4tPEiYDawJbWBAbhshe', NULL, 1, 3, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(19, 'PGNvR0s4lWBukeCnAUKQcnkewkLpj5lHW6PZeaSI0l66qSIvmm', 'qIMKjnHR3LA29Acpx5QzsUinAMtkoI5DuePf4U6Tm1nf2TwaTdidStaUJKx3jiGyxSae9CNELDRV9u4xpnAS51ZCPCvLzYAKbvMK', NULL, 5, 4, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(20, '8EVrZrJpccHZXfSXZZJ5Z3iahcrNCBOv7a65UsSqalcze1AYXS', '1reJBAv8DE65SG7QI4ngfTr3ckRdSSjeUoYgJ1VuKkPJUQSYkpA5tKJ65tjdGdIX1IIBtRuzpQvca6Z0GQQIYtDMnseeOUA0Cs5Y', NULL, 2, 4, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(21, '9QveYVHsr1AZabbmMDXD44S1g5EwPfg75MOBAUiOWIiW1yPsc3', 'u3ibt26Hylli9Ia1yZ1vpOwDGtqyARHnPVScBhWAAqnRMt4JiZN13WdQUsdLf382fgrYRqdJjYGAwMqEqkJUtuxsymqrYiPW95xq', NULL, 1, 4, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(22, '9aJ1E8SQ0uxqXzImwfNDnQqkngaletJ5wTcBUfKUk9YWPMLy9K', 'GzJvYrSKFXLuGZZRNz0iwAEAZ51djORnCAYzOP5aLUN7BhAcYjMjMKH9bj4wIxynrJwJU3aFXp6A6Lduw37KeBtRgGBL8xMfFQhA', NULL, 5, 4, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(23, 'vAZ46R1Sqt6RCbknnin1fCOhGwKO8xAUxs6ZWE0WsJRSlEDZOv', 'uYpjDTAZbjoz2FZd2rQdCRWiwOsQBHHDCPhYTN4uHcrsWWas11jP25gvPAy3sK4C42IUGQKbcAQGT77VkNYzVBYE0J5yxN8L4Mxb', NULL, 1, 4, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(24, 'pPnfcprdRItrqz0c0iXkBpFk1IrAO5UhzInYOKGDhqIU0QY2me', 'Pj9IpUIA1hYfusX931kris1qndRwpmDTAOX9WMuP6WijG4d8yW7M2hwoQKJqQevGrDTrcOCZiW4BX4xHpFrp1mzYK5zZkX0IZ72Z', NULL, 3, 4, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(25, '80leFkP4094TEtcTCwpjqtDwiiforCmp2KO0SoNEE8RWS62pVD', 'FCCCBgNukuMtJEqzNCdy80hNBxW73QxPK0pUdgeayJ7A9Knb8lGW16Ayf9KpCreGNkuetxanASghjuW3UIrSD8QSpPf4sAVeTUAq', NULL, 3, 5, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(26, 'GaKQcuqh2MmBYQMvSbp3oEzYbKjX5kKa47j8LkTVdLiGWLmMAD', 'DFumYj49zy10NPHbL2rND3vjZlLrPcUnblf01MwB9lsLBYanjeXk1ol4KbvXbBbcKQv9ajm3untjzvc5cNt2HAdmmsvmFEbDjwYy', NULL, 2, 5, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(27, '01IX1jQC9IVcb2m4J3EcQWtyO2os4SOCeaV6tmzGvYlj0n5ToQ', 'LvK1UEix1RlL9p0HGVcwSe4iVbvXNcdKHogiFrGTjnqvyVG74HKMDinEEumNxdEqrkFM09ThCivyPYVv8VIndROaF68rD3xIyZx6', NULL, 2, 5, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(28, 'eBjwPXQ2zp1EjgFJddeCULbLkonG01bdqiRcgxJ5q10i5WcCe7', 'WV4xMxBRxFgTunMSKcTY1iLmzqAgAKACYAhaWkaopVTwKTXRspPJJ6ZJfhgYvNwuWkSdevA27ZnNDWttq1XWu7Sh6hQpTSYHwaaI', NULL, 5, 5, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(29, '3LbYXJAiQQk6t9dEPzdazm63oH23nEG4KMMYUqPYjkZvymdAxx', '1qwjdYigKAQ9JntCoysI9vSoLSk3EQvbeB0t5R2wgHYN24iv8DUzTYg5stzQDRISOERb9GOHsuBSGS4XekLf88elc4jp8awSrKBS', NULL, 1, 5, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(30, 'xmIXirj8DrjLJ7dn4CNtOkdpPVDlV7NJgckKXccNSvGAnIaej1', 'YWr2q4JF7utPfbUEDbUxCE1n7qI65AK3ffHqeh6nZJb8BjYjlSIXsAwpPFeObMdH2NTKysKFm4U3LeVQwVjCKSqqDnDqPXzoKvzN', NULL, 4, 5, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(31, 'e5hQZA4RY5jLz9BRKXsFg43rh0ngKFDEqQCUflWTtPAQZ6jYoW', 'KdVmCvSQAQUVwDOoZllpqr079mpF7pvYPVeG2xhp9Gn0MZl7lcFR23LrWft3yz2yQKgwavlsPdhv8gBO0uXHfNQP8XbOqU0XqBgD', NULL, 4, 6, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(32, 'PKwB0Qwr27MU1zs0FYgzxPZVMeRCk0RrqCBsGuHnx4aeGKWDOL', 'sOgiFsNAvtGTRv03WyFhZXDaQ7WJOlsGwQu0EdwOX8XczqYePcMtkrmoSJnPUntMPTTg1k13qV4mcsUDrOYlgBdmf41FUjx6b50f', NULL, 2, 6, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(33, 'zSnIPFz1tLHCu7ZhcVM6QA9OyWtVtooQb3Qhwuk8WJyp4d8WKB', 'G1mWg1HcrPP4fHyiY7FfFKHDgnTzfywmkyRaH07EiJNnFWPCM2wsLhbuuKN1i1ii5O8nY3sxOBYryE1LMvZqomdmpj9ERupNNXcY', NULL, 1, 6, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(34, 'ztCwHIuyyxF0bCAwsc1vg9lBGwMRF9mGfFcS3iGWoigrrKqeyU', 'ndrWSFsOME3dI1ujhlxqggbdADBV5vDrso4Tc3LHjTP0KmxVajVF9nIxxN3enrlD4jXHUc9xjpUdKZ9ixxUXhlgLpqsBRwJl3I50', NULL, 1, 6, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(35, 'B377YscUBVOjLev26f0i5Oy1VbXSpp2ZJJQtSuZepZkNBd0yX7', 'FugIxFPdjOSCeUeu0YaJa80xGgXd9RBLLcJVaSzoNE1WaNZQmym5ac3ykalw3FZhdghiD8vcoG17nx358h5d4EU6E51UPvNQ0Xfd', NULL, 4, 6, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(36, 'aUlPuxeZ6M242LhrHWQHmLgy5HFeaUJXCC2PlrYcbAOAvSWTRa', 'qOg1cJasP3fzcTaB5WeUdmsCxnJ78LPQtTtsim2kFxVYFEvcNRSxxEyEHB64EeG1UqLQh9QyKwQIK9XJ3bKPzlAtSSV9TI3hsQpc', NULL, 3, 6, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(37, 'TpC1sT9g9ZY0Z410O0FbeuX2SXXGG7RLQJS8niGF9vXGM9HHEB', 'c4ETPN9TrAn12WPqgIqUqmbqaxS5UhAS8Y468Imq3ccP6dzfcSXIrgcLQGoYXTUnD4PnQvWpf5LBgMcCBD7TLpiirRPr56E1DC8I', NULL, 4, 7, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(38, 'DxzNkLVbh7fagNIbjmzRQSnuHBmOyZkseQWisTw4c0R7Dr4bjE', 'QyMoaAPhPBRziUH7veK7n1gDXgxVjBb6SpxkqTfIkCecwcCh5i2Q8DKwUiwSotZqiDflSwv2n8bYJf2TYwrCmkEPgqlvWopvlXYY', NULL, 5, 7, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(39, 'czA5iiU6d8QgEmliIMUVW23IYdFMEMuqfyNW8pNBvR7i3pj100', 'GzLhmhZhobOq88x62ECIPEajT3IaSNJ8f82y28X9R1MpUKEQ5c9sVlzZLH2kwD0he0FybRVSL8ho2FUgWorCLlqIoIbHyBPk4lqh', NULL, 5, 7, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(40, 'MbIy6ntDd4cpJ9noRPkgNbKFpGEktp1q5JIeOGp7kUIRKBWTAm', 'Ll0QXMKIfJygV7ZSPLakGlf7Qmo02gK6YF0g88ID4XIgu40M8KqC7uornX3GZ3oLvnUrzSWAsAytLOSQFgjtZh7iXnON6L9poUZU', NULL, 4, 7, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(41, 'EZoEDv7CJ17GXPAOVABOSPWGoWvTpY1ZVGXnDOWWZGmbk519gw', 'qNjWPbAp9ncxAUmNqSbRM00y0vZdUxbt48gCNyISKFVIoRDuQquMBV23XkMaCYPNfB3odjpjvp39mM2W9BtRj4278IPNNkIwKDFT', NULL, 2, 7, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(42, 'E7rQaUjsHWHLNQuVGdUgJ1gMFpTArcQbbPu7kbXlsq8TgrC2Xu', 'Y5QFvCKiLK9AOVaapLTsKPr7zP4kz5HHUgMvMQBGAk4dUQqAg9Ei1QFQJMfkmn8ONpWTorkDDXgvHH0u7XQXuE0YOCoo2XAl6GRY', NULL, 5, 7, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(43, 'TjLOsvM30938yMYdjVLsXbWgHawAuTfyUD5qRzXGnWZq7cmm0m', 'yB36lqRZQL0BdEMkqq8oan95HvX73KKzeyPa67aFift7xPcZkJCE2tyhF5HVKfF1T9kyNIQVDwI1XoCcHPBTaloG8EI7FBo4PtXb', NULL, 2, 8, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(44, 'AS66KVOr2ZmajKsg4VPpAUUuF6qyRimIJf2ht4qWrf5W2DFnzF', 'eNkWyzkBi1AfD2o5cD7Krhxt44IAM1d9VqiZBr3sVKIL5mCzw3PXw6qb8SmaokhYI0ubg34P9gNdS37me4dkSC5CvLMsQ3L2XOhu', NULL, 1, 8, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(45, 'kGyXzpqixBfAO2hQBR73t2s7ayYOezVTrCpUEw3ffhXP1FUJd0', 'vawxF1ZpteW201BjIh9GxWYsygIhwOnGeHJxS27j46GvepdnvJhmyoOHw0tlkmTdUAzC7BQ6K6iWEERyAsAM8dQHIHQldZPCZj42', NULL, 2, 8, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(46, 'qHh2BvQinYaCrL8rsePtE928OP1L4fkfHP8jQ3rdPWhseeMMBD', 'zSbsNHMK4uKo3qSFrdXWJ3ZGFzszN2Jk1ceRY44iaB8k1jaBnEBJ6FnNZmwxdbSoLoAhslx8hbTwRTMfbVPXyGOBJlYT9d0qhzEM', NULL, 1, 8, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(47, 'oAZSQuY5E87nLWpMfaB4qaZhjFjb1b8tgdctLdjx0ZQj3gf0aX', '6fh4SgPLCBzvjmF5Wh7V9b3rt6zt4MBvAwFxAlHWA92qm5ITJHkJVaKKi7x6MysTaxChy6eUbLtxBiU59TuIgpenm3Ptum4FkjWn', NULL, 4, 8, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(48, 'c2obJGRQFN7nbeazNjdOrkfCulJ4o3b1M4tOEtuWyfuejLVRhn', 'hazHCZ2xQtfKWG5ZBaKsUHKO7zetmPJctpBe7kNvIL0R3oG2Jsv3Jgu6eUpZNr8GsxCKuUnMA61ZubGwH4TptNLWnyID5OPjLBJr', NULL, 5, 8, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(49, '9TXVjIvvy2FFD0SGnxUgTQMeOC59PN7hdOLI2X3ZTiA88O7PkI', 'HZnwbudmr9viBsHgv2JNHvGwMrVYZ7Xl3O4Jie2TpQ6hVzNeEXAUJgVSI1ZkWr4CF4pIq4wpvpU2di2Nx80sYFUg9xuT083wETVA', NULL, 2, 9, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(50, 'j7BPwjX39GK1ef3zC69UxTMeUOs9CUmZwwcnxi0Zk0I2dtCgiM', 'tZ1I111Fh9UYToW4hlF62lFITZfYIvrdAKgmz6J7xCRG2P7eKAyI8KCbxPDQyUjsepdwAuQ0jiBBX52aW8b4Kx4lORw3C9BwWx9Q', NULL, 2, 9, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(51, 'gB4LvveLd7ToDqc4z68nHR4vEUpdAArBXHBmT01Ss7IoFyiqhZ', 'oAcQd3tSFndnDmOY4CC3cykcS83ey5S2gGSi2uaoxqcgAtxSOtf6Ust1SEWIdQklUrkGyE6VRTsj4KkiUwzwJDNWSYbkJpGL16Nc', NULL, 1, 9, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(52, 'BtKLVCRYaszwOelcquuJEzEjxS5BHXIHrYJEuEu7neqYuG5enG', 'go2rPwEe0OyDgXSLfpMlIdYRIFRREiZ7ZiHokpDyrK5GG3yLhk6S5DXwBvin3eTCoffaSr6YbkJZZYAEay5VDO0oRKoxhGyhBX2I', NULL, 1, 9, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(53, 'dUQCYo5Gz3gX5b2lRBxt5w4ckipnQDvwaoQGSKHPO5wMxEKStX', 'eTTFxo6qYnZKssh8oBsh8l2zYj6xSVy8RqjqZLI1ijkGB0GruLf2W2ZHtZ86oCHjMtpj2w1NMxGlI7yD5SXzuywX93itWpKYg9T5', NULL, 2, 9, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(54, 'rF3kvKKWaDtFS6P3rD23iRHyCTgG296iurDfSeoBeaQU4gLNTG', 'NlCGrNclxLsvuPXTE5gkAe9B0VQCL1S6JLZaRUdp9nuJTXYoKeorm5nwJDON8wD1qrk9Lv12s06JcLumZdjei6BLQFmQcpzfJEPu', NULL, 3, 9, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(55, 'k5OzQ3UHRRXO4bqiK9UeiLEgCZlnK4PPKJtXTp7jpR78e40Oqh', 'xrU3YzG6KGgadvR8zLnw64BukXotthcZh6HF8o2ouQc4XaroA03vuucQZrqqQbO8vwMhpLAJ7V0m2ChwIhPEj2CtlvIKykR9AF0q', NULL, 5, 10, 1, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(56, 'VWr5X7aKndZofJ0eygFEVFspxL3Zz5PG2LXmWVNh9Yyfz3aVsj', 'G3r5g3CSn2MUlV9c4kB5cuczwSs702JNdqgd17ROQLennMNayBZGOMZYbpmeBXWP4stXGrLtRSD8JmzGO47Teryq2s8U3PomIYAu', NULL, 5, 10, 2, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(57, 'MoXcq3bEpz65qdXigmYogKtZ9UGkvmC5QqSmGgdZOtEoCY8cNu', 'p8RjrkvVCo25wHq1umcUbsW2rPfXieM7iSyDeGgq0p25Kz8ihg0sOUwIBXd4PzJSQuvgSGxZPOMkrikvD7wetdc5oqwPuWmUSUxz', NULL, 2, 10, 3, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(58, 'hSkaWSmr8KEpUMz5f6Y8jIuxD8E06YObiLhv4ZsTtUXwETkbOb', 'y1K2ZOGAKZ1aFEY5mnymL1J3cd1244xW6vR8SbfTL5w4QM9YwWLYyrwmTPG70x5Cpheq5igHu7PKN1PWGTVdNy6Jhyvxhfjbg4YD', NULL, 1, 10, 4, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(59, 'C7S2W4nWUCGNT5zbTD8PW18ZoatIwqqQhrqJkDwDTqi9ivwK3r', 'AqC9LCLsahYUtkZDBfpya5ylWzC2tfCXN0IfgIpual57BPFlAVqH7BFLlLzlkD6R8BEISAfuFqJVmnyR7GxontCI7Lp2qXmXzxja', NULL, 2, 10, 5, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL),
-(60, 'DKByQXlbxXetHZm2fv5D71zFTpnJTFsT9fWjrIgpGVs5ET9IVG', 'r5dxDk2ddVbmagKtxhR2T2ALQ0BUDMAe1sVBzYPF218B7wVy2ahAZo0lvBhCOjZN8KDfvNyG7x3ay0UJh1BL8hpiP2wNiajW5Lyx', NULL, 3, 10, 6, NULL, '2020-03-29 07:44:05', '2020-03-29 07:44:05', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -1316,96 +1294,11 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`image_id`, `image_path`, `real_estate_id`) VALUES
-(1, 'img/Product/20200218122336-5722_wm.jpg', 1),
-(2, 'img/Product/20200218122336-a28e_wm.jpg', 1),
-(3, 'img/Product/20200218122336-a078_wm.jpg', 1),
-(4, 'img/Product/20200218122336-5722_wm.jpg', 1),
-(5, 'img/Product/20200218122336-a28e_wm.jpg', 1),
-(6, 'img/Product/20200218122336-a078_wm.jpg', 1),
-(7, 'img/Product/20200218122336-5722_wm.jpg', 1),
-(8, 'img/Product/20200218122336-a28e_wm.jpg', 1),
-(9, 'img/Product/20200218122336-a078_wm.jpg', 1),
-(10, 'img/Product/20200218122336-5722_wm.jpg', 2),
-(11, 'img/Product/20200218122336-a28e_wm.jpg', 2),
-(12, 'img/Product/20200218122336-a078_wm.jpg', 2),
-(13, 'img/Product/20200218122336-5722_wm.jpg', 2),
-(14, 'img/Product/20200218122336-a28e_wm.jpg', 2),
-(15, 'img/Product/20200218122336-a078_wm.jpg', 2),
-(16, 'img/Product/20200218122336-5722_wm.jpg', 2),
-(17, 'img/Product/20200218122336-a28e_wm.jpg', 2),
-(18, 'img/Product/20200218122336-a078_wm.jpg', 2),
-(19, 'img/Product/20200218122336-5722_wm.jpg', 3),
-(20, 'img/Product/20200218122336-a28e_wm.jpg', 3),
-(21, 'img/Product/20200218122336-a078_wm.jpg', 3),
-(22, 'img/Product/20200218122336-5722_wm.jpg', 3),
-(23, 'img/Product/20200218122336-a28e_wm.jpg', 3),
-(24, 'img/Product/20200218122336-a078_wm.jpg', 3),
-(25, 'img/Product/20200218122336-5722_wm.jpg', 3),
-(26, 'img/Product/20200218122336-a28e_wm.jpg', 3),
-(27, 'img/Product/20200218122336-a078_wm.jpg', 3),
-(28, 'img/Product/20200218122336-5722_wm.jpg', 4),
-(29, 'img/Product/20200218122336-a28e_wm.jpg', 4),
-(30, 'img/Product/20200218122336-a078_wm.jpg', 4),
-(31, 'img/Product/20200218122336-5722_wm.jpg', 4),
-(32, 'img/Product/20200218122336-a28e_wm.jpg', 4),
-(33, 'img/Product/20200218122336-a078_wm.jpg', 4),
-(34, 'img/Product/20200218122336-5722_wm.jpg', 4),
-(35, 'img/Product/20200218122336-a28e_wm.jpg', 4),
-(36, 'img/Product/20200218122336-a078_wm.jpg', 4),
-(37, 'img/Product/20200218122336-5722_wm.jpg', 5),
-(38, 'img/Product/20200218122336-a28e_wm.jpg', 5),
-(39, 'img/Product/20200218122336-a078_wm.jpg', 5),
-(40, 'img/Product/20200218122336-5722_wm.jpg', 5),
-(41, 'img/Product/20200218122336-a28e_wm.jpg', 5),
-(42, 'img/Product/20200218122336-a078_wm.jpg', 5),
-(43, 'img/Product/20200218122336-5722_wm.jpg', 5),
-(44, 'img/Product/20200218122336-a28e_wm.jpg', 5),
-(45, 'img/Product/20200218122336-a078_wm.jpg', 5),
-(46, 'img/Product/20200218122336-5722_wm.jpg', 6),
-(47, 'img/Product/20200218122336-a28e_wm.jpg', 6),
-(48, 'img/Product/20200218122336-a078_wm.jpg', 6),
-(49, 'img/Product/20200218122336-5722_wm.jpg', 6),
-(50, 'img/Product/20200218122336-a28e_wm.jpg', 6),
-(51, 'img/Product/20200218122336-a078_wm.jpg', 6),
-(52, 'img/Product/20200218122336-5722_wm.jpg', 6),
-(53, 'img/Product/20200218122336-a28e_wm.jpg', 6),
-(54, 'img/Product/20200218122336-a078_wm.jpg', 6),
-(55, 'img/Product/20200218122336-5722_wm.jpg', 7),
-(56, 'img/Product/20200218122336-a28e_wm.jpg', 7),
-(57, 'img/Product/20200218122336-a078_wm.jpg', 7),
-(58, 'img/Product/20200218122336-5722_wm.jpg', 7),
-(59, 'img/Product/20200218122336-a28e_wm.jpg', 7),
-(60, 'img/Product/20200218122336-a078_wm.jpg', 7),
-(61, 'img/Product/20200218122336-5722_wm.jpg', 7),
-(62, 'img/Product/20200218122336-a28e_wm.jpg', 7),
-(63, 'img/Product/20200218122336-a078_wm.jpg', 7),
-(64, 'img/Product/20200218122336-5722_wm.jpg', 8),
-(65, 'img/Product/20200218122336-a28e_wm.jpg', 8),
-(66, 'img/Product/20200218122336-a078_wm.jpg', 8),
-(67, 'img/Product/20200218122336-5722_wm.jpg', 8),
-(68, 'img/Product/20200218122336-a28e_wm.jpg', 8),
-(69, 'img/Product/20200218122336-a078_wm.jpg', 8),
-(70, 'img/Product/20200218122336-5722_wm.jpg', 8),
-(71, 'img/Product/20200218122336-a28e_wm.jpg', 8),
-(72, 'img/Product/20200218122336-a078_wm.jpg', 8),
-(73, 'img/Product/20200218122336-5722_wm.jpg', 9),
-(74, 'img/Product/20200218122336-a28e_wm.jpg', 9),
-(75, 'img/Product/20200218122336-a078_wm.jpg', 9),
-(76, 'img/Product/20200218122336-5722_wm.jpg', 9),
-(77, 'img/Product/20200218122336-a28e_wm.jpg', 9),
-(78, 'img/Product/20200218122336-a078_wm.jpg', 9),
-(79, 'img/Product/20200218122336-5722_wm.jpg', 9),
-(80, 'img/Product/20200218122336-a28e_wm.jpg', 9),
-(81, 'img/Product/20200218122336-a078_wm.jpg', 9),
-(82, 'img/Product/20200218122336-5722_wm.jpg', 10),
-(83, 'img/Product/20200218122336-a28e_wm.jpg', 10),
-(84, 'img/Product/20200218122336-a078_wm.jpg', 10),
-(85, 'img/Product/20200218122336-5722_wm.jpg', 10),
-(86, 'img/Product/20200218122336-a28e_wm.jpg', 10),
-(87, 'img/Product/20200218122336-a078_wm.jpg', 10),
-(88, 'img/Product/20200218122336-5722_wm.jpg', 10),
-(89, 'img/Product/20200218122336-a28e_wm.jpg', 10),
-(90, 'img/Product/20200218122336-a078_wm.jpg', 10);
+(1, '/img/Product/1/Customer_c4ca4238a0b923820dcc509a6f75849b_2020_04_21_14_01_24.jpg', 1),
+(2, '/img/Product/1/Customer_c4ca4238a0b923820dcc509a6f75849b_2020_04_21_14_01_25.jpg', 1),
+(3, '/img/Product/1/Customer_c4ca4238a0b923820dcc509a6f75849b_2020_04_21_14_01_26.jpg', 1),
+(4, '/img/Product/1/Customer_c4ca4238a0b923820dcc509a6f75849b_2020_04_21_14_01_27.jpg', 1),
+(5, '/img/Product/1/Customer_c4ca4238a0b923820dcc509a6f75849b_2020_04_21_14_01_28.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -1709,8 +1602,10 @@ CREATE TABLE `real_estate` (
   `real_estate_acreage` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'diện tích bất động sản',
   `real_estate_avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'hình dại diện',
   `real_estate_price` decimal(18,4) UNSIGNED NOT NULL COMMENT 'giá trị',
-  `real_estate_longitude` decimal(8,6) DEFAULT NULL COMMENT 'kinh độ',
-  `real_estate_latitude` decimal(8,6) DEFAULT NULL COMMENT 'vĩ độ',
+  `real_estate_deposit` decimal(18,4) DEFAULT NULL,
+  `real_estate_contract` int(11) DEFAULT NULL,
+  `real_estate_longitude` decimal(10,6) DEFAULT NULL COMMENT 'kinh độ',
+  `real_estate_latitude` decimal(10,6) DEFAULT NULL COMMENT 'vĩ độ',
   `real_estate_status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'trạng thái',
   `type_id` int(10) UNSIGNED NOT NULL,
   `brokerage_fee_id` int(10) UNSIGNED DEFAULT NULL,
@@ -1728,17 +1623,8 @@ CREATE TABLE `real_estate` (
 -- Dumping data for table `real_estate`
 --
 
-INSERT INTO `real_estate` (`real_estate_id`, `real_estate_acreage`, `real_estate_avatar`, `real_estate_price`, `real_estate_longitude`, `real_estate_latitude`, `real_estate_status`, `type_id`, `brokerage_fee_id`, `district_id`, `ward_id`, `street_id`, `unit_id`, `customer_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(2, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(3, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(4, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(5, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(6, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(7, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(8, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(9, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL),
-(10, '60', 'img/Product/2020-02-18202907_20200218122330-a871_wm.jpg', '6000000000.0000', NULL, NULL, 'Đang bán', 1, NULL, 6, NULL, 1811, 3, NULL, '2020-03-30 07:45:10', '2020-03-30 07:45:10', NULL);
+INSERT INTO `real_estate` (`real_estate_id`, `real_estate_acreage`, `real_estate_avatar`, `real_estate_price`, `real_estate_deposit`, `real_estate_contract`, `real_estate_longitude`, `real_estate_latitude`, `real_estate_status`, `type_id`, `brokerage_fee_id`, `district_id`, `ward_id`, `street_id`, `unit_id`, `customer_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '98', 'img/Product/1/Customer_c4ca4238a0b923820dcc509a6f75849b_2020_04_21_14_01_24.jpg', '10000000000.0000', '5000000000.0000', 20, '15.930959', '107.864456', 'Đang bán', 2, NULL, 61, 958, NULL, 3, 1, '2020-04-21 07:01:24', '2020-04-21 07:01:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -33587,26 +33473,8 @@ CREATE TABLE `translation` (
 --
 
 INSERT INTO `translation` (`translation_id`, `translation_name`, `translation_address`, `translation_description`, `translation_locale`, `real_estate_id`) VALUES
-(1, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 1),
-(2, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 1),
-(3, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 2),
-(4, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 2),
-(5, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 3),
-(6, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 3),
-(7, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 4),
-(8, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 4),
-(9, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 5),
-(10, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 5),
-(11, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 6),
-(12, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 6),
-(13, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 7),
-(14, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 7),
-(15, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 8),
-(16, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 8),
-(17, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 9),
-(18, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 9),
-(19, 'Governmental house for sale on street 53, Go Vap 1', 'House for sale in Street 53 - District Go Vap - Ho Chi Minh', '<p>I sell the main house, red book, pay full tax.<br />\r\n                Square house with an area of 60m2 (4 * 15m).<br />\r\n                Structure 1 ground 2 floors solid including 1 living room, 4 bedrooms, 3WC, 1 drying yard. Cars can park in the house.<br />\r\n                Interior: Kitchen cabinets, cupboards, wine cabinets, ...<br />\r\n                Located in a high population, security, big roads, 2 cars passing in front of the house.<br />\r\n                Selling price of 6.3 billion negotiable little get fortune.</p>', 'en', 10),
-(20, 'Chính chủ bán nhà đường 53, Gò Vấp 1 trệt 2 lầu 4*15m, 2 xe hơi tránh nhau', 'Bán nhà riêng tại Đường 53 - Quận Gò Vấp - Hồ Chí Minh', '<p>T&ocirc;i b&aacute;n căn nh&agrave; ch&iacute;nh chủ, sổ đỏ, đ&oacute;ng thuế đầy đủ.<br />Nh&agrave; vu&ocirc;ng vức diện t&iacute;ch 60m2 (4*15m).<br />Kết cấu 1 trệt 2 lầu ki&ecirc;n cố gồm 1 ph&ograve;ng kh&aacute;ch, 4 ph&ograve;ng ngủ, 3WC, 1 s&acirc;n phơi. Xe hơi đậu được trong nh&agrave;.<br />Nội thất: Tủ bếp, tủ &acirc;m tường, tủ rượu,...<br />Nằm trong khu d&acirc;n tr&iacute; cao, an ninh, đường lớn, 2 xe hơi đi qua trước nh&agrave;.<br />Gi&aacute; b&aacute;n 6,3 tỷ thương lượng ch&uacute;t x&iacute;u lấy lộc.</p>', 'vi', 10);
+(1, 'Cần bán căn hộ 2 phòng ngủ tại Phước Mỹ, Quận Sơn Trà, Đà Nẵng', 'Đà Nẵng, Quận Sơn Trà, Phước Mỹ', '<p>Cần b&aacute;n căn hộ 2 ph&ograve;ng ngủ tại Phước Mỹ, Quận Sơn Tr&agrave;, Đ&agrave; Nẵng</p><p>Cần b&aacute;n căn hộ diện t&iacute;ch 98 m2 tại Wyndham Soleil Đ&agrave; Nẵng, gồm c&oacute; 2 ph&ograve;ng ngủ V&agrave; 2 ph&ograve;ng tắm nằm tại Phước Mỹ, Quận Sơn Tr&agrave;.<br /><br />Tiện nghi gồm c&oacute;: M&aacute;y lạnh, Khu vực BBQ, CCTV, Nh&acirc;n vi&ecirc;n lễ t&acirc;n, Ph&ograve;ng tập, S&acirc;n vườn, Thư viện, B&atilde;i đậu xe, S&acirc;n chơi, Bảo vệ, Hồ bơi V&agrave; WiFi.</p>', 'vi', 1),
+(2, '2 bedroom apartment for sale in Phuoc My, Son Tra District, Da Nang', 'Đà Nẵng, Quận Sơn Trà, Phước Mỹ', '<p>2 bedroom apartment for sale in Phuoc My, Son Tra District, Da Nang<br />Selling an apartment of 98 m2 in Wyndham Soleil Da Nang, including 2 bedrooms and 2 bathrooms located in Phuoc My, Son Tra District.</p><p>Facilities include: Air conditioning, BBQ area, CCTV, Receptionist, Gym, Garden, Library, Parking, Playground, Security, Pool And WiFi.</p>', 'en', 1);
 
 -- --------------------------------------------------------
 
@@ -33633,13 +33501,13 @@ INSERT INTO `type` (`type_id`, `form_id`) VALUES
 (7, 1),
 (8, 1),
 (9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 1),
-(14, 1),
-(15, 1),
-(16, 1);
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(15, 2),
+(16, 2);
 
 -- --------------------------------------------------------
 
@@ -33782,7 +33650,56 @@ CREATE TABLE `user_onlines` (
 INSERT INTO `user_onlines` (`uo_id`, `uo_session`, `uo_time`, `uo_active`) VALUES
 (1, 'aemvtnso8t6p0sctsv0eguv2o4', 1585472444, 1),
 (2, 'abq4b19onf3ola9a0f9d4mjit6', 1585564842, 1),
-(3, '0j02jg6h66k7p407ptceg9i9pf', 1585652674, 0);
+(3, '0j02jg6h66k7p407ptceg9i9pf', 1585662812, 1),
+(4, '73tqq48n19ckjd5popaejf8d0o', 1585736256, 1),
+(5, 't7loag4sael7hknp2mkqqbq9cp', 1585729664, 1),
+(6, 'gnj3blu0gmntl5c0f31ab3quc3', 1585729673, 1),
+(7, 'gngcfdhbatittnb7n4ct2r31ca', 1585731725, 1),
+(8, '119h91bb6627rivskga39f4mkt', 1585742833, 1),
+(9, 'rvpstfe56jdgjp1o3mbklc53hj', 1585753117, 1),
+(10, '9hh2vnont8673silfjdqute8qn', 1585754130, 1),
+(11, 'ki3k8t8mdeh1fa4a2imr96nrfm', 1585754402, 1),
+(12, 'tov93oorfrmen8o54923gj8g7c', 1585834471, 1),
+(13, 'mjh5emvb5mhnksglotnd5u2vup', 1585796954, 1),
+(14, 'c7p3tq55frf2l4k514irhgca1e', 1585797236, 1),
+(15, 'mqn8r9nhc1cim5gnfup0o3qk7j', 1585833502, 1),
+(16, '8rtplcspqkpr6vshtl8vvgvsp0', 1585922796, 1),
+(17, 'gqn7mvtg94qeikrs8kitl1r68c', 1585922847, 1),
+(18, 'h1c2tlols6v6j96alpke6hphoh', 1585920564, 1),
+(19, 'mh471ol7r93lg4ndvcmr1euisg', 1585926235, 1),
+(20, 'j129e2245ntbk0r90tp37pkbo7', 1586169002, 1),
+(21, 'hrk69tv6r2h9p4lvph5oav8ugq', 1586270095, 1),
+(22, 'i5mf1579fm7nellrgd7jvahemt', 1586435297, 1),
+(23, 'ah1a8gih76lposd9ujlpnj985e', 1586436051, 1),
+(24, '2epd2s7vrpcba7k7r5o5kk1h14', 1586524610, 1),
+(25, 'tpef4aqerchrtqjcsdnjmk37ev', 1586593092, 1),
+(26, '8t8a8k81n31lfpsidc121qg0sq', 1586674008, 1),
+(27, '3n6aplqv2jban761i8okcbthi7', 1586860118, 1),
+(28, 'kt9nmfecma3d31tt1itr9qvjph', 1586841014, 1),
+(29, 'mmceqnv805q66033imfo4v96jj', 1586859586, 1),
+(30, 'hatbt4k94i6fqfk9s7ga0ts9u2', 1586859444, 1),
+(31, 'g173u4h2sgscr8r888jomdipdl', 1586859591, 1),
+(32, 'fh8d9olfk8nknjctjm6d3qd7s3', 1586859727, 1),
+(33, 'dq4gbidp2arfoa72c69q02hbe1', 1586859742, 1),
+(34, '5jrs9i90icj17vpsrj3a84qra5', 1586963968, 1),
+(35, 'b779k6r0f7oih0lspdn7e6ve8b', 1586957393, 1),
+(36, '70n5v00sehj7v1ja3dnv577kg5', 1586958760, 1),
+(37, '693dvgu4rrcagr3n6l8pl74m7h', 1587033960, 1),
+(38, 'tkqe8isvphun5mkkd3tf1ah21u', 1587042159, 1),
+(39, 'sem46mv3rqbh41qbh8uugpgavv', 1587103762, 1),
+(40, 'abv4odjrpbsbj467buom7t2193', 1587114007, 1),
+(41, 'kd6669j88g9458rk97ou3tcs1m', 1587115424, 1),
+(42, '31mmp7edm7mbuatk9b3acf0b9i', 1587125057, 1),
+(43, 'asglc3vg4t8amit0uhmkag5nh7', 1587134696, 1),
+(44, 'ista0tle01na2t8ai7fgga6vkt', 1587210842, 1),
+(45, '2bgm9ecgh5ch0v2t0ej3vvdg3b', 1587222151, 1),
+(46, 'm3k7c0rs9a2b8m2of8l5gmgg9g', 1587306217, 1),
+(47, '8eis5ldl0art7g8rlfe4sd1tir', 1587288026, 1),
+(48, 'mdru6ii4ukhbsdmb2cdbugboeu', 1587392803, 1),
+(49, 'b2gbn3u7vk8mpgk9v78pt799o3', 1587352661, 1),
+(50, 'ik5t4spr1ggh4o81vcrenj6jd3', 1587369593, 1),
+(51, 'tapjfkmks5l4hidm25u246gtdc', 1587446467, 1),
+(52, 'd4mq2tlqlrs1vankv7kt018fc9', 1587455482, 0);
 
 -- --------------------------------------------------------
 
@@ -33801,9 +33718,7 @@ CREATE TABLE `view_product` (
 --
 
 INSERT INTO `view_product` (`view_product_id`, `real_estate_id`, `cookie_user_id`) VALUES
-(1, 3, 1),
-(2, 2, 1),
-(3, 5, 1);
+(1, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -45671,7 +45586,7 @@ ALTER TABLE `about_translation`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của tài khoản', AUTO_INCREMENT=11;
+  MODIFY `account_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của tài khoản', AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `banner`
@@ -45683,13 +45598,13 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `blog_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id';
+  MODIFY `blog_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `blog_translation`
 --
 ALTER TABLE `blog_translation`
-  MODIFY `blog_translation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id';
+  MODIFY `blog_translation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `brokerage_fee`
@@ -45707,13 +45622,13 @@ ALTER TABLE `brokerage_fee_translation`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng', AUTO_INCREMENT=15;
+  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng', AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `cart_temp`
 --
 ALTER TABLE `cart_temp`
-  MODIFY `cart_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm', AUTO_INCREMENT=2;
+  MODIFY `cart_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm';
 
 --
 -- AUTO_INCREMENT for table `code`
@@ -45731,13 +45646,13 @@ ALTER TABLE `code_type`
 -- AUTO_INCREMENT for table `convenience`
 --
 ALTER TABLE `convenience`
-  MODIFY `convenience_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `convenience_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cookie_user`
 --
 ALTER TABLE `cookie_user`
-  MODIFY `cookie_user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của cookie', AUTO_INCREMENT=2;
+  MODIFY `cookie_user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của cookie', AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `currency`
@@ -45749,7 +45664,7 @@ ALTER TABLE `currency`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của khách hàng', AUTO_INCREMENT=8;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của khách hàng', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `deposit_contract`
@@ -45761,7 +45676,7 @@ ALTER TABLE `deposit_contract`
 -- AUTO_INCREMENT for table `detail_cart`
 --
 ALTER TABLE `detail_cart`
-  MODIFY `detail_cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng', AUTO_INCREMENT=4;
+  MODIFY `detail_cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng';
 
 --
 -- AUTO_INCREMENT for table `detail_fee`
@@ -45773,7 +45688,7 @@ ALTER TABLE `detail_fee`
 -- AUTO_INCREMENT for table `detail_temp`
 --
 ALTER TABLE `detail_temp`
-  MODIFY `detail_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm', AUTO_INCREMENT=4;
+  MODIFY `detail_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của giỏ hàng tạm', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `district`
@@ -45785,7 +45700,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `evaluate`
 --
 ALTER TABLE `evaluate`
-  MODIFY `evaluate_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của đánh giá', AUTO_INCREMENT=61;
+  MODIFY `evaluate_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của đánh giá';
 
 --
 -- AUTO_INCREMENT for table `form`
@@ -45803,7 +45718,7 @@ ALTER TABLE `form_translation`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của hình ảnh', AUTO_INCREMENT=91;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của hình ảnh', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `image_contract`
@@ -45863,7 +45778,7 @@ ALTER TABLE `rank_translation`
 -- AUTO_INCREMENT for table `real_estate`
 --
 ALTER TABLE `real_estate`
-  MODIFY `real_estate_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của bất động sản', AUTO_INCREMENT=11;
+  MODIFY `real_estate_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của bất động sản', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -45917,7 +45832,7 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `translation`
 --
 ALTER TABLE `translation`
-  MODIFY `translation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của bất động sản dịch', AUTO_INCREMENT=21;
+  MODIFY `translation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của bất động sản dịch', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -45947,13 +45862,13 @@ ALTER TABLE `unit_translation`
 -- AUTO_INCREMENT for table `user_onlines`
 --
 ALTER TABLE `user_onlines`
-  MODIFY `uo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của đường', AUTO_INCREMENT=4;
+  MODIFY `uo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của đường', AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `view_product`
 --
 ALTER TABLE `view_product`
-  MODIFY `view_product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của danh sách yêu thích', AUTO_INCREMENT=4;
+  MODIFY `view_product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của danh sách yêu thích', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ward`
@@ -45971,7 +45886,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `wishlist_temp`
 --
 ALTER TABLE `wishlist_temp`
-  MODIFY `wishlist_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của danh sách yêu thích';
+  MODIFY `wishlist_temp_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của danh sách yêu thích', AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

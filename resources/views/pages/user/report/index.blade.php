@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('css')
+@push('css')
 <link href="{{ asset('user/account/style.css') }}" rel="stylesheet">
 <style>
     .list-group-item a {
@@ -43,7 +43,7 @@
         text-decoration: none;
     }
 </style>
-@endsection
+@endpush
 
 @section('page')
 
@@ -63,9 +63,6 @@
     </ul>
 </div>
 @endif
-
-
-
 <div class="wrap">
     <div class="container">
         <div class="row">
@@ -85,7 +82,7 @@
                             </a>
                         </li>
                         <li class="list-group-item active">
-                            <a href="{{route('account')}}">
+                            <a href="">
                                 <span>Thông tin cơ bản</span>
                             </a>
                         </li>
@@ -94,8 +91,8 @@
                                 <span>Đánh giá và nhận xét</span>
                             </a>
                         </li>
-                        <li class="list-group-item @if(!$check_re) disabled @endif">
-                            <a href="{{route('account.my_re')}}">
+                        <li class="list-group-item disabled">
+                            <a href="">
                                 <span>Bất động sản của bạn</span>
                             </a>
                         </li>
@@ -118,19 +115,20 @@
                 <div class="card content-card">
                     <div class="card-header contnet-header">
                         <p>Thông tin</p>
-                        <p>Xóa tài khoản</p><i class="fa fa-trash" aria-hidden="true"></i>
+                        <p>Xóa tài khoản  </p><i class="fa fa-trash" aria-hidden="true"></i>
                     </div>
-                    <form action="#">
+                    {{-- @foreach ($info as $info) --}}
+                    <form action="{{ route('account.update', ['account_id'=>$info->account_id]) }}">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="card-body">
-                                    <div class="form-group lang  col-md-12  ">
+                                    {{-- <div class="form-group lang  col-md-12  ">
 
                                         <img id="image" class="card-img-top" src="{{asset($info->customer_avatar)}}" />
                                         <input type="file" id="upload-image" name='avatar' accept="image/*" value=""
-                                            required
+                                        
                                             onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col-md-12">
                                         <label for="" class="control-label">Họ và Tên</label>
                                         <input type="text" class="form-control" placeholder="{{$info->customer_name}}">
@@ -144,7 +142,7 @@
                                         <label for="" class="control-label">Mật Khẩu</label>
                                         <div class="input-group">
                                             <input type="password" class="form-control" id="validationCustomUsername"
-                                                aria-describedby="inputGroupPrepend" required>
+                                                aria-describedby="inputGroupPrepend" readonly>
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend"
                                                     data-toggle="modal" data-target="#exampleModal">Change</span>
@@ -188,7 +186,7 @@
                                     <div class="form-group lang  col-md-12  ">
                                         <label class="control-label">Phường/Xã</label>
                                         <select class="form-control" aria-hidden="true">
-                                            <option>Hưng Lợi</option>
+                                            <option  value="{{$info->ward_id}}" selected>{{$info->ward_id}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-12">
@@ -203,6 +201,7 @@
                             </div>
                         </div>
                     </form>
+                    {{-- @endforeach --}}
                 </div>
             </div>
         </div>
@@ -210,41 +209,6 @@
 </div>
 
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thay đổi mật khẩu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <div class="form-group col-md-12">
-                        <label for="" class="control-label">Mật khẩu cũ</label>
-                        <input type="password" class="form-control">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="control-label">Mật khẩu mới</label>
-                        <input type="password" class="form-control">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="" class="control-label">Nhập lại MK mới</label>
-                        <input type="password" class="form-control" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Lưu</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

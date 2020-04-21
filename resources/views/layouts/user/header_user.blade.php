@@ -30,7 +30,7 @@
                     </div>
                     @endforeach
 
-                    <a href="" class="news">Tin tức</a>
+                    <a href="{{route('list_blog')}}" class="news">Tin tức</a>
                 </div>
             </div>
             <div class="col-lg-6 text-lg-right header-top-right">
@@ -70,8 +70,7 @@
                     <a href="{{route('lang',['vi']) }}">Vi</a>
                     <a href="{{route('lang',['en']) }}">En</a>
                     <a href=""><i class="fas fa-bell"></i></i><span class="badge badge-danger badge-pill">14</span></a>
-                    <a href="{{route('account',\Auth::guard('account')->user()->account_id) }}"><i
-                            class="fas fa-user-circle"></i></i>@lang('Account')</a>
+                    <a href="{{route('account') }}"><i class="fas fa-user-circle"></i></i>@lang('Account')</a>
                     <a href="{{url('cart/') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
 
 

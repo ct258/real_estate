@@ -28,7 +28,7 @@
                     </div>
                     @endforeach
 
-                    <a href="" class=" news">Tin tức</a>
+                    <a href="{{route('list_blog')}}" class=" news">Tin tức</a>
                 </div>
             </div>
             <div class="col-lg-6 text-lg-right header-top-right">

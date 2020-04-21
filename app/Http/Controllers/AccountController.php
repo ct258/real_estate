@@ -26,6 +26,7 @@ class AccountController extends Controller
 
     public function postLogin(Request $request)
     {
+
         $arr = [
             'username' => $request->username,
             'password' => $request->password,
@@ -121,15 +122,33 @@ class AccountController extends Controller
 
         return redirect('/');
     }
+    public function phone(Request $request)
+    {
+        $string=rand(1000,9999);
+        // $nexmo = app('Nexmo\Client');
 
+        // $nexmo->message()->send([
+        //     'to'   => '+84 522 970 498',
+        //     'from' => '+84 522 970 498',
+        //     'text' => 'BatdongsanCanTho: '.$string.', co hieu luc 5 phut',
+        // ]);
+        $request->merge(['text' => ($string)]);
+        // $request->merge(['text' => (\Hash::make($string))]);
+        return view('auth.verty',compact('request'));
+    }
     public function register(Request $request)
     {
+// dd($request);
+        $a=\Hash::make($request->code);
+        if(!\Hash::check($request->verify,$a)){
+            return view('auth.verty',compact('request'));
+        }
         $account_id = Account::insertGetId(array(
             'username' => $request->username,
             'password' => \Hash::make($request->password),
             'role_id'  => 3,
         ));
-        $customer_id=Customer::insertGetid([
+        $customer_id=Customer::insertGetId([
             'customer_name'          => $request->fullname,
             'customer_email'         => $request->email,
             'customer_tel'           => $request->phone,
@@ -139,14 +158,14 @@ class AccountController extends Controller
             'customer_identity_card' => $request->IDCard,
             'rank_id'                => 1,
             'account_id'             => $account_id,
-            'ward_id'                => $request->ward,
+            'ward_id'                => $request->ward
         ]);
         Cart::insert([
             'customer_id'=>$customer_id,
             'cart_status'=>null,
         ]);
 
-        return view('pages.user.index');
+        return redirect()->route('index');
     }
 
     public function find_username($username)
@@ -157,22 +176,5 @@ class AccountController extends Controller
         } else {
             echo true;
         }
-    }
-    public function show_info(Request $request,$account_id)
-    {
-        $info=Account::join('customer','customer.account_id','account.account_id')
-        ->where('account.account_id',$account_id)
-        ->first();
-        $locale="";
-        // if($info->ward_id){
-
-        //     $locale=Ward::join('district','district.district_id','ward.district_id')
-        //     ->join('province','province.province_id','ward.province_id')
-        //     ->select('ward_name','district_name','province_name')
-        //     ->where('ward_id',$info->ward_id)
-        //     ->get();
-        // }
-        // dd($info);
-        return view('pages.user.account.account',compact('info'));
     }
 }

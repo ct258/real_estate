@@ -81,7 +81,7 @@ class IndexController extends Controller
         'translation_description',
         'translation.translation_name',
         'province.province_name',
-        'district.district_name',)
+        'district.district_name')
         ->where([['cookie_user.cookie_user_id',\Cookie::get('real_estate')],
         ['translation_locale', \Session::get('lang', config('app.locale'))],
         ['real_estate_status','Đang bán']])
@@ -141,7 +141,6 @@ class IndexController extends Controller
         }
 
 
-
         //lấy sp đã xem
         $view=$real_estate
         ->join('view_product','view_product.real_estate_id','real_estate.real_estate_id')
@@ -154,11 +153,14 @@ class IndexController extends Controller
             ])
         ->limit(6)
         ->get();
+        if($view_product->isEmpty()){
+            $day_view=null;
+            $price_view=null;
+        }
         foreach ($view_product as $key => $value) {
             $day_view[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
             $price_view[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate;
         }
-
 
         //lấy blog
         $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
@@ -170,8 +172,9 @@ class IndexController extends Controller
         foreach ($blog as $key => $value) {
             $day_blog[$value['blog_id']] = $value->created_at->diffForHumans(($now));
         }
+        
         return view('pages.user.index',
-        compact(
+        \compact(
         'rate',
         'product',
         'day_product',
@@ -180,7 +183,7 @@ class IndexController extends Controller
         'day_view',
         'price_view',
         'blog',
-        'day_blog'));
+        'day_blog',));
 
     }
 }
