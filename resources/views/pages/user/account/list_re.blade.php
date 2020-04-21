@@ -40,6 +40,10 @@
         color: white;
 
     }
+
+    section.feature-section.spad {
+        margin-top: 100px !important;
+    }
 </style>
 @endpush
 @section('page')
