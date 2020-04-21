@@ -162,7 +162,6 @@ class IndexController extends Controller
             $price_view[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate;
         }
 
-
         //lấy blog
         $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
         ->select('blog_translation_title','blog_translation_intro','blog.created_at','blog_avatar')
@@ -173,6 +172,7 @@ class IndexController extends Controller
         foreach ($blog as $key => $value) {
             $day_blog[$value['blog_id']] = $value->created_at->diffForHumans(($now));
         }
+        
         return view('pages.user.index',
         \compact(
         'rate',
