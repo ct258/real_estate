@@ -17,6 +17,7 @@ use App\Models\WishList;
 use App\Models\WishListTemp;
 use App\Models\Cart;
 use App\Models\DetailCart;
+use App\Models\Convenience;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
@@ -295,7 +296,6 @@ class ClientController extends Controller
         ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
         ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
         ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
-        ->leftjoin('convenience','convenience.real_estate_id','real_estate.real_estate_id')
         ->select('real_estate.real_estate_id',
         'real_estate_price',
         'real_estate_acreage',
@@ -303,7 +303,6 @@ class ClientController extends Controller
         'real_estate_latitude',
         'real_estate.created_at',
         'translation.*',
-        'convenience.*',
         'unit_translation.unit_translation_name',
         'province.province_name',
         'district.district_name')
@@ -312,6 +311,7 @@ class ClientController extends Controller
             ['translation_locale', \Session::get('lang', config('app.locale'))],
             ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
         ->first();
+        $convenience=Convenience::where('real_estate_id',$real_estate_id)->first();
         $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
         // lấy hàm kiểm tra đã thích hay chưa
@@ -351,7 +351,8 @@ class ClientController extends Controller
         'per_rank_1',
         'heart',
         'real_id',
-        'province'
+        'province',
+        'convenience'
         ));
     }
 
