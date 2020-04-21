@@ -17,6 +17,8 @@ class CreateRealEstateTable extends Migration
                 $table->string('real_estate_acreage')->index()->comment('diện tích bất động sản');
                 $table->string('real_estate_avatar')->comment('hình dại diện');
                 $table->decimal('real_estate_price', 18, 4)->unsigned()->index()->comment('giá trị');
+                $table->decimal('real_estate_deposit', 18, 4)->unsigned()->nullable()->comment('giá đặt cọc');
+                $table->integer('real_estate_contract')->unsigned()->nullable()->comment('thời gian cung cấp giấy tờ');
                 $table->decimal('real_estate_longitude', 8, 6)->nullable()->comment('kinh độ');
                 $table->decimal('real_estate_latitude', 8, 6)->nullable()->comment('vĩ độ');
                 $table->string('real_estate_status')->comment('trạng thái');
