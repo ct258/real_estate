@@ -12,17 +12,20 @@
     path {
         color: white;
     }
-    #form01{
+
+    #form01 {
         padding: 5px 10px;
         margin-right: 25px;
     }
+
     div#form02 {
-    border: 1px solid darkslategrey;
-    padding: 2px;
-    padding-bottom: 10px;
-    padding-left: 45px;
-    padding-right: 5px;
-}
+        border: 1px solid darkslategrey;
+        padding: 2px;
+        padding-bottom: 10px;
+        padding-left: 45px;
+        padding-right: 5px;
+    }
+
     .buy {
         border: none;
         white-space: nowrap;
@@ -49,11 +52,13 @@
     .single-list-content {
         padding: 40px 30px;
     }
-    #phananh{
+
+    #phananh {
         color: #69bcff;
         /* color: ; */
     }
-    .phananh{
+
+    .phananh {
         color: 69bcff;
         cursor: pointer;
     }
@@ -387,36 +392,39 @@
                                         {{number_format($real_estate->real_estate_price)}}
 
                                     </div>
+                                    @if ($convenience)
+
                                     <div class="col-sm-3">
-                                        @if ($real_estate->convenience_facade!=0)
-                                        @lang('facade')
-                                        {{$real_estate->convenience_facade}}
-                                        @endif
+                                        <?php if ($convenience->convenience_facade!=0)
+                                        echo "@lang('facade')";
+                                        $convenience->convenience_facade;
+                                        ?>
                                     </div>
                                     <div class="col-sm-3">
-                                        @if ($real_estate->convenience_way!=0)
-                                        @lang('way')
-                                        {{$real_estate->convenience_way}}
-                                        @endif
+                                        <?php if ($convenience->convenience_way!=0)
+                                        echo "@lang('way')";
+                                        $convenience->convenience_way;
+                                        ?>
                                     </div>
                                     <div class="col-sm-3">
-                                        @if ($real_estate->convenience_floor!=0)
-                                        <i class="fas fa-building"></i>
-                                        {{$real_estate->convenience_floor}}
-                                        @endif
+                                        <?php if ($convenience->convenience_floor!=0)
+                                         echo "<i class='fas fa-building'></i>";
+                                        $convenience->convenience_floor;
+                                        ?>
                                     </div>
                                     <div class="col-sm-3">
-                                        @if ($real_estate->convenience_bedroom!=0)
-                                        <i class="fa fa-bed"></i>
-                                        {{$real_estate->convenience_bedroom}}
-                                        @endif
+                                        <?php if ($convenience->convenience_bedroom!=0)
+                                        echo "<i class='fa fa-bed'></i>";
+                                        $convenience->convenience_bedroom;
+                                        ?>
                                     </div>
                                     <div class="col-sm-3">
-                                        @if ($real_estate->convenience_bathroom!=0)
-                                        <i class="fa fa-bath"></i>
-                                        {{$real_estate->convenience_bathroom}}
-                                        @endif
+                                        <?php if ($convenience->convenience_bathroom!=0)
+                                        echo "<i class='fa fa-bath'></i>";
+                                        $convenience->convenience_bathroom;
+                                        ?>
                                     </div>
+                                    @endif
                                     <div class="col-sm-3">
                                         {{-- <a type="button" id="wishlist"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"><i
@@ -468,25 +476,26 @@
                     </div>
                 </div>
                 <br>
-                <span id="phananh" ><i class="far fa-comment-alt"></i></span>
-                       
-                            <span  id="inputGroupPrepend" class="phananh"  data-toggle="modal" data-target="#exampleModal">
-                                Phản ánh thông tin sản phẩm không chính xác.
-                            </span>
-                            
-                            <form action="{{ route('customer.report.create.submit',$real_estate->real_estate_id) }}" method="post">
-                                @csrf
+                <span id="phananh"><i class="far fa-comment-alt"></i></span>
 
-                                <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span id="inputGroupPrepend" class="phananh" data-toggle="modal" data-target="#exampleModal">
+                    Phản ánh thông tin sản phẩm không chính xác.
+                </span>
+
+                <form action="{{ route('customer.report.create.submit',$real_estate->real_estate_id) }}" method="post">
+                    @csrf
+
+                    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                                {{-- <div class="col-sm-5 m-b-xs">
+                                    </button>
+                                </div>
+                                {{-- <div class="col-sm-5 m-b-xs">
                                                     <select name="content" class="input-sm form-control w-sm inline v-middle">
                                                     <option >Bulk action</option>
                                                     <option >Delete selected</option>
@@ -494,37 +503,43 @@
                                                     <option value="3">Export</option>
                                                     </select>
                                                 </div> --}}
-                                    <div class="modal-body" >
-                                        <div class="col-md-7" id="form02">
-                                            <label for="recipient-name" class="col-form-label" style="font-weight:bold;">Thông tin khách hàng</label>
-                                            <br>
-                                            <label for="recipient-name" class="col-form-label">Họ tên:</label>
-                                            <button id="form01" disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
-                                            <label for="recipient-name" class="col-form-label">Số điện thoại</label>
-                                            <button id="form01" disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
-                                           
-                                        </div>
-                                        <form>
-                                            <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các thông tin liên quan đến nội dung mô tả và 
-                                                thông tin địa ốc. Các vấn đề liên quan khác vui 
-                                                lòng liên hệ tổng đài 1900-6035 để được hỗ trợ.</label>
+                                <div class="modal-body">
+                                    <div class="col-md-7" id="form02">
+                                        <label for="recipient-name" class="col-form-label"
+                                            style="font-weight:bold;">Thông tin khách hàng</label>
+                                        <br>
+                                        <label for="recipient-name" class="col-form-label">Họ tên:</label>
+                                        <button id="form01"
+                                            disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
+                                        <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+                                        <button id="form01"
+                                            disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
+
+                                    </div>
+                                    <form>
+                                        <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các
+                                            thông tin liên quan đến nội dung mô tả và
+                                            thông tin địa ốc. Các vấn đề liên quan khác vui
+                                            lòng liên hệ tổng đài 1900-6035 để được hỗ trợ.</label>
                                         <div class="form-group">
-                                            <label for="message-text" class="col-form-label">Vui lòng mô tả vấn đề cần phản ánh</label>
-                                            <textarea class="form-control" id="message-text" name="content" placeholder="Nhập..."></textarea>
+                                            <label for="message-text" class="col-form-label">Vui lòng mô tả vấn đề cần
+                                                phản ánh</label>
+                                            <textarea class="form-control" id="message-text" name="content"
+                                                placeholder="Nhập..."></textarea>
                                         </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <button type="submit" class="btn btn-primary"  >Báo cáo</button>
-                                    </div>
-                                    </div>
+                                    </form>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-primary">Báo cáo</button>
                                 </div>
-                            </form>
-                            <br>
-                            <br>
-                
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <br>
+
                 <h3 class="sl-sp-title">Mô tả chi tiết</h3>
                 <div class="description" style="font-family: sans-serif;">
                     <p>{!!$real_estate->translation_description!!}</p>
@@ -534,74 +549,77 @@
                 <div id="field" data-longitude="{{$real_estate->real_estate_longitude}}"
                     data-latitude="{{$real_estate->real_estate_latitude}}"></div>
                 <div id="issMap"></div>
+                @if ($convenience)
+
                 <h3 class="sl-sp-title">Tiện nghi</h3>
                 <div class="row property-details-list">
-                    @if ($real_estate->convenience_air_conditioning!=0)
+                    <?php if ($convenience->convenience_air_conditioning!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-wind"></i> @lang('Air Conditioning')</p>
-                    @endif
-                    @if ($real_estate->convenience_BBQ_area!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wind'></i> @lang('Air Conditioning')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_BBQ_area!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-dumpster-fire"></i> @lang('BBQ Area')</p>
-                    @endif
-                    @if ($real_estate->convenience_CCTV!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumpster-fire'></i> @lang('BBQ Area')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_CCTV!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-video"></i> @lang('CCTV')</p>
-                    @endif
-                    @if ($real_estate->convenience_concierge!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-video'></i> @lang('CCTV')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_concierge!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-concierge-bell"></i> @lang('Concierge')</p>
-                    @endif
-                    @if ($real_estate->convenience_fitness!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-concierge-bell'></i> @lang('Concierge')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_fitness!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-dumbbell"></i> @lang('Fitness')</p>
-                    @endif
-                    @if ($real_estate->convenience_garden!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumbbell'></i> @lang('Fitness')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_garden!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-seedling"></i> @lang('Garden')</p>
-                    @endif
-                    @if ($real_estate->convenience_library!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-seedling'></i> @lang('Garden')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_library!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fa fa-book"></i> @lang('Library')</p>
-                    @endif
-                    @if ($real_estate->convenience_mountain_view!=0)
+                    <p class='col-xs-12 col-sm-4'><i class='fa fa-book'></i> @lang('Library')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_mountain_view!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-mountain"></i> @lang('Mountain View')</p>
-                    @endif
-                    @if ($real_estate->convenience_parking!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-car"></i> @lang('Parking')</p>
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-mountain'></i> @lang('Mountain View')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_parking!=0) echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-car'></i> @lang('Parking')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_playground!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-campground"></i> @lang('Playground')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_playground!=0)echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-campground'></i> @lang('Playground')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_ocean_view!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-umbrella-beach"></i> @lang('Sea/Ocean View')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_ocean_view!=0) echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-umbrella-beach'></i> @lang('Sea/Ocean View')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_security!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-user-shield"></i> @lang('Security')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_security!=0) echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-user-shield'></i> @lang('Security')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_swimming_pool!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-swimming-pool"></i> @lang('Swimming Pool')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_swimming_pool!=0)echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-swimming-pool'></i> @lang('Swimming Pool')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_tennis!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-baseball-ball"></i> @lang('Tennis')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_tennis!=0)echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-baseball-ball'></i> @lang('Tennis')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_wifi!=0)
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-wifi"></i> @lang('Wi Fi')</p>
+                   "?>
+                    <?php  if ($convenience->convenience_wifi!=0)echo"
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wifi'></i> @lang('Wi Fi')</p>
 
-                    @endif
-                    @if ($real_estate->convenience_tivi!=0)
+                   "?>
+                    <?php  if ($convenience->convenience_tivi!=0) echo"
 
-                    <p class="col-xs-12 col-sm-4"><i class="fas fa-tv"></i> @lang('Tivi')</p>
-                    @endif
+                    <p class='col-xs-12 col-sm-4'><i class='fas fa-tv'></i> @lang('Tivi')</p>
+                    "?>
 
                 </div>
+                @endif
                 <h3 class="sl-sp-title">Đánh giá</h3>
                 <div class="container-fuild">
                     <div class="row customer_rating" class="rating">
@@ -775,6 +793,7 @@
     </div>
 </section>
 <!-- Page end -->
+
 
 {{-- reply comment --}}
 <div class="modal fade reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

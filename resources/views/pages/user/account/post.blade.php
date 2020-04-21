@@ -62,6 +62,18 @@
     crossorigin=""></script>
 @endpush
 @section('page')
+@if($message = Session::get('success'))
+<div class="alert alert-success" role="alert">
+    <p>{{$message}}</p>
+    <p class="mb-0"></p>
+</div>
+@endif
+@if($error = Session::get('error'))
+<div class="alert alert-danger" role="alert">
+    <p>{{$error}}</p>
+    <p class="mb-0"></p>
+</div>
+@endif
 <!-- Page -->
 <section class="page-section list">
     <div class="container">
@@ -125,7 +137,7 @@
                                             style="width:2%;" ;>
                                         <label>Tên Bất động sản</label>
                                         <input type="text" name="name_en" size="100%" autofocus
-                                            class="form-control input-transparent"><br></td>
+                                            class="form-control input-transparent" required><br></td>
                                 </tr>
 
                                 <tr>
@@ -133,7 +145,8 @@
                                         <img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg"
                                             style="width:2%;" ;>
                                         <label>Địa chỉ</label>
-                                        <input type="text" name="address_en" class="form-control input-transparent"><br>
+                                        <input type="text" name="address_en" class="form-control input-transparent"
+                                            required><br>
                                     </td>
                                 </tr>
 
@@ -143,8 +156,8 @@
                                             style="width:2%;" ;>
                                         <label>Mô tả</label>
                                         <textarea name="description_en" cols="30" id="editor2"
-                                            style="max-width:100%;height: 235px;"
-                                            class="form-control input-transparent"></textarea>
+                                            style="max-width:100%;height: 235px;" class="form-control input-transparent"
+                                            required></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -363,8 +376,15 @@
                                 <tr>
                                     <td>
                                         <label>Diện tích</label>
-                                        <input type="text" name="acreage" class="form-control input-transparent"
-                                            required><br>
+                                        <input type="number" name="acreage" min="0" step="any"
+                                            class="form-control input-transparent" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Giá đặt cọc</label>
+                                        <input type="number" name="deposit" min="0" step="any"
+                                            class="form-control input-transparent"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -372,6 +392,13 @@
                                         <label>Giá dự án</label>
                                         <input type="number" name="price" min="0" step="any"
                                             class="form-control input-transparent" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Thời gian cung cấp giấy tờ pháp lý sau khi đặt cọc</label>
+                                        <input type="number" name="contract" min="0" step="any" placeholder="ngày"
+                                            class="form-control input-transparent"><br>
                                     </td>
                                 </tr>
 

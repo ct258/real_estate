@@ -51,7 +51,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // var_dump($request->request);die;
         if($request->bando==false){
 
             $real_estate_longitude=null;
@@ -83,6 +83,8 @@ class PostController extends Controller
                     'district_id' => $request->district,
                     'unit_id' => $request->unit,
                     'real_estate_status' => "Đang bán",
+                    'real_estate_contract' => $request->contract,
+                    'real_estate_deposit' => $request->deposit*$unit->unit_value,
                     'real_estate_avatar' =>'img/Product/'.$customer_id.'/'.$name_file,
                     'real_estate_longitude' =>$real_estate_longitude,
                     'real_estate_latitude' =>$real_estate_latitude,
@@ -101,7 +103,7 @@ class PostController extends Controller
                 'translation_locale' => 'en',
                 'real_estate_id' => $real_estate_id,
             ]]);
-            if($request->house==true){
+            if($request->house=='true'){
                 Convenience::insert([
                     'convenience_facade'=>$request->convenience_facade,
                     'convenience_way'=>$request->convenience_way,
@@ -176,34 +178,34 @@ class PostController extends Controller
     public function edit($real_estate_id)
     {
 
-            $real_estate = RealEstate::leftjoin('convenience','convenience.real_estate_id','real_estate.real_estate_id')
-            ->join('type','type.type_id','real_estate.type_id')
-            ->join('type_translation','type.type_id','type_translation.type_id')
-->join('form','form.form_id','type.form_id')
-->join('form_translation','form.form_id','form_translation.form_id')
-->join('unit','unit.unit_id','real_estate.unit_id')
-->join('unit_translation','unit.unit_id','unit_translation.unit_id')
-->join('ward','ward.ward_id','real_estate.ward_id')
-->join('district','district.district_id','ward.district_id')
-->join('province','province.province_id','district.province_id')
-->leftjoin('street','street.street_id','real_estate.street_id')
-->where([
-    ['real_estate.real_estate_id',$real_estate_id],
-    ['form_translation_locale',\Session::get('lang',config('app.locale'))],
-    ['type_translation_locale',\Session::get('lang',config('app.locale'))],
-    ['unit_translation_locale',\Session::get('lang',config('app.locale'))],
-    ])->first();
-$real_estate->real_estate_price=$real_estate->real_estate_price/$real_estate->unit_value;
-// dd($real_estate);
-    $tran_vi=RealEstate::join('translation','translation.real_estate_id','real_estate.real_estate_id')
-    ->where('translation_locale','vi')->first();
-    $tran_en=RealEstate::join('translation','translation.real_estate_id','real_estate.real_estate_id')
-    ->where('translation_locale','en')->first();
+        $real_estate = RealEstate::leftjoin('convenience','convenience.real_estate_id','real_estate.real_estate_id')
+        ->join('type','type.type_id','real_estate.type_id')
+        ->join('type_translation','type.type_id','type_translation.type_id')
+        ->join('form','form.form_id','type.form_id')
+        ->join('form_translation','form.form_id','form_translation.form_id')
+        ->join('unit','unit.unit_id','real_estate.unit_id')
+        ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
+        ->join('ward','ward.ward_id','real_estate.ward_id')
+        ->join('district','district.district_id','ward.district_id')
+        ->join('province','province.province_id','district.province_id')
+        ->leftjoin('street','street.street_id','real_estate.street_id')
+        ->where([
+            ['real_estate.real_estate_id',$real_estate_id],
+            ['form_translation_locale',\Session::get('lang',config('app.locale'))],
+            ['type_translation_locale',\Session::get('lang',config('app.locale'))],
+            ['unit_translation_locale',\Session::get('lang',config('app.locale'))],
+            ])->first();
+        $real_estate->real_estate_price=$real_estate->real_estate_price/$real_estate->unit_value;
+        // dd($real_estate);
+            $tran_vi=RealEstate::join('translation','translation.real_estate_id','real_estate.real_estate_id')
+            ->where('translation_locale','vi')->first();
+            $tran_en=RealEstate::join('translation','translation.real_estate_id','real_estate.real_estate_id')
+            ->where('translation_locale','en')->first();
 
-$image=Image::where('real_estate_id',$real_estate_id)->get();
-$form=Form::join('form_translation','form.form_id','form_translation.form_id')->where('form_translation_locale',\Session::get('lang',config('app.locale')))->get();
-$province=Province::all();
-            return view('pages.user.account.edit',compact('tran_en','tran_vi','real_estate','image','form','province'));
+        $image=Image::where('real_estate_id',$real_estate_id)->get();
+        $form=Form::join('form_translation','form.form_id','form_translation.form_id')->where('form_translation_locale',\Session::get('lang',config('app.locale')))->get();
+        $province=Province::all();
+        return view('pages.user.account.edit',compact('tran_en','tran_vi','real_estate','image','form','province'));
     }
 
     /**
