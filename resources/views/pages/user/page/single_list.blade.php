@@ -378,12 +378,17 @@
                         <div class="col-xl-8 sl-title">
                             <h2>{{$real_estate->translation_name}}</h2>
                             <p><i class="fa fa-map-marker"></i> {{$real_estate->translation_address}}</p>
-
+                           
+                            
+                           
+                            
 
                         </div>
                         <div class="col-xl-4">
                             <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
                                 class="price-btn">@lang('Buy')</a>
+
+                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"  class="rent-notic apointment">Đăt lịch hẹn</a>
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
                         </div>
@@ -481,8 +486,9 @@
                                                 ?>
                                                 <a href="{{route('subscription')}}" class="rent-notic"
                                                     id="subscription">Đăng
-                                                    ký</a>
+                                                    ký</a> 
                                                 @endif
+                                               
 
                                     </div>
                                 </div>
@@ -752,19 +758,19 @@
                     <h3 class="sl-sp-title">Đánh giá</h3>
                     <div id="rating">
                         <input type="radio" id="star5" name="rating" value="5" />
-                        <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <label class = "full" for="star5" ></label>
                      
                         <input type="radio" id="star4" name="rating" value="4" />
-                        <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <label class = "full" for="star4" ></label>
                      
                         <input type="radio" id="star3" name="rating" value="3" />
-                        <label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <label class = "full" for="star3" ></label>
                      
                         <input type="radio" id="star2" name="rating" value="2" />
-                        <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <label class = "full" for="star2" ></label>
                      
                         <input type="radio" id="star1" name="rating" value="1" />
-                        <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <label class = "full" for="star1" ></label>
                     </div>
                    
                 </div>

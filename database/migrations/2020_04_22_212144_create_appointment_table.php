@@ -15,7 +15,9 @@ class CreateAppointmentTable extends Migration
     {
         Schema::create('appointment', function (Blueprint $table) {
             $table->increments('appointment_id');
-            $table->string('appointment_time')->index()->comment('Thời gian hẹn');
+            $table->integer('customer_id');
+            $table->integer('real_estate_id');
+            $table->dateTime('appointment_time')->index()->comment('Thời gian hẹn');
             $table->string('appointment_content')->index()->comment('Nội dung cuộc hẹn');
             $table->string('appointment_status')->index()->comment('Trạng thái cuộc hẹn');
             
@@ -32,8 +34,8 @@ class CreateAppointmentTable extends Migration
             ->nullable()
             ->comment('ngày xóa tạm');
         
-         DB::statement("ALTER TABLE `appointment` comment 'Cuộc hẹn'");
-        });
+        
+        }); DB::statement("ALTER TABLE `appointment` comment 'Cuộc hẹn'");
     }
 
     /**

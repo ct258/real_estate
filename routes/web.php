@@ -85,7 +85,17 @@ Route::group(['middleware' => ['cookie']], function () {
             Route::post('/wishlist_customer', ['uses' => 'ClientController@wishlist_customer', 'as' => 'wishlist.customer']);
             Route::post('/wishlist_cookie', ['uses' => 'ClientController@wishlist_cookie', 'as' => 'wishlist.cookie']);
             
+            
+
         });
+
+        Route::group(['prefix' => 'appointment'], function () {
+            //appointment
+            Route::get('/index/{real_estate_id}/{customer_id}', 'Appointmentcontroller@index')->name('appointment.index');
+            Route::post('/create/{real_estate_id}/{customer_id}', 'Appointmentcontroller@store')->name('appointment.create');
+        });
+
+
 
         Auth:: routes();
         // Auth::routes(['verify' => true]);
