@@ -366,6 +366,8 @@ class ClientController extends Controller
     public function write_cmt (Request $request, $idsp, $idkh){
         $title = $request->title;
         $content = $request->content;
+        $evaluate_rank=$request->rating;
+        // dd($evaluate_rank);
         $data = DB::table('evaluate')->insert(
             [
                 'evaluate_title' => $title,
@@ -373,8 +375,8 @@ class ClientController extends Controller
                 'real_estate_id' => $idsp,
                 'customer_id' => $idkh,
                 //gán cứng khách hàng có id là 1
-                'evaluate_rank' => 5
-                //gán cứng 5 sao
+                'evaluate_rank' => $evaluate_rank
+               
             ]
         );
         return redirect()->route('single_list', ['real_estate_id' => $idsp]);
