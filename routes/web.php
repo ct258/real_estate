@@ -123,7 +123,7 @@ Route::group(['middleware' => ['cookie']], function () {
                 });
 
                 Route::group(['prefix' => 'payment'], function () {
-                    Route::get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
+                    Route::post('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
                     Route::get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
                 });
             
