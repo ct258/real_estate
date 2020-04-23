@@ -94,14 +94,15 @@
                                 <span>Đánh giá và nhận xét</span>
                             </a>
                         </li>
-                        <li class="list-group-item @if(!$check_re) disabled @endif">
+                        <li class="list-group-item "> {{-- @if(!$check_re) disabled @endif --}}
+                           
                             <a href="{{route('account.my_re')}}">
                                 <span>Bất động sản của bạn</span>
                             </a>
                         </li>
-                        <li class="list-group-item disabled">
-                            <a href="">
-                                <span>Cuộc hẹn</span> <span class="badge badge-danger badge-pill">14</span>
+                        <li class="list-group-item ">
+                            <a href="{{ route('appointment.detail',['id'=>$info->customer_id]) }}">
+                                <span>Cuộc hẹn</span> 
                             </a>
                         </li>
                         <li class="list-group-item">
