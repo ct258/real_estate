@@ -4,6 +4,37 @@
     box-sizing: border-box;
 }
 
+a.rent-notic.apointment {
+    margin-left: 53px;
+    margin-top: -6px;
+    text-decoration: none;
+    color: white;
+}
+
+.appointment h4 {
+    font-size: 27px;
+    color: #0b9442;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.appointment {
+    width: 500px;
+    margin: auto;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.container.frame.mgtop {
+    position: relative;
+    top: 102px;
+    background-image: url('../img/bgfooter.jpg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 h4.comment-title {
     text-align: center;
 }
