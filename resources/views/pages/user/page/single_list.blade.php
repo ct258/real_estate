@@ -396,20 +396,24 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <div><i class="fas fa-expand-arrows-alt"></i>
+                                        <div style="font-weight: bold;
+                                        display: inline-block;
+                                        font-size: 20px;"><i class="fas fa-expand-arrows-alt"></i>
                                             {{$real_estate->real_estate_acreage}}
                                             m<sup>2</sup></div>
                                     </div>
                                     <div class="col-sm-3">
+
                                         <div style="font-weight: bold;
                                             display: inline-block;
-                                            color: #30caa0;
-                                            font-size: 18px;"> {{$rate->currency_symbol}}
+                                            font-size: 20px;"> {{$rate->currency_symbol}}
+                                            {{-- <i class="fas fa-dollar-sign"></i> --}}
+                                            {{number_format($real_estate->real_estate_price)}}{{$real_estate->unit_translation_name}}
                                         </div>
-                                        {{-- <i class="fas fa-dollar-sign"></i> --}}
-                                        {{number_format($real_estate->real_estate_price)}}
 
                                     </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3"></div>
                                     @if ($convenience)
 
                                     <div class="col-sm-3">
@@ -426,6 +430,8 @@
                                         echo "m";
                                         ?>
                                     </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3"></div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_floor!=0)
                                          ?><i class='fas fa-building'></i> <?php
@@ -452,44 +458,36 @@
                                         {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
                                         id="subscription"><i class="fas fa-heart"></i></a> --}}
                                         {{-- đăng ký --}}
-                                        @if(\Auth::guard('account')->check() &&
-                                        \Auth::guard('account')->user()->hasRole('Customer'))
+                                        <?php if(\Auth::guard('account')->check() &&
+                                        \Auth::guard('account')->user()->hasRole('Customer')):?>
 
                                         <a type='button' id="wishlist_customer"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"
                                             data-customer_id="{{\Auth::guard('account')->user()->load('customer')->customer->customer_id}}">
-                                            <?php 
-                                            if($heart){
+                                            <?php  if($heart): ?>
+                                            <i class='fas fa-heart' id='heart'></i></a>
+                                        <?php else: ?>
+                                        <i class='far fa-heart' id='heart'></i></a>
+                                        <?php endif;?>
+                                        <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                            class="rent-notic" id="subscription">Đăng ký</a>
 
-                                                echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                            }
-                                            else{
 
-                                                echo "<i class='far fa-heart' id='heart'></i></a>";
-                                            }
-                                            ?>
-                                            <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
-                                                class="rent-notic" id="subscription">Đăng ký</a>
-                                            @else
-                                            <a type='button' id="wishlist_cookie"
-                                                data-real_estate_id="{{$real_estate->real_estate_id}}"
-                                                data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
-                                                <?php 
-                                            if($heart){
 
-                                                    echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                                }
-                                                else{
-    
-                                                    echo "<i class='far fa-heart' id='heart'></i></a>";
-                                                }
-                                                ?>
-                                                <a href="{{route('subscription')}}" class="rent-notic"
-                                                    id="subscription">Đăng
-                                                    ký</a> 
-                                                @endif
-                                               
+                                        <?php else: ?>
+                                        <a type='button' id="wishlist_cookie"
+                                            data-real_estate_id="{{$real_estate->real_estate_id}}"
+                                            data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
+                                            <?php if($heart):?>
 
+                                            <i class='fas fa-heart' id='heart'></i></a>
+                                        <?php else: ?>
+                                        <i class='far fa-heart' id='heart'></i></a>
+
+                                        <?php endif;?>
+                                        <a href="{{route('subscription')}}" class="rent-notic" id="subscription">Đăng
+                                            ký</a>
+                                        <?php endif;?>
                                     </div>
                                 </div>
                             </div>
@@ -937,7 +935,7 @@
 //   var modal = $(this)
 //   modal.find('.modal-title').text('có tin nhắn')
 //   modal.find('.modal-body input').val(recipient)
-})
+// })
 </script>
 <script>
     const longitude = $('#field').data("longitude");
