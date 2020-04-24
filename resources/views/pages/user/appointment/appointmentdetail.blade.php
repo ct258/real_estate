@@ -128,6 +128,7 @@
                                             <th>Nội dung cuộc hẹn</th>
                                             <th>Thời gian cuộc hẹn</th>
                                             <th>Trạng thái</th>
+                                            <th>Chức năng</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -142,6 +143,7 @@
                                                 <span style="color:#ff0076">Đang xử lý</span>
                                                 @endif
                                             </td>
+                                            <td><a href="{{ route('appointment.destroy', ['id'=>$val->appointment_id]) }}"  style="border: none;background-color: Transparent;color: red;">Xóa</a></td>
                                             </tr>
                                         @endforeach
                                         

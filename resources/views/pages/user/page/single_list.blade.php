@@ -751,29 +751,7 @@
 
                 </div>
               <div class="row">
-                <div class="col-sm-12">
-                <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
-                    method="post">
-                    @csrf
-                    <h3 class="sl-sp-title">Đánh giá</h3>
-                    <div id="rating">
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label class = "full" for="star5" ></label>
-                     
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label class = "full" for="star4" ></label>
-                     
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label class = "full" for="star3" ></label>
-                     
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label class = "full" for="star2" ></label>
-                     
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label class = "full" for="star1" ></label>
-                    </div>
-                   
-                </div>
+              
               </div>
 
                
@@ -810,8 +788,31 @@
                     <div class="comment-form-warp " id="cmt">
                         {{-- Auth::gruad('ten') --}}
                         <h4 class="comment-title" >Bình luận</h4>
-                     
+                     <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
+                                        method="post">@csrf
                             <div class="row">
+                                <div class="col-sm-12">
+                                    
+                                        
+                                        <h3 class="sl-sp-title" style="margin-top: 14px">Đánh giá sản phẩm</h3>
+                                        <div id="rating">
+                                            <input type="radio" id="star5" name="rating" value="5" />
+                                            <label class = "full" for="star5" ></label>
+                                        
+                                            <input type="radio" id="star4" name="rating" value="4" />
+                                            <label class = "full" for="star4" ></label>
+                                        
+                                            <input type="radio" id="star3" name="rating" value="3" />
+                                            <label class = "full" for="star3" ></label>
+                                        
+                                            <input type="radio" id="star2" name="rating" value="2" />
+                                            <label class = "full" for="star2" ></label>
+                                        
+                                            <input type="radio" id="star1" name="rating" value="1" />
+                                            <label class = "full" for="star1" ></label>
+                                        </div>
+                                   
+                                </div>
                                 {{-- <div class="col-md-6">
                             <input type="text" name="name_customer" placeholder="Your Name">
                         </div> --}}

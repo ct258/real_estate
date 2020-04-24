@@ -42,7 +42,7 @@ class Appointmentcontroller extends Controller
        $data['real_estate_id'] = $r_id;
        $data['appointment_time'] = $request->time;
        $data['appointment_content'] = $request->content;
-       $data['appointment_status'] = 'Đang xử lý';
+       $data['appointment_status'] = 0;
 
        $result = DB::table('appointment')->insert($data);
        if($result)
@@ -128,10 +128,18 @@ class Appointmentcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function admin_destroy($id)
     {
         DB::table('appointment')->where('appointment_id',$id)->delete();
         Session::put('mess','Xóa lịch hẹn thành công!');
         return redirect()->route('appointment.admin.index');
+    }
+    public function destroy($id)
+    {
+        DB::table('appointment')->where('appointment_id',$id)->delete();
+        // return redirect()->route('appointment.detail');
+        $result = DB::table('appointment')->where('customer_id',$id)->get();
+
+        return view('pages.user.appointment.appointmentdetail',compact('result','id'));
     }
 }
