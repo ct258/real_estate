@@ -31,7 +31,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Quản lý Báo cáo chưa xử lý
+      Quản lý Báo cáo đã xử lý
     </div>
     <div class="row w3-res-tb">
 
@@ -89,36 +89,9 @@
                  <td>{{$temp->report_status}}</td>
                  <td>{{date('d-m-Y',strtotime($temp->created_at))}}</td>
                  <td>
-                                      
-                                      <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                      Xử lý
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Bạn có chắc đã xử lý</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                           Phản ánh của khách hàng {{$temp->customer_name}} <br>
-                           Nhà đất có id là {{$temp->real_estate_id}} có nội dung phản ánh là {{$temp->report_content}}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="button"  class="btn btn-primary">Đã được xử lý</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                   
-               
-                </td>
+                
+                   <a href=""  style=" position: relative; top: -8px; right: -19px; font-size:25px ;border: 2px;background-color: Transparent;color: #  0078f4;"><i class="fa fa-wrench" aria-hidden="true"></i></i> </a>
+                  </td>
              </tr>
          @endforeach
         </thead>
@@ -128,7 +101,7 @@
       <div class="row">
         
         <div class="col-sm-5 ">
-          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> {{count($data)}}</strong> báo cáo chờ xử lý.
+          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> {{count($data)}}</strong> báo cáo đã xử lý.
           </small>
         </div>
         <div class="col-sm-7 text-right text-center-xs">                

@@ -103,7 +103,7 @@ class RankController extends Controller
     {
         $level = $request->rank_level;
        
-        DB::table('rank')->where('rank_id',$id)->update([
+        DB::table('customer')->where('customer_id',$id)->update([
             'rank_level' => $level
         ]);
         $rank_id = $id;

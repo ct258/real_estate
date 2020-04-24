@@ -89,7 +89,7 @@ class StaffController extends Controller
         {
             $ac_id = $i->account_id;
         }
-       $ac = DB::table('account')->where('account_id',$ac_id)->first();
+        
        
         return view('pages.admin.staff.edit',compact('staff','ac'));
     }

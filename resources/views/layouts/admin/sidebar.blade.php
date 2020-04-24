@@ -59,8 +59,8 @@
                         <span>Báo cáo</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Chờ xử lý</a></li>
-                        <li><a href="">Đã xử lý</a></li>
+                    <li><a href="{{route('report.index')}}">Chờ xử lý</a></li>
+                    <li><a href="{{route('report.fix.index')}}">Đã xử lý</a></li>
                     </ul>
                 </li>
                 {{-- mail --}}
