@@ -18,19 +18,28 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
+        // ,'translation.translation_name'
         // $report=Report::all();
         // foreach($report as $i)
         // {
         //     $ac_id = $i->account_id;
         $report = DB::table('report')
         ->join('customer', 'report.customer_id', '=', 'customer.customer_id')
-         ->join('real_estate', 'report.real_estate_id', '=', 'real_estate.real_estate_id')
-         ->select('report.*', 'customer.customer_name','real_estate.real_estate_avatar')->where('report_status','Chưa xử lý')
+        //  ->join('translation','report.real_estate_id','=','translation.real_estate_id')
+         ->select('report.*', 'customer.customer_name')->where('report_status','Chưa xử lý')
          ->get();
+        //  $t= DB::table('report')
+        //  ->join('translation','report.real_estate_id','=','translation.real_estate_id')
+        //  ->select('translation.translation_name')->get();
+        foreach($report as $i)
+        {
+            $t_id = $i->real_estate_id;
+        }
+       $t = DB::table('translation')->where('real_estate_id',$t_id)->first();
 
         // $report=Report::with('customer','real_estate')->select('report.*','customer.customer_name','real_estate.real_estate_status')->get;
-        return view('pages.admin.report.index',compact('report'));
+        return view('pages.admin.report.index',compact('report','t'));
     }
 
     public function fix()
@@ -41,8 +50,9 @@ class ReportController extends Controller
         //     $ac_id = $i->account_id;
         $report = DB::table('report')
         ->join('customer', 'report.customer_id', '=', 'customer.customer_id')
-         ->join('real_estate', 'report.real_estate_id', '=', 'real_estate.real_estate_id')
-         ->select('report.*', 'customer.customer_name','real_estate.real_estate_avatar')->where('report_status','Đã xử lý')
+        //  ->join('real_estate', 'report.real_estate_id', '=', 'real_estate.real_estate_id')
+         ->join('translation','report.real_estate_id','=','translation.real_estate_id')
+         ->select('report.*', 'customer.customer_name','translation.translation_name')->where('report_status','Đã xử lý')
          ->get();
 
         // $report=Report::with('customer','real_estate')->select('report.*','customer.customer_name','real_estate.real_estate_status')->get;
@@ -118,7 +128,10 @@ class ReportController extends Controller
         //  ->get();
 
         // $report=Report::with('customer','real_estate')->select('report.*','customer.customer_name','real_estate.real_estate_status')->get;
-        return view('pages.admin.report.index');
+        // return view('pages.admin.report.index');
+        Session::put('mess','Xử lý thành công!');
+
+        return redirect()->back();
     }
 
     /**

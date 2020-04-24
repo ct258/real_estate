@@ -84,17 +84,19 @@
              <tr>
                  <td>{{$temp->report_id}}</td>
                  <td>{{$temp->customer_name}}</td>
-                 <td>{{$temp->real_estate_id  }}</td>
+                 <td>{{$t->translation_name }}</td>
                  <td>{{$temp->report_content}}</td>
                  <td>{{$temp->report_status}}</td>
                  <td>{{date('d-m-Y',strtotime($temp->created_at))}}</td>
                  <td>
-                                      
+                                       
                                       <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                       Xử lý
                     </button>
-
+                      
+                <form action="{{ route('report.update',$temp->report_id) }}" method="post">
+                  @csrf
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -111,12 +113,13 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="button"  class="btn btn-primary">Đã được xử lý</button>
+                            <button type="submit"  class="btn btn-primary">Đã được xử lý</button>
+                            {{-- <button type="submit" class="btn btn-primary">Báo cáo</button> --}}
                           </div>
                         </div>
                       </div>
                     </div>
-                   
+               </form>
                
                 </td>
              </tr>
@@ -128,7 +131,7 @@
       <div class="row">
         
         <div class="col-sm-5 ">
-          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> {{count($data)}}</strong> báo cáo chờ xử lý.
+          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> {{count($report)}}</strong> báo cáo chờ xử lý.
           </small>
         </div>
         <div class="col-sm-7 text-right text-center-xs">                

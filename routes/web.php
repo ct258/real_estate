@@ -179,7 +179,7 @@ Route::group(['middleware' => ['cookie']], function () {
                         // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
                         // sửa
                         // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
-                        Route::post('/edit/submit/{report_id}', 'Admin\ReportController@update')->name('report.update');
+                        Route::post('/edit/submit/{id}', 'Admin\ReportController@update')->name('report.update');
                         // xóa mềm
                         // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
                     
@@ -372,10 +372,10 @@ Route::group(['middleware' => ['cookie']], function () {
                 //report customer
                 Route::group(['prefix' => 'customer_report'], function () {
                 //index
-                Route::get('/index', 'CustomerReportController@index')->name('customer.report.index');
-                // thêm
-                Route::get('/create', 'CustomerReportController@create')->name('customer.report.create');
-                Route::post('/create/{id}', 'CustomerReportController@store')->name('customer.report.create.submit');
+                    Route::get('/index', 'CustomerReportController@index')->name('customer.report.index');
+                    // thêm
+                    Route::get('/create', 'CustomerReportController@create')->name('customer.report.create');
+                    Route::post('/create/{id}', 'CustomerReportController@store')->name('customer.report.create.submit');
                
                 });
                 //trash
@@ -439,7 +439,8 @@ Route::group(['middleware' => ['cookie']], function () {
         Route::get('error', function () {
             return view('pages.admin.error');
         })->name('error');
-}); //DOM lấy dữ liệu
+        //  });
+ //DOM lấy dữ liệu
             Route::group(['prefix' => ''], function () {
                 Route::get('/district/{province_id}', 'DOMController@get_district')->name('district');
                 Route::get('/ward/{district_id}', 'DOMController@get_ward')->name('ward');
