@@ -112,6 +112,8 @@ class IndexController extends Controller
         ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
         ->join('district', 'real_estate.district_id', 'district.district_id')
         ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit','unit.unit_id','real_estate.unit_id')
+        ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
         ->select('real_estate.real_estate_id',
         'real_estate_avatar',
         'translation_name',
@@ -121,7 +123,9 @@ class IndexController extends Controller
         'real_estate_acreage',
         'real_estate.created_at',
         'province.province_name',
-        'district.district_name');
+        'district.district_name',
+        'unit.*',
+        'unit_translation.*');
 
         
 
@@ -129,6 +133,7 @@ class IndexController extends Controller
         $product=$real_estate
         ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
                 ['real_estate_status','Đang bán']
             ])
         ->orderBy('created_at', 'desc')
@@ -136,7 +141,7 @@ class IndexController extends Controller
         ->get();
         foreach ($product as $key => $value) {
             $day_product[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-            $price_product[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate;
+            $price_product[$value['real_estate_id']] = ($value->real_estate_price * $rate->currency_rate)/$value->unit_value;
             // dd($day_product[$value['real_estate_id']]);
         }
 
@@ -159,7 +164,7 @@ class IndexController extends Controller
         }
         foreach ($view_product as $key => $value) {
             $day_view[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-            $price_view[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate;
+            $price_view[$value['real_estate_id']] = ($value->real_estate_price * $rate->currency_rate)/$value->unit_value;
         }
 
         //lấy blog
