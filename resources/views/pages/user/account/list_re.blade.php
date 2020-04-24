@@ -40,6 +40,10 @@
         color: white;
 
     }
+
+    section.feature-section.spad {
+        margin-top: 100px !important;
+    }
 </style>
 @endpush
 @section('page')
@@ -83,7 +87,7 @@
                         </div>
                         <a href="{{route('single_list',$item->real_estate_id)}}"
                             class="room-price">{{$rate->currency_symbol}}
-                            {{number_format($price_product[$item->real_estate_id])}}
+                            {{number_format($price_product[$item->real_estate_id])}}{{ $item->unit_translation_name}}
                         </a>
                     </div>
                 </div>

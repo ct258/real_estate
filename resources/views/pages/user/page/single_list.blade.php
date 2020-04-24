@@ -322,6 +322,19 @@
     button.btn.btn-primary.mn:hover {
         color: aquamarine;
     }
+
+        #rating{border:none;float:left;}
+        #rating>input{display:none;}
+        #rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}
+        #rating>.half:before{content:"\f089";position:absolute;}
+        #rating>label{color:#ddd;float:right;}
+        #rating>input:checked~label,
+        #rating:not(:checked)>label:hover, 
+        #rating:not(:checked)>label:hover~label{color:#FFD700;}
+        #rating>input:checked+label:hover,
+        #rating>input:checked~label:hover,
+        #rating>label:hover~input:checked~label,
+        #rating>input:checked~label:hover~label{color:#FFED85;}
 </style>
 @endpush
 @section('page')
@@ -365,12 +378,17 @@
                         <div class="col-xl-8 sl-title">
                             <h2>{{$real_estate->translation_name}}</h2>
                             <p><i class="fa fa-map-marker"></i> {{$real_estate->translation_address}}</p>
-
+                           
+                            
+                           
+                            
 
                         </div>
                         <div class="col-xl-4">
                             <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
                                 class="price-btn">@lang('Buy')</a>
+
+                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"  class="rent-notic apointment">Đăt lịch hẹn</a>
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
                         </div>
@@ -378,20 +396,24 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <div><i class="fas fa-expand-arrows-alt"></i>
+                                        <div style="font-weight: bold;
+                                        display: inline-block;
+                                        font-size: 20px;"><i class="fas fa-expand-arrows-alt"></i>
                                             {{$real_estate->real_estate_acreage}}
                                             m<sup>2</sup></div>
                                     </div>
                                     <div class="col-sm-3">
+
                                         <div style="font-weight: bold;
                                             display: inline-block;
-                                            color: #30caa0;
-                                            font-size: 18px;"> {{$rate->currency_symbol}}
+                                            font-size: 20px;"> {{$rate->currency_symbol}}
+                                            {{-- <i class="fas fa-dollar-sign"></i> --}}
+                                            {{number_format($real_estate->real_estate_price)}}{{$real_estate->unit_translation_name}}
                                         </div>
-                                        {{-- <i class="fas fa-dollar-sign"></i> --}}
-                                        {{number_format($real_estate->real_estate_price)}}
 
                                     </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3"></div>
                                     @if ($convenience)
 
                                     <div class="col-sm-3">
@@ -408,6 +430,8 @@
                                         echo "m";
                                         ?>
                                     </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3"></div>
                                     <div class="col-sm-3">
                                         <?php if ($convenience->convenience_floor!=0)
                                          ?><i class='fas fa-building'></i> <?php
@@ -434,43 +458,36 @@
                                         {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
                                         id="subscription"><i class="fas fa-heart"></i></a> --}}
                                         {{-- đăng ký --}}
-                                        @if(\Auth::guard('account')->check() &&
-                                        \Auth::guard('account')->user()->hasRole('Customer'))
+                                        <?php if(\Auth::guard('account')->check() &&
+                                        \Auth::guard('account')->user()->hasRole('Customer')):?>
 
                                         <a type='button' id="wishlist_customer"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"
                                             data-customer_id="{{\Auth::guard('account')->user()->load('customer')->customer->customer_id}}">
-                                            <?php 
-                                            if($heart){
+                                            <?php  if($heart): ?>
+                                            <i class='fas fa-heart' id='heart'></i></a>
+                                        <?php else: ?>
+                                        <i class='far fa-heart' id='heart'></i></a>
+                                        <?php endif;?>
+                                        <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
+                                            class="rent-notic" id="subscription">Đăng ký</a>
 
-                                                echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                            }
-                                            else{
 
-                                                echo "<i class='far fa-heart' id='heart'></i></a>";
-                                            }
-                                            ?>
-                                            <a href="{{route('subscription.submit',\Auth::guard('account')->user()->load('customer')->customer->customer_id)}}"
-                                                class="rent-notic" id="subscription">Đăng ký</a>
-                                            @else
-                                            <a type='button' id="wishlist_cookie"
-                                                data-real_estate_id="{{$real_estate->real_estate_id}}"
-                                                data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
-                                                <?php 
-                                            if($heart){
 
-                                                    echo "<i class='fas fa-heart' id='heart'></i></a>";
-                                                }
-                                                else{
-    
-                                                    echo "<i class='far fa-heart' id='heart'></i></a>";
-                                                }
-                                                ?>
-                                                <a href="{{route('subscription')}}" class="rent-notic"
-                                                    id="subscription">Đăng
-                                                    ký</a>
-                                                @endif
+                                        <?php else: ?>
+                                        <a type='button' id="wishlist_cookie"
+                                            data-real_estate_id="{{$real_estate->real_estate_id}}"
+                                            data-cookie_name="{{Cookie::get('Name_of_your_cookie')}}">
+                                            <?php if($heart):?>
 
+                                            <i class='fas fa-heart' id='heart'></i></a>
+                                        <?php else: ?>
+                                        <i class='far fa-heart' id='heart'></i></a>
+
+                                        <?php endif;?>
+                                        <a href="{{route('subscription')}}" class="rent-notic" id="subscription">Đăng
+                                            ký</a>
+                                        <?php endif;?>
                                     </div>
                                 </div>
                             </div>
@@ -625,7 +642,7 @@
 
                 </div>
                 @endif
-                <h3 class="sl-sp-title">Đánh giá</h3>
+                {{-- <h3 class="sl-sp-title">Đánh giá</h3> --}}
                 <div class="container-fuild">
                     <div class="row customer_rating" class="rating">
                         <div class="col-lg-3">
@@ -725,22 +742,44 @@
                         <div class="col-lg-3">
                             <div class="share_comment float-right">
                                 <h3>Chia sẻ nhận xét về sản phẩm</h3>
-                                <button class="btn btn-default">Viết nhận xét của bạn</button>
+                                <button class="btn btn-default"><a href="#cmt">Viết nhận xét của bạn</a> </button>
                             </div>
                         </div>
                     </div>
 
                 </div>
+              <div class="row">
+                <div class="col-sm-12">
+                <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
+                    method="post">
+                    @csrf
+                    <h3 class="sl-sp-title">Đánh giá</h3>
+                    <div id="rating">
+                        <input type="radio" id="star5" name="rating" value="5" />
+                        <label class = "full" for="star5" ></label>
+                     
+                        <input type="radio" id="star4" name="rating" value="4" />
+                        <label class = "full" for="star4" ></label>
+                     
+                        <input type="radio" id="star3" name="rating" value="3" />
+                        <label class = "full" for="star3" ></label>
+                     
+                        <input type="radio" id="star2" name="rating" value="2" />
+                        <label class = "full" for="star2" ></label>
+                     
+                        <input type="radio" id="star1" name="rating" value="1" />
+                        <label class = "full" for="star1" ></label>
+                    </div>
+                   
+                </div>
+              </div>
 
-
-                <h3 class="sl-sp-title">Đánh giá</h3>
+               
                 <div class="comment-warp">
                     <ul class="comment-list">
                         @foreach ($evaluate as $item)
 
                         <li>
-
-
 
                             <div class="comment">
                                 <div class="comment-avator set-bg"
@@ -764,23 +803,26 @@
                     </li>
                     @endforeach
                     </ul>
-                    <div class="comment-form-warp">
+
+                    
+                    <div class="comment-form-warp " id="cmt">
                         {{-- Auth::gruad('ten') --}}
-                        <h4 class="comment-title">Leave Your Comment</h4>
-                        <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
-                            method="post">
-                            @csrf
+                        <h4 class="comment-title" >Bình luận</h4>
+                     
                             <div class="row">
                                 {{-- <div class="col-md-6">
                             <input type="text" name="name_customer" placeholder="Your Name">
                         </div> --}}
                                 <div class="col-md-6">
-                                    <label for="">Title</label>
-                                    <input type="text" name="title" placeholder="Enter title here . . .">
+                                    <input type="text" name="title" placeholder="Tiêu đề...">
                                 </div>
                                 <div class="col-lg-9">
-                                    <textarea placeholder="Your Message" name="content"></textarea>
-                                    <button class="site-btn">SEND</button>
+                                    <textarea placeholder="Nội dung bình luận..." name="content"></textarea>
+                                    
+                                </div>
+                
+                                <div class="col-sm-12">
+                                    <button class="site-btn">Gửi</button>
                                 </div>
                             </div>
                         </form>
@@ -893,7 +935,7 @@
 //   var modal = $(this)
 //   modal.find('.modal-title').text('có tin nhắn')
 //   modal.find('.modal-body input').val(recipient)
-})
+// })
 </script>
 <script>
     const longitude = $('#field').data("longitude");

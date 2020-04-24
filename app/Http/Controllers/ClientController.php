@@ -35,6 +35,8 @@ class ClientController extends Controller
             // ->join('image', 'real_estate.real_estate_id', 'image.real_estate_id')
             ->join('district', 'real_estate.district_id', 'district.district_id')
             ->join('province', 'district.province_id', 'province.province_id')
+            ->join('unit','unit.unit_id','real_estate.unit_id')
+            ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
             ->join('type','type.type_id','real_estate.type_id')
             ->select('real_estate.real_estate_id',
             'real_estate_avatar',
@@ -45,7 +47,9 @@ class ClientController extends Controller
             'real_estate_acreage',
             'real_estate.created_at',
             'province.province_name',
-            'district.district_name')
+            'district.district_name',
+            'unit.*',
+            'unit_translation.*')
             ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
                 ['real_estate_status','Đang bán'],
@@ -59,7 +63,7 @@ class ClientController extends Controller
         if($real_estate->isNotEmpty()){
         foreach ($real_estate as $key => $value) {
             $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-            $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
+            $value->real_estate_price = ($value->real_estate_price * $rate->currency_rate)/$value->value_unit;
         }
         }
         // lấy dữ liệu cho search form
@@ -303,6 +307,7 @@ class ClientController extends Controller
         'real_estate_latitude',
         'real_estate.created_at',
         'translation.*',
+        'unit_value',
         'unit_translation.unit_translation_name',
         'province.province_name',
         'district.district_name')
@@ -311,6 +316,7 @@ class ClientController extends Controller
             ['translation_locale', \Session::get('lang', config('app.locale'))],
             ['unit_translation_locale', \Session::get('lang', config('app.locale'))], ])
         ->first();
+        $real_estate->real_estate_price=$real_estate->real_estate_price/$real_estate->unit_value;
         $convenience=Convenience::where('real_estate_id',$real_estate_id)->first();
         $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
         $real_estate->real_estate_price = $real_estate->real_estate_price * $rate->currency_rate;
@@ -360,6 +366,8 @@ class ClientController extends Controller
     public function write_cmt (Request $request, $idsp, $idkh){
         $title = $request->title;
         $content = $request->content;
+        $evaluate_rank=$request->rating;
+        // dd($evaluate_rank);
         $data = DB::table('evaluate')->insert(
             [
                 'evaluate_title' => $title,
@@ -367,8 +375,8 @@ class ClientController extends Controller
                 'real_estate_id' => $idsp,
                 'customer_id' => $idkh,
                 //gán cứng khách hàng có id là 1
-                'evaluate_rank' => 5
-                //gán cứng 5 sao
+                'evaluate_rank' => $evaluate_rank
+               
             ]
         );
         return redirect()->route('single_list', ['real_estate_id' => $idsp]);

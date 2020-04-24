@@ -32,6 +32,13 @@
                         <span>Bình luận</span>
                     </a>
                 </li>
+                {{-- cuộc hẹn --}}
+                <li>
+                    <a href="{{ route('appointment.admin.index') }}">
+                        <i class="fa fa-calendar"></i>
+                        <span>Lịch hẹn</span>
+                    </a>
+                </li>
                 {{-- bài viết --}}
                 <li class="sub-menu">
                     <a href="{{route('blog.index')}}">
@@ -102,11 +109,13 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-gift" aria-hidden="true"></i>
-                        <span>Khuyến Mãi </span>
+                        <span>Khuyến mãi </span>
                     </a>
                     <ul class="sub">
-                    <li><a href="{{ route('promotion.index') }}">Loại khuyến mãi</a></li>
-                        <li><a href="">Danh sách Khuyến Mãi</a></li>
+                        <li>
+                            <a href="{{ route('promotion.index') }}">Loại khuyến mãi</a>
+                        </li>
+                        <li><a href="{{ route('promotioncode.index') }}">Danh sách khuyến mãi</a></li>
                     </ul>
                 </li>
                 {{-- thành viên --}}

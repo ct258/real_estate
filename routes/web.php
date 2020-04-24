@@ -85,7 +85,24 @@ Route::group(['middleware' => ['cookie']], function () {
             Route::post('/wishlist_customer', ['uses' => 'ClientController@wishlist_customer', 'as' => 'wishlist.customer']);
             Route::post('/wishlist_cookie', ['uses' => 'ClientController@wishlist_cookie', 'as' => 'wishlist.cookie']);
             
+            
+
         });
+
+        Route::group(['prefix' => 'appointment'], function () {
+            //appointment user
+            Route::get('/index/{real_estate_id}/{customer_id}', 'Appointmentcontroller@index')->name('appointment.index');
+            Route::post('/create/{real_estate_id}/{customer_id}', 'Appointmentcontroller@store')->name('appointment.create');
+            Route::get('/detail/{detail_id}', 'Appointmentcontroller@detail')->name('appointment.detail');
+
+            //appointment admin
+            Route::get('admin/index', 'Appointmentcontroller@admin_index')->name('appointment.admin.index');
+            Route::get('admin/status/{appointmnet_id}', 'Appointmentcontroller@admin_status')->name('appointment.admin.status');
+            Route::get('admin/delete/{appointmnet_id}', 'Appointmentcontroller@destroy')->name('appointment.admin.destroy');
+
+        });
+
+
 
         Auth:: routes();
         // Auth::routes(['verify' => true]);
@@ -112,6 +129,8 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::get('/', 'CustomerController@index')->name('account');
                     Route::get('/checkpass', 'CustomerController@checkpass')->name('account.checkpass');
                     Route::get('/re', 'CustomerController@my_re')->name('account.my_re');
+                    Route::get('/wishlist', 'CustomerController@my_wish')->name('account.my_wish');
+                    Route::get('/remove_wishlist/{real_estate_id}', 'CustomerController@remove_wish')->name('account.remove_wish');
                 });
                 Route::group(['prefix' => 'post'], function () {
                     Route::get('/create', 'PostController@create')->name('post.create');
@@ -121,7 +140,7 @@ Route::group(['middleware' => ['cookie']], function () {
                 });
 
                 Route::group(['prefix' => 'payment'], function () {
-                    Route::get('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
+                    Route::post('/VNPay', ['uses' => 'PaymentController@VNPay', 'as' => 'VNPay']);
                     Route::get('/return-vnpay', ['uses' => 'PaymentController@return', 'as' => 'return']);
                 });
             
@@ -131,19 +150,19 @@ Route::group(['middleware' => ['cookie']], function () {
             //admin
             // Route::group(['middleware' => ['checkAdmin']], function () {
                 //promotion
-                Route::group(['prefix' => 'promotion'], function () {
-                    //index
-                    Route::get('/index', 'Admin\PromotionController@index')->name('promotion.index');
-                    // thêm
-                    Route::get('/create', 'Admin\PromotionController@create')->name('promotion.create');
-                    Route::post('/create', 'Admin\PromotionController@store')->name('promotion.create.submit');
-                    // xem chi tiết
-                    Route::get('/show/{promotion_id}', 'Admin\PromotionController@show')->name('promotion.show');
-                    // sửa
-                    Route::get('/edit/{promotion_id}', 'Admin\PromotionController@edit')->name('promotion.edit');
-                    Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
-                    // xóa mềm
-                    Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
+                // Route::group(['prefix' => 'promotion'], function () {
+                //     //index
+                //     Route::get('/index', 'Admin\PromotionController@index')->name('promotion.index');
+                //     // thêm
+                //     Route::get('/create', 'Admin\PromotionController@create')->name('promotion.create');
+                //     Route::post('/create', 'Admin\PromotionController@store')->name('promotion.create.submit');
+                //     // xem chi tiết
+                //     Route::get('/show/{promotion_id}', 'Admin\PromotionController@show')->name('promotion.show');
+                //     // sửa
+                //     Route::get('/edit/{promotion_id}', 'Admin\PromotionController@edit')->name('promotion.edit');
+                //     Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
+                //     // xóa mềm
+                //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
                 
                 });
 
@@ -181,7 +200,7 @@ Route::group(['middleware' => ['cookie']], function () {
                 
                 });
 
-                //promotion
+                //promotion code_type
                 Route::group(['prefix' => 'promotion'], function () {
                     //index
                     Route::get('/index', 'Admin\CodeController@index')->name('promotion.index');
@@ -195,6 +214,22 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/edit/submit/{promotion_id}', 'Admin\CodeController@update')->name('promotion.update');
                     // xóa mềm
                     Route::get('/destroy/{promotion_id}', 'Admin\CodeController@destroy')->name('promotion.destroy');
+                
+                });
+                //promotion code
+                Route::group(['prefix' => 'promotioncode'], function () {
+                    //index
+                    Route::get('/index', 'Admin\CodeController@codeindex')->name('promotioncode.index');
+                    // thêm
+                    Route::get('/create', 'Admin\CodeController@codecreate')->name('promotioncode.create');
+                    Route::post('/create', 'Admin\CodeController@codestore')->name('promotioncode.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{promotioncode}', 'Admin\CodeController@codeshow')->name('promotioncode.show');
+                    // sửa
+                    Route::get('/edit/{promotioncode_id}', 'Admin\CodeController@codeedit')->name('promotioncode.edit');
+                    Route::post('/edit/submit/{promotioncode_id}', 'Admin\CodeController@codeupdate')->name('promotioncode.update');
+                    // xóa mềm
+                    Route::get('/destroy/{promotioncode_id}', 'Admin\CodeController@codedestroy')->name('promotioncode.destroy');
                 
                 });
                 //loại khách hàng
