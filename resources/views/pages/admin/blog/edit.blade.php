@@ -44,7 +44,7 @@
                                 <label>Tiêu đề bài viết</label>
                                 <input type="text" name="title_vi" size="100%" autofocus class="form-control "
                                     value={{$item->blog_translation_title}}>
-                                {{dd($item->blog_translation_title)}}
+                                {{-- {{dd($item->blog_translation_title)}} --}}
                                 <br>
                             </td>
                         </tr>

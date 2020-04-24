@@ -15,6 +15,8 @@ class CreateReportTable extends Migration
             Schema::create('report', function (Blueprint $table) {
                 $table->increments('report_id')->comment('id');
                 $table->string('report_content')->comment('nội dung report');
+                $table->string('report_status')->comment('trạng thái report');
+
 
                 //foreign key
                 $table->integer('customer_id')->index()->unsigned();

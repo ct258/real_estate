@@ -146,6 +146,24 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
                 
                 });
+
+                     //report
+                     Route::group(['prefix' => 'report'], function () {
+                        //index
+                        Route::get('/index', 'Admin\ReportController@index')->name('report.index');
+                        Route::get('/fix', 'Admin\ReportController@fix')->name('report.fix.index');
+                        // thêm
+                        // Route::get('/create', 'Admin\ReportController@create')->name('report.create');
+                        // Route::post('/create', 'Admin\ReportController@store')->name('report.create.submit');
+                        // xem chi tiết
+                        // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
+                        // sửa
+                        // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
+                        Route::post('/edit/submit/{report_id}', 'Admin\ReportController@update')->name('report.update');
+                        // xóa mềm
+                        // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
+                    
+                    });
                 //customer
                 Route::group(['prefix' => 'customer'], function () {
                     //index
@@ -279,6 +297,10 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/destroy/{evaluate_id}', 'Admin\EvaluateController@destroy')->name('evaluate.destroy');
                 
                 });
+
+
+
+
                 //hợp đồng
                 Route::group(['prefix' => 'contract'], function () {
                     //index
@@ -311,8 +333,8 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/destroy/{blog_id}', 'Admin\BlogController@destroy')->name('blog.destroy');
                 
                 });
-                //report
-                Route::group(['prefix' => 'report'], function () {
+                //report customer
+                Route::group(['prefix' => 'customer_report'], function () {
                 //index
                 Route::get('/index', 'CustomerReportController@index')->name('customer.report.index');
                 // thêm
