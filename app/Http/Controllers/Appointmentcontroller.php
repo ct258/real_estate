@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-
+use App\Models\Account;
+use App\Models\RealEstate;
+use App\Models\Currency;
+use Carbon\Carbon;
+use Session;    
 class Appointmentcontroller extends Controller
 {
     /**
@@ -51,7 +55,50 @@ class Appointmentcontroller extends Controller
        }
 
     }
+    
+    public function detail($id){
 
+        $result = DB::table('appointment')->where('customer_id',$id)->get();
+
+       return view('pages.user.appointment.appointmentdetail',compact('result','id'));
+    }
+
+
+
+    //appointmnet admin
+
+    public function admin_index()
+    {
+        $result = DB::table('appointment')->get();
+        
+        return view('pages.user.appointment.adminindex',compact('result'));
+    }
+
+
+    public function admin_status($id)
+    {
+
+            $data = DB::table('appointment')->where('appointment_id',$id)->first();
+         
+           if($data->appointment_status == 0){
+                 DB::table('appointment')->where('appointment_id',$id)->update([
+                    'appointment_status'=>1
+                ]);
+                Session::put('mess','Chấp nhận lịch hẹn!');
+           }
+        else{
+             DB::table('appointment')->where('appointment_id',$id)->update([
+                'appointment_status'=>0
+            ]);
+            Session::put('mess','Không chấp nhận lịch hẹn!');
+        }
+          
+        
+        return redirect()->route('appointment.admin.index');
+        
+       
+        
+    }
     /**
      * Display the specified resource.
      *
@@ -83,6 +130,8 @@ class Appointmentcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('appointment')->where('appointment_id',$id)->delete();
+        Session::put('mess','Xóa lịch hẹn thành công!');
+        return redirect()->route('appointment.admin.index');
     }
 }

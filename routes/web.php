@@ -90,9 +90,16 @@ Route::group(['middleware' => ['cookie']], function () {
         });
 
         Route::group(['prefix' => 'appointment'], function () {
-            //appointment
+            //appointment user
             Route::get('/index/{real_estate_id}/{customer_id}', 'Appointmentcontroller@index')->name('appointment.index');
             Route::post('/create/{real_estate_id}/{customer_id}', 'Appointmentcontroller@store')->name('appointment.create');
+            Route::get('/detail/{detail_id}', 'Appointmentcontroller@detail')->name('appointment.detail');
+
+            //appointment admin
+            Route::get('admin/index', 'Appointmentcontroller@admin_index')->name('appointment.admin.index');
+            Route::get('admin/status/{appointmnet_id}', 'Appointmentcontroller@admin_status')->name('appointment.admin.status');
+            Route::get('admin/delete/{appointmnet_id}', 'Appointmentcontroller@destroy')->name('appointment.admin.destroy');
+
         });
 
 

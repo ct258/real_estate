@@ -32,6 +32,13 @@
                         <span>Bình luận</span>
                     </a>
                 </li>
+                {{-- cuộc hẹn --}}
+                <li>
+                    <a href="{{ route('appointment.admin.index') }}">
+                        <i class="fa fa-calendar"></i>
+                        <span>Lịch hẹn</span>
+                    </a>
+                </li>
                 {{-- bài viết --}}
                 <li class="sub-menu">
                     <a href="{{route('blog.index')}}">
