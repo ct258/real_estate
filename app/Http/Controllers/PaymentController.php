@@ -9,6 +9,7 @@ class PaymentController extends Controller
 {
     public function VNPay(Request $request)
     {
+        // dd($request);
         session(['cost_id' => $request->id]);
         session(['url_prev' => url()->previous()]);
         $vnp_TmnCode = 'UDOPNWS1'; //Mã website tại VNPAY
@@ -18,7 +19,7 @@ class PaymentController extends Controller
         $vnp_TxnRef = date('YmdHis'); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'Thanh toán hóa đơn phí dich vụ';
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount = 10000 * 100; // số tiền *100
+        $vnp_Amount = $request->total; // số tiền *100
         $vnp_Locale = 'vn'; //ngôn ngữ
         $vnp_IpAddr = request()->ip();
 
@@ -66,9 +67,12 @@ class PaymentController extends Controller
 
     public function return(Request $request)
     {
-        // dd($request);
+        dd($request);
         $url = session('url_prev', '/');
         if ($request->vnp_ResponseCode == '00') {
+            //thành công
+            //  "vnp_Amount" => "5100000000"
+            // "vnp_TxnRef" => "20200421224518" mã đơn
             // $this->apSer->thanhtoanonline(session('cost_id'));
 
             return redirect($url)->with('success', 'Đã thanh toán phí dịch vụ');

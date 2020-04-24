@@ -94,7 +94,7 @@
                                 <span>Đánh giá và nhận xét</span>
                             </a>
                         </li>
-                        <li class="list-group-item "> {{-- @if(!$check_re) disabled @endif --}}
+                        <li class="list-group-item "@if(!$check_re) disabled @endif>
                            
                             <a href="{{route('account.my_re')}}">
                                 <span>Bất động sản của bạn</span>
@@ -103,6 +103,12 @@
                         <li class="list-group-item ">
                             <a href="{{ route('appointment.detail',['id'=>$info->customer_id]) }}">
                                 <span>Cuộc hẹn</span> 
+                        <li class="list-group-item">
+                            <a href="{{route('account.my_wish')}}">
+                                <span>Danh sách yêu thích</span>
+                            </a>
+                        </li>
+                        
                             </a>
                         </li>
                         <li class="list-group-item">

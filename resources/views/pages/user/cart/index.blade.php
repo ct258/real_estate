@@ -53,7 +53,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="content-3">
-                            <p id="title-3">Giá: {{number_format($item->real_estate_price)}}</p>
+                            <p id="title-4">Giá: {{number_format($item->real_estate_price)}}</p>
+                            <p id="title-3">Giá đặt cọc: {{number_format($item->real_estate_deposit)}}</p>
                             <p>Diện tích: {{$item->real_estate_acreage}} m<sup>2</sup></p>
                         </div>
                         <div class="delect">
@@ -83,6 +84,7 @@
                 @endif
 
                 <br>
+
                 <div class="card card-left-2">
                     <div class="card-body">
                         <div class="price-top">
@@ -94,99 +96,48 @@
                             <p>Tạm tính: {{number_format($total_money)}}đ</p>
                             <p>Phí thủ tục:
                                 @if($total_money==0) 0đ</p>
+                            <input type="hidden" name="fee" value=0>
                             @else
                             {{number_format($total_money*0.02)}}đ</p>
-
+                            <input type="hidden" name="fee" value={{$total_money*0.02}}>
                             @endif
-                            <p>Khuyến mãi: 0đ</p>
-                            <input type="text" class="" placeholder="Mã giảm giá">
+                            <form action="" method="post">
+                                <p>Khuyến mãi: 0đ</p>
+                                <div class="row">
+                                    <div class="col-lg-7">
+
+                                        <input type="text" name="code" id="code" class="form-control"
+                                            placeholder="Mã giảm giá">
+                                    </div>
+                                    <div class="col-lg-3">
+
+                                        <button type="submit" class="btn btn-warning">Đồng ý</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="price-bottom">
                             <p>Thành tiền: </p>
                             <p>&nbsp;&nbsp;&nbsp; {{number_format($total_money*1.02)}}đ</p>
+
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="container">
-                    <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-primary price-3" data-toggle="modal" data-target="#myModal">
-                        Thanh Toán
-                    </button>
+                    <form action="{{route('VNPay')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="total" value="{{$total_money*1.02}}">
+                        <input type="hidden" name="fee" value="{{$total_money*0.2}}">
+                        <input type="hidden" name="discount" value="">
+                        <!-- Button to Open the Modal -->
+                        <button type="submit" class="btn btn-primary price-3" data-toggle="modal">
+                            Thanh Toán
+                        </button>
 
-                    <!-- The Modal -->
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content modal-pay" style="    margin-top: 150px;">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title title-4">Chọn Phương thức thanh toán</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <div class="pay-1">
-
-                                        <a href="{{route('VNPay')}}"><img
-                                                src="{{ asset('user/cart/images/vnpay.png') }}" alt=""></a>
-                                        <p>Ứng dụng VNPay</p>
-                                    </div>
-                                    <div class="pay-1">
-
-                                        <a href=""><img src="{{ asset('user/cart/images/vnpay.png') }}" alt=""></a>
-                                        <p>Thanh toán tiền mặt</p>
-                                    </div>
-                                    {{-- <div class="pay-1">
-                                        <img src="{{ asset('user/cart/images/atm.png') }}" alt="">
-                                    <p>Thẻ ATM và tài khoản ngân hàng</p>
-                                    <div class="pay-1-1">
-                                        <ul>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/SCB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VTB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VCB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/SGCB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/MB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/TCB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VPB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/VIB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/HDB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/OJB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/SHB.jpg?v=2"
-                                                        alt=""></a></li>
-                                            <li><a href=""><img
-                                                        src="https://salt.tikicdn.com/assets/img/zalopaygw/TPB.jpg?v=2"
-                                                        alt=""></a></li>
-                                        </ul>
-                                    </div>
-                                </div> --}}
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>

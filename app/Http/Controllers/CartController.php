@@ -45,6 +45,7 @@ class CartController extends Controller
             ->join('customer', 'customer.customer_id', 'cart.customer_id')
             ->select('real_estate.real_estate_id',
             'real_estate_price',
+            'real_estate_deposit',
             'real_estate_acreage',
             'real_estate_avatar',
             'translation_name',
@@ -59,11 +60,29 @@ class CartController extends Controller
                 ['cart.cart_status', null],
                 ])
             ->get();
-// dd($cart);
+                $code=Cart::join('code','code.code_id','cart.code_id')
+                ->join('code_type','code_type.code_type_id','code.code_type_id')
+                ->where([
+                    ['cart_status',null],
+                    ['cart.customer_id',$customer_id]
+                ])->first();
+                
                 foreach ($cart as $value) {
-                    $total_money +=  $value->real_estate_price;
+                    $total_money +=  $value->real_estate_deposit;
                 }
+                        // if($code){
+                        //     switch($code->code_type_id){
+                        //         case 1: 
+                        //         break;
+                        //         case 2: 
+                        //         break;
 
+
+                        //     }
+
+
+                        // }
+                
                 // dd($cart);
             }
         } else { //nếu chưa đăng nhập thì lấy dữ liệu bảng tạm
@@ -83,6 +102,7 @@ class CartController extends Controller
                 // ->join('unit', 'real_estate.unit_id', 'unit.unit_id')
                 // ->join('unit_translation', 'unit_translation.unit_id', 'unit.unit_id')
                 ->select('real_estate.real_estate_id',
+                'real_estate_deposit',
                 'real_estate_price',
                 'real_estate_acreage',
                 'real_estate_avatar',
@@ -101,8 +121,9 @@ class CartController extends Controller
             }
             $total_money = 0;
             foreach ($cart as $value) {
-                $total_money +=$value->real_estate_price;
+                $total_money +=$value->real_estate_deposit;
             }
+            // $code=Cart::
             
             // dd($total_money);
         }
@@ -156,7 +177,7 @@ class CartController extends Controller
                             ]);
                         }
                 }else{
-                    $cart_temp=CartTemp::insertGetid([
+                    $cart_temp=CartTemp::insertGetId([
                         'cookie_user_id'=>\Cookie::get('real_estate'),
                     ]);
                     DetailTemp::insert([

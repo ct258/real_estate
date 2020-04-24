@@ -1,12 +1,71 @@
-@if ($product->isNotempty())
+@extends('layouts.user')
+@push('css')
+<style>
+    img.img-lazy {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 140px;
+    }
+
+    .intro h4 {
+        color: #555;
+        margin-top: 5px;
+        margin-bottom: 3px;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -.5px;
+    }
+
+    .intro span {
+        color: #555;
+    }
+
+    .intro p {
+        margin: 10px 0;
+        color: #666;
+        text-align: justify;
+    }
+
+    .blog a {
+        text-decoration: none !important;
+    }
+
+    .blog {
+        padding: 20px 0;
+    }
+
+    .rent-notic,
+    .rent-notic:hover {
+        text-decoration: none;
+        color: white;
+
+    }
+
+    .sale-notic,
+    .sale-notic:hover {
+        text-decoration: none;
+        color: white;
+
+    }
+
+    section.feature-section.spad {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+</style>
+@endpush
+@section('page')
+
 <!-- feature section -->
 <section class="feature-section spad">
     <div class="section-title text-center">
-        <h3>Bất động sản mới</h3>
+        <h3>Bất động sản yêu thích</h3>
     </div>
     <div class="container frame">
         <div class="row">
-            @foreach ($product as $item)
+
+
+            @forelse ($product as $item)
 
 
             <div class="col-lg-4 col-md-6">
@@ -14,7 +73,9 @@
                 <div class="feature-item">
                     <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
                         style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
-                        <div class="sale-notic">FOR SALE</div>
+
+                        <a style="float:right" class="sale-notic"
+                            href="{{route('account.remove_wish',$item->real_estate_id)}}">Xóa</a>
                     </div>
                     <div class="feature-text">
                         <div class="text-center feature-title">
@@ -37,15 +98,23 @@
                         </div>
                         <a href="{{route('single_list',$item->real_estate_id)}}"
                             class="room-price">{{$rate->currency_symbol}}
-                            {{number_format($price_product[$item->real_estate_id])}}{{$item->unit_translation_name}}
+                            {{number_format($price_product[$item->real_estate_id])}}{{ $item->unit_translation_name}}
                         </a>
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+            <div class="col-lg-4 col-md-6">
+                <!-- feature -->
+                <div class="feature-item">
+                    <p>Bạn chưa có sản phẩm yêu thích</p>
+                </div>
+            </div>
+
+            @endforelse
 
         </div>
     </div>
 </section>
 <!-- feature section end -->
-@endif
+@endsection
