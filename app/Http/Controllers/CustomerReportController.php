@@ -46,7 +46,7 @@ class CustomerReportController extends Controller
       $cus = new Customer;
       $real = new RealEstate;
       $report->report_content = $request->content;
-     
+      $report->report_status= 'Chưa xử lý';
 
       $report->real_estate_id = $id;
     //    $report->customer_id = 2;
