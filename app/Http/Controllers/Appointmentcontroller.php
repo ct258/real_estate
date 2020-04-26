@@ -15,15 +15,15 @@ class Appointmentcontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($real_estate_id, $customer_id)
+    public function index($real_estate_id)
     {
         // echo $real_estate_id;
-        // echo $customer_id;
+         
 
         $real_estate = DB::table('translation')->where('real_estate_id',$real_estate_id)
         ->where('translation_locale','vi')->first();
         
-        $customer = DB::table('customer')->where('customer_id',$customer_id)->first();
+        $customer = DB::table('customer')->where('customer_id',\Auth::guard('account')->user()->load('customer')->customer->customer_id)->first();
         
        
 
@@ -36,9 +36,9 @@ class Appointmentcontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,$c_id ,$r_id)
+    public function store(Request $request,$r_id)
     {
-       $data['customer_id'] = $c_id;
+       $data['customer_id'] =  \Auth::guard('account')->user()->load('customer')->customer->customer_id;;
        $data['real_estate_id'] = $r_id;
        $data['appointment_time'] = $request->time;
        $data['appointment_content'] = $request->content;
@@ -50,7 +50,7 @@ class Appointmentcontroller extends Controller
 
         $real_estate = DB::table('translation')->where('real_estate_id',$r_id)
         ->where('translation_locale','vi')->first();
-        $customer = DB::table('customer')->where('customer_id',$c_id)->first();
+        $customer = DB::table('customer')->where('customer_id',\Auth::guard('account')->user()->load('customer')->customer->customer_id)->first();
         return view('pages.user.appointment.index',compact('real_estate','customer'));
        }
 

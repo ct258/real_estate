@@ -218,6 +218,8 @@ class ClientController extends Controller
         ->select('customer.customer_avatar',
         'customer.customer_name',
         'evaluate.evaluate_rank',
+        'evaluate.evaluate_id',
+        'evaluate.evaluate_reply',
         'evaluate.evaluate_title',
         'evaluate.evaluate_content',
         'evaluate.updated_at',
@@ -363,7 +365,9 @@ class ClientController extends Controller
     }
 
     //write Comment
-    public function write_cmt (Request $request, $idsp, $idkh){
+    public function write_cmt (Request $request, $idsp){
+        $idkh= \Auth::guard('account')->user()->load('customer')->customer->customer_id;
+       
         $title = $request->title;
         $content = $request->content;
         $evaluate_rank=$request->rating;
@@ -374,7 +378,6 @@ class ClientController extends Controller
                 'evaluate_content' => $content,
                 'real_estate_id' => $idsp,
                 'customer_id' => $idkh,
-                //gán cứng khách hàng có id là 1
                 'evaluate_rank' => $evaluate_rank
                
             ]
@@ -382,19 +385,20 @@ class ClientController extends Controller
         return redirect()->route('single_list', ['real_estate_id' => $idsp]);
     }
     // write reply comment
-    public function reply_cmt (Request $request , $idsp, $idcmt,$idrep)
+    public function reply_cmt (Request $request , $idsp,$idrep)
     {
+        $idcmt = \Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        // dd($idrep);
         $title = $request->title;
         $content = $request->content;
         $data = DB::table('evaluate')->insert(
             [
-                'evaluate_title' => $title,
+                // 'evaluate_title' => $title,
                 'evaluate_content' => $content,
                 'real_estate_id' => $idsp,
                 'customer_id' => $idcmt,
                 'evaluate_reply' => $idrep,
-                'evaluate_rank' => 5
-                //gán cứng 5 sao
+
             ]
         );
         return redirect()->route('single_list', ['real_estate_id' => $idsp]);

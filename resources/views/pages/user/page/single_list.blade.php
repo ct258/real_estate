@@ -335,6 +335,8 @@
         #rating>input:checked~label:hover,
         #rating>label:hover~input:checked~label,
         #rating>input:checked~label:hover~label{color:#FFED85;}
+
+
 </style>
 @endpush
 @section('page')
@@ -388,9 +390,10 @@
                             <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
                                 class="price-btn">@lang('Buy')</a>
 
-                            {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"  class="rent-notic apointment">Đăt lịch hẹn</a> --}}
-                            <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
-                            class="price-btn">@lang('Buy')</a>
+                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">Đăt lịch hẹn</a>
+                            {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
+                            class="price-btn">@lang('Buy')</a> --}}
+
                         </div>
                         <div class="col-xl-12">
                             <div class="container-fluid">
@@ -827,37 +830,73 @@
                 <div class="comment-warp">
                     <ul class="comment-list">
                         @foreach ($evaluate as $item)
-
-                        <li>
-
-                            <div class="comment">
-                                <div class="comment-avator set-bg"
-                                    data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
-                                </div>
-                                <div class="comment-content">
-                                    <h5>{{$item->evaluate_title}}</h5>
-                                    <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
-                                    <p>{{$item->evaluate_content}}</p>
-                                    <a href="" class="c-btn">Like</a>
-                                    <a data-toggle="modal" data-target="#exampleModal" class="c-btn">Reply</a>
-                                </div>
-                            </div>
-
-
-                        </li>
+                           
+                                @if($item->evaluate_reply==null)
+                                    <li>
+                                        <div class="comment">
+                                            <div class="comment-avator set-bg"
+                                                data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5>{{$item->evaluate_title}}</h5>
+                                                <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
+                                                <p>{{$item->evaluate_content}}</p>
+                                                <a data-toggle="modal" data-target="#exampleModal" class="c-btn" exampleModal>Báo cáo</a>
+                                                {{-- <button type="button" class="c-btn showReply">Trả lời</button> --}}
+                                                <a data-toggle="modal"  data-target="#reply" class="c-btn showForm">Trả lời bình luận</a>
+                                                <div class="formReply" style="display: none; margin-top: 10px;">
+                                                    <form class="comment-form" 
+                                                    action="{{ route('reply_cmt', ['idsp'=> $real_id,'idrep'=>$item->evaluate_id]) }}" method="post">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{-- <div class="form-group">
+                                                                <input type="text" name="title"  placeholder="Tiêu đề . . .">
+                                                            </div> --}}
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" name="content" rows="3"></textarea>
+                                                            </div>
+                                                            <button class="site-btn">Gửi</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul >
+                                            @foreach($evaluate as $val)
+                                            @if($item->evaluate_id == $val->evaluate_reply)
+                                                <li>
+                                                    <div class="comment subreply" style="
+                                                        margin-left: 105px;
+                                                        margin-bottom: 57px;
+                                                    ">
+                                                        <div class="comment-avator set-bg"
+                                                            data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <h5>{{$val->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
+                                                            <p>{{$val->evaluate_content}}</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                            @endforeach
+                                        
+                                        </ul>
+                                    </li>
+                                @endif
+                          
+                        @endforeach
                     </ul>
-
-
-
-                    </li>
-                    @endforeach
-                    </ul>
+                    
+                    
 
                     
                     <div class="comment-form-warp " id="cmt">
                         {{-- Auth::gruad('ten') --}}
                         <h4 class="comment-title" >Bình luận</h4>
-                     <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
+                     <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id]) }}"
                                         method="post">@csrf
                             <div class="row">
                                 <div class="col-sm-12">
@@ -914,48 +953,10 @@
 <!-- Page end -->
 
 
-{{-- reply comment --}}
-<div class="modal fade reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="comment-form-warp">
-                    {{-- Auth::gruad('ten') --}}
-                    <h4 class="comment-title">Reply Comment</h4>
-                    <form class="comment-form"
-                        action="{{ route('reply_cmt', ['idsp'=> $real_id,'idcmt'=>1,'idrep'=>1]) }}" method="post">
-                        @csrf
-                        <div class="row">
-                            {{-- <div class="col-md-6">
-                        <input type="text" name="name_customer" placeholder="Your Name">
-                    </div> --}}
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" name="title" placeholder="Enter title here . . .">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Content</label>
-                                    <textarea class="form-control" name="content" rows="3"></textarea>
-                                </div>
-                                <button class="site-btn">SEND</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- reply comment --}}
+
 @endsection
 @push('script')
+
 <script>
     $(document).ready(function () {
         $('#wishlist_cookie').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
@@ -1054,5 +1055,19 @@ var marker = L.marker([longitude,latitude]).addTo(mymap);
         .setContent("Here!")
         .openOn(mymap);
 //end sp
+</script>
+<script>
+    // showForm
+    // formReply
+
+
+    $(document).ready(function () {
+    $(".showForm").on("click", function () {
+        $(this).next().toggle();
+       
+    });
+  
+    
+});
 </script>
 @endpush

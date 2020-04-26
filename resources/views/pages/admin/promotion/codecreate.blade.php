@@ -39,20 +39,20 @@
                         <div class="container-fuild">
                             <div class="row">
                                 <div class="col-sm-6">
-                                   
-                                    <div class="form-group">
-                                        <label>Tên mã code:</label>
-                                        <input type="text" class="form-control" name="code_name" >
+                                  <div class="form-group">
+                                        <label >Mã code: </label>
+                                    <input type="text"  value="{{str_random(6)}}" class="form-control" name="code_code">
                                     </div>
                                     <div class="form-group">
                                         <label>Ghi chú:</label>
                                         <input type="text" class="form-control" name="code_note" >
                                     </div>
-                                  
+                                   
                                     <div class="form-group">
-                                        <label >Mã code: </label>
-                                    <input type="text"  value="{{str_random(6)}}" class="form-control" name="code_code">
+                                        <label>Tên mã code:</label>
+                                        <input type="text" class="form-control" name="code_name" >
                                     </div>
+                                    
                                 
                                     <div class="form-group">
                                         <label>Loại khuyến mãi</label>
@@ -76,16 +76,11 @@
                                     <div class="form-group">
                                         <label >Số lượng: </label>
                                         <input type="text"  class="form-control" name="code_amount" >
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label>Phần trăm khuyến mãi</label>
-                                       <select class="form-control" name="code_per">
-                                          @for($i=5; $i <= 100 ; $i+=5)
-                                       <option value="{{$i}}">{{$i}}</option>
-                                          @endfor
-                                         
-                                          
-                                       </select>
+                                         <input type="text"  class="form-control" name="code_amount" name="code_per">
                                    </div>
                                    <div class="form-group">
                                         <label >Ngày bắt đầu:</label>
