@@ -78,45 +78,41 @@
             <th>Nội dung</th>
             <th>Trạng thái</th> 
             <th>Thời gian</th>
-            <th style="width:100px;">Chức năng</th>
+            {{-- <th style="width:100px;">Chức năng</th> --}}
           </tr>
-         @foreach ($report as $temp)
+         @foreach ($report as $tem =>$temp)
              <tr>
                  <td>{{$temp->report_id}}</td>
                  <td>{{$temp->customer_name}}</td>
-                 <td>{{$temp->real_estate_id  }}</td>
+                 <td>{{$temp->translation_name  }}</td>
                  <td>{{$temp->report_content}}</td>
                  <td>{{$temp->report_status}}</td>
                  <td>{{date('d-m-Y',strtotime($temp->created_at))}}</td>
-                 <td>
+                 {{-- <td>
                 
                    <a href=""  style=" position: relative; top: -8px; right: -19px; font-size:25px ;border: 2px;background-color: Transparent;color: #  0078f4;"><i class="fa fa-wrench" aria-hidden="true"></i></i> </a>
-                  </td>
+                  </td> --}}
              </tr>
          @endforeach
         </thead>
       </table>
+     
     </div>
     <footer class="panel-footer">
       <div class="row">
         
         <div class="col-sm-5 ">
-          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> {{count($data)}}</strong> báo cáo đã xử lý.
+          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> {{count($report)}}</strong> báo cáo đã xử lý.
           </small>
-        </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a>
-                
-            </li>
-          </ul>
-        </div>
+         
       </div>
-    </footer>
+    </footer> 
+  
+    <div class="col-sm-5" style="margin-left:-15px"> 
+    </div>
+    <div class="col-sm-5"> 
+    {{$report->links()}}
+  </div>
+  
   </div>
 @endsection

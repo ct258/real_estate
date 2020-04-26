@@ -14,7 +14,7 @@
     }
 
     #form01 {
-        padding: 5px 10px;
+        padding: 1px 10px;
         margin-right: 25px;
     }
 
@@ -393,6 +393,7 @@
                             <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">Đăt lịch hẹn</a>
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
+
                         </div>
                         <div class="col-xl-12">
                             <div class="container-fluid">
@@ -457,11 +458,11 @@
                                         {{-- <a type="button" id="wishlist"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"><i
                                             class="far fa-heart" id='heart'></i></a> --}}
-                                        {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
-                                        id="subscription"><i class="fas fa-heart"></i></a> --}}
+                                     {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
+                                        id="subscription"><i class="fas fa-heart"></i></a>  --}}
                                         {{-- đăng ký --}}
-                                        <?php if(\Auth::guard('account')->check() &&
-                                        \Auth::guard('account')->user()->hasRole('Customer')):?>
+                                     <?php if(\Auth::guard('account')->check() &&
+                                        \Auth::guard('account')->user()->hasRole('Customer')):?>  
 
                                         <a type='button' id="wishlist_customer"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"
@@ -502,7 +503,9 @@
                 <span id="inputGroupPrepend" class="phananh" data-toggle="modal" data-target="#exampleModal">
                     Phản ánh thông tin sản phẩm không chính xác.
                 </span>
-
+                
+   <?php if(\Auth::guard('account')->check() &&
+   \Auth::guard('account')->user()->hasRole('Customer')):?> 
                 <form action="{{ route('customer.report.create.submit',$real_estate->real_estate_id) }}" method="post">
                     @csrf
 
@@ -524,19 +527,25 @@
                                                     <option value="3">Export</option>
                                                     </select>
                                                 </div> --}}
+                                             
                                 <div class="modal-body">
                                     <div class="col-md-7" id="form02">
+                                    
+
                                         <label for="recipient-name" class="col-form-label"
                                             style="font-weight:bold;">Thông tin khách hàng</label>
                                         <br>
                                         <label for="recipient-name" class="col-form-label">Họ tên:</label>
                                         <button id="form01"
                                             disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
-                                        <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+                                       <br>
+                                            <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+                                        
                                         <button id="form01"
                                             disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
-
+                                            
                                     </div>
+                                   
                                     <form>
                                         <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các
                                             thông tin liên quan đến nội dung mô tả và
@@ -548,19 +557,82 @@
                                             <textarea class="form-control" id="message-text" name="content"
                                                 placeholder="Nhập..."></textarea>
                                         </div>
+                                 
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">Báo cáo</button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Báo cáo</button>
+                               
                                 </div>
+                                <?php else: ?>
+                              
+
+                                <form action="" method="post">
+                                    @csrf
+                
+                                    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                {{-- <div class="col-sm-5 m-b-xs">
+                                                                    <select name="content" class="input-sm form-control w-sm inline v-middle">
+                                                                    <option >Bulk action</option>
+                                                                    <option >Delete selected</option>
+                                                                    <option value="2">Bulk edit</option>
+                                                                    <option value="3">Export</option>
+                                                                    </select>
+                                                                </div> --}}
+                                                             
+                                                <div class="modal-body" style="text-align: center;">
+                                  
+                                                   
+                                                    <form>
+                                                        <label for="recipient-name" class="col-form-label">Quên đăng nhập kìa</label>
+                                                        <div class="form-group">
+                                                        <a href="/real_estate/public/login">Nhấp vào đây để đăng nhập</a>
+                                                        </div>
+                                                 
+                                                    </form>
+                                                </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                               
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                 <?php endif; ?>
+                               
                             </div>
+                          
                         </div>
+                  
                     </div>
+                    
                 </form>
+           
+               
                 <br>
                 <br>
 
+              
                 <h3 class="sl-sp-title">Mô tả chi tiết</h3>
                 <div class="description" style="font-family: sans-serif;">
                     <p>{!!$real_estate->translation_description!!}</p>
@@ -876,7 +948,7 @@
                 @include('pages.user.page.search')
             </div>
         </div>
-    </div>
+    </div>  
 </section>
 <!-- Page end -->
 
