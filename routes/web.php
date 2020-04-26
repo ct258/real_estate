@@ -200,7 +200,7 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')->name('customer.destroy');
                 
                 });
-
+                        
                 //promotion code_type
                 Route::group(['prefix' => 'promotion'], function () {
                     //index
