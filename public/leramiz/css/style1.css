@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+div#reply {
+    margin-top: 60px;
+}
+
+.comment-warp li {
+    list-style-type: none;
+}
+
+ul.comment-list li {
+    list-style-type: none;
+}
+
 a.rent-notic.apointment {
     margin-left: 53px;
     margin-top: -6px;

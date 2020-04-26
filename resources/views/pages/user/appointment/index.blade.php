@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="appointment">
-                <form action="{{ route('appointment.create', ['c_id'=>$customer->customer_id,'r_id'=>$real_estate->real_estate_id]) }}" method="post">
+                <form action="{{ route('appointment.create',['r_id'=>$real_estate->real_estate_id]) }}" method="post">
                     @csrf
                     <h4>Đặt lịch hẹn</h4>
                     <div class="form-group ">
