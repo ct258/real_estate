@@ -28,7 +28,7 @@
                     </div>
                     @endforeach
 
-                    <a href="{{route('list_blog')}}" class=" news">Tin tức</a>
+                    <a href="{{route('list_blog')}}" class=" news">@lang('News')</a>
                 </div>
             </div>
             <div class="col-lg-6 text-lg-right header-top-right">
@@ -67,8 +67,8 @@
                     </div>
                     <a href="{{route('lang',['vi']) }}">Vi</a>
                     <a href="{{route('lang',['en']) }}">En</a>
-                    <a href="{{route('register')}}"><i class="far fa-user-circle"></i> Đăng ký</a>
-                    <a href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                    <a href="{{route('register')}}"><i class="far fa-user-circle"></i> @lang('Register')</a>
+                    <a href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i> @lang('Login')</a>
                     <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> @lang('Cart')</a>
 
 

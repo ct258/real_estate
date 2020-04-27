@@ -81,38 +81,38 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <a href="{{route('post.create')}}">
-                                <span>Đăng bán bất động sản</span>
+                                <span>@lang('Post sale real estate')</span>
                             </a>
                         </li>
                         <li class="list-group-item active">
                             <a href="{{route('account')}}">
-                                <span>Thông tin cơ bản</span>
+                                <span>@lang('Basic infor')</span>
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="">
-                                <span>Đánh giá và nhận xét</span>
+                                <span>@lang('Rating comment')</span>
                             </a>
                         </li>
                         <li class="list-group-item "@if(!$check_re) disabled @endif>
                            
                             <a href="{{route('account.my_re')}}">
-                                <span>Bất động sản của bạn</span>
+                                <span>@lang('My real estate')</span>
                             </a>
                         </li>
                         <li class="list-group-item ">
                             <a href="{{ route('appointment.detail',['id'=>$info->customer_id]) }}">
-                                <span>Cuộc hẹn</span> 
+                                <span>@lang('Appoinment')</span> 
                         <li class="list-group-item">
                             <a href="{{route('account.my_wish')}}">
-                                <span>Danh sách yêu thích</span>
+                                <span>@lang('Wish list')</span>
                             </a>
                         </li>
                         
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{route('logout') }}"><span>Đăng xuất</span> </a>
+                            <a href="{{route('logout') }}"><span>@lang('Logout')</span> </a>
                         </li>
                     </ul>
                 </div>
@@ -124,8 +124,8 @@
             <div class="col-sm-8">
                 <div class="card content-card">
                     <div class="card-header contnet-header">
-                        <p>Thông tin</p>
-                        <p>Xóa tài khoản</p><i class="fa fa-trash" aria-hidden="true"></i>
+                        <p>@lang('infor')</p>
+                        <p>@lang('Delete')</p><i class="fa fa-trash" aria-hidden="true"></i>
                     </div>
                     <form action="#">
                         <div class="row">
@@ -139,16 +139,16 @@
                                             onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Họ và Tên</label>
+                                        <label for="" class="control-label">@lang('Name')</label>
                                         <input type="text" class="form-control" placeholder="{{$info->customer_name}}">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Tài Khoản</label>
+                                        <label for="" class="control-label">@lang('Account')</label>
                                         <input type="text" class="form-control" placeholder="{{$info->username}}"
                                             readonly>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Mật Khẩu</label>
+                                        <label for="" class="control-label">@lang('Password')</label>
                                         <div class="input-group">
                                             <input type="password" class="form-control" id="validationCustomUsername"
                                                 aria-describedby="inputGroupPrepend" required>
@@ -159,12 +159,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">CMND</label>
+                                        <label for="" class="control-label">@lang('Id')</label>
                                         <input type="text" class="form-control"
                                             placeholder="{{$info->customer_identity_card}}" readonly>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Email</label>
+                                        <label for="" class="control-label">@lang('Email')</label>
                                         <input type="text" class="form-control" placeholder="{{$info->customer_email}}">
                                     </div>
 
@@ -173,38 +173,38 @@
                             <div class="col-sm-6">
                                 <div class="card-body">
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Số Điện Thoại</label>
+                                        <label for="" class="control-label">@lang('Phone')</label>
                                         <input type="text" class="form-control" placeholder="{{$info->customer_tel}}">
                                     </div>
                                     <div class="form-group lang  col-md-12  ">
-                                        <label class="control-label">Ngày Sinh</label>
+                                        <label class="control-label">@lang('Birth')</label>
                                         <input class="form-control" type="date" value="{{$info->customer_birth}}">
                                     </div>
                                     <div class="form-group lang  col-md-12  ">
-                                        <label class="control-label">Tỉnh/Thành Phố</label>
+                                        <label class="control-label">@lang('City')</label>
                                         <select class="form-control" aria-hidden="true">
                                             <option>Cần Thơ</option>
                                         </select>
                                     </div>
                                     <div class="form-group lang  col-md-12  ">
-                                        <label class="control-label">Quận/Huyện</label>
+                                        <label class="control-label">@lang('District')</label>
                                         <select class="form-control" aria-hidden="true">
                                             <option>Ninh Kièu</option>
                                         </select>
                                     </div>
                                     <div class="form-group lang  col-md-12  ">
-                                        <label class="control-label">Phường/Xã</label>
+                                        <label class="control-label">@lang('Ward')</label>
                                         <select class="form-control" aria-hidden="true">
                                             <option>Hưng Lợi</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="" class="control-label">Địa chỉ</label>
+                                        <label for="" class="control-label">@lang('Address')</label>
                                         <input type="text" class="form-control"
                                             placeholder="{{$info->customer_address}}">
                                     </div>
                                     <div class="submit">
-                                        <button class="btn btn-success">Lưu</button>
+                                        <button class="btn btn-success">@lang('Save')</button>
                                     </div>
                                 </div>
                             </div>

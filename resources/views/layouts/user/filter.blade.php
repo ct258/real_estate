@@ -6,17 +6,13 @@
     <div class="col search1">
         <form>
             <div class="input-group input-group_1">
-                <input class="form-control" placeholder="Tìm kiếm theo địa điểm, tên căn hộ hoặc từ khóa" id="search"
+                <input class="form-control" placeholder="@lang('Search_local')" id="search"
                     type="text" value="">
                 <select class="select1">
-                    <option value="">cần mua</option>
-                    <option>Thuê </option>
-
+                    <option value="">@lang('Buy')</option>
                 </select>
                 <select class="select1">
-                    <option value="">cần bán</option>
-                    <option>Thuê </option>
-
+                    <option value="">@lang('Sell')</option>
                 </select>
             </div>
         </form>
@@ -24,7 +20,7 @@
 
     <div class="col-lg-2 search1">
         <button class="btn btn-orange " type="submit">
-            Tìm Kiếm <i class="fa fa-search" style="color: white;"></i>
+            @lang('Search') <i class="fa fa-search" style="color: white;"></i>
         </button>
     </div>
     {{-- </form> --}}
