@@ -61,7 +61,7 @@
     <div class="container-fruid">
         <div class="row">
             <div class="section-title">
-                <h2>Danh sách bất động sản</h2>
+                <h2>@lang("List Product")</h2>
             </div>
             {{-- main page --}}
             <div class="col-lg-9 frame">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 {{ $real_estate->links() }}
-            </div>
+            </div>  
 
             {{-- end main page --}}
             {{-- search form --}}

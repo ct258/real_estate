@@ -81,43 +81,48 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <a href="{{route('post.create')}}">
-                                <span>Đăng bán bất động sản</span>
+                                <span>@lang('Post sale real estate')</span>
                             </a>
                         </li>
                         <li class="list-group-item ">
                             <a href="{{route('account')}}">
-                                <span>Thông tin cơ bản</span>
+                                <span>@lang('Basic infor')</span>
                             </a>
                         </li>
                         <li class="list-group-item">
                             <a href="">
-                                <span>Đánh giá và nhận xét</span>
+                                <span>@lang('Rating comment')</span>
                             </a>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item ">
+                           
                             <a href="{{route('account.my_re')}}">
-                                <span>Bất động sản của bạn</span>
+                                <span>@lang('My real estate')</span>
                             </a>
                         </li>
                         <li class="list-group-item ">
                             <a href="{{ route('appointment.detail',['id'=>$id]) }}">
-                                <span>Cuộc hẹn</span> 
+                                <span>@lang('Appointment')</span> 
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="{{route('logout') }}"><span>Đăng xuất</span> </a>
+                            <a href="{{route('account.my_wish')}}">
+                                <span>@lang('Wish list')</span>
+                            </a>
+                        </li>
+                        
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{route('logout') }}"><span>@lang('Logout')</span> </a>
                         </li>
                     </ul>
                 </div>
             </div>
-
-
-
-
             <div class="col-sm-8">
                 <div class="card content-card">
                     <div class="card-header contnet-header">
-                    <p>Bạn có <span style="color:red"> {{count($result)}}</span> cuộc hẹn!</p>
+                    <p>Bạn có cuộc hẹn: <span style="color:red"> {{count($result)}}</span> </p>
                     </div>
                         <div class="row">
                             <div class="col-sm-12   ">
@@ -125,10 +130,10 @@
                                     <table class="table">
                                         <thead>
                                           <tr class="table-primary">
-                                            <th>Nội dung cuộc hẹn</th>
-                                            <th>Thời gian cuộc hẹn</th>
-                                            <th>Trạng thái</th>
-                                            <th>Chức năng</th>
+                                           <th>@lang('You have appoinment')</th>
+                                           <th>@lang('Content appointment')</th>
+                                           <th>@lang('Time appointment')</th>
+                                           <th>@lang('Action')</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -143,7 +148,7 @@
                                                 <span style="color:#ff0076">Đang xử lý</span>
                                                 @endif
                                             </td>
-                                            <td><a href="{{ route('appointment.destroy', ['id'=>$val->appointment_id]) }}"  style="border: none;background-color: Transparent;color: red;">Xóa</a></td>
+                                            <td><a href="{{ route('appointment.destroy', ['id'=>$val->appointment_id]) }}"  style="border: none;background-color: Transparent;color: red;">@lang('Delete')</a></td>
                                             </tr>
                                         @endforeach
                                         

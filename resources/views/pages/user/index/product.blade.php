@@ -2,7 +2,7 @@
 <!-- feature section -->
 <section class="feature-section spad">
     <div class="section-title text-center">
-        <h3>Bất động sản mới</h3>
+        <h3>@lang('New product')</h3>
     </div>
     <div class="container frame">
         <div class="row">

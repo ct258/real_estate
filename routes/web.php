@@ -440,6 +440,12 @@ Route::group(['middleware' => ['cookie']], function () {
             return view('pages.admin.error');
         })->name('error');
 
+
+
+        //  });
+ 
+
+
  //DOM lấy dữ liệu
             Route::group(['prefix' => ''], function () {
                 Route::get('/district/{province_id}', 'DOMController@get_district')->name('district');
