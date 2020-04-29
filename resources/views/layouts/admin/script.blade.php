@@ -4,11 +4,14 @@
 <script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
+
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 {{-- <--[if lte IE 8]>
     <script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script>
     <![endif]--> --}}
 <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
+
 
 
 

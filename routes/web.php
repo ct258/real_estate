@@ -269,6 +269,9 @@ Route::group(['middleware' => ['cookie']], function () {
                 Route::group(['prefix' => 'statistic'], function () {
                     //index
                     Route::get('/index', 'Admin\StatisticController@index')->name('statistic.index');
+                    //nhà đất
+                    Route::get('/real_estate', 'Admin\StatisticController@real_estate')->name('statistic.real_estate.index');
+                    
                 
                 });
                 //display
@@ -277,6 +280,10 @@ Route::group(['middleware' => ['cookie']], function () {
                     // Route::get('feedback', function (){
                     //     return view('pages.admin.khachhang.feedback');
                     // });
+                    //logo
+                    Route::get('logo', 'Admin\DisplayController@logo')->name('logo');
+                    Route::post('logo', 'Admin\DisplayController@storelogo')->name('logo.submit');
+                    //banner
                     Route::get('banner', function (){
                         return view('pages.admin.display.banner');
                     })->name('banner');
@@ -353,6 +360,8 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/destroy/{contract_id}', 'Admin\ContractController@destroy')->name('contract.destroy');
                 
                 });
+               
+
                 //blog
                 Route::group(['prefix' => 'blog'], function () {
                     //index
@@ -378,6 +387,9 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/create/{id}', 'CustomerReportController@store')->name('customer.report.create.submit');
                
                 });
+            
+                
+
                 //trash
                 Route::group(['prefix' => 'removed'], function () {
                     //index

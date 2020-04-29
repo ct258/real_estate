@@ -16,6 +16,11 @@ class StatisticController extends Controller
     {
         //
     }
+    public function real_estate()
+    {
+        return view('pages.admin.statistic.real_estate');
+    }
+    
 
     /**
      * Show the form for creating a new resource.

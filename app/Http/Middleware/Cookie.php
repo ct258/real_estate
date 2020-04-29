@@ -5,10 +5,12 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\CookieUser;
 use App\Models\Form;
+use App\Models\Banner;
 use App\Models\FormTranslation;
 use App\Models\Type;
 use App\Models\TypeTranslation;
 use Illuminate\Support\Facades\View;
+use DB;
 class Cookie
 {
     /**
@@ -30,10 +32,19 @@ class Cookie
             'form' => $form,
             'type' => $type,
         );
-        View::share('data', $data);
+        $logo= DB::table('banner')->where('banner_id', \DB::raw("(select max(`banner_id`) from banner)"))->value('banner_title');
 
+        // $logo = DB::table('banner')->where('banner_type', 'Logo')->get();
+
+        // $logo = Banner::find(\DB::table('banner')->max('banner_id'));
+
+        // dd($logo);
+        View::share('data', $data);
+        
+        View::share('logo', $logo);
 
         
+
         if(\Cookie::get('real_estate')==null || \Cookie::get('real_estate')==''){
             $id=CookieUser::insertGetId([]);
             \Cookie::queue('real_estate', $id, 43200);
@@ -41,5 +52,6 @@ class Cookie
         }
         
         return $next($request);
+        
     }
 }
