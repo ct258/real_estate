@@ -122,7 +122,7 @@
     }
 
     .middle {
-        margin-top: 10px;
+        margin-top: 4px;
         float: left;
         width: 70%;
     }
@@ -189,7 +189,7 @@
         font-size: 16px;
         /* border: 1px solid black; */
         /* width: 21px; */
-        margin-top: -6px;
+        margin-top: -8px;
         /* text-transform: uppercase; */
         color: #020202;
         font-family: 'Source Sans Pro', sans-serif;
@@ -335,6 +335,8 @@
         #rating>input:checked~label:hover,
         #rating>label:hover~input:checked~label,
         #rating>input:checked~label:hover~label{color:#FFED85;}
+
+
 </style>
 @endpush
 @section('page')
@@ -388,9 +390,18 @@
                             <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
                                 class="price-btn">@lang('Buy')</a>
 
+
+                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">@lang('Book meet')</a>
+                            {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
+                            class="price-btn">@lang('Buy')</a> --}}
+
                             {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"  class="rent-notic apointment">Đăt lịch hẹn</a> --}}
-                            <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
-                            class="price-btn">@lang('Buy')</a>
+
+                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">Đăt lịch hẹn</a>
+
+                            {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
+                            class="price-btn">@lang('Buy')</a> --}}
+
                         </div>
                         <div class="col-xl-12">
                             <div class="container-fluid">
@@ -497,8 +508,8 @@
                 <br>
                 <span id="phananh"><i class="far fa-comment-alt"></i></span>
 
-                <span id="inputGroupPrepend" class="phananh" data-toggle="modal" data-target="#exampleModal">
-                    Phản ánh thông tin sản phẩm không chính xác.
+                <span id="inputGroupPrepend" class="phananh" data-toggle="modal" style="color:red" data-target="#exampleModal">
+                    @lang('Report')
                 </span>
                 
    <?php if(\Auth::guard('account')->check() &&
@@ -511,7 +522,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">@lang('Report')</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -530,13 +541,13 @@
                                     
 
                                         <label for="recipient-name" class="col-form-label"
-                                            style="font-weight:bold;">Thông tin khách hàng</label>
+                                            style="font-weight:bold;"></label>
                                         <br>
-                                        <label for="recipient-name" class="col-form-label">Họ tên:</label>
+                                        <label for="recipient-name" class="col-form-label">@lang('Name') :</label>
                                         <button id="form01"
                                             disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
                                        <br>
-                                            <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+                                            <label for="recipient-name" class="col-form-label">@lang('Phone'):</label>
                                         
                                         <button id="form01"
                                             disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
@@ -544,22 +555,18 @@
                                     </div>
                                    
                                     <form>
-                                        <label for="recipient-name" class="col-form-label">Vui lòng chỉ phản ánh các
-                                            thông tin liên quan đến nội dung mô tả và
-                                            thông tin địa ốc. Các vấn đề liên quan khác vui
-                                            lòng liên hệ tổng đài 1900-6035 để được hỗ trợ.</label>
+                                        <label for="recipient-name" class="col-form-label">@lang('Note rule')</label>
                                         <div class="form-group">
-                                            <label for="message-text" class="col-form-label">Vui lòng mô tả vấn đề cần
-                                                phản ánh</label>
+                                            <label for="message-text" class="col-form-label">@lang('Wirte report')</label>
                                             <textarea class="form-control" id="message-text" name="content"
-                                                placeholder="Nhập..."></textarea>
+                                                placeholder="@lang('Content')..."></textarea>
                                         </div>
                                  
                                     </form>
                                 </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                            <button type="submit" class="btn btn-primary">Báo cáo</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
+                                            <button type="submit" class="btn btn-primary">@lang('Report')</button>
                                
                                 </div>
                                 <?php else: ?>
@@ -630,18 +637,18 @@
                 <br>
 
               
-                <h3 class="sl-sp-title">Mô tả chi tiết</h3>
+                <h3 class="sl-sp-title">@lang('Detail description')</h3>
                 <div class="description" style="font-family: sans-serif;">
                     <p>{!!$real_estate->translation_description!!}</p>
                 </div>
 
-                <h3 class="sl-sp-title">Bản đồ</h3>
+                <h3 class="sl-sp-title">@lang('Map')</h3>
                 <div id="field" data-longitude="{{$real_estate->real_estate_longitude}}"
                     data-latitude="{{$real_estate->real_estate_latitude}}"></div>
                 <div id="issMap"></div>
                 @if ($convenience)
 
-                <h3 class="sl-sp-title">Tiện nghi</h3>
+                <h3 class="sl-sp-title">@lang('convenient')</h3>
                 <div class="row property-details-list">
                     <?php if ($convenience->convenience_air_conditioning!=0):?>
                     <p class='col-xs-12 col-sm-4'><i class='fas fa-wind'></i>
@@ -718,7 +725,7 @@
                     <div class="row customer_rating" class="rating">
                         <div class="col-lg-3">
                             <div class="product-customer-col-1">
-                                <h4>Đánh Giá Trung Bình</h4>
+                                <h4>@lang('Rating')</h4>
 
                                 <p class="total-review-point">{{$average_rank}}/5</p>
                                 <div class="start">
@@ -737,14 +744,14 @@
                                             <i class="fas fa-star"></i>
                                         </span>
                                     </span>
-                                    <p>({{$count_rank}} nhận xét)</p>
+                                    <p>({{$count_rank}} @lang('Review'))</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="product-customer-col-2">
                                 <div class="side">
-                                    <div class="left">5 Star</div>
+                                    <div class="left">5 @lang('Star')</div>
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
@@ -757,7 +764,7 @@
 
                                 </div>
                                 <div class="side">
-                                    <div class="left">4 Star</div>
+                                    <div class="left">4 @lang('Star')</div>
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
@@ -770,7 +777,7 @@
 
                                 </div>
                                 <div class="side">
-                                    <div class="left">3 Star</div>
+                                    <div class="left">3 @lang('Star')</div>
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
@@ -783,7 +790,7 @@
 
                                 </div>
                                 <div class="side">
-                                    <div class="left">2 Star</div>
+                                    <div class="left">2 @lang('Star')</div>
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
@@ -796,7 +803,7 @@
 
                                 </div>
                                 <div class="side">
-                                    <div class="left">1 Star</div>
+                                    <div class="left">1 @lang('Star')</div>
                                 </div>
                                 <div class="middle">
                                     <div class="bar-container">
@@ -812,8 +819,8 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="share_comment float-right">
-                                <h3>Chia sẻ nhận xét về sản phẩm</h3>
-                                <button class="btn btn-default"><a href="#cmt">Viết nhận xét của bạn</a> </button>
+                                <h3>@lang('Share comment')</h3>
+                                <button class="btn btn-default"><a href="#cmt">@lang('Write comment')</a> </button>
                             </div>
                         </div>
                     </div>
@@ -827,43 +834,79 @@
                 <div class="comment-warp">
                     <ul class="comment-list">
                         @foreach ($evaluate as $item)
-
-                        <li>
-
-                            <div class="comment">
-                                <div class="comment-avator set-bg"
-                                    data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
-                                </div>
-                                <div class="comment-content">
-                                    <h5>{{$item->evaluate_title}}</h5>
-                                    <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('Y-m-d')}}</span></h5>
-                                    <p>{{$item->evaluate_content}}</p>
-                                    <a href="" class="c-btn">Like</a>
-                                    <a data-toggle="modal" data-target="#exampleModal" class="c-btn">Reply</a>
-                                </div>
-                            </div>
-
-
-                        </li>
+                           
+                                @if($item->evaluate_reply==null)
+                                    <li>
+                                        <div class="comment">
+                                            <div class="comment-avator set-bg"
+                                                data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h5>{{$item->evaluate_title}}</h5>
+                                                <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
+                                                <p>{{$item->evaluate_content}}</p>
+                                                <a data-toggle="modal" data-target="#exampleModal" class="c-btn" exampleModal>@lang('Report')</a>
+                                                {{-- <button type="button" class="c-btn showReply">Trả lời</button> --}}
+                                                <a data-toggle="modal"  data-target="#reply" class="c-btn showForm">@lang('Reply')</a>
+                                                <div class="formReply" style="display: none; margin-top: 10px;">
+                                                    <form class="comment-form" 
+                                                    action="{{ route('reply_cmt', ['idsp'=> $real_id,'idrep'=>$item->evaluate_id]) }}" method="post">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{-- <div class="form-group">
+                                                                <input type="text" name="title"  placeholder="Tiêu đề . . .">
+                                                            </div> --}}
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" name="content" rows="3"></textarea>
+                                                            </div>
+                                                            <button class="site-btn">@lang('Send')</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul >
+                                            @foreach($evaluate as $val)
+                                            @if($item->evaluate_id == $val->evaluate_reply)
+                                                <li>
+                                                    <div class="comment subreply" style="
+                                                        margin-left: 105px;
+                                                        margin-bottom: 57px;
+                                                    ">
+                                                        <div class="comment-avator set-bg"
+                                                            data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <h5>{{$val->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
+                                                            <p>{{$val->evaluate_content}}</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                            @endforeach
+                                        
+                                        </ul>
+                                    </li>
+                                @endif
+                          
+                        @endforeach
                     </ul>
-
-
-
-                    </li>
-                    @endforeach
-                    </ul>
+                    
+                    
 
                     
                     <div class="comment-form-warp " id="cmt">
                         {{-- Auth::gruad('ten') --}}
-                        <h4 class="comment-title" >Bình luận</h4>
-                     <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id, 'idkh' => 1]) }}"
+                        <h4 class="comment-title" >@lang('Comment')</h4>
+                     <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id]) }}"
                                         method="post">@csrf
                             <div class="row">
                                 <div class="col-sm-12">
                                     
                                         
-                                        <h3 class="sl-sp-title" style="margin-top: 14px">Đánh giá sản phẩm</h3>
+                                        <h3 class="sl-sp-title" style="margin-top: 14px">@lang('Rating product')</h3>
                                         <div id="rating">
                                             <input type="radio" id="star5" name="rating" value="5" />
                                             <label class = "full" for="star5" ></label>
@@ -886,15 +929,15 @@
                             <input type="text" name="name_customer" placeholder="Your Name">
                         </div> --}}
                                 <div class="col-md-6">
-                                    <input type="text" name="title" placeholder="Tiêu đề...">
+                                    <input type="text" name="title" placeholder="@lang('Title')....">
                                 </div>
                                 <div class="col-lg-9">
-                                    <textarea placeholder="Nội dung bình luận..." name="content"></textarea>
+                                    <textarea placeholder="@lang('Content comment')...." name="content"></textarea>
                                     
                                 </div>
                 
                                 <div class="col-sm-12">
-                                    <button class="site-btn">Gửi</button>
+                                    <button class="site-btn">@lang('Send')</button>
                                 </div>
                             </div>
                         </form>
@@ -914,48 +957,10 @@
 <!-- Page end -->
 
 
-{{-- reply comment --}}
-<div class="modal fade reply" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="comment-form-warp">
-                    {{-- Auth::gruad('ten') --}}
-                    <h4 class="comment-title">Reply Comment</h4>
-                    <form class="comment-form"
-                        action="{{ route('reply_cmt', ['idsp'=> $real_id,'idcmt'=>1,'idrep'=>1]) }}" method="post">
-                        @csrf
-                        <div class="row">
-                            {{-- <div class="col-md-6">
-                        <input type="text" name="name_customer" placeholder="Your Name">
-                    </div> --}}
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" name="title" placeholder="Enter title here . . .">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Content</label>
-                                    <textarea class="form-control" name="content" rows="3"></textarea>
-                                </div>
-                                <button class="site-btn">SEND</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- reply comment --}}
+
 @endsection
 @push('script')
+
 <script>
     $(document).ready(function () {
         $('#wishlist_cookie').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
@@ -1054,5 +1059,14 @@ var marker = L.marker([longitude,latitude]).addTo(mymap);
         .setContent("Here!")
         .openOn(mymap);
 //end sp
+</script>
+<script>
+   
+    $(document).ready(function () {
+    $(".showForm").on("click", function () {
+        $(this).next().toggle();
+    });
+  
+});
 </script>
 @endpush

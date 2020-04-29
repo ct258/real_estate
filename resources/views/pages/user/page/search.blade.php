@@ -2,12 +2,12 @@
     @csrf
 
     <div class="left">
-        <td><input type="text" name="search" placeholder="Nhập địa điểm.."><br>
+        <td><input type="text" name="search" placeholder="@lang('Places')..."><br>
         </td>
     </div>
     <div class="left">
         <select name="form" id="form">
-            <option value="">-- Chọn loại tin rao --</option>
+            <option value="">--@lang('Type News')--</option>
             @foreach ($data['form'] as $key=>$item)
             <option value="{{$item->form_translation_id}}">{{$item->form_translation_name}}</option>
             @endforeach
@@ -15,12 +15,12 @@
     </div>
     <div class="left">
         <select name="type" id="type">
-            <option value="">-- Chọn loại nhà đất --</option>
+            <option value="">--@lang('Choose the type of housing')--</option>
         </select>
     </div>
     <div class="left">
         <select name="acreage" id="acreage">
-            <option value="">-- Chọn Diện tích --</option>
+            <option value="">--@lang('Acreage')--</option>
             <option value=""><button type="text" name="" id="">Chưa xác định</button></option>
             <option value=""><button type="text" name="" id="">
                     <= 30 m2</button> </option> <option value=""><button type="text" name="" id="">30 -
@@ -37,13 +37,13 @@
     </div>
     <div class="left">
         <select name="price" id="price">
-            <option value="">-- Chọn Giá --</option>
+            <option value="">--@lang('Price')--</option>
         </select>
     </div>
     <div id="demo" class="collapse">
         <div class="left">
             <select name="province" id="province">
-                <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                <option value="">--@lang('City')--</option>
                 @foreach ($province as $item)
                 <option value="{{$item->province_id}}">{{$item->province_name}}</option>
                 @endforeach
@@ -51,22 +51,22 @@
         </div>
         <div class="left">
             <select name="district" id="district">
-                <option value="">-- Chọn Quận/Huyện --</option>
+                <option value="">--@lang('District')--</option>
             </select>
         </div>
         <div class="left">
             <select name="ward" id="ward">
-                <option value="">-- Chọn Phường/Xã --</option>
+                <option value="">--@lang('Ward')--</option>
             </select>
         </div>
         <div class="left">
             <select name="street" id="street">
-                <option value="">-- Chọn Đường/Phố --</option>
+                <option value="">--@lang('Street')--</option>
             </select>
         </div>
         <div class="left">
             <select name="bedroom" id="bedroom">
-                <option value="">-- Chọn số phòng ngủ --</option>
+                <option value="">--@lang('Bedroom')--</option>
                 <option value="">Không xác định</option>
                 <option value="">1+</option>
                 <option value="">2+</option>
@@ -77,7 +77,7 @@
         </div>
         <div class="left">
             <select name="direction" id="direction">
-                <option value="">-- Chọn hướng nhà --</option>
+                <option value="">--@lang('Direction')--</option>
                 <option value="E">@lang('E')</option>
                 <option value="W">@lang('W')</option>
                 <option value="S">@lang('S')</option>
@@ -90,13 +90,13 @@
         </div>
     </div>
     <div class="left">
-        <button type="button" class="btn btn-primary mn" data-toggle="collapse" data-target="#demo">Xem
-            Thêm</button>
+        <button type="button" class="btn btn-primary mn" data-toggle="collapse" data-target="#demo">
+            @lang('More')...</button>
 
     </div>
 
     <div class="left">
-        <button class="btn btn-primary mn">Tìm kiếm</button>
+        <button class="btn btn-primary mn">@lang("Search")</button>
     </div>
 
 </form>

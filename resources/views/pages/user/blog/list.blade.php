@@ -45,7 +45,7 @@
 <!-- feature section -->
 <section class="feature-section spad">
     <div class="section-title text-center">
-        <h3>Bài viết mới</h3>
+        <h3> @lang('Post new') </h3>
     </div>
     <div class="container frame">
         <div class="row">

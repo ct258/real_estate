@@ -5,8 +5,8 @@
     </div>
     <div class="content">
         <div class="principal">
-            <h1>Bất Động Sản Cần Thơ</h1>
-            <p>Uy Tính - Tin Cậy - Nhanh Chóng - Thân Thiện</p>
+            <h1>@lang('Real Estate Can Tho')</h1>
+            <p>@lang('Reputation') - @lang('Trust') - @lang('Quickly') - @lang('Friendly')</p>
         </div>
     </div>
 </div>

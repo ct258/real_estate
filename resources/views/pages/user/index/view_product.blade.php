@@ -2,7 +2,7 @@
 <!-- feature section -->
 <section class="feature-section spad">
     <div class="section-title text-center">
-        <h3>Bất động sản bạn đã xem</h3>
+        <h3>@lang('Seen real estate')</h3>
     </div>
     <div class="container frame">
         <div class="row">
@@ -14,7 +14,7 @@
                 <div class="feature-item">
                     <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
                         style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
-                        <div class="sale-notic">FOR SALE</div>
+                        <div class="sale-notic"> @lang('For sale') </div>
                     </div>
                     <div class="feature-text">
                         <div class="text-center feature-title">
