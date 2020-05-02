@@ -14,7 +14,7 @@
     <div class="container header">
         <div class="row row_1">
             <div class="col-lg-6">
-{{-- {{dump($logo)}} --}}
+{{-- {{dump($banner)}} --}}
                 <div class="nav">
                     <div class="logo" >
                     <a href="{{route('index')}}"  class="logo"><img src="{{asset('img/banner/logo/'.$logo)}}"

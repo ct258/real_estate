@@ -284,9 +284,11 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::get('logo', 'Admin\DisplayController@logo')->name('logo');
                     Route::post('logo', 'Admin\DisplayController@storelogo')->name('logo.submit');
                     //banner
+                    // Route::get('banner', 'Admin\DisplayController@logo')->name('banner');
                     Route::get('banner', function (){
                         return view('pages.admin.display.banner');
                     })->name('banner');
+                    Route::post('banner/{id}', 'Admin\DisplayController@update')->name('banner.submit');
                 });
                 //setting
                 Route::group(['prefix' => 'setting'], function () {

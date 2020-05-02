@@ -39,6 +39,18 @@ class Cookie
         // $logo = Banner::find(\DB::table('banner')->max('banner_id'));
 
         // dd($logo);
+        $banner1= DB::table('banner')->where('banner_id',43)->value('banner_title');
+        $banner2= DB::table('banner')->where('banner_id',44)->value('banner_title');
+        $banner3= DB::table('banner')->where('banner_id',45)->value('banner_title');
+        $banner4= DB::table('banner')->where('banner_id',46)->value('banner_title');
+        $banner= array(
+            'banner1'=>$banner1,
+            'banner2'=>$banner2,
+            'banner3'=>$banner3,
+            'banner4'=>$banner4,
+        );
+        View::share('banner', $banner);
+        // dd($banner1);
         View::share('data', $data);
         
         View::share('logo', $logo);

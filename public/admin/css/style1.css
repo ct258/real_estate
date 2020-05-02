@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-
-
 div#reply {
     margin-top: 60px;
 }
@@ -164,11 +162,11 @@ div#curency a:hover {
 
 /* Hero section */
 
-.load{
+/* .load{
     animation: slide 2s;
     
-}
-.slider{
+} */
+/* .slider{
     position: relative;
     height: 640px;
     background-repeat: no-repeat;
@@ -176,7 +174,7 @@ div#curency a:hover {
     background-position: center;
     width: 100%;
     animation: slide 40s infinite;
-}
+} */
 .content{
     color: white;
     width: 100%;
@@ -184,6 +182,7 @@ div#curency a:hover {
     background-color: rgba(0, 0, 0, 0.5);
 
 }
+
 
 .principal{
     left: 50%;
@@ -213,7 +212,7 @@ div#curency a:hover {
     font-weight: 700;
 }
 
-@keyframes slide{
+/* @keyframes slide{
     0% {
         background-image: url("../img/bg/bg1.jpg");
     }
@@ -276,7 +275,7 @@ div#curency a:hover {
     100% {
         background-image: url("../img/bg/bg1.jpg");
     }
-}
+} */
 
 .col-lg-2.search1 button.btn.btn-orange i.fa.fa-search {
     padding: 0 5px;

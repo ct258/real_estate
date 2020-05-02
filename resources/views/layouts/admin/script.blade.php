@@ -104,6 +104,7 @@
 		case 'file:':
 		alert('Just a heads-up, events will not work when run locally.');
 		}
+		
 
 		});
 </script>
@@ -112,10 +113,10 @@
 {{-- loadtrang --}}
 	<script>
 		$(window).on('load', function(event) {
-	$('body').removeClass('preloading');
-	$('.load').delay(200).fadeOut('fast');
-	// $('.loader').delay(1000).fadeOut('fast');
-});
-	</script>
+				$('html,body').removeClass('pre');
+				$('.loading').delay(200).fadeOut('fast');
+	// $('.load').delay(1000).fadeOut('fast');
+		});
+		</script>
 
 {{-- loadtrang --}}

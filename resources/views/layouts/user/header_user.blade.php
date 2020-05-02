@@ -30,7 +30,7 @@
                             <a href="{{route('list',$value2->type_id)}}">{{$value2->type_translation_name}}</a>
                             <?php continue; ?>
                             @endif
-
+                            
                             @endforeach
 
                         </div>

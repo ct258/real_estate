@@ -89,7 +89,9 @@ class DisplayController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        
+
     }
 
     /**
@@ -101,7 +103,26 @@ class DisplayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->hasFile('avatar')) {
+            $file=$request->file('avatar')->getClientOriginalName();
+            $type_file = \File::extension($file);
+            // $name_file=$file.'.'.$type_file;
+
+            //lưu filed
+            $request->file('avatar')->move(
+            public_path('img\banner'), //nơi cần lưu
+            $file,
+            );
+            
+        }
+
+        DB::table('banner')->where('banner_id',$id )
+        ->update(['banner_title' => $file,
+         'banner_path'=> public_path('img\banner') ]
+        );
+
+        // dd($blog[0]->blog_translation_title);
+        return view('pages.admin.display.banner');
     }
 
     /**
