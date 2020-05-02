@@ -9,9 +9,9 @@
 				<i class="fa fa-eye"> </i>
 			</div>
 			<div class="col-md-8 market-update-left">
-				<h4>Visitors</h4>
-				<h3>13,500</h3>
-				<p>Other hand, we denounce</p>
+				<h4>Khách vãng lai</h4>
+				<h3>{{ $query_result_person[2]}}</h3>
+				<p>Người đã đi ngang</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -22,9 +22,10 @@
 				<i class="fa fa-users"></i>
 			</div>
 			<div class="col-md-8 market-update-left">
-				<h4>Users</h4>
-				<h3>1,250</h3>
-				<p>Other hand, we denounce</p>
+				<h4>Khách hàng</h4>
+				<h3>{{$user}}</h3>
+				{{-- {{dump($user)}} --}}
+				<p>Người đã đăng ký </p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -35,9 +36,10 @@
 				<i class="fa fa-usd"></i>
 			</div>
 			<div class="col-md-8 market-update-left">
-				<h4>Sales</h4>
-				<h3>1,500</h3>
-				<p>Other hand, we denounce</p>
+				<h4>Doanh thu</h4>
+				<h3  >{{$money}} đồng </h3>
+				{{-- <h5>đồng</h5> --}}
+				<p>Tổng tiền từ hợp đồng</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -48,9 +50,9 @@
 				<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 			</div>
 			<div class="col-md-8 market-update-left">
-				<h4>Orders</h4>
-				<h3>1,500</h3>
-				<p>Other hand, we denounce</p>
+				<h4>Đơn đặt cọc</h4>
+				<h3>{{$cart}}</h3>
+				<p>Đơn khách đang đặt cọc</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>

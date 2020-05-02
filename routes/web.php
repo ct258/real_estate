@@ -408,9 +408,10 @@ Route::group(['middleware' => ['cookie']], function () {
 
             //admin and staff
             // Route::group(['middleware' => ['checkAdminStaff']], function () {
-                Route::get('dashboard', function () {
-                    return view('pages.admin.dashboard');
-                })->name('dashboard');
+                // Route::get('dashboard', function () {
+                //     return view('pages.admin.dashboard');
+                // })->name('dashboard');
+                Route::get('dashboard', 'Admin\StatisticController@basic')->name('dashboard');
             // });
         });
             

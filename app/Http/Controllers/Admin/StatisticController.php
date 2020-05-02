@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\DepositContract;
+use App\Models\DetailFee;
+
+use DB;
+
 
 class StatisticController extends Controller
 {
@@ -19,6 +25,17 @@ class StatisticController extends Controller
     public function real_estate()
     {
         return view('pages.admin.statistic.real_estate');
+    }
+    public function basic()
+    {
+         $user = DB::table('Customer')->count();
+        //  deposit_contract_total_money 
+         $money = DB::table('deposit_contract')->sum('deposit_contract_total_money');
+         $cart = DB::table('detail_fee')->sum('detail_fee_id');
+         
+
+        //  dd($money);
+        return view('pages.admin.dashboard',compact('user','money','cart'));
     }
     
 
