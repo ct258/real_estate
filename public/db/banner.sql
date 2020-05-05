@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 05, 2020 lúc 11:08 AM
--- Phiên bản máy phục vụ: 10.4.11-MariaDB
--- Phiên bản PHP: 7.3.13
+-- Host: 127.0.0.1
+-- Generation Time: May 05, 2020 at 02:17 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `real_estate`
+-- Database: `real_estate`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `banner`
+-- Table structure for table `banner`
 --
 
 CREATE TABLE `banner` (
@@ -37,7 +36,7 @@ CREATE TABLE `banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='hình banner';
 
 --
--- Đang đổ dữ liệu cho bảng `banner`
+-- Dumping data for table `banner`
 --
 
 INSERT INTO `banner` (`banner_id`, `banner_title`, `banner_path`, `banner_type`, `banner_link`) VALUES
@@ -50,7 +49,7 @@ INSERT INTO `banner` (`banner_id`, `banner_title`, `banner_path`, `banner_type`,
 (40, 'avatar.png', 'C:\\xampp\\htdocs\\real_estate\\public\\/img/banner/logo', 'Logo', NULL),
 (41, 'logo_header.png', 'C:\\xampp\\htdocs\\real_estate\\public\\/img/banner/logo', 'Logo', NULL),
 (42, 'logo_header.png', 'C:\\xampp\\htdocs\\real_estate\\public\\/img/banner/logo', 'Logo', NULL),
-(43, '00585a3568a0a7d.jpg', 'C:\\xampp\\htdocs\\real_estate\\public\\img\\banner', 'banner', NULL),
+(43, 'bg1.jpg', 'C:\\xampp\\htdocs\\real_estate\\public\\img\\banner', 'banner', NULL),
 (44, 'bg2.jpg', 'C:\\xampp\\htdocs\\real_estate\\public\\img\\banner', 'banner', NULL),
 (45, 'bg3.jpg', 'C:\\xampp\\htdocs\\real_estate\\public\\img\\banner', 'banner', NULL),
 (46, 'bg4.jpg', 'C:\\xampp\\htdocs\\real_estate\\public\\img\\banner', 'banner', NULL),
@@ -58,11 +57,11 @@ INSERT INTO `banner` (`banner_id`, `banner_title`, `banner_path`, `banner_type`,
 (48, 'logo_header.png', 'C:\\xampp\\htdocs\\real_estate\\public\\/img/banner/logo', 'Logo', NULL);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`banner_id`),
@@ -71,11 +70,11 @@ ALTER TABLE `banner`
   ADD KEY `banner_banner_link_index` (`banner_link`(768));
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `banner`
+-- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `banner_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id của banner', AUTO_INCREMENT=49;
