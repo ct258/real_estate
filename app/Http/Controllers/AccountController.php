@@ -50,11 +50,17 @@ class AccountController extends Controller
                 if($check_customer){
                     $this->tran_cart($request,$check_customer);
                     $this->tran_wishlist($request,$check_customer);
-                    return redirect('/');
+                    return ($url = \Session::get('backUrl')) 
+                    ? \Redirect::to($url) 
+                    : redirect('/');
+                    // return redirect('/');
                 }
                 else{
                     //nếu là admin thì chuyển vào trang admin
-                    return redirect('/dashboard');
+                    return ($url = \Session::get('backUrl')) 
+                    ? \Redirect::to($url) 
+                    : redirect('dashboard');
+                    // return redirect('/dashboard');
                 }
 
         } else {

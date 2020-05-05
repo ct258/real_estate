@@ -29,6 +29,12 @@ class CheckLogin
                 // return redirect()->route('getLogin');
             // }
         } else {
+            // dd(\Request::server('HTTP_REFERER'));
+            // dd($request);
+            // dd(\Request::server('PATH_INFO'));
+            // \Session::flash('request', $request->request);
+            // \Session::flash('backUrl', \Request::fullUrl());
+            \Session::flash('backUrl', \Request::server('HTTP_REFERER'));
             return redirect('/login');
         }
     }
