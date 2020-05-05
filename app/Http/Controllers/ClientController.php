@@ -25,7 +25,7 @@ use Illuminate\Http\Response;
 class ClientController extends Controller
 {
     public function list($type_id)
-    {
+    { 
         // dd(\Session::get('lang', config('app.locale')));
         app()->setLocale(\Session::get('lang', config('app.locale')));
         // \App::setLocale('vi');
@@ -52,6 +52,7 @@ class ClientController extends Controller
             'unit_translation.*')
             ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
                 ['real_estate_status','Đang bán'],
                 ['real_estate.type_id',$type_id] ])
             ->paginate(6);
@@ -61,9 +62,9 @@ class ClientController extends Controller
         $now = Carbon::now();
         $day=[];
         if($real_estate->isNotEmpty()){
-        foreach ($real_estate as $key => $value) {
+            foreach ($real_estate as $key => $value) {
             $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
-            $value->real_estate_price = ($value->real_estate_price * $rate->currency_rate)/$value->value_unit;
+            $value->real_estate_price = ($value->real_estate_price * $rate->currency_rate)/$value->unit_value;
         }
         }
         // lấy dữ liệu cho search form
@@ -289,6 +290,8 @@ class ClientController extends Controller
     }
     public function single_list(Request $request, $real_estate_id)
     {
+        // dd(\Auth::guard('account')->user()->load('customer')->customer->customer_name);
+        // dd($request);
         $province=Province::all();
 
         //thêm vào danh sách sp đã xem
