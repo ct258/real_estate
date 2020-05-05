@@ -51,6 +51,14 @@
         margin-top: 100px;
         margin-bottom: 100px;
     }
+
+    .feature-title h5 {
+        min-height: 58px;
+    }
+
+    .room-info-warp {
+        padding: 15px 25px;
+    }
 </style>
 @endpush
 
@@ -60,9 +68,9 @@
 <section class="page-section list">
     <div class="container-fruid">
         <div class="row">
-            <div class="section-title">
+            {{-- <div class="section-title">
                 <h2>@lang("List Product")</h2>
-            </div>
+            </div> --}}
             {{-- main page --}}
             <div class="col-lg-9 frame">
                 <div class="row">
@@ -71,7 +79,7 @@
                     </div>
                 </div>
                 {{ $real_estate->links() }}
-            </div>  
+            </div>
 
             {{-- end main page --}}
             {{-- search form --}}

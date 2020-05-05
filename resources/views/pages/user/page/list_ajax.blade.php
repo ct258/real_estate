@@ -29,7 +29,7 @@
             </div>
             <a href="{{route('single_list',$item->real_estate_id)}}" class="room-price"><i
                     class="fas fa-dollar-sign"></i>{{$rate->currency_symbol}}
-                {{number_format($real_estate->real_estate_price)}}{{$real_estate->unit_translation_name}}</a>
+                {{number_format($item->real_estate_price)}}{{$item->unit_translation_name}}</a>
         </div>
     </div>
 </div>
