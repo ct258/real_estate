@@ -17,7 +17,9 @@ Auth::routes(['register' => false]);
 //đăng nhập, đăng xuất
 Route::group(['prefix' => ''], function ()
 {
-    Route::view('/login', 'auth.login')->name('getLogin');
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('getLogin');
     Route::post('/xetdangnhap', ['as' => 'postLogin', 'uses' => 'AccountController@postLogin']);
     Route::get('/logout', 'AccountController@logout')
         ->name('logout');
