@@ -162,11 +162,11 @@ div#curency a:hover {
 
 /* Hero section */
 
-.load{
+/* .load{
     animation: slide 2s;
     
-}
-.slider{
+} */
+/* .slider{
     position: relative;
     height: 640px;
     background-repeat: no-repeat;
@@ -174,7 +174,7 @@ div#curency a:hover {
     background-position: center;
     width: 100%;
     animation: slide 40s infinite;
-}
+} */
 .content{
     color: white;
     width: 100%;
@@ -211,7 +211,7 @@ div#curency a:hover {
     font-weight: 700;
 }
 
-@keyframes slide{
+/* @keyframes slide{
     0% {
         background-image: url("../img/bg/bg1.jpg");
     }
@@ -274,7 +274,7 @@ div#curency a:hover {
     100% {
         background-image: url("../img/bg/bg1.jpg");
     }
-}
+} */
 
 .col-lg-2.search1 button.btn.btn-orange i.fa.fa-search {
     padding: 0 5px;
@@ -329,3 +329,29 @@ div#curency a:hover {
     /* margin-bottom: 5px; */
     top: 0;
     }
+    
+
+.container-fuild.bg_top1.xanh {
+    height: 60px;
+    /* background-size: 18px; */
+    background-color: #30caa8;
+    /* opacity: 0.9; */
+}
+.nav.xanh {
+    margin-top: -11px;
+}
+.col-lg-6.text-lg-right.header-top-right.xanh {
+    margin-top: -11px;
+}
+.container-fuild.bg_top1 {
+    /* background-size: 18px; */
+    transition: 0.5s;
+
+}
+.nav {
+    transition: 0.5s;
+}
+.col-lg-6.text-lg-right.header-top-right {
+    transition: 0.5s;
+
+}
