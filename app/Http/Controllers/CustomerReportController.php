@@ -43,8 +43,8 @@ class CustomerReportController extends Controller
     {
       // $cus = Session::get('customer');
       $report= new Report;
-      $cus = new Customer;
-      $real = new RealEstate;
+      // $cus = new Customer;
+      // $real = new RealEstate;
       $report->report_content = $request->content;
       $report->report_status= 'Chưa xử lý';
 

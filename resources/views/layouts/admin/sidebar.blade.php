@@ -156,6 +156,7 @@
                         <li><a href="">Lợi nhuận</a></li>
                         <li><a href="">Thành viên</a></li>
                         <li><a href="">Nhân viên</a></li>
+                        <li><a href="{{route('statistic.real_estate.index')}}">Nhà đất</a></li>
                     </ul>
                 </li>
                 {{-- giao diện --}}
@@ -167,7 +168,7 @@
                     <ul class="sub">
                         <li><a href="{{route('banner')}}">Cập Nhật Ảnh Bìa</a></li>
                         <li><a href="">Cập Nhật Trang Giới Thiệu</a></li>
-                        <li><a href="">Cập Nhật Logo</a></li>
+                    <li><a href="{{route('logo')}}">Cập Nhật Logo</a></li>
                         <li><a href="">Cập Nhật Slogan</a></li>
                     </ul>
                 </li>

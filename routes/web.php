@@ -269,6 +269,9 @@ Route::group(['middleware' => ['cookie']], function () {
                 Route::group(['prefix' => 'statistic'], function () {
                     //index
                     Route::get('/index', 'Admin\StatisticController@index')->name('statistic.index');
+                    //nhà đất
+                    Route::get('/real_estate', 'Admin\StatisticController@real_estate')->name('statistic.real_estate.index');
+                    
                 
                 });
                 //display
@@ -277,9 +280,15 @@ Route::group(['middleware' => ['cookie']], function () {
                     // Route::get('feedback', function (){
                     //     return view('pages.admin.khachhang.feedback');
                     // });
+                    //logo
+                    Route::get('logo', 'Admin\DisplayController@logo')->name('logo');
+                    Route::post('logo', 'Admin\DisplayController@storelogo')->name('logo.submit');
+                    //banner
+                    // Route::get('banner', 'Admin\DisplayController@logo')->name('banner');
                     Route::get('banner', function (){
                         return view('pages.admin.display.banner');
                     })->name('banner');
+                    Route::post('banner/{id}', 'Admin\DisplayController@update')->name('banner.submit');
                 });
                 //setting
                 Route::group(['prefix' => 'setting'], function () {
@@ -353,6 +362,8 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/destroy/{contract_id}', 'Admin\ContractController@destroy')->name('contract.destroy');
                 
                 });
+               
+
                 //blog
                 Route::group(['prefix' => 'blog'], function () {
                     //index
@@ -378,6 +389,9 @@ Route::group(['middleware' => ['cookie']], function () {
                     Route::post('/create/{id}', 'CustomerReportController@store')->name('customer.report.create.submit');
                
                 });
+            
+                
+
                 //trash
                 Route::group(['prefix' => 'removed'], function () {
                     //index
@@ -394,9 +408,10 @@ Route::group(['middleware' => ['cookie']], function () {
 
             //admin and staff
             // Route::group(['middleware' => ['checkAdminStaff']], function () {
-                Route::get('dashboard', function () {
-                    return view('pages.admin.dashboard');
-                })->name('dashboard');
+                // Route::get('dashboard', function () {
+                //     return view('pages.admin.dashboard');
+                // })->name('dashboard');
+                Route::get('dashboard', 'Admin\StatisticController@basic')->name('dashboard');
             // });
         });
             

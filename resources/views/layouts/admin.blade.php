@@ -1,8 +1,8 @@
 @include('layouts.admin.head')
 
-<body class="preloading">
+<body class="pre">
     {{-- hieuungloadtrang --}}
-    <div class="load">
+    <div class="loading">
         <img src="{{asset('admin\images\loader.gif')}}">
     </div>
 

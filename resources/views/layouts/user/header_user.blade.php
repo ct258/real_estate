@@ -3,15 +3,22 @@
 
 </section> --}}
 <!--  Page top end -->
-
+<style>
+    .logo img{
+          max-height: 40px;
+          max-width: 200px;
+      }
+   </style> 
 <div class="container-fuild bg_top1">
     <div class="container header">
         <div class="row row_1">
             <div class="col-lg-6">
                 <div class="nav">
-                    <a href="{{route('index')}}" class="logo"><img src="{{asset('leramiz/img/logo_header.png')}}"
-                            alt=""></a>
-
+                    {{-- {{dd($logo)}} --}}
+                    <div class="logo" >
+                        <a href="{{route('index')}}" class="logo"><img src="{{asset('img/banner/logo'.$logo)}}"
+                                alt=""></a>
+                    </div>
 
                     @foreach ($data['form'] as $key1=>$value1)
                     <div class="dropdown">
@@ -23,7 +30,7 @@
                             <a href="{{route('list',$value2->type_id)}}">{{$value2->type_translation_name}}</a>
                             <?php continue; ?>
                             @endif
-
+                            
                             @endforeach
 
                         </div>

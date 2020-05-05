@@ -16,6 +16,7 @@ class Banner extends Model
         'banner_id',
         'banner_title',
         'banner_path',
+        'banner_type',
         'banner_link',
         'created_at',
         'updated_at',

@@ -2,6 +2,7 @@
 {{-- <script src="{{asset('leramiz/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('leramiz/js/jquery-3.2.1.js')}}"></script>
 <script src="{{asset('leramiz/js/bootstrap.min.js')}}"></script> --}}
+<script src="{{asset('leramiz/js/jquery-3.2.1.js')}}"></script>
 <script src="{{asset('leramiz/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('leramiz/js/jquery.easing.1.3.js')}}"></script>
 <script src="{{asset('leramiz/js/masonry.pkgd.min.js')}}"></script>
@@ -90,6 +91,17 @@
           $.get("../street/"+district_id, function(data){
               $("#street").html(data);
           });
+      });
+      $(window).scroll(function(event){
+        var vitri = $('body').scrollTop();
+        var muc = $('.row').offset().top;
+        // console.log(muc);
+        if( vitri >= 650){
+            $('.container-fuild.bg_top1, .nav, .col-lg-6.text-lg-right.header-top-right').addClass('xanh');
+        }
+        else{
+            $('.container-fuild.bg_top1, .nav, .col-lg-6.text-lg-right.header-top-right').removeClass('xanh');
+        }
       });
 
   });
