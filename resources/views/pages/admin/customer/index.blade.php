@@ -99,6 +99,7 @@
             <th>RANK</th>
             <th style="width:100px;">Chức năng</th>
           </tr>
+          <?php $dem=count($customer)?>
           @foreach ($customer as $val)
           <tr>
            <td>{{$val->customer_name}}</td>
@@ -128,7 +129,7 @@
       <div class="row">
         
         <div class="col-sm-5 ">
-          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong>{{count($customer)}}</strong> khách hàng.</small>
+          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong>{{($customer->total())}}</strong> khách hàng.</small>
         </div>
        
         <div class="col-sm-5" style="margin-left:-15px"> 

@@ -33,6 +33,17 @@
     .blog {
         padding: 20px 0;
     }
+    /* div#Avatar:hover {
+    transition: 0.5s!important;
+    transform: scale(0.5)!important;
+    /* transform: rotate3d(1, 1, 1, 60deg)!important; */
+    /* cursor: pointer; */
+    } */
+   
+    #avatar:hover{
+        transform: scale(1.15);
+        transition: 1s;
+    }
 </style>
 @endpush
 @section('page')

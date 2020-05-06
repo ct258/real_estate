@@ -3,7 +3,18 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+/* 
+div#Avatar:hover {
+    transition: 0.5s!important;
+    transform: rotate3d(1, 1, 1, 60deg)!important;
+    cursor: pointer;
+}
+#test:hover {
+    transition: 0.5s!important;
+    transform: rotate3d(1, 1, 1, 60deg)!important;
+    cursor: pointer;
+} */
+   
 div#reply {
     margin-top: 60px;
 }
@@ -124,7 +135,7 @@ ul.dropdown-menu.show li a {
 }
 
 p.dropdown-toggle {
-    font-size: 16px;
+    font-size: 12px;
     color: white;
 }
 
@@ -354,4 +365,10 @@ div#curency a:hover {
 .col-lg-6.text-lg-right.header-top-right {
     transition: 0.5s;
 
+}
+.path.xanh{
+    color: black;
+}
+.path {
+    color: black;
 }

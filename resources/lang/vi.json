@@ -111,7 +111,7 @@
     "Appointment":"Cuộc hẹn",
     "Wish list":"Danh sách yêu thích",
     "infor":"Thông tin",
-    "Delete":"Xóa tài khoản",
+    "Delete":"Xóa",
     "Password":"Mật khẩu",
     "Email":"Email",
     "Birth":"Ngày sinh",
@@ -121,7 +121,9 @@
     "You have appoinment":"Bạn có cuộc hẹn",
     "Content appointment ":"Nội dung cuộc hẹn" ,
     "Time appointment ":"Thời gian" ,
-    "Status appointment ":"Trạng thái" 
+    "Status appointment ":"Trạng thái" ,
+    "Logout": "Đăng xuất"
+   
 
 
 

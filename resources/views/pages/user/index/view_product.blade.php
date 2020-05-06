@@ -35,10 +35,16 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('single_list',$item->real_estate_id)}}"
-                            class="room-price">{{$rate->currency_symbol}}
-                            {{number_format($price_view[$item->real_estate_id])}}{{ $item->unit_translation_name}}
-                        </a>
+                               <div class="sp1">
+                            <a id="gia" href="{{route('single_list',$item->real_estate_id)}}"
+                                class="room-price">{{$rate->currency_symbol}}
+                                {{number_format($price_view[$item->real_estate_id])}}{{ $item->unit_translation_name}}
+                                <span id="sp"></span>
+                                <span id="sp"></span>
+                                <span id="sp"></span>
+                                <span id="sp"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

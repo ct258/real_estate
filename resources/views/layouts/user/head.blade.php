@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="{{asset('leramiz/css/bootstrap.min.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/font-awesome.min.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/animate.css')}}" />
+  <link rel="stylesheet" href="{{asset('leramiz/css/animate1.css')}}" />
+  
   <link rel="stylesheet" href="{{asset('leramiz/css/owl.carousel.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/style.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/style1.css')}}" />

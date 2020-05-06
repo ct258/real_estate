@@ -52,7 +52,7 @@
 			<div class="col-md-8 market-update-left">
 				<h4>Đơn đặt cọc</h4>
 				<h3>{{$cart}}</h3>
-				<p>Đơn khách đang đặt cọc</p>
+				<p>Đơn đang đặt cọc</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>

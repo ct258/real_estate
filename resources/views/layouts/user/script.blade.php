@@ -7,6 +7,7 @@
 <script src="{{asset('leramiz/js/jquery.easing.1.3.js')}}"></script>
 <script src="{{asset('leramiz/js/masonry.pkgd.min.js')}}"></script>
 <script src="{{asset('leramiz/js/magnific-popup.min.js')}}"></script>
+<script src="{{asset('leramiz/js/wow.js')}}"></script>
 <script src="{{asset('leramiz/js/main.js')}}"></script>
 <script src="{{asset('fontawesome/js/all.js')}}"></script>
 <script src="{{asset('ckeditor/ckeditor.js') }}"></script>
@@ -48,6 +49,10 @@
   })();
 </script>
 <script>
+    new WOW().init();
+    </script>
+<script>
+    
     $(document).ready(function () {
       //lấy loại bất động sản
       $("#form").change(function(){
@@ -97,14 +102,15 @@
         var muc = $('.row').offset().top;
         // console.log(muc);
         if( vitri >= 650){
-            $('.container-fuild.bg_top1, .nav, .col-lg-6.text-lg-right.header-top-right').addClass('xanh');
+            $('.container-fuild.bg_top1, .nav, .col-lg-6.text-lg-right.header-top-right,.path').addClass('xanh');
         }
         else{
-            $('.container-fuild.bg_top1, .nav, .col-lg-6.text-lg-right.header-top-right').removeClass('xanh');
+            $('.container-fuild.bg_top1, .nav, .col-lg-6.text-lg-right.header-top-right,.path').removeClass('xanh');
         }
       });
 
   });
+
   //reset tất cả về ban đầu khi thay đổi tỉnh
   $("#province").change(function(){
       var province_id = $("#province").val();
@@ -117,6 +123,7 @@
           $("#street").html(data3);
       }
   });
+
   //reset tất cả về ban đầu khi thay đổi tỉnh
   $("#district").change(function(){
       var ward_id = $("#ward").val();
