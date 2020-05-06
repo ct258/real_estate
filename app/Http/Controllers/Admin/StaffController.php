@@ -85,12 +85,9 @@ class StaffController extends Controller
     public function edit($id)
     {
         $staff = Staff::where('staff_id',$id)->get();
-        foreach($staff as $i)
-        {
-            $ac_id = $i->account_id;
-        }
+        $staff1 = Staff::where('staff_id',$id)->first();
+        $ac =Account::where('account_id',$staff1->account_id)->first();
         
-       
         return view('pages.admin.staff.edit',compact('staff','ac'));
     }
 
