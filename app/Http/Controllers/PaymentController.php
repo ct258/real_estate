@@ -4,19 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Redirect;
+use App\Models\Cart;
 
 class PaymentController extends Controller
 {
     public function VNPay(Request $request)
     {
+        // dd(\Crypt::encrypt('eyJpdiI6Ino4MG9aek5hb1NYUGs3bVc3OVVCQVE9PSIsInZhbHVlIjoiM3hQZ0NrR0JweFJUQ0F0U0JtNUZ1Zz09IiwibWFjIjoiMDk0NDNkNjA3ZjExZTM4MTgwN2NkYjQ4MWQ4ZTdhNTkyNDlkNTgxNmIxZTJhODhjZGIwZjQxNGYzYzVmYjNlYSJ9 '));
         // dd($request);
+        $idcus=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        $id_cart=Cart::where([['customer_id',$idcus],['cart_status',null]])->first();
         session(['cost_id' => $request->id]);
         session(['url_prev' => url()->previous()]);
         $vnp_TmnCode = 'UDOPNWS1'; //Mã website tại VNPAY
         $vnp_HashSecret = 'EBAHADUGCOEWYXCMYZRMTMLSHGKNRPBN'; //Chuỗi bí mật
         $vnp_Url = 'http://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
         $vnp_Returnurl = 'http://localhost/real_estate/public/payment/return-vnpay';
-        $vnp_TxnRef = date('YmdHis'); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        // $vnp_TxnRef = date('YmdHis'); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_TxnRef = \Crypt::encrypt($id_cart->cart_id); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'Thanh toán hóa đơn phí dich vụ';
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = $request->total; // số tiền *100
@@ -67,10 +72,18 @@ class PaymentController extends Controller
 
     public function return(Request $request)
     {
-        dd($request);
+        
+        // dd(\Auth::guard('account')->user()->load('customer')->customer->customer_id);
         $url = session('url_prev', '/');
         if ($request->vnp_ResponseCode == '00') {
-            //thành công
+            // thành công
+            $id=\Crypt::decrypt($request->vnp_TxnRef);
+            Cart::where('cart_id',$id)->update([
+                'cart_status'=>'Chờ duyệt'
+            ]);
+            Cart::insert([
+                'customer_id'=>\Auth::guard('account')->user()->load('customer')->customer->customer_id,
+            ]);
             //  "vnp_Amount" => "5100000000"
             // "vnp_TxnRef" => "20200421224518" mã đơn
             // $this->apSer->thanhtoanonline(session('cost_id'));
