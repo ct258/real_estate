@@ -117,11 +117,12 @@
     "Address":"Address",
     "Id":"Identity",
     "Save":"Save" ,
-    "You have appoinment":"You have appoinment",
-    "Content appointment ":"Content appoinment" ,
-    "Time appointment ":"Time appoinment" ,
-    "Status appointment ":"Status appoinment" ,
-    "Logout": "Đăng xuất"
+    "You have appoinment":"Appoinment",
+    "Content appointment":"Content" ,
+    "Time appointment":"Time appoinment" ,
+    "Status appointment":"Status" ,
+    "Logout":"Đăng xuất",
+    "Responsible": "Responsible"
    
     
 
