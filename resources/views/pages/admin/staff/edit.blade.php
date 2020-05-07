@@ -160,11 +160,11 @@
                                     
                                     <div class="form-group">
                                         <label>Địa chỉ:</label>
-                                        <input type="text" class="form-control" value=" {{$val->staff_address}}"  name="staff_address" placeholder="Enter email">
+                                        <input type="text" class="form-control" value=" {{$val->staff_address}}"  name="staff_address" >
                                     </div>
                                     <div class="form-group">
                                         <label>Tài khoản:</label>
-                                        <input type="text" class="form-control" value=" {{$ac->username}}" readonly   name="username" placeholder="Enter email">
+                                        <input type="text" class="form-control" value=" {{$ac->username}}" readonly   name="username" >
                                     </div>
                                     <div class="form-group">
                                         <label>Mật khẩu mới:</label>
