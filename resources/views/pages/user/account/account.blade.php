@@ -102,7 +102,7 @@
                         </li>
                         <li class="list-group-item ">
                             <a href="{{ route('appointment.detail',['id'=>$info->customer_id]) }}">
-                                <span>@lang('Appoinment')</span> 
+                                <span>@lang('Appointment')</span> 
                         <li class="list-group-item">
                             <a href="{{route('account.my_wish')}}">
                                 <span>@lang('Wish list')</span>

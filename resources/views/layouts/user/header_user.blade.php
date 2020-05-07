@@ -9,14 +9,14 @@
           max-width: 200px;
       }
    </style> 
-<div class="container-fuild bg_top1">
+<div class="container-fuild bg_top1" >
     <div class="container header">
         <div class="row row_1">
             <div class="col-lg-6">
-                <div class="nav">
+                <div class="nav" >
                     {{-- {{dd($logo)}} --}}
                     <div class="logo" >
-                        <a href="{{route('index')}}" class="logo"><img src="{{asset('img/banner/logo'.$logo)}}"
+                        <a href="{{route('index')}}" class="logo"><img src="{{asset('img/banner/logo/'.$logo)}}"
                                 alt=""></a>
                     </div>
 

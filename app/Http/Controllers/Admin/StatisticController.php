@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\DepositContract;
 use App\Models\DetailFee;
-
+use App\Models\RealEstate;
+use App\Speed;
 use DB;
 
 
@@ -24,7 +25,9 @@ class StatisticController extends Controller
     }
     public function real_estate()
     {
-        return view('pages.admin.statistic.real_estate');
+        
+        $real = DB::table('real_estate')->get();
+        return view('pages.admin.statistic.real_estate',compact('real'));
     }
     public function basic()
     {

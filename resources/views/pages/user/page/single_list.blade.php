@@ -9,6 +9,7 @@
     crossorigin=""></script>
 
 <style>
+   
     path {
         color: white;
     }
@@ -387,11 +388,18 @@
 
                         </div>
                         <div class="col-xl-4">
+                            <div class="sp1">
                             <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
-                                class="price-btn">@lang('Buy')</a>
+                                class="price-btn room-price">@lang('Buy')
+                                <span id="sp"></span>
+                                <span id="sp"></span>
+                                <span id="sp"></span>
+                                <span id="sp"></span>
+                                
+                            </a>
+                            </div>  
 
-
-                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">@lang('Book meet')</a>
+                            {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">@lang('Book meet')</a> --}}
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
 

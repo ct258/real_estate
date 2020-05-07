@@ -42,7 +42,7 @@
       </a>
     </div>
 
-    <div class="principal">
+    <div class="principal " data-wow-delay="0.5s">
 
       <h1>@lang('Real Estate Can Tho')</h1>
       <p>@lang('Reputation') - @lang('Trust') - @lang('Quickly') - @lang('Friendly')</p>

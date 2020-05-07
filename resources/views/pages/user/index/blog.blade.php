@@ -4,8 +4,8 @@
     <div class="section-title text-center">
         <h3>@lang('Post new')</h3>
     </div>
-    <div class="container frame">
-        <div class="row">
+    <div class="container frame" >
+        <div class="row ">
             @foreach ($blog as $item)
 
             <div class="col-lg-12 blog">

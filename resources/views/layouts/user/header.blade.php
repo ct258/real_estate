@@ -11,7 +11,7 @@
  </style> 
 
 <div class="container-fuild bg_top1">
-    <div class="container header">
+    <div class="container header ">
         <div class="row row_1">
             <div class="col-lg-6">
 {{-- {{dump($banner)}} --}}

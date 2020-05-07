@@ -1,3 +1,4 @@
+
 @if ($view_product->isNotempty())
 <!-- feature section -->
 <section class="feature-section spad">
@@ -35,18 +36,21 @@
                                                 <p><i class="fa fa-bath"></i> 6 Bathrooms</p>
                                             </div>	 --}}
                             </div>
-                            <div class="room-info">
-                                <div class="rf-left">
-                                    <p><i class="fa fa-user"></i> Tony Holland</p>
+                                <div class="room-info">
+                                    <div class="rf-left">
+                                        <p><i class="fa fa-user"></i> Tony Holland</p>
+                                    </div>
+                                    <div class="rf-right">
+                                        <p><i class="far fa-clock"></i></i> {{$item->created_at}}</p>
+                                    </div>
                                 </div>
-                                <div class="rf-right">
-                                    <p><i class="far fa-clock"></i></i> {{$item->created_at}}</p>
-                                </div>
-                            </div>
                         </div>
-                        <a href="{{route('single_list',$item->real_estate_id)}}"
-                            class="room-price">{{$rate->currency_symbol}} {{number_format($item->real_estate_price)}}
-                        </a>
+                        <div class="sp1">
+                            <a href="{{route('single_list',$item->real_estate_id)}}"
+                                class="room-price">{{$rate->currency_symbol}} {{number_format($item->real_estate_price)}}
+                                
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
