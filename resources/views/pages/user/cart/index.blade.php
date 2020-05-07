@@ -101,7 +101,7 @@
                             {{number_format($total_money*0.02)}}đ</p>
                             <input type="hidden" name="fee" value={{$total_money*0.02}}>
                             @endif
-                            <form action="" method="post">
+                            {{-- <form action="" method="post">
                                 <p>Khuyến mãi: 0đ</p>
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -114,7 +114,7 @@
                                         <button type="submit" class="btn btn-warning">Đồng ý</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
                         </div>
                         <div class="price-bottom">
                             <p>Thành tiền: </p>
@@ -129,7 +129,7 @@
                         @csrf
                         <input type="hidden" name="total" value="{{$total_money*1.02}}">
                         <input type="hidden" name="fee" value="{{$total_money*0.2}}">
-                        <input type="hidden" name="discount" value="">
+                        {{-- <input type="hidden" name="discount" value=""> --}}
                         <!-- Button to Open the Modal -->
                         <button type="submit" class="btn btn-primary price-3" data-toggle="modal">
                             Thanh Toán
