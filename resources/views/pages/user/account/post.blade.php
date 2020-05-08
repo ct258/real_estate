@@ -644,8 +644,17 @@
     map.locate({setView: true, maxZoom: 16});
 
     //lấy vị trí cty
-    var marker = L.marker([10.0310059,105.7513944]).addTo(map);
-
+    // var marker = L.marker([10.0310059,105.7513944]).addTo(map);
+    var myIcon = L.icon({
+        iconUrl: '../leramiz/img/favicon.jpg',
+        iconSize: [30, 30],
+        // iconAnchor: [22, 94],
+        // popupAnchor: [-3, -76],
+        // shadowUrl: '../leramiz/img/favicon.jpg',
+        // shadowSize: [30, 30],
+        // shadowAnchor: [22, 94]
+    });
+    L.marker([10.0310059,105.7513944], {icon: myIcon}).addTo(mymap);
 
     //vòng tròn
     var circle = L.circle([10.0310059,105.7513944], {

@@ -9,7 +9,6 @@
     crossorigin=""></script>
 
 <style>
-   
     path {
         color: white;
     }
@@ -324,20 +323,45 @@
         color: aquamarine;
     }
 
-        #rating{border:none;float:left;}
-        #rating>input{display:none;}
-        #rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}
-        #rating>.half:before{content:"\f089";position:absolute;}
-        #rating>label{color:#ddd;float:right;}
-        #rating>input:checked~label,
-        #rating:not(:checked)>label:hover, 
-        #rating:not(:checked)>label:hover~label{color:#FFD700;}
-        #rating>input:checked+label:hover,
-        #rating>input:checked~label:hover,
-        #rating>label:hover~input:checked~label,
-        #rating>input:checked~label:hover~label{color:#FFED85;}
+    #rating {
+        border: none;
+        float: left;
+    }
 
+    #rating>input {
+        display: none;
+    }
 
+    #rating>label:before {
+        margin: 5px;
+        font-size: 1.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005";
+    }
+
+    #rating>.half:before {
+        content: "\f089";
+        position: absolute;
+    }
+
+    #rating>label {
+        color: #ddd;
+        float: right;
+    }
+
+    #rating>input:checked~label,
+    #rating:not(:checked)>label:hover,
+    #rating:not(:checked)>label:hover~label {
+        color: #FFD700;
+    }
+
+    #rating>input:checked+label:hover,
+    #rating>input:checked~label:hover,
+    #rating>label:hover~input:checked~label,
+    #rating>input:checked~label:hover~label {
+        color: #FFED85;
+    }
 </style>
 @endpush
 @section('page')
@@ -381,31 +405,34 @@
                         <div class="col-xl-8 sl-title">
                             <h2>{{$real_estate->translation_name}}</h2>
                             <p><i class="fa fa-map-marker"></i> {{$real_estate->translation_address}}</p>
-                           
-                            
-                           
-                            
+
+
+
+
 
                         </div>
                         <div class="col-xl-4">
                             <div class="sp1">
-                            <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
-                                class="price-btn room-price">@lang('Buy')
-                                <span id="sp"></span>
-                                <span id="sp"></span>
-                                <span id="sp"></span>
-                                <span id="sp"></span>
-                                
-                            </a>
-                            </div>  
+                                <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy" target="_blank"
+                                    class="price-btn room-price">@lang('Buy')
+                                    <span id="sp"></span>
+                                    <span id="sp"></span>
+                                    <span id="sp"></span>
+                                    <span id="sp"></span>
 
-                            {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">@lang('Book meet')</a> --}}
+                                </a>
+                            </div>
+
+                            {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}"
+                            class="rent-notic apointment">@lang('Book meet')</a> --}}
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
 
-                            {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"  class="rent-notic apointment">Đăt lịch hẹn</a> --}}
+                            {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"
+                            class="rent-notic apointment">Đăt lịch hẹn</a> --}}
 
-                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}" class="rent-notic apointment">Đăt lịch hẹn</a>
+                            <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}"
+                                class="rent-notic apointment">Đăt lịch hẹn</a>
 
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
@@ -421,7 +448,7 @@
                                             {{$real_estate->real_estate_acreage}}
                                             m<sup>2</sup></div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
 
                                         <div style="font-weight: bold;
                                             display: inline-block;
@@ -431,7 +458,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-3"></div>
                                     @if ($convenience)
 
@@ -474,11 +501,11 @@
                                         {{-- <a type="button" id="wishlist"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"><i
                                             class="far fa-heart" id='heart'></i></a> --}}
-                                     {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
-                                        id="subscription"><i class="fas fa-heart"></i></a>  --}}
+                                        {{-- <a href="{{route('wishlist',$real_estate->real_estate_id)}}"
+                                        id="subscription"><i class="fas fa-heart"></i></a> --}}
                                         {{-- đăng ký --}}
-                                     <?php if(\Auth::guard('account')->check() &&
-                                        \Auth::guard('account')->user()->hasRole('Customer')):?>  
+                                        <?php if(\Auth::guard('account')->check() &&
+                                        \Auth::guard('account')->user()->hasRole('Customer')):?>
 
                                         <a type='button' id="wishlist_customer"
                                             data-real_estate_id="{{$real_estate->real_estate_id}}"
@@ -516,12 +543,13 @@
                 <br>
                 <span id="phananh"><i class="far fa-comment-alt"></i></span>
 
-                <span id="inputGroupPrepend" class="phananh" data-toggle="modal" style="color:red" data-target="#exampleModal">
+                <span id="inputGroupPrepend" class="phananh" data-toggle="modal" style="color:red"
+                    data-target="#exampleModal">
                     @lang('Report')
                 </span>
-                
-   <?php if(\Auth::guard('account')->check() &&
-   \Auth::guard('account')->user()->hasRole('Customer')):?> 
+
+                <?php if(\Auth::guard('account')->check() &&
+   \Auth::guard('account')->user()->hasRole('Customer')):?>
                 <form action="{{ route('customer.report.create.submit',$real_estate->real_estate_id) }}" method="post">
                     @csrf
 
@@ -543,10 +571,10 @@
                                                     <option value="3">Export</option>
                                                     </select>
                                                 </div> --}}
-                                             
+
                                 <div class="modal-body">
                                     <div class="col-md-7" id="form02">
-                                    
+
 
                                         <label for="recipient-name" class="col-form-label"
                                             style="font-weight:bold;"></label>
@@ -554,42 +582,46 @@
                                         <label for="recipient-name" class="col-form-label">@lang('Name') :</label>
                                         <button id="form01"
                                             disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
-                                       <br>
-                                            <label for="recipient-name" class="col-form-label">@lang('Phone'):</label>
-                                        
+                                        <br>
+                                        <label for="recipient-name" class="col-form-label">@lang('Phone'):</label>
+
                                         <button id="form01"
                                             disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
-                                            
+
                                     </div>
-                                   
+
                                     <form>
                                         <label for="recipient-name" class="col-form-label">@lang('Note rule')</label>
                                         <div class="form-group">
-                                            <label for="message-text" class="col-form-label">@lang('Wirte report')</label>
+                                            <label for="message-text" class="col-form-label">@lang('Wirte
+                                                report')</label>
                                             <textarea class="form-control" id="message-text" name="content"
                                                 placeholder="@lang('Content')..."></textarea>
                                         </div>
-                                 
+
                                     </form>
                                 </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-                                            <button type="submit" class="btn btn-primary">@lang('Report')</button>
-                               
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">@lang('Close')</button>
+                                    <button type="submit" class="btn btn-primary">@lang('Report')</button>
+
                                 </div>
                                 <?php else: ?>
-                              
+
 
                                 <form action="" method="post">
                                     @csrf
-                
-                                    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Phản ánh bài đăng
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -601,21 +633,24 @@
                                                                     <option value="3">Export</option>
                                                                     </select>
                                                                 </div> --}}
-                                                             
+
                                                 <div class="modal-body" style="text-align: center;">
-                                  
-                                                   
+
+
                                                     <form>
-                                                        <label for="recipient-name" class="col-form-label">Quên đăng nhập kìa</label>
+                                                        <label for="recipient-name" class="col-form-label">Quên đăng
+                                                            nhập kìa</label>
                                                         <div class="form-group">
-                                                        <a href="/real_estate/public/login">Nhấp vào đây để đăng nhập</a>
+                                                            <a href="/real_estate/public/login">Nhấp vào đây để đăng
+                                                                nhập</a>
                                                         </div>
-                                                 
+
                                                     </form>
                                                 </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                               
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Đóng</button>
+
                                                 </div>
 
 
@@ -630,254 +665,275 @@
 
 
 
-                                 <?php endif; ?>
-                               
-                            </div>
-                          
-                        </div>
-                  
-                    </div>
-                    
-                </form>
-           
-               
-                <br>
-                <br>
+                                                <?php endif; ?>
 
-              
-                <h3 class="sl-sp-title">@lang('Detail description')</h3>
-                <div class="description" style="font-family: sans-serif;">
-                    <p>{!!$real_estate->translation_description!!}</p>
-                </div>
-
-                <h3 class="sl-sp-title">@lang('Map')</h3>
-                <div id="field" data-longitude="{{$real_estate->real_estate_longitude}}"
-                    data-latitude="{{$real_estate->real_estate_latitude}}"></div>
-                <div id="issMap"></div>
-                @if ($convenience)
-
-                <h3 class="sl-sp-title">@lang('convenient')</h3>
-                <div class="row property-details-list">
-                    <?php if ($convenience->convenience_air_conditioning!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wind'></i>
-                        @lang('Air Conditioning')</p><?php endif; ?>
-
-                    <?php  if ($convenience->convenience_BBQ_area!=0) :?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumpster-fire'></i> @lang('BBQ Area')</p>
-                    <?php endif; ?>
-
-                    <?php  if ($convenience->convenience_CCTV!=0):?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-video'></i> @lang('CCTV')</p><?php endif; ?>
-
-                    <?php  if ($convenience->convenience_concierge!=0):?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-concierge-bell'></i> @lang('Concierge')</p>
-                    <?php endif; ?>
-
-                    <?php  if ($convenience->convenience_fitness!=0):?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumbbell'></i> @lang('Fitness')</p><?php endif; ?>
-
-                    <?php  if ($convenience->convenience_garden!=0):?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-seedling'></i> @lang('Garden')</p><?php endif; ?>
-
-                    <?php  if ($convenience->convenience_library!=0):?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fa fa-book'></i> @lang('Library')</p><?php endif; ?>
-
-                    <?php  if ($convenience->convenience_mountain_view!=0):?>
-
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-mountain'></i> @lang('Mountain View')</p>
-                    <?php endif; ?>
-
-                    <?php  if ($convenience->convenience_parking!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-car'></i> @lang('Parking')</p><?php endif; ?>
-
-
-                    <?php  if ($convenience->convenience_playground!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-campground'></i> @lang('Playground')</p>
-                    <?php endif; ?>
-
-
-                    <?php  if ($convenience->convenience_ocean_view!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-umbrella-beach'></i> @lang('Sea/Ocean View')</p>
-                    <?php endif; ?>
-
-
-                    <?php  if ($convenience->convenience_security!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-user-shield'></i> @lang('Security')</p>
-                    <?php endif; ?>
-
-                    <?php  if ($convenience->convenience_swimming_pool!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-swimming-pool'></i> @lang('Swimming Pool')</p>
-                    <?php endif; ?>
-
-                    <?php  if ($convenience->convenience_tennis!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-baseball-ball'></i> @lang('Tennis')</p>
-                    <?php endif; ?>
-
-
-                    <?php  if ($convenience->convenience_wifi!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class="fas fa-wifi"></i> @lang('Wi Fi')</p><?php endif; ?>
-
-                    <?php  if ($convenience->convenience_tivi!=0):?>
-                    <p class='col-xs-12 col-sm-4'><i class='fas fa-tv'></i> @lang('Tivi')</p><?php endif; ?>
-
-                </div>
-                @endif
-                {{-- <h3 class="sl-sp-title">Đánh giá</h3> --}}
-                <div class="container-fuild">
-                    <div class="row customer_rating" class="rating">
-                        <div class="col-lg-3">
-                            <div class="product-customer-col-1">
-                                <h4>@lang('Rating')</h4>
-
-                                <p class="total-review-point">{{$average_rank}}/5</p>
-                                <div class="start">
-                                    <span class="star-fake">
-
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <span class="star-real" style="width: {{$average_rank_per}}%">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </span>
-                                    </span>
-                                    <p>({{$count_rank}} @lang('Review'))</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="product-customer-col-2">
-                                <div class="side">
-                                    <div class="left">5 @lang('Star')</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-5" style="width: {{$per_rank_5}}"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_4}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">4 @lang('Star')</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-4" style="width: {{$per_rank_4}}"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_4}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">3 @lang('Star')</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-3" style="width: {{$per_rank_3}}"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_3}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">2 @lang('Star')</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-2" style="width: {{$per_rank_2}}"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_2}}</div>
-
-                                </div>
-                                <div class="side">
-                                    <div class="left">1 @lang('Star')</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-1" style="width: {{$per_rank_1}}"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-
-                                    <div class="right">{{$rank_1}}</div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="share_comment float-right">
-                                <h3>@lang('Share comment')</h3>
-                                <button class="btn btn-default"><a href="#cmt">@lang('Write comment')</a> </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-              <div class="row">
-              
-              </div>
-
-               
-                <div class="comment-warp">
-                    <ul class="comment-list">
-                        @foreach ($evaluate as $item)
-                           
-                                @if($item->evaluate_reply==null)
-                                    <li>
-                                        <div class="comment">
-                                            <div class="comment-avator set-bg"
-                                                data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
                                             </div>
-                                            <div class="comment-content">
-                                                <h5>{{$item->evaluate_title}}</h5>
-                                                <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
-                                                <p>{{$item->evaluate_content}}</p>
-                                                <a data-toggle="modal" data-target="#exampleModal" class="c-btn" exampleModal>@lang('Report')</a>
-                                                {{-- <button type="button" class="c-btn showReply">Trả lời</button> --}}
-                                                <a data-toggle="modal"  data-target="#reply" class="c-btn showForm">@lang('Reply')</a>
-                                                <div class="formReply" style="display: none; margin-top: 10px;">
-                                                    <form class="comment-form" 
-                                                    action="{{ route('reply_cmt', ['idsp'=> $real_id,'idrep'=>$item->evaluate_id]) }}" method="post">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            {{-- <div class="form-group">
-                                                                <input type="text" name="title"  placeholder="Tiêu đề . . .">
-                                                            </div> --}}
-                                                            <div class="form-group">
-                                                                <textarea class="form-control" name="content" rows="3"></textarea>
-                                                            </div>
-                                                            <button class="site-btn">@lang('Send')</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+
+                                <br>
+                                <br>
+
+
+                                <h3 class="sl-sp-title">@lang('Detail description')</h3>
+                                <div class="description" style="font-family: sans-serif;">
+                                    <p>{!!$real_estate->translation_description!!}</p>
+                                </div>
+
+                                <h3 class="sl-sp-title">@lang('Map')</h3>
+                                <div id="field" data-longitude="{{$real_estate->real_estate_longitude}}"
+                                    data-latitude="{{$real_estate->real_estate_latitude}}"></div>
+                                <div id="issMap"></div>
+                                @if ($convenience)
+
+                                <h3 class="sl-sp-title">@lang('convenient')</h3>
+                                <div class="row property-details-list">
+                                    <?php if ($convenience->convenience_air_conditioning!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-wind'></i>
+                                        @lang('Air Conditioning')</p><?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_BBQ_area!=0) :?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumpster-fire'></i> @lang('BBQ Area')
+                                    </p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_CCTV!=0):?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-video'></i> @lang('CCTV')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_concierge!=0):?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-concierge-bell'></i>
+                                        @lang('Concierge')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_fitness!=0):?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-dumbbell'></i> @lang('Fitness')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_garden!=0):?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-seedling'></i> @lang('Garden')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_library!=0):?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fa fa-book'></i> @lang('Library')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_mountain_view!=0):?>
+
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-mountain'></i> @lang('Mountain View')
+                                    </p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_parking!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-car'></i> @lang('Parking')</p>
+                                    <?php endif; ?>
+
+
+                                    <?php  if ($convenience->convenience_playground!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-campground'></i> @lang('Playground')
+                                    </p>
+                                    <?php endif; ?>
+
+
+                                    <?php  if ($convenience->convenience_ocean_view!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-umbrella-beach'></i> @lang('Sea/Ocean
+                                        View')</p>
+                                    <?php endif; ?>
+
+
+                                    <?php  if ($convenience->convenience_security!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-user-shield'></i> @lang('Security')
+                                    </p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_swimming_pool!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-swimming-pool'></i> @lang('Swimming
+                                        Pool')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_tennis!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-baseball-ball'></i> @lang('Tennis')
+                                    </p>
+                                    <?php endif; ?>
+
+
+                                    <?php  if ($convenience->convenience_wifi!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class="fas fa-wifi"></i> @lang('Wi Fi')</p>
+                                    <?php endif; ?>
+
+                                    <?php  if ($convenience->convenience_tivi!=0):?>
+                                    <p class='col-xs-12 col-sm-4'><i class='fas fa-tv'></i> @lang('Tivi')</p>
+                                    <?php endif; ?>
+
+                                </div>
+                                @endif
+                                {{-- <h3 class="sl-sp-title">Đánh giá</h3> --}}
+                                <div class="container-fuild">
+                                    <div class="row customer_rating" class="rating">
+                                        <div class="col-lg-3">
+                                            <div class="product-customer-col-1">
+                                                <h4>@lang('Rating')</h4>
+
+                                                <p class="total-review-point">{{$average_rank}}/5</p>
+                                                <div class="start">
+                                                    <span class="star-fake">
+
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <span class="star-real" style="width: {{$average_rank_per}}%">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </span>
+                                                    </span>
+                                                    <p>({{$count_rank}} @lang('Review'))</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <ul >
-                                            @foreach($evaluate as $val)
-                                            @if($item->evaluate_id == $val->evaluate_reply)
+                                        <div class="col-lg-6">
+                                            <div class="product-customer-col-2">
+                                                <div class="side">
+                                                    <div class="left">5 @lang('Star')</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-5" style="width: {{$per_rank_5}}"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+
+                                                    <div class="right">{{$rank_4}}</div>
+
+                                                </div>
+                                                <div class="side">
+                                                    <div class="left">4 @lang('Star')</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-4" style="width: {{$per_rank_4}}"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+
+                                                    <div class="right">{{$rank_4}}</div>
+
+                                                </div>
+                                                <div class="side">
+                                                    <div class="left">3 @lang('Star')</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-3" style="width: {{$per_rank_3}}"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+
+                                                    <div class="right">{{$rank_3}}</div>
+
+                                                </div>
+                                                <div class="side">
+                                                    <div class="left">2 @lang('Star')</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-2" style="width: {{$per_rank_2}}"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+
+                                                    <div class="right">{{$rank_2}}</div>
+
+                                                </div>
+                                                <div class="side">
+                                                    <div class="left">1 @lang('Star')</div>
+                                                </div>
+                                                <div class="middle">
+                                                    <div class="bar-container">
+                                                        <div class="bar-1" style="width: {{$per_rank_1}}"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="side right">
+
+                                                    <div class="right">{{$rank_1}}</div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="share_comment float-right">
+                                                <h3>@lang('Share comment')</h3>
+                                                <button class="btn btn-default"><a href="#cmt">@lang('Write
+                                                        comment')</a> </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+
+
+                                <div class="comment-warp">
+                                    <ul class="comment-list">
+                                        @foreach ($evaluate as $item)
+
+                                        @if($item->evaluate_reply==null)
+                                        <li>
+                                            <div class="comment">
+                                                <div class="comment-avator set-bg"
+                                                    data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <h5>{{$item->evaluate_title}}</h5>
+                                                    <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span>
+                                                    </h5>
+                                                    <p>{{$item->evaluate_content}}</p>
+                                                    <a data-toggle="modal" data-target="#exampleModal" class="c-btn"
+                                                        exampleModal>@lang('Report')</a>
+                                                    {{-- <button type="button" class="c-btn showReply">Trả lời</button> --}}
+                                                    <a data-toggle="modal" data-target="#reply"
+                                                        class="c-btn showForm">@lang('Reply')</a>
+                                                    <div class="formReply" style="display: none; margin-top: 10px;">
+                                                        <form class="comment-form"
+                                                            action="{{ route('reply_cmt', ['idsp'=> $real_id,'idrep'=>$item->evaluate_id]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- <div class="form-group">
+                                                                <input type="text" name="title"  placeholder="Tiêu đề . . .">
+                                                            </div> --}}
+                                                                    <div class="form-group">
+                                                                        <textarea class="form-control" name="content"
+                                                                            rows="3"></textarea>
+                                                                    </div>
+                                                                    <button class="site-btn">@lang('Send')</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul>
+                                                @foreach($evaluate as $val)
+                                                @if($item->evaluate_id == $val->evaluate_reply)
                                                 <li>
                                                     <div class="comment subreply" style="
                                                         margin-left: 105px;
@@ -887,80 +943,83 @@
                                                             data-setbg="{{asset('leramiz/img/blog/comment/3.jpg')}}">
                                                         </div>
                                                         <div class="comment-content">
-                                                            <h5>{{$val->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
+                                                            <h5>{{$val->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span>
+                                                            </h5>
                                                             <p>{{$val->evaluate_content}}</p>
                                                         </div>
                                                     </div>
                                                 </li>
-                                            @endif
-                                            @endforeach
-                                        
-                                        </ul>
-                                    </li>
-                                @endif
-                          
-                        @endforeach
-                    </ul>
-                    
-                    
+                                                @endif
+                                                @endforeach
 
-                    
-                    <div class="comment-form-warp " id="cmt">
-                        {{-- Auth::gruad('ten') --}}
-                        <h4 class="comment-title" >@lang('Comment')</h4>
-                     <form class="comment-form" action="{{ route('write_cmt', ['idsp'=> $real_id]) }}"
-                                        method="post">@csrf
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    
-                                        
-                                        <h3 class="sl-sp-title" style="margin-top: 14px">@lang('Rating product')</h3>
-                                        <div id="rating">
-                                            <input type="radio" id="star5" name="rating" value="5" />
-                                            <label class = "full" for="star5" ></label>
-                                        
-                                            <input type="radio" id="star4" name="rating" value="4" />
-                                            <label class = "full" for="star4" ></label>
-                                        
-                                            <input type="radio" id="star3" name="rating" value="3" />
-                                            <label class = "full" for="star3" ></label>
-                                        
-                                            <input type="radio" id="star2" name="rating" value="2" />
-                                            <label class = "full" for="star2" ></label>
-                                        
-                                            <input type="radio" id="star1" name="rating" value="1" />
-                                            <label class = "full" for="star1" ></label>
-                                        </div>
-                                   
-                                </div>
-                                {{-- <div class="col-md-6">
+                                            </ul>
+                                        </li>
+                                        @endif
+
+                                        @endforeach
+                                    </ul>
+
+
+
+
+                                    <div class="comment-form-warp " id="cmt">
+                                        {{-- Auth::gruad('ten') --}}
+                                        <h4 class="comment-title">@lang('Comment')</h4>
+                                        <form class="comment-form"
+                                            action="{{ route('write_cmt', ['idsp'=> $real_id]) }}" method="post">@csrf
+                                            <div class="row">
+                                                <div class="col-sm-12">
+
+
+                                                    <h3 class="sl-sp-title" style="margin-top: 14px">@lang('Rating
+                                                        product')</h3>
+                                                    <div id="rating">
+                                                        <input type="radio" id="star5" name="rating" value="5" />
+                                                        <label class="full" for="star5"></label>
+
+                                                        <input type="radio" id="star4" name="rating" value="4" />
+                                                        <label class="full" for="star4"></label>
+
+                                                        <input type="radio" id="star3" name="rating" value="3" />
+                                                        <label class="full" for="star3"></label>
+
+                                                        <input type="radio" id="star2" name="rating" value="2" />
+                                                        <label class="full" for="star2"></label>
+
+                                                        <input type="radio" id="star1" name="rating" value="1" />
+                                                        <label class="full" for="star1"></label>
+                                                    </div>
+
+                                                </div>
+                                                {{-- <div class="col-md-6">
                             <input type="text" name="name_customer" placeholder="Your Name">
                         </div> --}}
-                                <div class="col-md-6">
-                                    <input type="text" name="title" placeholder="@lang('Title')....">
-                                </div>
-                                <div class="col-lg-9">
-                                    <textarea placeholder="@lang('Content comment')...." name="content"></textarea>
-                                    
-                                </div>
-                
-                                <div class="col-sm-12">
-                                    <button class="site-btn">@lang('Send')</button>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="title" placeholder="@lang('Title')....">
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <textarea placeholder="@lang('Content comment')...."
+                                                        name="content"></textarea>
+
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <button class="site-btn">@lang('Send')</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+
+
+                            <!-- sidebar -->
+                            <div class="col-lg-4 col-md-7 sidebar">
+
+                                @include('pages.user.page.search')
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-
-            <!-- sidebar -->
-            <div class="col-lg-4 col-md-7 sidebar">
-
-                @include('pages.user.page.search')
-            </div>
-        </div>
-    </div>  
 </section>
 <!-- Page end -->
 
@@ -1036,7 +1095,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoibmdoaWEyMzExIiwiYSI6ImNrN3B0aGpnNjBuaGYzbW1pcnphOHY0ZW4ifQ.DJKI6Ck_xfaja3RDUPmCfQ'
 }).addTo(mymap);
 //cty
-    var marker = L.marker([10.0310059,105.7513944]).addTo(mymap);
+    // var marker = L.marker([10.0310059,105.7513944]).addTo(mymap);
     //vòng tròn
     var circle = L.circle([10.0310059,105.7513944], {
         color: 'red',
@@ -1044,7 +1103,16 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
         fillOpacity: 0.5,
         radius: 500
     }).addTo(mymap);
-
+    var myIcon = L.icon({
+        iconUrl: '../leramiz/img/favicon.jpg',
+        iconSize: [30, 30],
+        // iconAnchor: [22, 94],
+        // popupAnchor: [-3, -76],
+        // shadowUrl: '../leramiz/img/favicon.jpg',
+        // shadowSize: [30, 30],
+        // shadowAnchor: [22, 94]
+    });
+    L.marker([10.0310059,105.7513944], {icon: myIcon}).addTo(mymap);
     var popup = L.popup()
         .setLatLng([10.0310059,105.7513944])
         .setContent("BatdongsanCanTho!")
@@ -1069,7 +1137,6 @@ var marker = L.marker([longitude,latitude]).addTo(mymap);
 //end sp
 </script>
 <script>
-   
     $(document).ready(function () {
     $(".showForm").on("click", function () {
         $(this).next().toggle();
