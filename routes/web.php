@@ -408,9 +408,6 @@ Route::group(['middleware' => ['cookie']], function ()
                     ->name('real_estate.create');
                 Route::post('/create', 'RealEstateController@store')
                     ->name('real_estate.create.submit');
-                // xem chi tiết
-                Route::get('/show/{real_estate_id}', 'RealEstateController@show')
-                    ->name('real_estate.show');
                 // sửa
                 Route::get('/edit/{real_estate_id}', 'RealEstateController@edit')
                     ->name('real_estate.edit');
@@ -422,6 +419,14 @@ Route::group(['middleware' => ['cookie']], function ()
                 //lấy loại bất động sản
                 Route::get('/get_type/{form_id}', 'RealEstateController@get_type')
                     ->name('real_estate.type');
+            });
+            //bill
+            Route::group(['prefix' => 'bill'], function () {
+                Route::get('/deposit', 'Admin\BillController@deposit')
+                    ->name('bill.deposit');
+                    // xem chi tiết
+                Route::get('/show/{cart_id}', 'Admin\BillController@show')
+                ->name('bill.show');
             });
             //evaluate
             Route::group(['prefix' => 'evaluate'], function ()
