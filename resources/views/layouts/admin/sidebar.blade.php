@@ -1,5 +1,5 @@
 <style>
-    .sub{
+    .sub {
         background-color: #776464;
     }
 </style>
@@ -13,15 +13,26 @@
                 {{-- @if( \Auth::guard('account')->user()->hasRole('Staff')) --}}
                 {{-- Bất động sản --}}
                 <li>
+
+                    <a href="{{route('real_estate.index')}}">
+                        <i class='fa fa-shopping-cart'></i>
+                        <span>Đơn đặt cọc</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{route('bill.deposit')}}">Chờ duyệt</a></li>
+                        <li><a href="">Đã duyệt</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="{{route('real_estate.index')}}">
                         <i class="fa fa-home"></i>
                         <span>Bất động sản</span>
                     </a>
                     <ul class="sub">
-                    <li><a href="{{route('real_estate.create')}}">Đang bán</a></li>
+                        <li><a href="{{route('real_estate.create')}}">Đang bán</a></li>
                         <li><a href="">Đang hẹn</a></li>
-                        <li><a href="">Đang đặt cọc</a></li>
-                        <li><a href="">Đang chứng nhận</a></li>
+                        <li><a href="{{route('bill.deposit')}}">Đang đặt cọc</a></li>
+                        {{-- <li><a href="">Đang chứng nhận</a></li> --}}
                         <li><a href="">Đã bán</a></li>
                     </ul>
                 </li>
@@ -59,8 +70,8 @@
                         <span>Báo cáo</span>
                     </a>
                     <ul class="sub">
-                    <li><a href="{{route('report.index')}}">Chờ xử lý</a></li>
-                    <li><a href="{{route('report.fix.index')}}">Đã xử lý</a></li>
+                        <li><a href="{{route('report.index')}}">Chờ xử lý</a></li>
+                        <li><a href="{{route('report.fix.index')}}">Đã xử lý</a></li>
                     </ul>
                 </li>
                 {{-- mail --}}
@@ -120,28 +131,28 @@
                 </li>
                 {{-- thành viên --}}
                 <li class="sub-menu">
-                <a href="{{route('customer.index')}}">
+                    <a href="{{route('customer.index')}}">
                         <i class="fa fa-user"></i>
                         <span>Thành viên</span>
                     </a>
                 </li>
                 {{-- Loại khách hàng--}}
                 <li class="sub-menu">
-                <a href="{{route('rank.index')}}">
-                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                    <a href="{{route('rank.index')}}">
+                        <i class="fa fa-diamond" aria-hidden="true"></i>
                         <span>Loại thành viên</span>
                     </a>
                 </li>
                 {{-- nhân viên --}}
                 <li class="sub-menu">
-                <a href="{{route('staff.index')}}">
+                    <a href="{{route('staff.index')}}">
                         <i class="fa fa-users"></i>
                         <span>Nhân viên</span>
                     </a>
                     <ul class="sub">
                         <li><a href="{{route('staff.index')}}">Danh sách nhân viên</a></li>
-                    <li><a href="{{route('staff.create')}}">Thêm nhân viên</a></li>
-                        </ul>
+                        <li><a href="{{route('staff.create')}}">Thêm nhân viên</a></li>
+                    </ul>
                 </li>
                 {{-- thống kê --}}
                 <li class="sub-menu">
@@ -168,7 +179,7 @@
                     <ul class="sub">
                         <li><a href="{{route('banner')}}">Cập Nhật Ảnh Bìa</a></li>
                         <li><a href="">Cập Nhật Trang Giới Thiệu</a></li>
-                    <li><a href="{{route('logo')}}">Cập Nhật Logo</a></li>
+                        <li><a href="{{route('logo')}}">Cập Nhật Logo</a></li>
                         <li><a href="">Cập Nhật Slogan</a></li>
                     </ul>
                 </li>
