@@ -1,21 +1,14 @@
 <!-- Filter form section -->
 {{-- <div class="container"> --}}
 <div class="row search">
-    {{-- <form action="#"> --}}
-
     <div class="col search1" data-wow-delay="1s">
-        <form>
+        <form action="{{route('list.sort')}}" method="post">
+            @csrf
             <div class="input-group input-group_1">
-                <input class="form-control" placeholder="@lang('Search_local')" id="search"
-                    type="text" value="">
-                <select class="select1">
-                    <option value="">@lang('Buy')</option>
-                </select>
-                <select class="select1">
-                    <option value="">@lang('Sell')</option>
-                </select>
+                <input class="form-control" placeholder="@lang('Search_local')" id="search" type="text" value=""
+                    name="search">
             </div>
-        </form>
+            {{-- </form> --}}
     </div>
 
     <div class="col-lg-2 search1" data-wow-delay="1s">
@@ -23,8 +16,7 @@
             @lang('Search') <i class="fa fa-search" style="color: white;"></i>
         </button>
     </div>
-    {{-- </form> --}}
+    </form>
 </div>
 </div>
-{{-- </div> --}}
 <!-- Filter form section end -->
