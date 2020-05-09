@@ -337,7 +337,26 @@
         #rating>label:hover~input:checked~label,
         #rating>input:checked~label:hover~label{color:#FFED85;}
 
+a#delete:hover {
+    background: red;
+}
 
+a#delete{
+    display:inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    border: 1px solid #ebebeb;
+    color: #111111;
+    padding: 5px 25px;
+    border-radius: 2px;
+    margin-right: 5px;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+#report:hover{
+    background: #FFD700;
+}
 </style>
 @endpush
 @section('page')
@@ -841,6 +860,8 @@
                
                 <div class="comment-warp">
                     <ul class="comment-list">
+                        {{-- {{dd($evaluate)}} --}}
+                        
                         @foreach ($evaluate as $item)
                            
                                 @if($item->evaluate_reply==null)
@@ -853,18 +874,16 @@
                                                 <h5>{{$item->evaluate_title}}</h5>
                                                 <h5>{{$item->customer_name}}<span>{{$item->updated_at->format('d-m-Y')}}</span></h5>
                                                 <p>{{$item->evaluate_content}}</p>
-                                                <a data-toggle="modal" data-target="#exampleModal" class="c-btn" exampleModal>@lang('Report')</a>
+                                                 <a href="{{ route('delete_cmt', ['idcmt'=>$item->evaluate_id, 'idsp'=>$item->real_estate_id]) }} " id="delete">@lang('Delete')</a>
+                                                <a data-toggle="modal" data-target="#exampleModal" class="c-btn" id="report" exampleModal>@lang('Report')</a>
                                                 {{-- <button type="button" class="c-btn showReply">Trả lời</button> --}}
                                                 <a data-toggle="modal"  data-target="#reply" class="c-btn showForm">@lang('Reply')</a>
-                                                <div class="formReply" style="display: none; margin-top: 10px;">
+                                                <div class="formReply" style="display: none; margin-top: 10px;">    
                                                     <form class="comment-form" 
                                                     action="{{ route('reply_cmt', ['idsp'=> $real_id,'idrep'=>$item->evaluate_id]) }}" method="post">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            {{-- <div class="form-group">
-                                                                <input type="text" name="title"  placeholder="Tiêu đề . . .">
-                                                            </div> --}}
                                                             <div class="form-group">
                                                                 <textarea class="form-control" name="content" rows="3"></textarea>
                                                             </div>
