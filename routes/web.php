@@ -143,6 +143,7 @@ Route::group(['middleware' => ['cookie']], function ()
         //end visitor
         
         //user login
+        
         Route::group(['middleware' => 'checklogin'], function ()
         {
             Route::group(['prefix' => ''], function ()
@@ -183,350 +184,355 @@ Route::group(['middleware' => ['cookie']], function ()
         });
         //user login end
         //admin
-        Route::group(['middleware' => ['checkAdmin']], function ()
-        {
-            //promotion
-            // Route::group(['prefix' => 'promotion'], function () {
-            //     //index
-            //     Route::get('/index', 'Admin\PromotionController@index')->name('promotion.index');
-            //     // thêm
-            //     Route::get('/create', 'Admin\PromotionController@create')->name('promotion.create');
-            //     Route::post('/create', 'Admin\PromotionController@store')->name('promotion.create.submit');
-            //     // xem chi tiết
-            //     Route::get('/show/{promotion_id}', 'Admin\PromotionController@show')->name('promotion.show');
-            //     // sửa
-            //     Route::get('/edit/{promotion_id}', 'Admin\PromotionController@edit')->name('promotion.edit');
-            //     Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
-            //     // xóa mềm
-            //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
+        Route::group(['prefix' => 'dashboard'], function () {
             
-
-            //report
-            Route::group(['prefix' => 'report'], function ()
+            Route::group(['middleware' => ['checkAdmin']], function ()
             {
-                //index
-                Route::get('/index', 'Admin\ReportController@index')
-                    ->name('report.index');
-                Route::get('/fix', 'Admin\ReportController@fix')
-                    ->name('report.fix.index');
-                // thêm
-                // Route::get('/create', 'Admin\ReportController@create')->name('report.create');
-                // Route::post('/create', 'Admin\ReportController@store')->name('report.create.submit');
-                // xem chi tiết
-                // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
-                // sửa
-                // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
-                Route::post('/edit/submit/{id}', 'Admin\ReportController@update')
-                    ->name('report.update');
-                // xóa mềm
-                // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
+                //promotion
+                // Route::group(['prefix' => 'promotion'], function () {
+                //     //index
+                //     Route::get('/index', 'Admin\PromotionController@index')->name('promotion.index');
+                //     // thêm
+                //     Route::get('/create', 'Admin\PromotionController@create')->name('promotion.create');
+                //     Route::post('/create', 'Admin\PromotionController@store')->name('promotion.create.submit');
+                //     // xem chi tiết
+                //     Route::get('/show/{promotion_id}', 'Admin\PromotionController@show')->name('promotion.show');
+                //     // sửa
+                //     Route::get('/edit/{promotion_id}', 'Admin\PromotionController@edit')->name('promotion.edit');
+                //     Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
+                //     // xóa mềm
+                //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
                 
-            });
-            //customer
-            Route::group(['prefix' => 'customer'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\CustomerController@index')
-                    ->name('customer.index');
-                // thêm
-                Route::get('/create', 'Admin\CustomerController@create')
-                    ->name('customer.create');
-                Route::post('/create', 'Admin\CustomerController@store')
-                    ->name('customer.create.submit');
-                // xem chi tiết
-                Route::get('/show/{customer_id}', 'Admin\CustomerController@show')
-                    ->name('customer.show');
-                // sửa
-                Route::get('/edit/{customer_id}', 'Admin\CustomerController@edit')
-                    ->name('customer.edit');
-                Route::post('/edit/submit/{customer_id}', 'Admin\CustomerController@update')
-                    ->name('customer.update');
-                // xóa mềm
-                Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')
-                    ->name('customer.destroy');
-
-            });
-
-            //promotion code_type
-            Route::group(['prefix' => 'promotion'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\CodeController@index')
-                    ->name('promotion.index');
-                // thêm
-                Route::get('/create', 'Admin\CodeController@create')
-                    ->name('promotion.create');
-                Route::post('/create', 'Admin\CodeController@store')
-                    ->name('promotion.create.submit');
-                // xem chi tiết
-                Route::get('/show/{promotion}', 'Admin\CodeController@show')
-                    ->name('promotion.show');
-                // sửa
-                Route::get('/edit/{promotion_id}', 'Admin\CodeController@edit')
-                    ->name('promotion.edit');
-                Route::post('/edit/submit/{promotion_id}', 'Admin\CodeController@update')
-                    ->name('promotion.update');
-                // xóa mềm
-                Route::get('/destroy/{promotion_id}', 'Admin\CodeController@destroy')
-                    ->name('promotion.destroy');
-
-            });
-            //promotion code
-            Route::group(['prefix' => 'promotioncode'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\CodeController@codeindex')
-                    ->name('promotioncode.index');
-                // thêm
-                Route::get('/create', 'Admin\CodeController@codecreate')
-                    ->name('promotioncode.create');
-                Route::post('/create', 'Admin\CodeController@codestore')
-                    ->name('promotioncode.create.submit');
-                // xem chi tiết
-                Route::get('/show/{promotioncode}', 'Admin\CodeController@codeshow')
-                    ->name('promotioncode.show');
-                // sửa
-                Route::get('/edit/{promotioncode_id}', 'Admin\CodeController@codeedit')
-                    ->name('promotioncode.edit');
-                Route::post('/edit/submit/{promotioncode_id}', 'Admin\CodeController@codeupdate')
-                    ->name('promotioncode.update');
-                // xóa mềm
-                Route::get('/destroy/{promotioncode_id}', 'Admin\CodeController@codedestroy')
-                    ->name('promotioncode.destroy');
-
-            });
-            //loại khách hàng
-            Route::group(['prefix' => 'rank'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\RankController@index')
-                    ->name('rank.index');
-                // thêm
-                Route::get('/create', 'Admin\RankController@create')
-                    ->name('rank.create');
-                Route::post('/create', 'Admin\RankController@store')
-                    ->name('rank.create.submit');
-                // xem chi tiết
-                Route::get('/show/{rank_id}', 'Admin\RankController@show')
-                    ->name('rank.show');
-                // sửa
-                Route::get('/edit/{rank_id}', 'Admin\RankController@edit')
-                    ->name('rank.edit');
-                Route::post('/edit/submit/{rank_id}', 'Admin\RankController@update')
-                    ->name('rank.update');
-                // xóa mềm
-                Route::get('/destroy/{rank_id}', 'Admin\RankController@destroy')
-                    ->name('rank.destroy');
-
-            });
-            //staff
-            Route::group(['prefix' => 'staff'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\StaffController@index')
-                    ->name('staff.index');
-                // thêm
-                Route::get('/create', 'Admin\StaffController@create')
-                    ->name('staff.create');
-                Route::post('/create', 'Admin\StaffController@store')
-                    ->name('staff.create.submit');
-                // xem chi tiết
-                Route::get('/show/{staff_id}', 'Admin\StaffController@show')
-                    ->name('staff.show');
-                // sửa
-                Route::get('/edit/{staff_id}', 'Admin\StaffController@edit')
-                    ->name('staff.edit');
-                Route::post('/edit/submit/{staff_id}', 'Admin\StaffController@update')
-                    ->name('staff.update');
-                // xóa mềm
-                Route::get('/destroy/{staff_id}', 'Admin\StaffController@destroy')
-                    ->name('staff.destroy');
-
-            });
-            //statistic
-            Route::group(['prefix' => 'statistic'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\StatisticController@index')
-                    ->name('statistic.index');
-                //nhà đất
-                Route::get('/real_estate', 'Admin\StatisticController@real_estate')
-                    ->name('statistic.real_estate.index');
-
-            });
-            //display
-            Route::group(['prefix' => 'display'], function ()
-            {
-
-                // Route::get('feedback', function (){
-                //     return view('pages.admin.khachhang.feedback');
-                // });
-                //logo
-                Route::get('logo', 'Admin\DisplayController@logo')
-                    ->name('logo');
-                Route::post('logo', 'Admin\DisplayController@storelogo')
-                    ->name('logo.submit');
-                //banner
-                // Route::get('banner', 'Admin\DisplayController@logo')->name('banner');
-                Route::get('banner', function ()
+    
+                //report
+                Route::group(['prefix' => 'report'], function ()
                 {
-                    return view('pages.admin.display.banner');
-                })
-                    ->name('banner');
-                Route::post('banner/{id}', 'Admin\DisplayController@update')
-                    ->name('banner.submit');
-            });
-            //setting
-            Route::group(['prefix' => 'setting'], function ()
-            {
-
-                // Route::get('feedback', function (){
-                //     return view('pages.admin.khachhang.feedback');
-                // });
-                Route::get('setting', function ()
+                    //index
+                    Route::get('/index', 'Admin\ReportController@index')
+                        ->name('report.index');
+                    Route::get('/fix', 'Admin\ReportController@fix')
+                        ->name('report.fix.index');
+                    // thêm
+                    // Route::get('/create', 'Admin\ReportController@create')->name('report.create');
+                    // Route::post('/create', 'Admin\ReportController@store')->name('report.create.submit');
+                    // xem chi tiết
+                    // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
+                    // sửa
+                    // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
+                    Route::post('/edit/submit/{id}', 'Admin\ReportController@update')
+                        ->name('report.update');
+                    // xóa mềm
+                    // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
+                    
+                });
+                //customer
+                Route::group(['prefix' => 'customer'], function ()
                 {
-                    return view('pages.admin.setting.index');
-                })
-                    ->name('setting');
+                    //index
+                    Route::get('/index', 'Admin\CustomerController@index')
+                        ->name('customer.index');
+                    // thêm
+                    Route::get('/create', 'Admin\CustomerController@create')
+                        ->name('customer.create');
+                    Route::post('/create', 'Admin\CustomerController@store')
+                        ->name('customer.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{customer_id}', 'Admin\CustomerController@show')
+                        ->name('customer.show');
+                    // sửa
+                    Route::get('/edit/{customer_id}', 'Admin\CustomerController@edit')
+                        ->name('customer.edit');
+                    Route::post('/edit/submit/{customer_id}', 'Admin\CustomerController@update')
+                        ->name('customer.update');
+                    // xóa mềm
+                    Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')
+                        ->name('customer.destroy');
+    
+                });
+    
+                //promotion code_type
+                Route::group(['prefix' => 'promotion'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\CodeController@index')
+                        ->name('promotion.index');
+                    // thêm
+                    Route::get('/create', 'Admin\CodeController@create')
+                        ->name('promotion.create');
+                    Route::post('/create', 'Admin\CodeController@store')
+                        ->name('promotion.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{promotion}', 'Admin\CodeController@show')
+                        ->name('promotion.show');
+                    // sửa
+                    Route::get('/edit/{promotion_id}', 'Admin\CodeController@edit')
+                        ->name('promotion.edit');
+                    Route::post('/edit/submit/{promotion_id}', 'Admin\CodeController@update')
+                        ->name('promotion.update');
+                    // xóa mềm
+                    Route::get('/destroy/{promotion_id}', 'Admin\CodeController@destroy')
+                        ->name('promotion.destroy');
+    
+                });
+                //promotion code
+                Route::group(['prefix' => 'promotioncode'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\CodeController@codeindex')
+                        ->name('promotioncode.index');
+                    // thêm
+                    Route::get('/create', 'Admin\CodeController@codecreate')
+                        ->name('promotioncode.create');
+                    Route::post('/create', 'Admin\CodeController@codestore')
+                        ->name('promotioncode.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{promotioncode}', 'Admin\CodeController@codeshow')
+                        ->name('promotioncode.show');
+                    // sửa
+                    Route::get('/edit/{promotioncode_id}', 'Admin\CodeController@codeedit')
+                        ->name('promotioncode.edit');
+                    Route::post('/edit/submit/{promotioncode_id}', 'Admin\CodeController@codeupdate')
+                        ->name('promotioncode.update');
+                    // xóa mềm
+                    Route::get('/destroy/{promotioncode_id}', 'Admin\CodeController@codedestroy')
+                        ->name('promotioncode.destroy');
+    
+                });
+                //loại khách hàng
+                Route::group(['prefix' => 'rank'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\RankController@index')
+                        ->name('rank.index');
+                    // thêm
+                    Route::get('/create', 'Admin\RankController@create')
+                        ->name('rank.create');
+                    Route::post('/create', 'Admin\RankController@store')
+                        ->name('rank.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{rank_id}', 'Admin\RankController@show')
+                        ->name('rank.show');
+                    // sửa
+                    Route::get('/edit/{rank_id}', 'Admin\RankController@edit')
+                        ->name('rank.edit');
+                    Route::post('/edit/submit/{rank_id}', 'Admin\RankController@update')
+                        ->name('rank.update');
+                    // xóa mềm
+                    Route::get('/destroy/{rank_id}', 'Admin\RankController@destroy')
+                        ->name('rank.destroy');
+    
+                });
+                //staff
+                Route::group(['prefix' => 'staff'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\StaffController@index')
+                        ->name('staff.index');
+                    // thêm
+                    Route::get('/create', 'Admin\StaffController@create')
+                        ->name('staff.create');
+                    Route::post('/create', 'Admin\StaffController@store')
+                        ->name('staff.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{staff_id}', 'Admin\StaffController@show')
+                        ->name('staff.show');
+                    // sửa
+                    Route::get('/edit/{staff_id}', 'Admin\StaffController@edit')
+                        ->name('staff.edit');
+                    Route::post('/edit/submit/{staff_id}', 'Admin\StaffController@update')
+                        ->name('staff.update');
+                    // xóa mềm
+                    Route::get('/destroy/{staff_id}', 'Admin\StaffController@destroy')
+                        ->name('staff.destroy');
+    
+                });
+                //statistic
+                Route::group(['prefix' => 'statistic'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\StatisticController@index')
+                        ->name('statistic.index');
+                    //nhà đất
+                    Route::get('/real_estate', 'Admin\StatisticController@real_estate')
+                        ->name('statistic.real_estate.index');
+    
+                });
+                //display
+                Route::group(['prefix' => 'display'], function ()
+                {
+    
+                    // Route::get('feedback', function (){
+                    //     return view('pages.admin.khachhang.feedback');
+                    // });
+                    //logo
+                    Route::get('logo', 'Admin\DisplayController@logo')
+                        ->name('logo');
+                    Route::post('logo', 'Admin\DisplayController@storelogo')
+                        ->name('logo.submit');
+                    //banner
+                    // Route::get('banner', 'Admin\DisplayController@logo')->name('banner');
+                    Route::get('banner', function ()
+                    {
+                        return view('pages.admin.display.banner');
+                    })
+                        ->name('banner');
+                    Route::post('banner/{id}', 'Admin\DisplayController@update')
+                        ->name('banner.submit');
+                });
+                //setting
+                Route::group(['prefix' => 'setting'], function ()
+                {
+    
+                    // Route::get('feedback', function (){
+                    //     return view('pages.admin.khachhang.feedback');
+                    // });
+                    Route::get('setting', function ()
+                    {
+                        return view('pages.admin.setting.index');
+                    })
+                        ->name('setting');
+                });
+    
             });
-
         });
         //admin end
         
 
         //staff
-        Route::group(['middleware' => ['checkStaff']], function ()
-        {
-            //Bất động sản
-            Route::group(['prefix' => 'real_estate'], function ()
+        Route::group(['prefix' => 'dashboard'], function () {
+            Route::group(['middleware' => ['checkStaff']], function ()
             {
-                //index
-                Route::get('/index', 'RealEstateController@index')
-                    ->name('real_estate.index');
-                // thêm
-                Route::get('/create', 'RealEstateController@create')
-                    ->name('real_estate.create');
-                Route::post('/create', 'RealEstateController@store')
-                    ->name('real_estate.create.submit');
-                // sửa
-                Route::get('/edit/{real_estate_id}', 'RealEstateController@edit')
-                    ->name('real_estate.edit');
-                Route::post('/edit/submit/{real_estate_id}', 'RealEstateController@update')
-                    ->name('real_estate.update');
-                // xóa mềm
-                Route::post('/destroy/{real_estate_id}', 'RealEstateController@destroy')
-                    ->name('real_estate.destroy');
-                //lấy loại bất động sản
-                Route::get('/get_type/{form_id}', 'RealEstateController@get_type')
-                    ->name('real_estate.type');
-            });
-            //bill
-            Route::group(['prefix' => 'bill'], function () {
-                Route::get('/deposit', 'Admin\BillController@deposit')
-                    ->name('bill.deposit');
+                //Bất động sản
+                Route::group(['prefix' => 'real_estate'], function ()
+                {
+                    //index
+                    Route::get('/index', 'RealEstateController@index')
+                        ->name('real_estate.index');
+                    // thêm
+                    Route::get('/create', 'RealEstateController@create')
+                        ->name('real_estate.create');
+                    Route::post('/create', 'RealEstateController@store')
+                        ->name('real_estate.create.submit');
+                    // sửa
+                    Route::get('/edit/{real_estate_id}', 'RealEstateController@edit')
+                        ->name('real_estate.edit');
+                    Route::post('/edit/submit/{real_estate_id}', 'RealEstateController@update')
+                        ->name('real_estate.update');
+                    // xóa mềm
+                    Route::post('/destroy/{real_estate_id}', 'RealEstateController@destroy')
+                        ->name('real_estate.destroy');
+                    //lấy loại bất động sản
+                    Route::get('/get_type/{form_id}', 'RealEstateController@get_type')
+                        ->name('real_estate.type');
+                });
+                //bill
+                Route::group(['prefix' => 'bill'], function () {
+                    Route::get('/deposit', 'Admin\BillController@deposit')
+                        ->name('bill.deposit');
+                        // xem chi tiết
+                    Route::get('/show/{cart_id}', 'Admin\BillController@show')
+                    ->name('bill.show');
+                });
+                //evaluate
+                Route::group(['prefix' => 'evaluate'], function ()
+                {
+                    //index
+                    Route::get('/', 'Admin\EvaluateController@index')
+                        ->name('evaluate.index');
+                    // thêm
+                    Route::get('/create', 'Admin\EvaluateController@create')
+                        ->name('evaluate.create');
+                    Route::post('/create', 'Admin\EvaluateController@store')
+                        ->name('evaluate.create.submit');
                     // xem chi tiết
-                Route::get('/show/{cart_id}', 'Admin\BillController@show')
-                ->name('bill.show');
-            });
-            //evaluate
-            Route::group(['prefix' => 'evaluate'], function ()
-            {
-                //index
-                Route::get('/', 'Admin\EvaluateController@index')
-                    ->name('evaluate.index');
-                // thêm
-                Route::get('/create', 'Admin\EvaluateController@create')
-                    ->name('evaluate.create');
-                Route::post('/create', 'Admin\EvaluateController@store')
-                    ->name('evaluate.create.submit');
-                // xem chi tiết
-                Route::get('/show/{evaluate_id}', 'Admin\EvaluateController@show')
-                    ->name('evaluate.show');
-                // sửa
-                Route::get('/edit/{evaluate_id}', 'Admin\EvaluateController@edit')
-                    ->name('evaluate.edit');
-                Route::post('/edit/submit/{evaluate_id}', 'Admin\EvaluateController@update')
-                    ->name('evaluate.update');
-                // xóa mềm
-                Route::post('/destroy/{evaluate_id}', 'Admin\EvaluateController@destroy')
-                    ->name('evaluate.destroy');
+                    Route::get('/show/{evaluate_id}', 'Admin\EvaluateController@show')
+                        ->name('evaluate.show');
+                    // sửa
+                    Route::get('/edit/{evaluate_id}', 'Admin\EvaluateController@edit')
+                        ->name('evaluate.edit');
+                    Route::post('/edit/submit/{evaluate_id}', 'Admin\EvaluateController@update')
+                        ->name('evaluate.update');
+                    // xóa mềm
+                    Route::post('/destroy/{evaluate_id}', 'Admin\EvaluateController@destroy')
+                        ->name('evaluate.destroy');
+
+                });
+
+                //hợp đồng
+                Route::group(['prefix' => 'contract'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\ContractController@index')
+                        ->name('contract.index');
+                    // thêm
+                    Route::get('/create', 'Admin\ContractController@create')
+                        ->name('contract.create');
+                    Route::post('/create', 'Admin\ContractController@store')
+                        ->name('contract.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{contract_id}', 'Admin\ContractController@show')
+                        ->name('contract.show');
+                    // sửa
+                    Route::get('/edit/{contract_id}', 'Admin\ContractController@edit')
+                        ->name('contract.edit');
+                    Route::post('/edit/submit/{contract_id}', 'Admin\ContractController@update')
+                        ->name('contract.update');
+                    // xóa mềm
+                    Route::post('/destroy/{contract_id}', 'Admin\ContractController@destroy')
+                        ->name('contract.destroy');
+
+                });
+
+                //blog
+                Route::group(['prefix' => 'blog'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\BlogController@index')
+                        ->name('blog.index');
+                    // thêm
+                    Route::get('/create', 'Admin\BlogController@create')
+                        ->name('blog.create');
+                    Route::post('/create', 'Admin\BlogController@store')
+                        ->name('blog.create.submit');
+                    // xem chi tiết
+                    Route::get('/show/{blog_id}', 'Admin\BlogController@show')
+                        ->name('blog.show');
+                    // sửa
+                    Route::get('/edit/{blog_id}', 'Admin\BlogController@edit')
+                        ->name('blog.edit');
+                    Route::post('/edit/submit/{blog_id}', 'Admin\BlogController@update')
+                        ->name('blog.update');
+                    // xóa mềm
+                    Route::post('/destroy/{blog_id}', 'Admin\BlogController@destroy')
+                        ->name('blog.destroy');
+
+                });
+                //report customer
+                Route::group(['prefix' => 'customer_report'], function ()
+                {
+                    //index
+                    Route::get('/index', 'CustomerReportController@index')
+                        ->name('customer.report.index');
+                    // thêm
+                    Route::get('/create', 'CustomerReportController@create')
+                        ->name('customer.report.create');
+                    Route::post('/create/{id}', 'CustomerReportController@store')
+                        ->name('customer.report.create.submit');
+
+                });
+
+                //trash
+                Route::group(['prefix' => 'removed'], function ()
+                {
+                    //index
+                    Route::get('/real_estate', 'RealEstateController@index_trash')
+                        ->name('removed.real_estate');
+                    // thêm
+                    Route::get('/real_estate/{real_estate_id}', 'RealEstateController@restore')
+                        ->name('removed.real_estate.restore');
+                });
 
             });
-
-            //hợp đồng
-            Route::group(['prefix' => 'contract'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\ContractController@index')
-                    ->name('contract.index');
-                // thêm
-                Route::get('/create', 'Admin\ContractController@create')
-                    ->name('contract.create');
-                Route::post('/create', 'Admin\ContractController@store')
-                    ->name('contract.create.submit');
-                // xem chi tiết
-                Route::get('/show/{contract_id}', 'Admin\ContractController@show')
-                    ->name('contract.show');
-                // sửa
-                Route::get('/edit/{contract_id}', 'Admin\ContractController@edit')
-                    ->name('contract.edit');
-                Route::post('/edit/submit/{contract_id}', 'Admin\ContractController@update')
-                    ->name('contract.update');
-                // xóa mềm
-                Route::post('/destroy/{contract_id}', 'Admin\ContractController@destroy')
-                    ->name('contract.destroy');
-
-            });
-
-            //blog
-            Route::group(['prefix' => 'blog'], function ()
-            {
-                //index
-                Route::get('/index', 'Admin\BlogController@index')
-                    ->name('blog.index');
-                // thêm
-                Route::get('/create', 'Admin\BlogController@create')
-                    ->name('blog.create');
-                Route::post('/create', 'Admin\BlogController@store')
-                    ->name('blog.create.submit');
-                // xem chi tiết
-                Route::get('/show/{blog_id}', 'Admin\BlogController@show')
-                    ->name('blog.show');
-                // sửa
-                Route::get('/edit/{blog_id}', 'Admin\BlogController@edit')
-                    ->name('blog.edit');
-                Route::post('/edit/submit/{blog_id}', 'Admin\BlogController@update')
-                    ->name('blog.update');
-                // xóa mềm
-                Route::post('/destroy/{blog_id}', 'Admin\BlogController@destroy')
-                    ->name('blog.destroy');
-
-            });
-            //report customer
-            Route::group(['prefix' => 'customer_report'], function ()
-            {
-                //index
-                Route::get('/index', 'CustomerReportController@index')
-                    ->name('customer.report.index');
-                // thêm
-                Route::get('/create', 'CustomerReportController@create')
-                    ->name('customer.report.create');
-                Route::post('/create/{id}', 'CustomerReportController@store')
-                    ->name('customer.report.create.submit');
-
-            });
-
-            //trash
-            Route::group(['prefix' => 'removed'], function ()
-            {
-                //index
-                Route::get('/real_estate', 'RealEstateController@index_trash')
-                    ->name('removed.real_estate');
-                // thêm
-                Route::get('/real_estate/{real_estate_id}', 'RealEstateController@restore')
-                    ->name('removed.real_estate.restore');
-            });
-
         });
         //staff end
         
