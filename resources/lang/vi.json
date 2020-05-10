@@ -119,10 +119,11 @@
     "Id":"CMND",
     "Save":"Lưa" ,
     "You have appoinment":"Bạn có cuộc hẹn",
-    "Content appointment ":"Nội dung cuộc hẹn" ,
-    "Time appointment ":"Thời gian" ,
-    "Status appointment ":"Trạng thái" ,
-    "Logout": "Đăng xuất"
+    "Content appointment":"Nội dung" ,
+    "Time appointment":"Thời gian" ,
+    "Status appointment":"Trạng thái" ,
+    "Logout": "Đăng xuất",
+    "Responsible": "Nhân viên phụ trách"
    
 
 
