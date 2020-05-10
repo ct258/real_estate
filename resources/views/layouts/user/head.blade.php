@@ -36,6 +36,13 @@
     crossorigin="" />
   @stack('css')
   <style>
+    a.carousel-control-next {
+    z-index: 0;
+}
+.col-lg-2.search1 button.btn.btn-orange {
+   
+    z-index: 99;
+}
     svg {
       color: 30caa8;
     }

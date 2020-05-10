@@ -8,7 +8,8 @@ use App\Models\Customer;
 use App\Models\DepositContract;
 use App\Models\DetailFee;
 use App\Models\RealEstate;
-use App\Speed;
+use Carbon;
+// use App\Speed;
 use DB;
 
 
@@ -25,9 +26,33 @@ class StatisticController extends Controller
     }
     public function real_estate()
     {
+       
+            $range = \Carbon\Carbon::now()->subYears(5);
+            $realMonths = DB::table('real_estate')
+                        ->select(DB::raw('month(created_at) as getMonth'), DB::raw('COUNT(*) as value'))
+                        ->where('created_at', '>=', $range)
+                        ->groupBy('getMonth')
+                        ->orderBy('getMonth', 'ASC')
+                        ->get();
+            $realWeeks = DB::table('real_estate')
+                        ->select(DB::raw('week(created_at) as getWeek'), DB::raw('COUNT(*) as value'))
+                        ->where('created_at', '>=', $range)
+                        ->groupBy('getWeek')
+                        ->orderBy('getWeek', 'ASC')
+                        ->get();
+    
+            // return view('fdfadmin.chart.get_year', compact('orderYear'));
         
-        $real = DB::table('real_estate')->get();
-        return view('pages.admin.statistic.real_estate',compact('real'));
+    // function orderByYear() mình sẽ lấy tổng các order trong vòng 5 năm tính từ năm hiện tại và fill vào **bar chart**
+    
+        // $real = DB::table('real_estate')->get();
+        // dd($realMonths);
+        // dd($realWeeks);
+        $cottuan1 =  $realWeeks->pluck('getWeek');
+        $cotgiatri1 =  $realWeeks->pluck('value');
+        // dd($cotgiatri1);
+        
+        return view('pages.admin.statistic.real_estate',compact('realMonths','realWeeks','cotgiatri1','cottuan1'));
     }
     public function basic()
     {

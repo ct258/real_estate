@@ -30,5 +30,8 @@ class AppServiceProvider extends ServiceProvider
         ->limit(4)
         ->get();
         View::share('banner', $banner);
+
+        // $real = DB::table('real_estate')->get();
+        // View::share('real', $real);
     }
 }
