@@ -244,6 +244,8 @@ Route::group(['middleware' => ['cookie']], function ()
                 // xóa mềm
                 Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')
                     ->name('customer.destroy');
+                Route::get('/find', 'Admin\CustomerController@find')
+                    ->name('customer.find');
 
             });
 

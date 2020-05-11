@@ -31,7 +31,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Quản lý khách hàng
+      Tìm kiếm khách hàng
     </div>
     <div class="row w3-res-tb">
       {{-- <div class="col-sm-5 m-b-xs">
@@ -44,17 +44,15 @@
         <button class="btn btn-sm btn-default">Apply</button>                
       </div> --}}
     <form  action="{{route('customer.find')}}" method="GET">
-      <div class="col-sm-2">
-     
+            <div class="col-sm-2">
         <style>
             .w-sm{
                 width:121px!important;
             }
         </style>
-     
         {{-- <select class="input-md form-control w-sm inline v-middle ">
-            
-            <option  value="">Họ tên</option>
+         
+            <option name="" value="">Họ tên</option>
             <option value="">Ngày sinh</option>
             <option value="">Email</option>
             <option value="">Giới tính</option>
@@ -62,7 +60,6 @@
             <option value="">SĐT</option>
             <option value="">CMND</option>
           </select> --}}
-        
       </div>
       <div class="col-sm-3" style="margin-left:-79px;">
        
@@ -73,8 +70,7 @@
           </span>
         </div>
       </div>
-
-      </form>
+    </form>
       <div class="col-sm-5">
         
       </div>
@@ -105,9 +101,8 @@
             <th>RANK</th>
             <th style="width:100px;">Chức năng</th>
           </tr>
-          <?php $dem=count($customer)?>
-          @foreach ($customer as $val)
-          <tr>
+         
+          @foreach ($cus as $val)
            <td>{{$val->customer_name}}</td>
            <td>{{$val->customer_email}}</td>
            <td>{{date('d-m-Y', strtotime($val->customer_birth)) }}</td>
@@ -133,18 +128,19 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
+        {{-- {{($cus->total())}} --}}
         <div class="col-sm-5 ">
-          <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong>{{($customer->total())}}</strong> khách hàng.</small>
+          {{-- <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong></strong> khách hàng.</small> --}}
         </div>
        
         <div class="col-sm-5" style="margin-left:-15px"> 
         </div>
         <div class="col-sm-5"> 
-        {{$customer->links()}}
+        {{-- {{$cus->links()}} --}}
       </div>
 
       </div>
     </footer>
   </div>
 @endsection
+
