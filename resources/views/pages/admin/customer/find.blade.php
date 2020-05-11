@@ -7,14 +7,20 @@
   .v-middle{
     padding-left: 25px;
   }
-    
+
     .error {
         color: red;
     }
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         color:#0000009e;
-    
+
+
   }
+  h4 {
+    padding-top: 9px;
+    font-size: 16px;
+    padding-left: -21px;
+}
 </style>
 <div class="container-fuild">
   <div class="row">
@@ -41,7 +47,7 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+        <button class="btn btn-sm btn-default">Apply</button>
       </div> --}}
     <form  action="{{route('customer.find')}}" method="GET">
             <div class="col-sm-2">
@@ -50,8 +56,13 @@
                 width:121px!important;
             }
         </style>
+        <select name="loc" class="input-md form-control w-sm inline v-middle ">
+
+            <option value="0">Thông tin</option>
+            <option value="1">Rank</option>
+          </select>
         {{-- <select class="input-md form-control w-sm inline v-middle ">
-         
+
             <option name="" value="">Họ tên</option>
             <option value="">Ngày sinh</option>
             <option value="">Email</option>
@@ -62,7 +73,7 @@
           </select> --}}
       </div>
       <div class="col-sm-3" style="margin-left:-79px;">
-       
+
         <div class="input-group">
           <input type="text" class="input-md form-control" name="name" placeholder="Tìm kiếm">
           <span class="input-group-btn">
@@ -72,7 +83,7 @@
       </div>
     </form>
       <div class="col-sm-5">
-        
+      <h4>Từ khóa tìm kiếm :{{$tukhoa}}</h4>
       </div>
       <div class="col-sm-2">
       <div class="col-sm-5" >
@@ -80,12 +91,12 @@
           <a href="{{route('customer.create')}}" class="tst4 btn btn-success">Thêm khách hàng
         </a></small>
         </div>
-        
-        
+
+
     </div>
 
     </div>
-  
+
 
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
@@ -101,7 +112,7 @@
             <th>RANK</th>
             <th style="width:100px;">Chức năng</th>
           </tr>
-         
+
           @foreach ($cus as $val)
            <td>{{$val->customer_name}}</td>
            <td>{{$val->customer_email}}</td>
@@ -122,7 +133,7 @@
             </td>
           </tr>
           @endforeach
-         
+
         </thead>
       </table>
     </div>
@@ -130,12 +141,12 @@
       <div class="row">
         {{-- {{($cus->total())}} --}}
         <div class="col-sm-5 ">
-          {{-- <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong></strong> khách hàng.</small> --}}
+        <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong>{{count($cus)}}</strong> khách hàng.</small>
         </div>
-       
-        <div class="col-sm-5" style="margin-left:-15px"> 
+
+        <div class="col-sm-5" style="margin-left:-15px">
         </div>
-        <div class="col-sm-5"> 
+        <div class="col-sm-5">
         {{-- {{$cus->links()}} --}}
       </div>
 

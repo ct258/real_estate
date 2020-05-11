@@ -219,6 +219,7 @@ class CustomerController extends Controller
     }
 
     public function find(Request $req){
+        if($req->loc==0){
         $cus=  Customer::where('customer_name','like','%'.$req->name.'%')
                          ->OrWhere('customer_email','like','%'.$req->name.'%')
                          ->OrWhere('customer_birth','like','%'.$req->name.'%')
@@ -227,7 +228,8 @@ class CustomerController extends Controller
                          -> OrWhere('customer_address','like','%'.$req->name.'%')
                          -> OrWhere('customer_identity_card','like','%'.$req->name.'%')
         // ->paginate(5)
-        ->get();
+        ->get();}
+
         // $rank=  Rank::where('rank_id','like',$req->name)
         // ->get();
 
@@ -246,7 +248,12 @@ class CustomerController extends Controller
         //   })
         //   ->get();
         //   dd($query);
-        return view('pages.admin.customer.find',compact('cus'));
+        else{
+        $cus=  Customer::where('rank_id','like',$req->name)
+        ->get();
+        }
+        $tukhoa = $req->name;
+        return view('pages.admin.customer.find',compact('cus','tukhoa'));
 
     }
 }

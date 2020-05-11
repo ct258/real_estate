@@ -7,13 +7,13 @@
   .v-middle{
     padding-left: 25px;
   }
-    
+
     .error {
         color: red;
     }
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         color:#0000009e;
-    
+
   }
 </style>
 <div class="container-fuild">
@@ -41,31 +41,26 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+        <button class="btn btn-sm btn-default">Apply</button>
       </div> --}}
     <form  action="{{route('customer.find')}}" method="GET">
       <div class="col-sm-2">
-     
+
         <style>
             .w-sm{
                 width:121px!important;
             }
         </style>
-     
-        {{-- <select class="input-md form-control w-sm inline v-middle ">
-            
-            <option  value="">Họ tên</option>
-            <option value="">Ngày sinh</option>
-            <option value="">Email</option>
-            <option value="">Giới tính</option>
-            <option value="">Địa chỉ</option>
-            <option value="">SĐT</option>
-            <option value="">CMND</option>
-          </select> --}}
-        
+
+<select name="loc" class="input-md form-control w-sm inline v-middle ">
+
+    <option value="0">Thông tin</option>
+    <option value="1">Rank</option>
+  </select>
+
       </div>
       <div class="col-sm-3" style="margin-left:-79px;">
-       
+
         <div class="input-group">
           <input type="text" class="input-md form-control" name="name" placeholder="Tìm kiếm">
           <span class="input-group-btn">
@@ -76,7 +71,7 @@
 
       </form>
       <div class="col-sm-5">
-        
+
       </div>
       <div class="col-sm-2">
       <div class="col-sm-5" >
@@ -84,12 +79,12 @@
           <a href="{{route('customer.create')}}" class="tst4 btn btn-success">Thêm khách hàng
         </a></small>
         </div>
-        
-        
+
+
     </div>
 
     </div>
-  
+
 
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
@@ -127,20 +122,20 @@
             </td>
           </tr>
           @endforeach
-         
+
         </thead>
       </table>
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
+
         <div class="col-sm-5 ">
           <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong>{{($customer->total())}}</strong> khách hàng.</small>
         </div>
-       
-        <div class="col-sm-5" style="margin-left:-15px"> 
+
+        <div class="col-sm-5" style="margin-left:-15px">
         </div>
-        <div class="col-sm-5"> 
+        <div class="col-sm-5">
         {{$customer->links()}}
       </div>
 

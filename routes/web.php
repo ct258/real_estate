@@ -44,7 +44,7 @@ Route::group(['middleware' => ['cookie']], function ()
         // Auth::routes(['verify' => true]);
         Auth::routes();
 
-        //visitor 
+        //visitor
         Route::group(['prefix' => ''], function ()
         {
 
@@ -141,7 +141,7 @@ Route::group(['middleware' => ['cookie']], function ()
             });
         });
         //end visitor
-        
+
         //user login
         Route::group(['middleware' => 'checklogin'], function ()
         {
@@ -199,7 +199,7 @@ Route::group(['middleware' => ['cookie']], function ()
             //     Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
             //     // xóa mềm
             //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
-            
+
 
             //report
             Route::group(['prefix' => 'report'], function ()
@@ -220,7 +220,7 @@ Route::group(['middleware' => ['cookie']], function ()
                     ->name('report.update');
                 // xóa mềm
                 // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
-                
+
             });
             //customer
             Route::group(['prefix' => 'customer'], function ()
@@ -327,6 +327,8 @@ Route::group(['middleware' => ['cookie']], function ()
                 //index
                 Route::get('/index', 'Admin\StaffController@index')
                     ->name('staff.index');
+                    //search
+
                 // thêm
                 Route::get('/create', 'Admin\StaffController@create')
                     ->name('staff.create');
@@ -343,6 +345,8 @@ Route::group(['middleware' => ['cookie']], function ()
                 // xóa mềm
                 Route::get('/destroy/{staff_id}', 'Admin\StaffController@destroy')
                     ->name('staff.destroy');
+                Route::get('/find', 'Admin\StaffController@find')
+                    ->name('staff.find');
 
             });
             //statistic
@@ -394,7 +398,7 @@ Route::group(['middleware' => ['cookie']], function ()
 
         });
         //admin end
-        
+
 
         //staff
         Route::group(['middleware' => ['checkStaff']], function ()
@@ -526,7 +530,7 @@ Route::group(['middleware' => ['cookie']], function ()
 
         });
         //staff end
-        
+
 
         //admin and staff
         Route::group(['middleware' => ['checkAdminStaff']], function ()
