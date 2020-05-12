@@ -44,7 +44,7 @@ Route::group(['middleware' => ['cookie']], function ()
         // Auth::routes(['verify' => true]);
         Auth::routes();
 
-        //visitor 
+        //visitor
         Route::group(['prefix' => ''], function ()
         {
 
@@ -61,6 +61,9 @@ Route::group(['middleware' => ['cookie']], function ()
             //Viết coment
             Route::post('write_comment/{idsp}', 'ClientController@write_cmt')
                 ->name('write_cmt');
+            //xóa comment
+            Route::get('delete_comment/{idcmt}/{idsp}', 'ClientController@delete_cmt')
+                ->name('delete_cmt');
             //reply
             Route::post('write_comment/{idsp}/{idrep}', 'ClientController@reply_cmt')
                 ->name('reply_cmt');
@@ -141,7 +144,7 @@ Route::group(['middleware' => ['cookie']], function ()
             });
         });
         //end visitor
-        
+
         //user login
         
         Route::group(['middleware' => 'checklogin'], function ()
@@ -185,27 +188,200 @@ Route::group(['middleware' => ['cookie']], function ()
         //user login end
         //admin
         Route::group(['prefix' => 'dashboard'], function () {
-            
-            Route::group(['middleware' => ['checkAdmin']], function ()
+
+        Route::group(['middleware' => ['checkAdmin']], function ()
+        {
+            //promotion
+            // Route::group(['prefix' => 'promotion'], function () {
+            //     //index
+            //     Route::get('/index', 'Admin\PromotionController@index')->name('promotion.index');
+            //     // thêm
+            //     Route::get('/create', 'Admin\PromotionController@create')->name('promotion.create');
+            //     Route::post('/create', 'Admin\PromotionController@store')->name('promotion.create.submit');
+            //     // xem chi tiết
+            //     Route::get('/show/{promotion_id}', 'Admin\PromotionController@show')->name('promotion.show');
+            //     // sửa
+            //     Route::get('/edit/{promotion_id}', 'Admin\PromotionController@edit')->name('promotion.edit');
+            //     Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
+            //     // xóa mềm
+            //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
+
+
+            //report
+            Route::group(['prefix' => 'report'], function ()
             {
-                //promotion
-                // Route::group(['prefix' => 'promotion'], function () {
-                //     //index
-                //     Route::get('/index', 'Admin\PromotionController@index')->name('promotion.index');
-                //     // thêm
-                //     Route::get('/create', 'Admin\PromotionController@create')->name('promotion.create');
-                //     Route::post('/create', 'Admin\PromotionController@store')->name('promotion.create.submit');
-                //     // xem chi tiết
-                //     Route::get('/show/{promotion_id}', 'Admin\PromotionController@show')->name('promotion.show');
-                //     // sửa
-                //     Route::get('/edit/{promotion_id}', 'Admin\PromotionController@edit')->name('promotion.edit');
-                //     Route::post('/edit/submit/{promotion_id}', 'Admin\PromotionController@update')->name('promotion.update');
-                //     // xóa mềm
-                //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
-                
-    
-                //report
-                Route::group(['prefix' => 'report'], function ()
+                //index
+                Route::get('/index', 'Admin\ReportController@index')
+                    ->name('report.index');
+                Route::get('/fix', 'Admin\ReportController@fix')
+                    ->name('report.fix.index');
+                // thêm
+                // Route::get('/create', 'Admin\ReportController@create')->name('report.create');
+                // Route::post('/create', 'Admin\ReportController@store')->name('report.create.submit');
+                // xem chi tiết
+                // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
+                // sửa
+                // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
+                Route::post('/edit/submit/{id}', 'Admin\ReportController@update')
+                    ->name('report.update');
+                // xóa mềm
+                // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
+
+            });
+            //customer
+            Route::group(['prefix' => 'customer'], function ()
+            {
+                //index
+                Route::get('/index', 'Admin\CustomerController@index')
+                    ->name('customer.index');
+                // thêm
+                Route::get('/create', 'Admin\CustomerController@create')
+                    ->name('customer.create');
+                Route::post('/create', 'Admin\CustomerController@store')
+                    ->name('customer.create.submit');
+                // xem chi tiết
+                Route::get('/show/{customer_id}', 'Admin\CustomerController@show')
+                    ->name('customer.show');
+                // sửa
+                Route::get('/edit/{customer_id}', 'Admin\CustomerController@edit')
+                    ->name('customer.edit');
+                Route::post('/edit/submit/{customer_id}', 'Admin\CustomerController@update')
+                    ->name('customer.update');
+                // xóa mềm
+                Route::get('/destroy/{customer_id}', 'Admin\CustomerController@destroy')
+                    ->name('customer.destroy');
+                Route::get('/find', 'Admin\CustomerController@find')
+                    ->name('customer.find');
+
+            });
+
+            //promotion code_type
+            Route::group(['prefix' => 'promotion'], function ()
+            {
+                //index
+                Route::get('/index', 'Admin\CodeController@index')
+                    ->name('promotion.index');
+                // thêm
+                Route::get('/create', 'Admin\CodeController@create')
+                    ->name('promotion.create');
+                Route::post('/create', 'Admin\CodeController@store')
+                    ->name('promotion.create.submit');
+                // xem chi tiết
+                Route::get('/show/{promotion}', 'Admin\CodeController@show')
+                    ->name('promotion.show');
+                // sửa
+                Route::get('/edit/{promotion_id}', 'Admin\CodeController@edit')
+                    ->name('promotion.edit');
+                Route::post('/edit/submit/{promotion_id}', 'Admin\CodeController@update')
+                    ->name('promotion.update');
+                // xóa mềm
+                Route::get('/destroy/{promotion_id}', 'Admin\CodeController@destroy')
+                    ->name('promotion.destroy');
+
+            });
+            //promotion code
+            Route::group(['prefix' => 'promotioncode'], function ()
+            {
+                //index
+                Route::get('/index', 'Admin\CodeController@codeindex')
+                    ->name('promotioncode.index');
+                // thêm
+                Route::get('/create', 'Admin\CodeController@codecreate')
+                    ->name('promotioncode.create');
+                Route::post('/create', 'Admin\CodeController@codestore')
+                    ->name('promotioncode.create.submit');
+                // xem chi tiết
+                Route::get('/show/{promotioncode}', 'Admin\CodeController@codeshow')
+                    ->name('promotioncode.show');
+                // sửa
+                Route::get('/edit/{promotioncode_id}', 'Admin\CodeController@codeedit')
+                    ->name('promotioncode.edit');
+                Route::post('/edit/submit/{promotioncode_id}', 'Admin\CodeController@codeupdate')
+                    ->name('promotioncode.update');
+                // xóa mềm
+                Route::get('/destroy/{promotioncode_id}', 'Admin\CodeController@codedestroy')
+                    ->name('promotioncode.destroy');
+
+            });
+            //loại khách hàng
+            Route::group(['prefix' => 'rank'], function ()
+            {
+                //index
+                Route::get('/index', 'Admin\RankController@index')
+                    ->name('rank.index');
+                // thêm
+                Route::get('/create', 'Admin\RankController@create')
+                    ->name('rank.create');
+                Route::post('/create', 'Admin\RankController@store')
+                    ->name('rank.create.submit');
+                // xem chi tiết
+                Route::get('/show/{rank_id}', 'Admin\RankController@show')
+                    ->name('rank.show');
+                // sửa
+                Route::get('/edit/{rank_id}', 'Admin\RankController@edit')
+                    ->name('rank.edit');
+                Route::post('/edit/submit/{rank_id}', 'Admin\RankController@update')
+                    ->name('rank.update');
+                // xóa mềm
+                Route::get('/destroy/{rank_id}', 'Admin\RankController@destroy')
+                    ->name('rank.destroy');
+
+            });
+            //staff
+            Route::group(['prefix' => 'staff'], function ()
+            {
+                //index
+                Route::get('/index', 'Admin\StaffController@index')
+                    ->name('staff.index');
+                    //search
+
+                // thêm
+                Route::get('/create', 'Admin\StaffController@create')
+                    ->name('staff.create');
+                Route::post('/create', 'Admin\StaffController@store')
+                    ->name('staff.create.submit');
+                // xem chi tiết
+                Route::get('/show/{staff_id}', 'Admin\StaffController@show')
+                    ->name('staff.show');
+                // sửa
+                Route::get('/edit/{staff_id}', 'Admin\StaffController@edit')
+                    ->name('staff.edit');
+                Route::post('/edit/submit/{staff_id}', 'Admin\StaffController@update')
+                    ->name('staff.update');
+                // xóa mềm
+                Route::get('/destroy/{staff_id}', 'Admin\StaffController@destroy')
+                    ->name('staff.destroy');
+                Route::get('/find', 'Admin\StaffController@find')
+                    ->name('staff.find');
+
+            });
+            //statistic
+            Route::group(['prefix' => 'statistic'], function ()
+            {
+                //index
+                Route::get('/index', 'Admin\StatisticController@index')
+                    ->name('statistic.index');
+                //nhà đất
+                Route::get('/real_estate', 'Admin\StatisticController@real_estate')
+                    ->name('statistic.real_estate.index');
+
+            });
+            //display
+            Route::group(['prefix' => 'display'], function ()
+            {
+
+                // Route::get('feedback', function (){
+                //     return view('pages.admin.khachhang.feedback');
+                // });
+                //logo
+                Route::get('logo', 'Admin\DisplayController@logo')
+                    ->name('logo');
+                Route::post('logo', 'Admin\DisplayController@storelogo')
+                    ->name('logo.submit');
+                //banner
+                // Route::get('banner', 'Admin\DisplayController@logo')->name('banner');
+                Route::get('banner', function ()
+
                 {
                     //index
                     Route::get('/index', 'Admin\ReportController@index')
@@ -396,7 +572,7 @@ Route::group(['middleware' => ['cookie']], function ()
             });
         });
         //admin end
-        
+
 
         //staff
         Route::group(['prefix' => 'dashboard'], function () {
@@ -535,7 +711,7 @@ Route::group(['middleware' => ['cookie']], function ()
             });
         });
         //staff end
-        
+
 
         //admin and staff
         Route::group(['middleware' => ['checkAdminStaff']], function ()

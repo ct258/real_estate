@@ -67,6 +67,7 @@
     "Post new": "New Post",
     "Book meet": "Book Schedule",
     "Report": "Report",
+    "Dashboard": "Dashboard"
     "Detial description":"Detail Description",
     "Map":"Map",
     "convenient":"Convenient",
@@ -121,8 +122,9 @@
     "Content appointment":"Content" ,
     "Time appointment":"Time appoinment" ,
     "Status appointment":"Status" ,
-    "Logout":"Đăng xuất",
+    "Logout":"Logout",
     "Responsible": "Responsible"
+
 
 
 }
