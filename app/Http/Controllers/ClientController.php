@@ -135,6 +135,7 @@ class ClientController extends Controller
         // tính thời gian đăng
         Carbon::setlocale(\Session::get('lang', config('app.locale')));
         $now = Carbon::now();
+        $day=array();
         foreach ($real_estate as $key => $value) {
             $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
             $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
@@ -344,6 +345,7 @@ class ClientController extends Controller
         $per_rank_3,
         $per_rank_2,
         $per_rank_1)=$this->get_evaluate($request, $real_estate, $real_estate);
+        // var_dump($image);die;
         return view('pages.user.page.single_list', compact('real_estate',
         'image',
         'rate',
