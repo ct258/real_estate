@@ -17,6 +17,7 @@
         "laravel/tinker": "^1.0",
         "nexmo/client": "^2.0",
         "nexmo/laravel": "^2.2",
+        "spatie/laravel-analytics": "^3.9",
         "spatie/laravel-backup": "^6.7",
         "tymon/jwt-auth": "1.0.*"
     },

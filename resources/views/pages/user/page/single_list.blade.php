@@ -450,14 +450,50 @@ a#delete{
 
                             {{-- <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id,'customer_id'=> $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id]) }}"
                             class="rent-notic apointment">Đăt lịch hẹn</a> --}}
-
+                            <?php if(\Auth::guard('account')->check() &&
+                            \Auth::guard('account')->user()->hasRole('Customer')):?>
                             <a href="{{ route('appointment.index', ['real_estate_id'=>$real_estate->real_estate_id])}}"
-                                class="rent-notic apointment">Đăt lịch hẹn</a>
+                                class="rent-notic apointment">Đặt lịch hẹn</a>
+                                <?php else: ?>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Đặt lịch hẹn
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label for="recipient-name" class="col-form-label">Quên đăng
+                                                nhập kìa</label>
+                                            <div class="form-group">
+                                                <a href="/real_estate/public/login">Nhấp vào đây để đăng
+                                                    nhập</a>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                                <?php endif; ?>
 
                             {{-- <a href="{{route('cart.add',$real_estate->real_estate_id)}}" id="buy"
                             class="price-btn">@lang('Buy')</a> --}}
 
                         </div>
+
                         <div class="col-xl-12">
                             <div class="container-fluid">
                                 <div class="row">
@@ -911,16 +947,16 @@ a#delete{
 
                 </div>
               <div class="row">
-              
+
               </div>
 
-               
+
                 <div class="comment-warp">
                     <ul class="comment-list">
                         {{-- {{dd($evaluate)}} --}}
-                        
+
                         @foreach ($evaluate as $item)
-                           
+
                                 @if($item->evaluate_reply==null)
                                     <li>
                                         <div class="comment">
@@ -935,8 +971,8 @@ a#delete{
                                                 <a data-toggle="modal" data-target="#exampleModal" class="c-btn" id="report" exampleModal>@lang('Report')</a>
                                                 {{-- <button type="button" class="c-btn showReply">Trả lời</button> --}}
                                                 <a data-toggle="modal"  data-target="#reply" class="c-btn showForm">@lang('Reply')</a>
-                                                <div class="formReply" style="display: none; margin-top: 10px;">    
-                                                    <form class="comment-form" 
+                                                <div class="formReply" style="display: none; margin-top: 10px;">
+                                                    <form class="comment-form"
                                                     action="{{ route('reply_cmt', ['idsp'=> $real_id,'idrep'=>$item->evaluate_id]) }}" method="post">
                                                     @csrf
                                                     <div class="row">
@@ -1064,8 +1100,8 @@ a#delete{
                     $('#heart').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
                 }
             });
-   
-        }); 
+
+        });
         $('#wishlist_customer').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
             var real_estate_id = $('#wishlist_customer').attr("data-real_estate_id");
             var customer_id = $('#wishlist_customer').attr("data-customer_id");
@@ -1083,8 +1119,8 @@ a#delete{
                     $('#heart').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
                 }
             });
-   
-        }); 
+
+        });
 
     });
 
@@ -1158,7 +1194,7 @@ var marker = L.marker([longitude,latitude]).addTo(mymap);
     $(".showForm").on("click", function () {
         $(this).next().toggle();
     });
-  
+
 });
 </script>
 @endpush
