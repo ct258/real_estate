@@ -721,7 +721,7 @@ Route::group(['middleware' => ['cookie']], function ()
                 // Route::get('dashboard', function () {
                 //     return view('pages.admin.dashboard');
                 // })->name('dashboard');
-                Route::get('dashboard', 'Admin\StatisticController@basic')
+                Route::get('/', 'Admin\StatisticController@basic')
                     ->name('dashboard');
             });
         });
