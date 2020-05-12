@@ -40,7 +40,7 @@
                 @foreach ($cart as $item)
                 <div class="row content-1">
                     <div class="col-lg-4">
-                        <img src="{{ asset($item->real_estate_avatar)}}" alt="">
+                        <img class="avatar" src="{{ asset($item->real_estate_avatar)}}" alt="">
                     </div>
                     <div class="col-lg-4">
                         <div class="content-2">
