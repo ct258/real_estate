@@ -1,5 +1,10 @@
-
-
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" ></script>
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
+</head>
 @extends('layouts.admin')
 
 @section('content')
@@ -35,176 +40,106 @@
     </div>
     <div class="row w3-res-tb">
 
-      {{-- <canvas id="myChart1" width="170" height="100"></canvas> --}}
-    
-      {{-- <canvas id="myChart" width="170" height="100"></canvas> --}}
      
+     {{-- @foreach ($realWeeks as $key => $value) --}}
 
       <div class="col-md-6 chart_agile_left">
         <div class="chart_agile_top">
             <div class="chart_agile_bottom"> 
-                <div id="graph10"></div>
-                {{-- @foreach ($real as $reals) --}}
-                     <script>  
-                   
-                    var week_data = [
-                      // {"period": "2011 W27", "licensed": $reals->real_estate_price, "sorned": 660},
-                      // {"period": "2011 W26", "licensed": $reals->real_estate_price, "sorned": 629},
-                      {"period": "2011 W25", "licensed": 3269, "sorned": 618},
-                      {"period": "2011 W24", "licensed": 3246, "sorned": 661},
-                      {"period": "2011 W23", "licensed": 3257, "sorned": 667},
-                      {"period": "2011 W22", "licensed": 3248, "sorned": 627},
-                      {"period": "2011 W21", "licensed": 3171, "sorned": 660},
-                      {"period": "2011 W20", "licensed": 3171, "sorned": 676},
-                      {"period": "2011 W19", "licensed": 3201, "sorned": 656},
-                      {"period": "2011 W18", "licensed": 3215, "sorned": 622},
-                      {"period": "2011 W17", "licensed": 3148, "sorned": 632},
-                      {"period": "2011 W16", "licensed": 3155, "sorned": 681},
-                      {"period": "2011 W15", "licensed": 3190, "sorned": 667},
-                      {"period": "2011 W14", "licensed": 3226, "sorned": 620},
-                      {"period": "2011 W13", "licensed": 3245, "sorned": null},
-                      {"period": "2011 W12", "licensed": 3289, "sorned": null},
-                      {"period": "2011 W11", "licensed": 3263, "sorned": null},
-                      {"period": "2011 W10", "licensed": 3189, "sorned": null},
-                      {"period": "2011 W09", "licensed": 3079, "sorned": null},
-                      {"period": "2011 W08", "licensed": 3085, "sorned": null},
-                      {"period": "2011 W07", "licensed": 3055, "sorned": null},
-                      {"period": "2011 W06", "licensed": 3063, "sorned": null},
-                      {"period": "2011 W05", "licensed": 2943, "sorned": null},
-                      {"period": "2011 W04", "licensed": 2806, "sorned": null},
-                      {"period": "2011 W03", "licensed": 2674, "sorned": null},
-                      {"period": "2011 W02", "licensed": 1702, "sorned": null},
-                      {"period": "2011 W01", "licensed": 3900, "sorned": null}
-                    ];
-                    Morris.Line({
-                      element: 'graph10',
-                      data: week_data,
-                      xkey: 'period',
-                      ykeys: ['licensed', 'sorned'],
-                      labels: ['Licensed', 'SORN'],
-                      // events: [
-                      //   '2011-04',
-                      //   '2011-08'
-                      // ]
-                    });
-                    </script>
-  {{-- @endforeach  --}}
+                   <canvas id="myChart" width="100" height="100"></canvas>
+
+                {{-- {{dd($cotgiatri1)}} --}}
+    {{-- @endforeach --}}
+     {{-- {{dd($key)}}  --}}
             </div>
         </div> 
-    
+  
     </div>
    
-
+    <div class="col-md-6 chart_agile_left">
+      <div class="chart_agile_top">
+          <div class="chart_agile_bottom"> 
+            <canvas id="myChart1" width="100" height="100"></canvas>
+          </div>
+      </div> 
   
+  </div>
 
+ 
     
     
   </div>
   
 </div>
-@endsection
-{{-- <script>  
-                   
-  var week_data = [
-    // {"period": "2011 W27", "licensed": $reals->real_estate_price, "sorned": 660},
-    // {"period": "2011 W26", "licensed": $reals->real_estate_price, "sorned": 629},
-    {"period": "2011 W25", "licensed": 3269, "sorned": 618},
-    {"period": "2011 W24", "licensed": 3246, "sorned": 661},
-    {"period": "2011 W23", "licensed": 3257, "sorned": 667},
-    {"period": "2011 W22", "licensed": 3248, "sorned": 627},
-    {"period": "2011 W21", "licensed": 3171, "sorned": 660},
-    {"period": "2011 W20", "licensed": 3171, "sorned": 676},
-    {"period": "2011 W19", "licensed": 3201, "sorned": 656},
-    {"period": "2011 W18", "licensed": 3215, "sorned": 622},
-    {"period": "2011 W17", "licensed": 3148, "sorned": 632},
-    {"period": "2011 W16", "licensed": 3155, "sorned": 681},
-    {"period": "2011 W15", "licensed": 3190, "sorned": 667},
-    {"period": "2011 W14", "licensed": 3226, "sorned": 620},
-    {"period": "2011 W13", "licensed": 3245, "sorned": null},
-    {"period": "2011 W12", "licensed": 3289, "sorned": null},
-    {"period": "2011 W11", "licensed": 3263, "sorned": null},
-    {"period": "2011 W10", "licensed": 3189, "sorned": null},
-    {"period": "2011 W09", "licensed": 3079, "sorned": null},
-    {"period": "2011 W08", "licensed": 3085, "sorned": null},
-    {"period": "2011 W07", "licensed": 3055, "sorned": null},
-    {"period": "2011 W06", "licensed": 3063, "sorned": null},
-    {"period": "2011 W05", "licensed": 2943, "sorned": null},
-    {"period": "2011 W04", "licensed": 2806, "sorned": null},
-    {"period": "2011 W03", "licensed": 2674, "sorned": null},
-    {"period": "2011 W02", "licensed": 1702, "sorned": null},
-    {"period": "2011 W01", "licensed": 3900, "sorned": null}
-  ];
-  Morris.Line({
-    element: 'graph10',
-    data: week_data,
-    xkey: 'period',
-    ykeys: ['licensed', 'sorned'],
-    labels: ['Licensed', 'SORN'],
-    // events: [
-    //   '2011-04',
-    //   '2011-08'
-    // ]
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  // var data1 = [];
+  // data1.push($cottuan1)
+  const cotx = [];
+  const coty = [];
+  const x = $cottuan1;
+  cotx.push(x);
+  console.log(x);
+  const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: cotx,
+          datasets: [{
+              label: '# of Votes',
+              data: [1,2,23,3],
+              backgroundColor: [
+                  'red',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
   });
+  var ctx = document.getElementById('myChart1').getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
   
-
-
+      // The data for our dataset
+      data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          datasets: [{
+              label: 'My First dataset',
+              backgroundColor: 'rgb(255, 0, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: [20, 10, 5, 2, 20, 30, 145]
+          }]
+      },
   
-  </script> --}}
-  {{-- <script>
-    var ctx = document.getElementById('myChart1').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 0, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [20, 10, 5, 2, 20, 30, 145]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Purple', 'Orange','buoi'],
-        datasets: [{
-            label: '# of Votes',
-            data: [2, 10, 3, 5, 2, 3,1],
-            backgroundColor: [
-                'red',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-  </script> --}}
+      // Configuration options go here
+      options: {}
+  });
+// getData();
+//   async function getData(){
+//     const x = $cottuan1; 
+//     cotx.push(x);
+//     console.log(x,cotx);
+//   }
+  </script>
+@endsection

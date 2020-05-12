@@ -7,7 +7,7 @@ use App\Models\Account;
 use App\Models\Rank;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session; 
+use Session;
 use Hash;
 class CustomerController extends Controller
 {
@@ -20,7 +20,7 @@ class CustomerController extends Controller
     {
         $customer = DB::table('customer')
         ->paginate(10);
-      
+
         return view('pages.admin.customer.index',compact('customer'));
 
     }
@@ -47,7 +47,7 @@ class CustomerController extends Controller
         $account['username'] =$request->username;
         $account['password'] =  Hash::make($request->password);
         $account['role_id'] = 3;
-        
+
         $customer_id = DB::table('account')->insertGetId( $account);
         $customer['rank_id'] =$request->rank_id;
         $customer['customer_name'] =$request->customer_name;
@@ -58,8 +58,8 @@ class CustomerController extends Controller
         $customer['customer_address'] =$request->customer_address;
         $customer['customer_identity_card'] =$request->customer_identity_card;
         $customer['account_id'] = $customer_id;
-        
-        
+
+
          $result = DB::table('customer')->insert($customer);
          if($result)
          {
@@ -93,7 +93,7 @@ class CustomerController extends Controller
             $ac_id = $i->account_id;
         }
        $ac = DB::table('account')->where('account_id',$ac_id)->first();
-       
+
         return view('pages.admin.customer.edit',compact('customer','ac'));
     }
 
@@ -108,7 +108,7 @@ class CustomerController extends Controller
     {
         //vì dây là thêm kh nên role_id=3
         // dd($request->customer_birth );
-        
+
         if($request->password != ''&& $request->customer_birth != null)
         {
             $account['username'] =$request->username;
@@ -137,9 +137,9 @@ class CustomerController extends Controller
 
 
         }
-     
+
        if($request->password == '' && $request->customer_birth != null)
-           { 
+           {
 
             $customer_id = DB::table('customer')->where('customer_id',$id)->first();
             $ac_id = $customer_id->account_id;
@@ -162,15 +162,15 @@ class CustomerController extends Controller
                 return redirect()->route('customer.index');
             }
         }
-        
-       if($request->password == '' && $request->customer_birth == null)
-           { 
 
-        
+       if($request->password == '' && $request->customer_birth == null)
+           {
+
+
             $customer_id = DB::table('customer')->where('customer_id',$id)->first();
             $ac_id = $customer_id->account_id;
             $customer_birth=$customer_id->customer_birth;
-           
+
             $customer['rank_id'] =$request->rank_id;
             $customer['customer_name'] =$request->customer_name;
             $customer['customer_birth'] =$customer_birth;
@@ -185,7 +185,7 @@ class CustomerController extends Controller
             if($result)
             {
                 Session::put('mess','Cập nhật nhân viên thành công !');
-                
+
             }
             return redirect()->route('customer.index');
         }
@@ -198,8 +198,8 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-       
+    {
+
 
         $data =  Customer::where('customer_id',$id)->get();
         $customer = Customer::where('customer_id',$id)->delete();
@@ -207,13 +207,53 @@ class CustomerController extends Controller
         {
             $ac_id = $val->account_id;
         }
-       
+
         $account = Account::where('account_id',$ac_id)->delete();
-       
-       
+
+
         if($customer){
             Session::put('mess','Xóa nhân viên thành công !');
             return redirect()->route('customer.index');
         }
+
+    }
+
+    public function find(Request $req){
+        if($req->loc==0){
+        $cus=  Customer::where('customer_name','like','%'.$req->name.'%')
+                         ->OrWhere('customer_email','like','%'.$req->name.'%')
+                         ->OrWhere('customer_birth','like','%'.$req->name.'%')
+                         ->OrWhere('customer_tel','like','%'.$req->name.'%')
+                         -> OrWhere('customer_gender','like','%'.$req->name.'%')
+                         -> OrWhere('customer_address','like','%'.$req->name.'%')
+                         -> OrWhere('customer_identity_card','like','%'.$req->name.'%')
+        // ->paginate(5)
+        ->get();}
+
+        // $rank=  Rank::where('rank_id','like',$req->name)
+        // ->get();
+
+        // DB::table('customer')
+        //   ->whereExists(function ($query,$req) {
+        //       $query->select(DB::raw(7))
+        //             ->from('customer')
+        //             ->whereRaw('customer_name','like','%'.$req->name.'%')
+        //             ->OrWhere('customer_email','like','%'.$req->name.'%')
+        //             ->OrWhere('customer_birth','like','%'.$req->name.'%')
+        //             ->OrWhere('customer_tel','like','%'.$req->name.'%')
+                    // -> OrWhere('customer_gender','like','%'.$req->name.'%')
+        //             -> OrWhere('customer_address','like','%'.$req->name.'%')
+        //             -> OrWhere('	customer_identity_card','like','%'.$req->name.'%')
+        //             ->get();
+        //   })
+        //   ->get();
+        //   dd($query);
+        else{
+        $cus=  Customer::where('rank_id','like',$req->name)
+        ->get();
+        }
+        $tukhoa = $req->name;
+        return view('pages.admin.customer.find',compact('cus','tukhoa'));
+
     }
 }
