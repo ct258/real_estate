@@ -18,6 +18,7 @@ use App\Models\WishListTemp;
 use App\Models\Cart;
 use App\Models\DetailCart;
 use App\Models\Convenience;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
@@ -457,9 +458,16 @@ class ClientController extends Controller
         return view('pages.user.blog.single_blog',compact('blog','day_blog'));
     }
 
-    public function subscription(Request $request, $user)
+    public function subscription(Request $request)
     {
-        dd($request);
+        $id=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        $find=Subscription::where('customer_id',$id)->first();
+        if(!$find){
+            Subscription::insert([
+                'customer_id'=>$id
+            ]);
+        }
+        return redirect()->back();
     }
 
     public function view_product(Request $request)
