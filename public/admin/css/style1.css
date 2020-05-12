@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+
+/* 
+div#Avatar:hover {
+    transition: 0.5s!important;
+    transform: rotate3d(1, 1, 1, 60deg)!important;
+    cursor: pointer;
+}
+#test:hover {
+    transition: 0.5s!important;
+    transform: rotate3d(1, 1, 1, 60deg)!important;
+    cursor: pointer;
+} */
+   
 div#reply {
     margin-top: 60px;
 }
@@ -124,7 +137,7 @@ ul.dropdown-menu.show li a {
 }
 
 p.dropdown-toggle {
-    font-size: 16px;
+    font-size: 12px;
     color: white;
 }
 
@@ -182,7 +195,6 @@ div#curency a:hover {
     background-color: rgba(0, 0, 0, 0.5);
 
 }
-
 
 .principal{
     left: 50%;
@@ -330,3 +342,38 @@ div#curency a:hover {
     /* margin-bottom: 5px; */
     top: 0;
     }
+    
+
+.container-fuild.bg_top1.xanh {
+    height: 60px;
+    /* background-size: 18px; */
+    background-color: #30caa8;
+    /* opacity: 0.9; */
+}
+.nav.xanh {
+    margin-top: -11px;
+}
+.col-lg-6.text-lg-right.header-top-right.xanh {
+    margin-top: -11px;
+}
+.container-fuild.bg_top1 {
+    /* background-size: 18px; */
+    transition: 0.5s;
+
+}
+.nav {
+    transition: 0.5s;
+}
+.col-lg-6.text-lg-right.header-top-right {
+    transition: 0.5s;
+
+}
+.path.xanh{
+    color: black;
+}
+.path {
+    color: black;
+}
+
+
+

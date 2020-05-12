@@ -223,6 +223,7 @@ class ClientController extends Controller
         'evaluate.evaluate_reply',
         'evaluate.evaluate_title',
         'evaluate.evaluate_content',
+        'evaluate.real_estate_id',
         'evaluate.updated_at',
         'evaluate.customer_id'
         )
@@ -385,6 +386,14 @@ class ClientController extends Controller
                
             ]
         );
+        return redirect()->route('single_list', ['real_estate_id' => $idsp]);
+    }
+
+    //delete comment
+
+    public function delete_cmt($idcmt, $idsp){
+       
+        DB::table('evaluate')->where('evaluate_id',$idcmt)->delete();
         return redirect()->route('single_list', ['real_estate_id' => $idsp]);
     }
     // write reply comment

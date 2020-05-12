@@ -61,6 +61,9 @@ Route::group(['middleware' => ['cookie']], function ()
             //Viết coment
             Route::post('write_comment/{idsp}', 'ClientController@write_cmt')
                 ->name('write_cmt');
+            //xóa comment
+            Route::get('delete_comment/{idcmt}/{idsp}', 'ClientController@delete_cmt')
+                ->name('delete_cmt');
             //reply
             Route::post('write_comment/{idsp}/{idrep}', 'ClientController@reply_cmt')
                 ->name('reply_cmt');
