@@ -2,14 +2,19 @@
 @foreach ($real_estate as $item)
 <div class="col-lg-4 col-md-6">
     <!-- feature -->
+
     <div class="feature-item">
-        <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
-            style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
-            <div class="sale-notic">FOR SALE</div>
-        </div>
+        <a href="{{route('single_list',$item->real_estate_id)}}">
+            <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
+                style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
+                <div class="sale-notic">FOR SALE</div>
+            </div>
+        </a>
         <div class="feature-text">
             <div class="feature-title">
-                <h5>{{$item->translation_name}}</h5>
+                <a href="{{route('single_list',$item->real_estate_id)}}" class="name_re">
+                    <h5>{{$item->translation_name}}</h5>
+                </a>
                 <p><i class="fas fa-map-marked"></i> {{$item->district_name}},
                     {{$item->province_name}}</p>
             </div>

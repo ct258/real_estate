@@ -12,13 +12,17 @@
             <div class="col-lg-4 col-md-6">
                 <!-- feature -->
                 <div class="feature-item">
-                    <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
-                        style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
-                        <div class="sale-notic"> @lang('For sale') </div>
-                    </div>
+                    <a href="{{route('single_list',$item->real_estate_id)}}" class="name_re">
+                        <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
+                            style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
+                            <div class="sale-notic"> @lang('For sale') </div>
+                        </div>
+                    </a>
                     <div class="feature-text">
                         <div class="text-center feature-title">
-                            <h5>{{$item->translation_name}}</h5>
+                            <a href="{{route('single_list',$item->real_estate_id)}}" class="name_re">
+                                <h5>{{$item->translation_name}}</h5>
+                            </a>
                             <p><i class="fas fa-map-marked"></i> {{$item->district_name}},
                                 {{$item->province_name}}</p>
                         </div>
@@ -35,7 +39,7 @@
                                 </div>
                             </div>
                         </div>
-                               <div class="sp1">
+                        <div class="sp1">
                             <a id="gia" href="{{route('single_list',$item->real_estate_id)}}"
                                 class="room-price">{{$rate->currency_symbol}}
                                 {{number_format($price_view[$item->real_estate_id])}}{{ $item->unit_translation_name}}

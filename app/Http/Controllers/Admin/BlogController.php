@@ -19,10 +19,10 @@ class BlogController extends Controller
     {
         $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
         ->join('staff','staff.staff_id','blog.staff_id')
-        ->select('blog.blog_id',
-        'blog.created_at',
-        'blog_translation_title',
-        'staff_name')
+        // ->select('blog.blog_id',
+        // 'blog.created_at',
+        // 'blog_translation_title',
+        // 'staff_name')
         ->where('blog_translation_locale','vi')
         ->paginate(10);
         return view('pages.admin.blog.index',compact('blog'));

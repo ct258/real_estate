@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{asset('leramiz/css/font-awesome.min.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/animate.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/animate1.css')}}" />
-  
+
   <link rel="stylesheet" href="{{asset('leramiz/css/owl.carousel.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/style.css')}}" />
   <link rel="stylesheet" href="{{asset('leramiz/css/style1.css')}}" />
@@ -192,6 +192,10 @@
     .frame {
       box-shadow: 0px 0px 15px 0px #D6D6D6;
       padding-top: 20px;
+    }
+
+    .name_re:hover {
+      text-decoration: none;
     }
   </style>
   @yield('css')

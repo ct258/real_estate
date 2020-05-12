@@ -169,7 +169,7 @@ class IndexController extends Controller
 
         //lấy blog
         $blog=Blog::join('blog_translation','blog.blog_id','blog_translation.blog_id')
-        ->select('blog_translation_title','blog_translation_intro','blog.created_at','blog_avatar')
+        // ->select('blog_translation_title','blog_translation_intro','blog.created_at','blog_avatar')
         ->where('blog_translation.blog_translation_locale', \Session::get('lang', config('app.locale')))
         ->orderBy('blog.created_at', 'desc')
         ->limit(5)

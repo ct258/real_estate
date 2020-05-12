@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Redirect;
 use App\Models\Cart;
+use App\Models\RealEstate;
+use App\Models\DetailCart;
 
 class PaymentController extends Controller
 {
@@ -80,6 +82,12 @@ class PaymentController extends Controller
             $id=\Crypt::decrypt($request->vnp_TxnRef);
             Cart::where('cart_id',$id)->update([
                 'cart_status'=>'Chờ duyệt'
+            ]);
+            RealEstate::join('detail_cart','detail_cart.real_estate_id','real_estate.real_estate_id')
+            ->join('cart','cart.cart_id','detail_cart.cart_id')
+            ->where('cart.cart_id',$id)
+            ->update([
+                'real_estate_status'=>'Chờ duyệt',
             ]);
             Cart::insert([
                 'customer_id'=>\Auth::guard('account')->user()->load('customer')->customer->customer_id,

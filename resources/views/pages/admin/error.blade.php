@@ -1,4 +1,4 @@
-@include('layouts.admin_new.head')
+@include('layouts.admin.head')
 
 <body>
     <!--main content start-->
@@ -7,10 +7,10 @@
             <h3>SORRY</h3>
             <h2>404</h2>
             <p>An error Occurred in the Application And Your Page could not be Served.</p>
-            <a href="{{route('index')}}">go home</a>
+            <a href="{{route('dashboard')}}">go home</a>
         </div>
     </div>
-    @include('layouts.admin_new.script')
+    @include('layouts.admin.script')
 </body>
 
 </html>

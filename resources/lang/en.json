@@ -52,21 +52,22 @@
     "facade": "Facade",
     "way": "Way",
     "Login": "Login",
-    "News" : "News",
-    "Real Estate Can Tho":"Real Estate Can Tho",
-    "Reputation":"Reputation",
-    "Trust":"Trust",
-    "Friendly":"Friendly",
-    "Quickly":"Quickly",
-    "Search_local":"Search by location, apartment name or keyword",
-    "Sell":"Sell",
-    "Search":"Search",
-    "Seen real estate":"Real estate you have visited",
+    "News": "News",
+    "Real Estate Can Tho": "Real Estate Can Tho",
+    "Reputation": "Reputation",
+    "Trust": "Trust",
+    "Friendly": "Friendly",
+    "Quickly": "Quickly",
+    "Search_local": "Search by location, apartment name or keyword",
+    "Sell": "Sell",
+    "Search": "Search",
+    "Seen real estate": "Real estate you have visited",
     "For sale": "For Sale",
     "New product": "New Real Estate ",
     "Post new": "New Post",
     "Book meet": "Book Schedule",
     "Report": "Report",
+    "Dashboard": "Dashboard"
     "Detial description":"Detail Description",
     "Map":"Map",
     "convenient":"Convenient",
@@ -123,10 +124,7 @@
     "Status appointment":"Status" ,
     "Logout":"Logout",
     "Responsible": "Responsible"
-   
-    
 
 
-    
 
 }

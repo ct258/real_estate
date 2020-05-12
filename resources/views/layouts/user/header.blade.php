@@ -4,22 +4,22 @@
 </section> --}}
 <!--  Page top end -->
 <style>
-  .logo img{
+    .logo img {
         max-height: 40px;
         max-width: 200px;
     }
- </style> 
+</style>
 
 <div class="container-fuild bg_top1">
     <div class="container header ">
         <div class="row row_1">
             <div class="col-lg-6">
-{{-- {{dump($banner)}} --}}
+                {{-- {{dump($banner)}} --}}
                 <div class="nav">
-                    <div class="logo" >
-                    <a href="{{route('index')}}"  class="logo"><img src="{{asset('img/banner/logo/'.$logo)}}"
-                            alt=""></a>
-                        </div>
+                    <div class="logo">
+                        <a href="{{route('index')}}" class="logo"><img src="{{asset('img/banner/logo/'.$logo)}}"
+                                alt=""></a>
+                    </div>
                     @foreach ($data['form'] as $key1=>$value1)
                     <div class="dropdown">
                         <p class="dropbtn">{{$value1->form_translation_name}}</p>
@@ -76,9 +76,20 @@
                     </div>
                     <a href="{{route('lang',['vi']) }}">Vi</a>
                     <a href="{{route('lang',['en']) }}">En</a>
-                    <a href="{{route('register')}}"><i class="far fa-user-circle"></i> @lang('Register')</a>
-                    <a href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i> @lang('Login')</a>
-                    <a href="{{route('cart') }}"><i class="fa fa-shopping-cart"></i> @lang('Cart')</a>
+                    <?php  if (\Auth::guard('account')->check()):?>
+                    <?php  if (\Auth::guard('account')->user()->hasRole('admin') ||\Auth::guard('account')->user()->hasRole('staff')):?>
+                    <a href='{{route('dashboard')}}'><i class='fa fa-tachometer-alt'></i>
+                        @lang('Dashboard')</a>
+                    <?php endif; ?>
+
+                    <?php else:?>
+                    <a href='{{route('register')}}'><i class='far fa-user-circle'></i> @lang('Register')</a>
+                    <a href='{{route('login')}}'><i class='fas fa-sign-in-alt'></i> @lang('Login')</a>
+                    <a href='{{route('cart') }}'><i class='fa fa-shopping-cart'></i> @lang('Cart')</a>
+                    <?php endif; ?>
+
+
+
 
 
                 </div>
