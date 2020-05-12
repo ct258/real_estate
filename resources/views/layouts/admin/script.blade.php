@@ -1,5 +1,12 @@
 
 
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="{{asset('admin/js/bootstrap.js')}}"></script>
 <script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 <script src="{{asset('admin/js/scripts.js')}}"></script>
@@ -127,21 +134,26 @@
 		</script>
 
 {{-- loadtrang --}}
+
+
+{{-- 
 <script>
+    var dl= $real->real_estate_price;
     var ctx = document.getElementById('myChart1').getContext('2d');
-var chart = new Chart(ctx, {
+    var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
-
     // The data for our dataset
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 0, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [20, 10, 5, 2, 20, 30, 145]
-        }]
+        datasets: [
+        {
+            label: 'ten',
+            backgroundColor: 'rgb(0, 0, 132)',
+            borderColor: 'rgb(0, 99, 132)',
+            data: [dl]
+        }
+        ]
     },
 
     // Configuration options go here
@@ -172,7 +184,9 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
-        }]
+        }
+        
+        ]
     },
     options: {
         scales: {
@@ -184,4 +198,4 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-  </script>
+  </script> --}}

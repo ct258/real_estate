@@ -17,6 +17,7 @@ class CreateAppointmentTable extends Migration
             $table->increments('appointment_id');
             $table->integer('customer_id');
             $table->integer('real_estate_id');
+            $table->integer('account_id');
             $table->dateTime('appointment_time')->index()->comment('Thời gian hẹn');
             $table->string('appointment_content')->index()->comment('Nội dung cuộc hẹn');
             $table->string('appointment_status')->index()->comment('Trạng thái cuộc hẹn');

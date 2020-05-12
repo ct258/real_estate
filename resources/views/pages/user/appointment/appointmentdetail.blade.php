@@ -132,23 +132,33 @@
                                           <tr class="table-primary">
                                            <th>@lang('You have appoinment')</th>
                                            <th>@lang('Content appointment')</th>
-                                           <th>@lang('Time appointment')</th>
+                                           <th>@lang('Responsible')</th>
+                                           <th>@lang('Status appointment')</th>
                                            <th>@lang('Action')</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($result as $val)
                                             <tr >
-                                            <td>{{$val->appointment_content}}</td>
-                                            <td>{{$val->appointment_time}}</td>
-                                            <td>
-                                                @if($val->appointment_status==1)
-                                                <span style="color:rgba(17, 255, 0, 1)">Đã xác nhận</span>
+                                                <td>{{$val->appointment_time}}</td> 
+                                                <td>{{$val->appointment_content}}</td>
+                                                @if($staff !=null)
+                                                    @if($staff->account_id!=0 && $val->appointment_status!=0)
+                                                        <td>{{$staff->staff_name}}</td>
+                                                    @else
+                                                    <td>Đang xử lý...</td>
+                                                    @endif
                                                 @else
-                                                <span style="color:#ff0076">Đang xử lý</span>
+                                                <td>Đang xử lý...</td>
                                                 @endif
-                                            </td>
-                                            <td><a href="{{ route('appointment.destroy', ['id'=>$val->appointment_id]) }}"  style="border: none;background-color: Transparent;color: red;">@lang('Delete')</a></td>
+                                                <td>
+                                                    @if($val->appointment_status==1)
+                                                    <span style="color:rgba(17, 255, 0, 1)">Đã xác nhận</span>
+                                                    @else
+                                                    <span style="color:#ff0076">Đang xử lý</span>
+                                                    @endif
+                                                </td>
+                                                <td><a href="{{ route('appointment.destroy', ['id'=>$val->appointment_id]) }}"  style="border: none;background-color: Transparent;color: red;">@lang('Delete')</a></td>
                                             </tr>
                                         @endforeach
                                         

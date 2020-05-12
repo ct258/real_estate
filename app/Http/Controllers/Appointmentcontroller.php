@@ -38,7 +38,8 @@ class Appointmentcontroller extends Controller
      */
     public function store(Request $request,$r_id)
     {
-       $data['customer_id'] =  \Auth::guard('account')->user()->load('customer')->customer->customer_id;;
+       $data['customer_id'] =  \Auth::guard('account')->user()->load('customer')->customer->customer_id;
+       $data['account_id']=0; 
        $data['real_estate_id'] = $r_id;
        $data['appointment_time'] = $request->time;
        $data['appointment_content'] = $request->content;
@@ -52,6 +53,7 @@ class Appointmentcontroller extends Controller
         ->where('translation_locale','vi')->first();
         $customer = DB::table('customer')->where('customer_id',\Auth::guard('account')->user()->load('customer')->customer->customer_id)->first();
         return view('pages.user.appointment.index',compact('real_estate','customer'));
+        // return redirect()->route('appointment.detail');
        }
 
     }
@@ -59,8 +61,10 @@ class Appointmentcontroller extends Controller
     public function detail($id){
 
         $result = DB::table('appointment')->where('customer_id',$id)->get();
-
-       return view('pages.user.appointment.appointmentdetail',compact('result','id'));
+        $staff = DB::table('staff')->join('appointment','appointment.account_id','staff.account_id')
+        ->where('customer_id',$id)->first();
+        // dd($staff);
+       return view('pages.user.appointment.appointmentdetail',compact('result','id','staff'));
     }
 
 
@@ -77,6 +81,10 @@ class Appointmentcontroller extends Controller
 
     public function admin_status($id)
     {
+        $ac_id['account_id'] = \Auth::guard('account')->id();
+        // dd($ac_id);
+        DB::table('appointment')->where('appointment_id',$id)->update($ac_id);
+
 
             $data = DB::table('appointment')->where('appointment_id',$id)->first();
          
