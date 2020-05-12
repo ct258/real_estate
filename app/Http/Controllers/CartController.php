@@ -147,7 +147,8 @@ class CartController extends Controller
                 ['cart_status',null]
                 ])
                 ->first();
-            $re_cart=DetailCart::where('real_estate_id',$real_estate_id)->first();
+                // dd($customer_cart)
+            $re_cart=DetailCart::where([['real_estate_id',$real_estate_id],['cart_id',$customer_cart->cart_id]])->first();
             if (!$re_cart) {
                 DetailCart::insert([
                     'real_estate_id' => $real_estate_id,
