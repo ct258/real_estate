@@ -443,8 +443,8 @@
                     $('#heart').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
                 }
             });
-   
-        }); 
+
+        });
         $('#wishlist_customer').click(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
             var real_estate_id = $('#wishlist_customer').attr("data-real_estate_id");
             var customer_id = $('#wishlist_customer').attr("data-customer_id");
@@ -462,8 +462,8 @@
                     $('#heart').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
                 }
             });
-   
-        }); 
+
+        });
 
     });
 
@@ -537,7 +537,7 @@ var marker = L.marker([longitude,latitude]).addTo(mymap);
     $(".showForm").on("click", function () {
         $(this).next().toggle();
     });
-  
+
 });
 </script>
 @endpush
