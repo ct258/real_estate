@@ -944,6 +944,9 @@ a#delete{
                                                             <div class="form-group">
                                                                 <textarea class="form-control" name="content" rows="3"></textarea>
                                                             </div>
+                                                            <div class="col-sm-12">
+                                                                <button class="site-btn">@lang('Send')</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
