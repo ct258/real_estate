@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Report;
 use App\Models\Customer;
+use App\Models\Translation;
 use App\Models\RealEstate;
 use DB;
 use Session;
@@ -18,7 +19,7 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         // ,'translation.translation_name'
         // $report=Report::all();
         // foreach($report as $i)
@@ -32,17 +33,25 @@ class ReportController extends Controller
         //  $t= DB::table('report')
         //  ->join('translation','report.real_estate_id','=','translation.real_estate_id')
         //  ->select('translation.translation_name')->get();
+        $dem = count($report);
+       if($dem>0)
+       {
         foreach($report as $i)
         {
             $t_id = $i->real_estate_id;
         }
+
+        // dd($t_id);
        $t = DB::table('translation')
        ->where('real_estate_id',$t_id)
        ->where('translation_locale','vi')
        ->first();
 
         // $report=Report::with('customer','real_estate')->select('report.*','customer.customer_name','real_estate.real_estate_status')->get;
-        return view('pages.admin.report.index',compact('report','t'));
+        return view('pages.admin.report.index',compact('report','t')); }
+        else{
+            return view('pages.admin.report.index',compact('report'));
+        }
     }
 
     public function fix()
@@ -51,7 +60,7 @@ class ReportController extends Controller
         // foreach($report as $i)
         // {
         //     $ac_id = $i->account_id;
-        
+
         $report = DB::table('report')
         ->join('customer', 'report.customer_id', '=', 'customer.customer_id')
         //  ->join('real_estate', 'report.real_estate_id', '=', 'real_estate.real_estate_id')
@@ -128,7 +137,7 @@ class ReportController extends Controller
         // {
         //     $ac_id = $i->account_id;
         DB::table('report')->where('report_id',$id )->update(['report_status' => 'Đã xử lý']);
-        
+
 
         // $report = DB::table('report')
         // ->join('customer', 'report.customer_id', '=', 'customer.customer_id')

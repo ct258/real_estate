@@ -21,7 +21,7 @@ class CreateAppointmentTable extends Migration
             $table->dateTime('appointment_time')->index()->comment('Thời gian hẹn');
             $table->string('appointment_content')->index()->comment('Nội dung cuộc hẹn');
             $table->string('appointment_status')->index()->comment('Trạng thái cuộc hẹn');
-            
+
             //log time
             $table->timestamp('created_at')
             ->default(DB::raw('CURRENT_TIMESTAMP'))
@@ -34,8 +34,8 @@ class CreateAppointmentTable extends Migration
             $table->timestamp('deleted_at')
             ->nullable()
             ->comment('ngày xóa tạm');
-        
-        
+
+
         }); DB::statement("ALTER TABLE `appointment` comment 'Cuộc hẹn'");
     }
 
@@ -46,6 +46,6 @@ class CreateAppointmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointment');
+        // Schema::dropIfExists('appointment');
     }
 }
