@@ -18,6 +18,7 @@ use App\Models\WishListTemp;
 use App\Models\Cart;
 use App\Models\DetailCart;
 use App\Models\Convenience;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
@@ -135,6 +136,7 @@ class ClientController extends Controller
         // tính thời gian đăng
         Carbon::setlocale(\Session::get('lang', config('app.locale')));
         $now = Carbon::now();
+        $day=array();
         foreach ($real_estate as $key => $value) {
             $day[$value['real_estate_id']] = $value->created_at->diffForHumans(($now));
             $value->real_estate_price = $value->real_estate_price * $rate->currency_rate;
@@ -344,6 +346,7 @@ class ClientController extends Controller
         $per_rank_3,
         $per_rank_2,
         $per_rank_1)=$this->get_evaluate($request, $real_estate, $real_estate);
+        // var_dump($image);die;
         return view('pages.user.page.single_list', compact('real_estate',
         'image',
         'rate',
@@ -455,9 +458,16 @@ class ClientController extends Controller
         return view('pages.user.blog.single_blog',compact('blog','day_blog'));
     }
 
-    public function subscription(Request $request, $user)
+    public function subscription(Request $request)
     {
-        dd($request);
+        $id=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        $find=Subscription::where('customer_id',$id)->first();
+        if(!$find){
+            Subscription::insert([
+                'customer_id'=>$id
+            ]);
+        }
+        return redirect()->back();
     }
 
     public function view_product(Request $request)

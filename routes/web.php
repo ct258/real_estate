@@ -72,10 +72,13 @@ Route::group(['middleware' => ['cookie']], function ()
                 ->name('list_blog');
             Route::get('blog/{blog_id}', 'ClientController@single_blog')
                 ->name('single_blog');
-            Route::group(['prefix' => 'cart'], function ()
-            {
-                Route::get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
-                Route::get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
+            Route::group(['middleware' => ['checkCustomer']], function () {
+                
+                Route::group(['prefix' => 'cart'], function ()
+                {
+                    Route::get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
+                    Route::get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
+                });
             });
 
             Route::get('about', function ()
@@ -117,7 +120,7 @@ Route::group(['middleware' => ['cookie']], function ()
                 ->name('subscription');
 
             Route::get('/', ['uses' => 'IndexController@index', 'as' => 'index']);
-            Route::get('/subscription/{customer_id}', ['uses' => 'ClientController@subscription', 'as' => 'subscription.submit']);
+            Route::get('/subscription', ['uses' => 'ClientController@subscription', 'as' => 'subscription.submit']);
             Route::post('/wishlist_customer', ['uses' => 'ClientController@wishlist_customer', 'as' => 'wishlist.customer']);
             Route::post('/wishlist_cookie', ['uses' => 'ClientController@wishlist_cookie', 'as' => 'wishlist.cookie']);
 
@@ -148,21 +151,21 @@ Route::group(['middleware' => ['cookie']], function ()
         //user login
         Route::group(['middleware' => 'checklogin'], function ()
         {
-            Route::group(['prefix' => ''], function ()
-            {
-                 //report customer
-                 Route::group(['prefix' => 'customer_report'], function ()
-                 {
-                     //index
-                     Route::get('/index', 'CustomerReportController@index')
-                         ->name('customer.report.index');
-                     // thêm
-                     Route::get('/create', 'CustomerReportController@create')
-                         ->name('customer.report.create');
-                     Route::post('/create/{id}', 'CustomerReportController@store')
-                         ->name('customer.report.create.submit');
+            Route::group(['middleware' => ['checkCustomer']], function () {
+                    
+                //report customer
+                Route::group(['prefix' => 'customer_report'], function ()
+                {
+                    //index
+                    Route::get('/index', 'CustomerReportController@index')
+                        ->name('customer.report.index');
+                    // thêm
+                    Route::get('/create', 'CustomerReportController@create')
+                        ->name('customer.report.create');
+                    Route::post('/create/{id}', 'CustomerReportController@store')
+                        ->name('customer.report.create.submit');
 
-                 });
+                });
                 Route::group(['prefix' => 'account'], function ()
                 {
 
@@ -700,7 +703,6 @@ Route::group(['middleware' => ['cookie']], function ()
 
                 });
 
-
                 //trash
                 Route::group(['prefix' => 'removed'], function ()
                 {
@@ -719,9 +721,6 @@ Route::group(['middleware' => ['cookie']], function ()
             //admin and staff
             Route::group(['middleware' => ['checkAdminStaff']], function ()
             {
-                // Route::get('dashboard', function () {
-                //     return view('pages.admin.dashboard');
-                // })->name('dashboard');
                 Route::get('/', 'Admin\StatisticController@basic')
                     ->name('dashboard');
             });
