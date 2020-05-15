@@ -49,12 +49,40 @@ class StatisticController extends Controller
         // dd($realMonths);
         // dd($realWeeks);
         $cottuan1 =  $realWeeks->pluck('getWeek');
+        // ->json(array(
+        //     'code'  => 200,
+        //     'data' => $data,
+        // ));
         $cotgiatri1 =  $realWeeks->pluck('value');
 
-        // dd($cotgiatri1);
+        // dd($cottuan1);
 
-
+        // return response()->json(array(
+        //     'code'  => 200,
+        //     'cottuan1' => $cottuan1,
+        //     'cotgiatri1' => $cotgiatri1,
+        // ));
+        // return response()->json(['data'=>$cottuan1],200);
+        // dd($data);
         return view('pages.admin.statistic.real_estate',compact('realMonths','realWeeks','cotgiatri1','cottuan1'));
+    }
+    public function jsonthongke(){
+        // $range = \Carbon\Carbon::now()->subYears(5);
+        // $realMonths = DB::table('real_estate')
+        //             ->select(DB::raw('month(created_at) as getMonth'), DB::raw('COUNT(*) as value'))
+        //             ->where('created_at', '>=', $range)
+        //             ->groupBy('getMonth')
+        //             ->orderBy('getMonth', 'ASC')
+        //             ->get();
+        // $realWeeks = DB::table('real_estate')
+        //             ->select(DB::raw('week(created_at) as getWeek'), DB::raw('COUNT(*) as value'))
+        //             ->where('created_at', '>=', $range)
+        //             ->groupBy('getWeek')
+        //             ->orderBy('getWeek', 'ASC')
+        //             ->get();
+        //  $cottuan1 =  $realWeeks->pluck('getWeek');
+        //  $cotgiatri1 =  $realWeeks->pluck('value');
+        //  return response()->json(['data'=>$cottuan1],200);
     }
     public function basic()
     {

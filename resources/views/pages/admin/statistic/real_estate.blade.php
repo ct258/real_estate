@@ -12,13 +12,13 @@
   .v-middle{
     padding-left: 25px;
   }
-    
+
     .error {
         color: red;
     }
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         color:#0000009e;
-    
+
   }
 </style>
 <div class="container-fuild">
@@ -40,55 +40,96 @@
     </div>
     <div class="row w3-res-tb">
 
-     
+
      {{-- @foreach ($realWeeks as $key => $value) --}}
 
       <div class="col-md-6 chart_agile_left">
         <div class="chart_agile_top">
-            <div class="chart_agile_bottom"> 
+            <div class="chart_agile_bottom">
+
+            <p id="id_cua_toi" style="opacity:0;">{{$cottuan1}}<p>
+            <p id="giatri_cua_toi" style="opacity:0;">{{$cotgiatri1}}</p>
                    <canvas id="myChart" width="100" height="100"></canvas>
 
                 {{-- {{dd($cotgiatri1)}} --}}
     {{-- @endforeach --}}
      {{-- {{dd($key)}}  --}}
             </div>
-        </div> 
-  
+        </div>
+
     </div>
-   
+
     <div class="col-md-6 chart_agile_left">
       <div class="chart_agile_top">
-          <div class="chart_agile_bottom"> 
+          <div class="chart_agile_bottom">
             <canvas id="myChart1" width="100" height="100"></canvas>
           </div>
-      </div> 
-  
+      </div>
+
   </div>
 
- 
-    
-    
+{{-- {{dd( $cottuan1)}}; --}}
+
+
   </div>
-  
+
 </div>
 <script>
+    var element = document.getElementById('id_cua_toi');
+    var tachthe =element.innerHTML;
+    var cat= tachthe.slice(1, tachthe.length-1);
+// Number(aa);
+    var a = cat.split(",");
+    // var a1= parseInt(a);
+    // aa.unshift("a");
+    // console.log(element);
+    // var a1 =aa.join();
+
+    // console.log(element);
+    // console.log(tachthe);
+    // console.log( cat);
+    // console.log( a);
+    // console.log(a1);
+    //cot y
+    var element1 = document.getElementById('giatri_cua_toi');
+    var tachthe1 =element1.innerHTML;
+    var cat1= tachthe1.slice(1, tachthe1.length-1);
+// Number(aa);
+    var a1 = cat1.split(",");
+
+
+    console.log(element1);
+    console.log(tachthe1);
+    console.log(cat1);
+    console.log(a1);
   var ctx = document.getElementById('myChart').getContext('2d');
-  // var data1 = [];
-  // data1.push($cottuan1)
-  const cotx = [];
-  const coty = [];
-  const x = $cottuan1;
-  cotx.push(x);
-  console.log(x);
+//   var c = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+//   var data1 = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+//   data1.push(c);
+//   var cotx = new Array();
+
+    // var a= $cottuan1;
+    // console.log(a);
+//   cotx.push(aa);
+
+//   document.getElementById("myChart").innerHTML = aa;
+//   const coty = [];
+//   mycottuan1 = JSON.stringify(cottuan1);
+// console.log(cotx);
+
+// console.log(mycottuan1);
+//   const x = $cottuan1;
+//   cotx.push(x);
+//   console.log(x);
   const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: cotx,
+          labels: a,
           datasets: [{
-              label: '# of Votes',
-              data: [1,2,23,3],
+              label: 'Thống kê nhà đất được khách hàng đăng theo tuần',
+              data: a1, 
               backgroundColor: [
-                  'red',
+                  'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
                   'rgba(75, 192, 192, 0.2)',
@@ -116,14 +157,14 @@
           }
       }
   });
-  var ctx = document.getElementById('myChart1').getContext('2d');
-  var chart = new Chart(ctx, {
+  var ctx1 = document.getElementById('myChart1').getContext('2d');
+  var chart = new Chart(ctx1, {
       // The type of chart we want to create
       type: 'line',
-  
+
       // The data for our dataset
       data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: aa,
           datasets: [{
               label: 'My First dataset',
               backgroundColor: 'rgb(255, 0, 132)',
@@ -131,15 +172,20 @@
               data: [20, 10, 5, 2, 20, 30, 145]
           }]
       },
-  
+
       // Configuration options go here
       options: {}
   });
 // getData();
 //   async function getData(){
-//     const x = $cottuan1; 
+//     const x = $cottuan1;
 //     cotx.push(x);
 //     console.log(x,cotx);
 //   }
   </script>
+
+
+
+
+
 @endsection
