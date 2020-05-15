@@ -135,7 +135,8 @@ ul.dropdown-menu.show li a {
 }
 
 p.dropdown-toggle {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
     color: white;
 }
 
@@ -345,7 +346,7 @@ div#curency a:hover {
 .container-fuild.bg_top1.xanh {
     height: 60px;
     /* background-size: 18px; */
-    background-color: #30caa8;
+    background-color: #ffffff;
     /* opacity: 0.9; */
 }
 .nav.xanh {

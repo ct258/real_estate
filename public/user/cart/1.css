@@ -181,7 +181,7 @@ p#price-2 {
 }
 .content-2 p {
     font-size: 17px;
-    line-height: 16px;
+    line-height: initial;
     padding: 4px 0;
 }
 
@@ -232,7 +232,7 @@ span {
     text-transform: uppercase;
 }
 
-img {
+.avatar {
     width: 100%;
 }
  .card.card-left-2 {
