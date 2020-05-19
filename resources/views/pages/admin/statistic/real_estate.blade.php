@@ -87,7 +87,9 @@
   </div>
   <p id="id_cua_toi" style="opacity:0;">{{$cottuan1}}<p>
             <p id="giatri_cua_toi" style="opacity:0;">{{$cotgiatri1}}</p>
-{{-- {{dd( $cottuan1)}}; --}}
+            <p id="idngay" style="opacity:0;">{{$cotNgay}}<p>
+                <p id="idgiatringay" style="opacity:0;">{{$giaTriNgay}}</p>
+{{-- {{dd( $cotNgay)}}; --}}
 
 
   </div>
@@ -124,6 +126,23 @@
     var a1 = cat1.split(",");
 
 
+
+//timngay:
+var e = document.getElementById('idngay');
+    var e1 =e.innerHTML;
+    var e2= e1.slice(1, e1.length-1);
+// Number(aa);
+    var e3 = e2.split(",");
+// $('#idngay').datepicker({
+//     format: '{{ config('app.date_format_js') }}'
+// });
+//timgiatringay:
+var v = document.getElementById('idgiatringay');
+    var v1 =v.innerHTML;
+    var v2= v1.slice(1, v1.length-1);
+// Number(aa);
+    var v3 = v2.split(",");
+
     // console.log(element1);
     // console.log(tachthe1);
     // console.log(cat1);
@@ -152,7 +171,7 @@
       data: {
           labels: a,
           datasets: [{
-              label: 'Thống kê nhà đất được khách hàng đăng theo tuần',
+              label: 'Thống kê số lượng nhà đất được đăng theo tuần ',
               data: a1,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -190,12 +209,12 @@
 
       // The data for our dataset
       data: {
-          labels: a,
+          labels: e3,
           datasets: [{
-              label: 'My First dataset',
+              label: 'Thống kê số lượng nhà đất được đăng theo ngày ',
               backgroundColor: 'rgb(255, 0, 132)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: a1
+              borderColor: 'rgb(25, 99, 132)',
+              data: v3
           }]
       },
 

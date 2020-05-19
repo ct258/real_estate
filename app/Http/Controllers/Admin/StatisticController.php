@@ -27,7 +27,7 @@ class StatisticController extends Controller
     public function real_estate()
     {
 
-            $range = \Carbon\Carbon::now()->subYears(5);
+            $range = \Carbon\Carbon::now()->subYears(5)->format('Y-m-d H:i:s');
             $realMonths = DB::table('real_estate')
                         ->select(DB::raw('month(created_at) as getMonth'), DB::raw('COUNT(*) as value'))
                         ->where('created_at', '>=', $range)
@@ -40,6 +40,19 @@ class StatisticController extends Controller
                         ->groupBy('getWeek')
                         ->orderBy('getWeek', 'ASC')
                         ->get();
+
+            $getDays = DB::table('real_estate')
+                        ->select(DB::raw('date(created_at) as getDay'), DB::raw('COUNT(*) as value'))
+                       ->where('created_at', '>=', $range)
+                        ->groupBy('getDay')
+                        ->orderBy('getDay', 'ASC')
+                        ->get();
+                        $cotNgay= date('Y-m-d H:i:s');
+            // $cotNgay ->format('Y-m-d H:i:s') ;
+            $cotNgay =$getDays->pluck('getDay');
+
+            $giaTriNgay= $getDays-> pluck('value');
+            // dd($cotNgay);
 
             // return view('fdfadmin.chart.get_year', compact('orderYear'));
 
@@ -64,7 +77,7 @@ class StatisticController extends Controller
         // ));
         // return response()->json(['data'=>$cottuan1],200);
         // dd($data);
-        return view('pages.admin.statistic.real_estate',compact('realMonths','realWeeks','cotgiatri1','cottuan1'));
+        return view('pages.admin.statistic.real_estate',compact('realMonths','realWeeks','cotgiatri1','cottuan1','giaTriNgay','cotNgay'));
     }
     public function jsonthongke(){
         // $range = \Carbon\Carbon::now()->subYears(5);
