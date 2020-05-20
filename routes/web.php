@@ -73,7 +73,7 @@ Route::group(['middleware' => ['cookie']], function ()
             Route::get('blog/{blog_id}', 'ClientController@single_blog')
                 ->name('single_blog');
             Route::group(['middleware' => ['checkCustomer']], function () {
-                
+
                 Route::group(['prefix' => 'cart'], function ()
                 {
                     Route::get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
@@ -152,7 +152,7 @@ Route::group(['middleware' => ['cookie']], function ()
         Route::group(['middleware' => 'checklogin'], function ()
         {
             Route::group(['middleware' => ['checkCustomer']], function () {
-                    
+
                 //report customer
                 Route::group(['prefix' => 'customer_report'], function ()
                 {
@@ -383,6 +383,9 @@ Route::group(['middleware' => ['cookie']], function ()
                     //index
                     Route::get('/transaction', 'Admin\StatisticController@transaction')
                         ->name('statistic.transaction');
+                        Route::get('/cart', 'Admin\StatisticController@getBanChay')
+                        ->name('statistic.cart');
+
                 });
                 //display
                 Route::group(['prefix' => 'display'], function ()
