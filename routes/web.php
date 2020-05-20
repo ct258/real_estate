@@ -540,6 +540,23 @@ Route::group(['middleware' => ['cookie']], function ()
                             ->name('staff.destroy');
 
                     });
+
+
+
+                    //currency
+                    Route::group(['prefix' => 'update-currency'], function ()
+                    {
+                        //index
+                        Route::get('/index', 'Admin\CurrencyUpdateController@index')
+                            ->name('currency.index');
+                        Route::post('/edit/submit/{currency_id}', 'Admin\CurrencyUpdateController@update')
+                            ->name('currency.update');
+                        // xóa mềm
+                        Route::get('/destroy/{currency_id}', 'Admin\CurrencyUpdateController@destroy')
+                            ->name('currency.destroy');
+
+                    });
+
                     //statistic
                     Route::group(['prefix' => 'statistic'], function ()
                     {
