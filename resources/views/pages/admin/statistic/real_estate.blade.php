@@ -3,7 +3,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" ></script>
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}"> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 @extends('layouts.admin')
 
@@ -19,6 +20,18 @@
     .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
         color:#0000009e;
 
+  }
+  #a1{
+    margin-bottom: -47px; */
+    position: absolute!important;
+    /* top: 1px; */
+    bottom: 114px;
+    z-index: 20;
+    left: 335px;
+    height: 31px;
+    border: 2px solid #b0b0b0;
+    background-color: #8b5c4b;
+    color: white;
   }
 </style>
 <div class="container-fuild">
@@ -37,18 +50,23 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       Thống kê nhà đất
-    </div>
+
+     </div> {{--<select name="" id="a1">
+            <option value="">Theo tuần</option>
+            <option value="">Theo tháng</option>
+          </select> --}}
     <div class="row w3-res-tb">
 
 
      {{-- @foreach ($realWeeks as $key => $value) --}}
 
       <div class="col-md-6 chart_agile_left">
+
         <div class="chart_agile_top">
+
             <div class="chart_agile_bottom">
 
-            <p id="id_cua_toi" style="opacity:0;">{{$cottuan1}}<p>
-            <p id="giatri_cua_toi" style="opacity:0;">{{$cotgiatri1}}</p>
+
                    <canvas id="myChart" width="100" height="100"></canvas>
 
                 {{-- {{dd($cotgiatri1)}} --}}
@@ -67,8 +85,11 @@
       </div>
 
   </div>
-
-{{-- {{dd( $cottuan1)}}; --}}
+  <p id="id_cua_toi" style="opacity:0;">{{$cottuan1}}<p>
+            <p id="giatri_cua_toi" style="opacity:0;">{{$cotgiatri1}}</p>
+            <p id="idngay" style="opacity:0;">{{$cotNgay}}<p>
+                <p id="idgiatringay" style="opacity:0;">{{$giaTriNgay}}</p>
+{{-- {{dd( $cotNgay)}}; --}}
 
 
   </div>
@@ -84,11 +105,18 @@
     // aa.unshift("a");
     // console.log(element);
     // var a1 =aa.join();
+    // var c = tachthe;
 
-    // console.log(element);
-    // console.log(tachthe);
-    // console.log( cat);
-    // console.log( a);
+    a.forEach(myFunction)
+
+    function myFunction(item, index, arr) {
+      arr[index] = 'Tuần '+item + ' trong năm 2020'  ;
+    }
+    console.log(a);
+    console.log(element);
+    console.log(tachthe);
+    console.log( cat);
+    console.log( a);
     // console.log(a1);
     //cot y
     var element1 = document.getElementById('giatri_cua_toi');
@@ -98,10 +126,27 @@
     var a1 = cat1.split(",");
 
 
-    console.log(element1);
-    console.log(tachthe1);
-    console.log(cat1);
-    console.log(a1);
+
+//timngay:
+var e = document.getElementById('idngay');
+    var e1 =e.innerHTML;
+    var e2= e1.slice(1, e1.length-1);
+// Number(aa);
+    var e3 = e2.split(",");
+// $('#idngay').datepicker({
+//     format: '{{ config('app.date_format_js') }}'
+// });
+//timgiatringay:
+var v = document.getElementById('idgiatringay');
+    var v1 =v.innerHTML;
+    var v2= v1.slice(1, v1.length-1);
+// Number(aa);
+    var v3 = v2.split(",");
+
+    // console.log(element1);
+    // console.log(tachthe1);
+    // console.log(cat1);
+    // console.log(a1);
   var ctx = document.getElementById('myChart').getContext('2d');
 //   var c = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 //   var data1 = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
@@ -126,8 +171,8 @@
       data: {
           labels: a,
           datasets: [{
-              label: 'Thống kê nhà đất được khách hàng đăng theo tuần',
-              data: a1, 
+              label: 'Thống kê số lượng nhà đất được đăng theo tuần ',
+              data: a1,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -157,19 +202,19 @@
           }
       }
   });
-  var ctx1 = document.getElementById('myChart1').getContext('2d');
-  var chart = new Chart(ctx1, {
+  var ctx = document.getElementById('myChart1').getContext('2d');
+  var chart = new Chart(ctx, {
       // The type of chart we want to create
       type: 'line',
 
       // The data for our dataset
       data: {
-          labels: aa,
+          labels: e3,
           datasets: [{
-              label: 'My First dataset',
+              label: 'Thống kê số lượng nhà đất được đăng theo ngày ',
               backgroundColor: 'rgb(255, 0, 132)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: [20, 10, 5, 2, 20, 30, 145]
+              borderColor: 'rgb(25, 99, 132)',
+              data: v3
           }]
       },
 
