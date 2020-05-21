@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Redirect;
 use App\Models\Cart;
 use App\Models\RealEstate;
+use App\Models\Customer;
 use App\Models\DetailCart;
+use App\Models\Deposit;
 
 class PaymentController extends Controller
 {
@@ -102,4 +104,26 @@ class PaymentController extends Controller
 
         return redirect($url)->with('errors', 'Lỗi trong quá trình thanh toán phí dịch vụ');
     }
+
+
+    public function repay($id)
+    {
+        if(\Auth::guard('account')->check()){
+
+            $cus=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+            if(RealEstate::where('customer_id',$cus)->first()){
+                $re=RealEstate::join('translation AS t','t.real_estate_id','real_estate.real_estate_id')
+            ->where('real_estate.real_estate_id',$id)
+            ->where('t.translation_locale',\Session::get('lang', config('app.locale')))
+            ->first();
+            $info=Customer::find($cus);
+            $deposit=Deposit::all();
+                return view('pages.user.account.repay',compact('re','info','deposit'));
+            }
+            else{
+                return view('pages.user.error');
+            }
+        }
+    }
+    
 }

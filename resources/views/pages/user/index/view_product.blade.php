@@ -15,7 +15,11 @@
                     <a href="{{route('single_list',$item->real_estate_id)}}" class="name_re">
                         <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
                             style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
-                            <div class="sale-notic"> @lang('For sale') </div>
+                            @if($item->hasDeposit())
+                            <div class="sale-notic">Chưa thanh toán</div>
+                            @else
+                            <div class="rent-notic">Đã chứng thực</div>
+                            @endif
                         </div>
                     </a>
                     <div class="feature-text">

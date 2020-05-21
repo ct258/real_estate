@@ -168,7 +168,6 @@ Route::group(['middleware' => ['cookie']], function ()
                 });
                 Route::group(['prefix' => 'account'], function ()
                 {
-
                     Route::get('/', 'CustomerController@index')
                         ->name('account');
                     Route::get('/checkpass', 'CustomerController@checkpass')
@@ -190,7 +189,11 @@ Route::group(['middleware' => ['cookie']], function ()
                         ->name('post.edit');
                     Route::post('/update', 'PostController@update')
                         ->name('post.update');
-                });
+                    Route::get('/repay/{id}', ['uses' => 'PaymentController@repay', 'as' => 'repay']);
+                    Route::post('/VNPay', ['uses' => 'RealEstateController@VNPay', 'as' => 'VNPay_again']);
+                    Route::get('/return-vnpay', ['uses' => 'RealEstateController@return', 'as' => 'return_again']);
+                    
+                    });
 
                 Route::group(['prefix' => 'payment'], function ()
                 {
@@ -804,4 +807,4 @@ Route::group(['prefix' => ''], function ()
 });
 
 
-Route::view('123', 'pages.admin.statistic.revenue');
+Route::view('123', 'pages.admin.statistic.transaction');

@@ -85,4 +85,18 @@ class RealEstate extends Model
 
         return $query;
     }
+    public function deposit()
+    {
+        return $this->hasMany('App\Models\DetailDeposit', 'real_estate_id', 'real_estate_id');
+    }
+    public function hasDeposit()
+    {
+        $roles = $this->deposit()->count();
+
+        if ($roles == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -35,10 +35,16 @@
     }
 
     .rent-notic,
-    .rent-notic:hover {
+    .sale-notic,
+    .rent-notic:hover,
+    .sale-notic:hover {
         text-decoration: none;
         color: white;
 
+    }
+
+    .feature-title h5 {
+        min-height: 58px;
     }
 
     section.feature-section.spad {
@@ -64,7 +70,13 @@
                 <div class="feature-item">
                     <div class="feature-pic set-bg" id="Avatar" data-setbg="{{asset($item->real_estate_avatar)}}"
                         style="background-image: url(&quot;{{$item->real_estate_avatar}}&quot;);">
+                        {{-- {{dd($item->hasDeposit())}} --}}
+                        @if($item->hasDeposit())
+                        <a class="sale-notic" href="{{route('repay',$item->real_estate_id)}}">Thanh toán</a>
+                        @elseif($item->load('deposit'))
                         <a class="rent-notic" href="{{route('post.edit',$item->real_estate_id)}}">Chỉnh sửa</a>
+                        {{-- @elseif($item->real_estate_status=='Chờ duyệt') --}}
+                        @endif
                     </div>
                     <div class="feature-text">
                         <div class="text-center feature-title">
