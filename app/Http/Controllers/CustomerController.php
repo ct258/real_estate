@@ -124,6 +124,7 @@ class CustomerController extends Controller
         'translation_description',
         'real_estate_price',
         'real_estate_acreage',
+        'real_estate_status',
         'real_estate.created_at',
         'province.province_name',
         'district.district_name',
@@ -133,7 +134,7 @@ class CustomerController extends Controller
         ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
                 ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
-                ['real_estate_status','Đang bán'],
+                // ['real_estate_status','Đang bán'],
                 ['customer_id',$id]
             ])
         ->orderBy('created_at', 'desc')

@@ -5,7 +5,7 @@
 </span>
 
 <?php if(\Auth::guard('account')->check() &&
-            \Auth::guard('account')->user()->hasRole('Customer')):?>
+\Auth::guard('account')->user()->hasRole('Customer')):?>
 <form action="{{ route('customer.report.create.submit',$real_estate->real_estate_id) }}" method="post">
     @csrf
 
@@ -19,52 +19,52 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                {{-- <div class="col-sm-5 m-b-xs">
+                                                 <select name="content" class="input-sm form-control w-sm inline v-middle">
+                                                 <option >Bulk action</option>
+                                                 <option >Delete selected</option>
+                                                 <option value="2">Bulk edit</option>
+                                                 <option value="3">Export</option>
+                                                 </select>
+                                             </div> --}}
+
+                <div class="modal-body">
+                    <div class="col-md-7" id="form02">
+
+
+                        <label for="recipient-name" class="col-form-label" style="font-weight:bold;"></label>
+                        <br>
+                        <label for="recipient-name" class="col-form-label">@lang('Name') :</label>
+                        <button id="form01"
+                            disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
+                        <br>
+                        <label for="recipient-name" class="col-form-label">@lang('Phone'):</label>
+
+                        <button id="form01"
+                            disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
+
+                    </div>
+
+                    <form>
+                        <label for="recipient-name" class="col-form-label">@lang('Note rule')</label>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">@lang('Wirte
+                                report')</label>
+                            <textarea class="form-control" id="message-text" name="content"
+                                placeholder="@lang('Content')..."></textarea>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
+                    <button type="submit" class="btn btn-primary">@lang('Report')</button>
+
+                </div>
             </div>
         </div>
     </div>
 </form>
-{{-- <div class="col-sm-5 m-b-xs">
-                                                <select name="content" class="input-sm form-control w-sm inline v-middle">
-                                                <option >Bulk action</option>
-                                                <option >Delete selected</option>
-                                                <option value="2">Bulk edit</option>
-                                                <option value="3">Export</option>
-                                                </select>
-                                            </div> --}}
-
-<div class="modal-body">
-    <div class="col-md-7" id="form02">
-
-
-        <label for="recipient-name" class="col-form-label" style="font-weight:bold;"></label>
-        <br>
-        <label for="recipient-name" class="col-form-label">@lang('Name') :</label>
-        <button id="form01"
-            disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_name}}</button>
-        <br>
-        <label for="recipient-name" class="col-form-label">@lang('Phone'):</label>
-
-        <button id="form01"
-            disabled="disabled">{{\Auth::guard('account')->user()->load('customer')->customer->customer_tel}}</button>
-
-    </div>
-
-    <form>
-        <label for="recipient-name" class="col-form-label">@lang('Note rule')</label>
-        <div class="form-group">
-            <label for="message-text" class="col-form-label">@lang('Wirte
-                report')</label>
-            <textarea class="form-control" id="message-text" name="content"
-                placeholder="@lang('Content')..."></textarea>
-        </div>
-
-    </form>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-    <button type="submit" class="btn btn-primary">@lang('Report')</button>
-
-</div>
 <?php else: ?>
 
 
@@ -83,13 +83,13 @@
                     </button>
                 </div>
                 {{-- <div class="col-sm-5 m-b-xs">
-                                                                <select name="content" class="input-sm form-control w-sm inline v-middle">
-                                                                <option >Bulk action</option>
-                                                                <option >Delete selected</option>
-                                                                <option value="2">Bulk edit</option>
-                                                                <option value="3">Export</option>
-                                                                </select>
-                                                            </div> --}}
+                                                                 <select name="content" class="input-sm form-control w-sm inline v-middle">
+                                                                 <option >Bulk action</option>
+                                                                 <option >Delete selected</option>
+                                                                 <option value="2">Bulk edit</option>
+                                                                 <option value="3">Export</option>
+                                                                 </select>
+                                                             </div> --}}
 
                 <div class="modal-body" style="text-align: center;">
 
@@ -108,12 +108,8 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
 
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </form>
 <?php endif; ?>

@@ -48,6 +48,10 @@
 
     }
 
+    .feature-title h5 {
+        min-height: 58px;
+    }
+
     section.feature-section.spad {
         margin-top: 100px;
         margin-bottom: 100px;
