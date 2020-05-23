@@ -170,6 +170,13 @@
                         <li><a href="{{route('statistic.real_estate.index')}}">Nhà đất</a></li>
                     </ul>
                 </li>
+                {{-- cập nhật tỉ giá --}}
+                <li>
+                    <a href="{{ route('currency.index') }}">
+                        <i class="fa fa-dollar"></i>
+                        <span>Cập nhật tỉ giá</span>
+                    </a>
+                </li>
                 {{-- giao diện --}}
                 <li class="sub-menu">
                     <a href="#">
