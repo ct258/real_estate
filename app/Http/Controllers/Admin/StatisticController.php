@@ -8,6 +8,8 @@ use App\Models\Customer;
 use App\Models\DepositContract;
 use App\Models\DetailFee;
 use App\Models\RealEstate;
+use App\Models\District;
+use App\Models\Cart;
 use Carbon;
 // use App\Speed;
 use DB;
@@ -115,9 +117,44 @@ class StatisticController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getBanChay(){
+//         SELECT province_name, COUNT(*) AS 'cho duyet'
+// from district, province, real_estate
+// where province.province_id = district.province_id and district.district_id = real_estate.district_id
+// 	AND real_estate.real_estate_status = 'Chờ duyệt'
+// GROUP BY province_name
+        $cart1 = DB::table('province')
+        ->join('district','province.province_id' , 'district.province_id')
+        ->join('real_estate','district.district_id' ,'real_estate.district_id')
+        ->select('province_name as name' ,DB::raw('COUNT(*) as value') )
+        ->where('real_estate.real_estate_status','Chờ duyệt')
+        ->groupBy('province_name')
+        // ->limit()
+        ->get();
+        $a= $cart1->pluck('name');
+        $a=$a->implode(", ",$a);;
+        $b= $cart1->pluck('value');
+        // dd($a);
+        // $cart = Cart::join('detail_cart','card.card_id','detail_cart.detail_cart_id')
+        // ->join('real_estate','detail_cart.real_estate_id','real_estate.real_estate_id')
+        // ->join('district','real_estate.district_id','district.district_id')
+        // ->join('provice','district.provice_id','provice.provice_id')
+        // ->select('provice_name','real_estate_status')
+        // ->where('real_estate_status','Chờ duyệt')
+        // ->orderBy('', 'desc')
+        // ->limit(5)
+        // ->get();
+        // // dd($cart);
+
+        return view('pages.admin.statistic.cart',compact('a','b'));
+
+
+    }
+
     public function create()
     {
         //
+
     }
 
     /**

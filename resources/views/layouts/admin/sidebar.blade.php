@@ -161,7 +161,7 @@
                         <span>Thống Kê</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Khu vực bán chạy</a></li>
+                    <li><a href="{{route('statistic.cart')}}">Khu vực bán chạy</a></li>
                         <li><a href="">Giao dịch</a></li>
                         <li><a href="">Doanh Thu</a></li>
                         <li><a href="">Lợi nhuận</a></li>

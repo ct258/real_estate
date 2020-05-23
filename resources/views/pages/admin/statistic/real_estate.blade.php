@@ -101,6 +101,7 @@
     var cat= tachthe.slice(1, tachthe.length-1);
 // Number(aa);
     var a = cat.split(",");
+    console.log( a);
     // var a1= parseInt(a);
     // aa.unshift("a");
     // console.log(element);
