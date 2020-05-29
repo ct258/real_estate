@@ -99,6 +99,7 @@ class StatisticController extends Controller
         //  $cotgiatri1 =  $realWeeks->pluck('value');
         //  return response()->json(['data'=>$cottuan1],200);
     }
+
     public function basic()
     {
          $user = DB::table('Customer')->count();
@@ -149,6 +150,50 @@ class StatisticController extends Controller
         return view('pages.admin.statistic.cart',compact('a','b'));
 
 
+    }
+    public function customer(){
+        // $cus = DB::table('customer')
+        // ->join('real_estate','customer.customer_id','real_estate.customer_id')
+        // ->select('customer_name', DB::raw('COUNT(*) as value'))
+    $cus = DB::table('customer')
+    ->join('real_estate','customer.customer_id','real_estate.customer_id')
+    ->select('customer_name as name', DB::raw('COUNT(*) as  value'))
+    // ->where('customer.customer_id','real_estate.customer_id')
+    ->groupBy('customer_name')
+    ->get();
+
+    $a= $cus->pluck('name');
+    $a=$a->implode(", ",$a);;
+    $b= $cus->pluck('value');
+
+    $cus1 = DB::table('customer')
+    ->join('cart','customer.customer_id','cart.customer_id')
+    // ->join('detail_cart','cart.cart_id','detail_cart.cart_id')
+    // ->join('real_estate','detail_cart.real_estate_id','real_estate.real_estate_id')
+    ->select('customer_name as name1', DB::raw('COUNT(*) as  value1'))
+    // ->where('real_estate.real_estate_status','Chờ duyệt')
+    ->where('cart.cart_status','Chờ duyệt')
+    ->groupBy('customer_name')
+    ->get();
+    $c= $cus1->pluck('name1');
+    $c=$c->implode(", ",$c);;
+    $d= $cus1->pluck('value1');
+
+    // dd($cus1);
+    // $cart1 = DB::table('customer')
+    // ->join('district','province.province_id' , 'district.province_id')
+    // ->join('real_estate','district.district_id' ,'real_estate.district_id')
+    // ->select('province_name as name' ,DB::raw('COUNT(*) as value') )
+    // ->where('real_estate.real_estate_status','Chờ duyệt')
+    // ->groupBy('province_name')
+    // // ->limit()
+    // ->get();
+
+    // dd($b);
+// SELECT customer.customer_name,COUNT(*) FROM real_estate ,
+// customer WHERE customer.customer_id = real_estate.customer_id
+//  group by  customer.customer_name
+    return view('pages.admin.statistic.customer',compact('a','b','c','d'));
     }
 
     public function create()
