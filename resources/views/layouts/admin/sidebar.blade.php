@@ -161,11 +161,11 @@
                         <span>Thống Kê</span>
                     </a>
                     <ul class="sub">
-                    <li><a href="{{route('statistic.cart')}}">Khu vực bán chạy</a></li>
+                        <li><a href="{{route('statistic.cart')}}">Khu vực bán chạy</a></li>
                         <li><a href="">Giao dịch</a></li>
                         <li><a href="">Doanh Thu</a></li>
                         <li><a href="">Lợi nhuận</a></li>
-                        <li><a href="">Thành viên</a></li>
+                        <li><a href="{{route('statistic.customer')}}">Thành viên</a></li>
                         <li><a href="">Nhân viên</a></li>
                         <li><a href="{{route('statistic.real_estate.index')}}">Nhà đất</a></li>
                     </ul>
