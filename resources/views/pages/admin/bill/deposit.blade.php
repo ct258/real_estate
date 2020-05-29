@@ -45,7 +45,7 @@
                         <tr>
                             <th>Mã đơn hàng</th>
                             <th>Tên bất động sản</th>
-                            <th style="width:100px;">Chức năng</th>
+                            {{-- <th style="width:100px;">Chức năng</th> --}}
                         </tr>
                         @foreach ($cart as $val)
                         <tr>
@@ -53,23 +53,20 @@
                             <td>{{$text[$val->cart_id]}}</td>
                             {{-- <td>{{$val->code_type_name}}</td> --}}
 
-                            <td>
-                                <a href=""> <i class="fa fa-edit"></i></a>&nbsp; &nbsp; &nbsp;
-                                <a href="" style="border: none;background-color: Transparent;color: red;"><i
-                                        class="fa fa-trash-o"></i></a>
-                            </td>
+                            {{-- <td>
+                                <a href="{{route('single_list',$val->real_estate_id)}}"> <i
+                                class="fa fa-info"></i></a>&nbsp; &nbsp; &nbsp;
+                            <a href="" style="border: none;background-color: Transparent;color: red;"><i
+                                    class="fa fa-trash-o"></i></a>
+                            </td> --}}
                         </tr>
                         @endforeach
                     </thead>
                 </table>
-                </>
                 <footer class="panel-footer">
                     <div class="row">
 
                         <div class="col-sm-5 ">
-                            <small class="text-muted inline m-t-sm m-b-sm">Danh sách có <strong> </strong> loại thành
-                                viên
-                            </small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             <ul class="pagination pagination-sm m-t-none m-b-none">

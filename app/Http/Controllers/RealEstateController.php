@@ -24,15 +24,9 @@ class RealEstateController extends Controller
      */
     public function index()
     {
-        $real_estate=RealEstate::join('real_estate_translation','real_estate.real_estate_id','real_estate_translation.real_estate_id')
-        ->join('status','status.status_id','real_estate.status_id')
-        ->select('real_estate.real_estate_id',
-        'real_estate_price',
-        'real_estate_acreage',
-        'translation_address',
-        'translation_name',
-        'status_name')
+        $real_estate=RealEstate::join('translation','real_estate.real_estate_id','translation.real_estate_id')
         ->where('translation_locale','vi')->paginate(10);
+        
 
         return view('pages.admin.real_estate.index', compact('real_estate'));
     }
@@ -341,5 +335,14 @@ class RealEstateController extends Controller
         session()->forget('url_prev');
 
         return redirect($url)->with('errors', 'Lỗi trong quá trình thanh toán phí dịch vụ');
+    }
+    public function done()
+    {
+        $real_estate=RealEstate::join('translation','real_estate.real_estate_id','translation.real_estate_id')
+        ->where('translation_locale','vi')
+        ->where('real_estate_status','Đã bán')
+        ->paginate(10);
+            
+        return view('pages.admin.real_estate.done',compact('real_estate'));
     }
 }
