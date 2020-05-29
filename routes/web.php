@@ -192,7 +192,7 @@ Route::group(['middleware' => ['cookie']], function ()
                     Route::get('/repay/{id}', ['uses' => 'PaymentController@repay', 'as' => 'repay']);
                     Route::post('/VNPay', ['uses' => 'RealEstateController@VNPay', 'as' => 'VNPay_again']);
                     Route::get('/return-vnpay', ['uses' => 'RealEstateController@return', 'as' => 'return_again']);
-                    
+
                     });
 
                 Route::group(['prefix' => 'payment'], function ()
@@ -572,7 +572,9 @@ Route::group(['middleware' => ['cookie']], function ()
                         //nhà đất
                         Route::get('/real_estate', 'Admin\StatisticController@real_estate')
                             ->name('statistic.real_estate.index');
-
+                        // customer
+                        Route::get('/customer','Admin\StatisticController@customer')
+                            ->name('statistic.customer');
                     });
                     //display
                     Route::group(['prefix' => 'display'], function ()
