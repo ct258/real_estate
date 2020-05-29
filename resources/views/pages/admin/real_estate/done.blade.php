@@ -27,11 +27,8 @@
     </div>
 </div>
 @endif
-<h2 class="page-title">Dự án <br><br></h2>
+<h2 class="page-title">Bất động sản đã bán <br><br></h2>
 
-
-<small><a href="{{route('real_estate.create')}}" class="tst4 btn btn-success">{{ __('Create') }}
-        @lang('real_estate')</a></small><br><br>
 <div class="row">
     <div class="col-lg-12">
         <section class="widget">
@@ -44,7 +41,6 @@
                             <th>Địa chỉ</th>
                             <th>Giá trị (đ)</th>
                             <th>Diện tích (m<sup>2</sup>)</th>
-                            <th>Trạng thái</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
@@ -64,7 +60,6 @@
                             </td>
                             <td style="text-align: right">{{number_format($item->real_estate_price)}}</td>
                             <td>{{$item->real_estate_acreage}}</td>
-                            <td>{{$item->real_estate_status}}</td>
                             <td>
                                 <form action="{{ route('real_estate.destroy', $item->real_estate_id) }}" method="post"
                                     class="delete_form">
