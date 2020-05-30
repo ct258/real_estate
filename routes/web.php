@@ -562,7 +562,25 @@ Route::group(['middleware' => ['cookie']], function ()
                             ->name('currency.destroy');
 
                     });
+                    //deposit
+                    Route::group(['prefix' => 'deposit'], function ()
+                    {
+                        //index
+                        Route::get('/index', 'Admin\DepositController@index')
+                            ->name('deposit.index');
 
+                        Route::get('/create/form', 'Admin\DepositController@createform')
+                            ->name('deposit.createform');
+
+                        Route::post('/create', 'Admin\DepositController@store')
+                            ->name('deposit.create');
+                        // xóa mềm
+                        Route::get('/destroy/{deposit_id}', 'Admin\DepositController@destroy')
+                            ->name('deposit.destroy');
+
+                    });
+
+                    
                     //statistic
                     Route::group(['prefix' => 'statistic'], function ()
                     {
