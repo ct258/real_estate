@@ -35,13 +35,16 @@
     }
 
     .rent-notic,
+    .done-notic,
     .sale-notic,
     .rent-notic:hover,
+    .done-notic:hover,
     .sale-notic:hover {
         text-decoration: none;
         color: white;
 
     }
+
 
     .feature-title h5 {
         min-height: 58px;
@@ -49,6 +52,16 @@
 
     section.feature-section.spad {
         margin-top: 100px !important;
+    }
+
+    .sold {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .feature-item {
+        position: relative;
     }
 </style>
 @endpush
@@ -73,10 +86,24 @@
                         {{-- {{dd($item->hasDeposit())}} --}}
                         @if($item->hasDeposit())
                         <a class="sale-notic" href="{{route('repay',$item->real_estate_id)}}">Thanh toán</a>
-                        @elseif($item->load('deposit'))
+                        @elseif($item->load('deposit') && 'Chờ hoàn tất'!=$item->real_estate_status)
                         <a class="rent-notic" href="{{route('post.edit',$item->real_estate_id)}}">Chỉnh sửa</a>
                         {{-- @elseif($item->real_estate_status=='Chờ duyệt') --}}
                         @endif
+
+                        <div class="sold">
+                            @if('Chờ hoàn tất'==$item->real_estate_status)
+                            <a class="rent-notic" href="#">Đang xử lý</a>
+                            @else
+                            <form action="{{route('post.sold',$item->real_estate_id)}}" method="post" class="sold_form">
+                                @csrf
+                                <button type="submit" class="done-notic float-md-right" style="border: none;"> Đã
+                                    bán</button>
+                            </form>
+                            @endif
+                        </div>
+                        {{-- <a class="done-notic float-md-right" href="{{route('post.sold',$item->real_estate_id)}}">Đã
+                        bán</a> --}}
                     </div>
                     <div class="feature-text">
                         <div class="text-center feature-title">
@@ -112,3 +139,20 @@
 <!-- feature section end -->
 @endif
 @endsection
+@push('script')
+<script>
+    $(document).ready(function () {
+        $('.sold_form').on('submit',function(){
+            if(confirm('Bạn đã bán bất động sản này?'))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+    });
+    
+</script>
+@endpush

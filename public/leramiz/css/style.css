@@ -401,9 +401,11 @@ ol {
 }
 
 .propertie-item .sale-notic,
-.propertie-item .rent-notic {
+.propertie-item .rent-notic,
+.propertie-item .done-notic
+ {
 	margin: 30px;
-}
+	}
 
 .propertie-info {
 	position: absolute;
@@ -443,6 +445,7 @@ ol {
 }
 
 .sale-notic,
+.done-notic,
 .rent-notic {
 	color: #fff;
 	font-size: 12px;
@@ -457,6 +460,9 @@ ol {
 
 .rent-notic {
 	background: #eca643;
+}
+.done-notic {
+	background: #30caa0;
 }
 
 /*------------------
@@ -533,6 +539,7 @@ ol {
 }
 
 .feature-pic .sale-notic,
+.feature-pic .done-notic,
 .feature-pic .rent-notic {
 	margin: 20px;
 }
@@ -1096,6 +1103,7 @@ ol {
 }
 
 .single-list-slider .sl-item .sale-notic,
+.single-list-slider .sl-item .done-notic,
 .single-list-slider .sl-item .rent-notic {
 	margin: 30px;
 }

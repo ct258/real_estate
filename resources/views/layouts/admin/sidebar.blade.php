@@ -29,11 +29,9 @@
                         <span>Bất động sản</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{route('real_estate.create')}}">Đang bán</a></li>
-                        <li><a href="">Đang hẹn</a></li>
+                        <li><a href="{{route('real_estate.index')}}">Đang bán</a></li>
                         <li><a href="{{route('bill.deposit')}}">Đang đặt cọc</a></li>
-                        {{-- <li><a href="">Đang chứng nhận</a></li> --}}
-                        <li><a href="">Đã bán</a></li>
+                        <li><a href="{{route('real_estate.done')}}">Đã bán</a></li>
                     </ul>
                 </li>
                 {{-- bình luận --}}
@@ -168,11 +166,11 @@
                         <span>Thống Kê</span>
                     </a>
                     <ul class="sub">
-                    <li><a href="{{route('statistic.cart')}}">Khu vực bán chạy</a></li>
+                        <li><a href="{{route('statistic.cart')}}">Khu vực bán chạy</a></li>
                         <li><a href="">Giao dịch</a></li>
                         <li><a href="">Doanh Thu</a></li>
                         <li><a href="">Lợi nhuận</a></li>
-                        <li><a href="">Thành viên</a></li>
+                        <li><a href="{{route('statistic.customer')}}">Thành viên</a></li>
                         <li><a href="">Nhân viên</a></li>
                         <li><a href="{{route('statistic.real_estate.index')}}">Nhà đất</a></li>
                     </ul>
