@@ -92,6 +92,8 @@
 
   </div>
   <script>
+    //   var x ={{ $a}} ;
+    //   console.log(x);
 // cot x
       var e = document.getElementById('name');
       var tachthe =e.innerHTML;

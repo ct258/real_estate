@@ -391,6 +391,8 @@ Route::group(['middleware' => ['cookie']], function ()
                         ->name('statistic.transaction');
                         Route::get('/cart', 'Admin\StatisticController@getBanChay')
                         ->name('statistic.cart');
+                        Route::get('/customer','Admin\StatisticController@customer')
+                        ->name('statistic.customer');
 
                 });
                 //display
@@ -575,9 +577,15 @@ Route::group(['middleware' => ['cookie']], function ()
                         //nhà đất
                         Route::get('/real_estate', 'Admin\StatisticController@real_estate')
                             ->name('statistic.real_estate.index');
-                        // customer
-                        Route::get('/customer','Admin\StatisticController@customer')
-                            ->name('statistic.customer');
+                          // customer
+                          Route::get('/customer','Admin\StatisticController@customer')
+                          ->name('statistic.customer');
+                        Route::get('/profit','Admin\StatisticController@profit')
+                        ->name('statistic.profit');
+                        Route::get('/profitAjax','Admin\StatisticController@profitAjax')
+                        ->name('statistic.profitAjax');
+
+
                     });
                     //display
                     Route::group(['prefix' => 'display'], function ()
