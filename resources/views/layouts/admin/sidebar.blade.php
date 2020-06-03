@@ -48,6 +48,13 @@
                         <span>Lịch hẹn</span>
                     </a>
                 </li>
+                {{-- Tiền đặc cọc --}}
+                <li>
+                    <a href="{{ route('deposit.index') }}">
+                        <i class="fa fa-calendar"></i>
+                        <span>Cập nhật tiền cọc</span>
+                    </a>
+                </li>
                 {{-- bài viết --}}
                 <li class="sub-menu">
                     <a href="{{route('blog.index')}}">

@@ -134,7 +134,7 @@ class CustomerController extends Controller
         ->where([
                 ['translation_locale', \Session::get('lang', config('app.locale'))],
                 ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
-                // ['real_estate_status','Đang bán'],
+                ['real_estate_status','Đang bán'], //phụng mở đây
                 ['customer_id',$id]
             ])
         ->orderBy('created_at', 'desc')
