@@ -12,6 +12,7 @@ use App\Models\RealEstate;
 use App\Models\Unit;
 use App\Models\Convenience;
 use Carbon\Carbon;
+use DB;
 
 class PostController extends Controller
 {
@@ -165,7 +166,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-
+       
     }
 
     /**
@@ -229,5 +230,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+    }
+    public function sold($id)
+    {
+        // dd($id);
+        $data['real_estate_status']='Chờ xác nhận';
+         DB::table('real_estate')->where('real_estate_id',$id)->update($data);
+         return  redirect()->route('account.my_re');
+
     }
 }

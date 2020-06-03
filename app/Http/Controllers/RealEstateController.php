@@ -13,6 +13,7 @@ use App\Models\Direction;
 use App\Models\Bank;
 use App\Models\DetailDeposit;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 class RealEstateController extends Controller
@@ -339,10 +340,30 @@ class RealEstateController extends Controller
     public function done()
     {
         $real_estate=RealEstate::join('translation','real_estate.real_estate_id','translation.real_estate_id')
+        // ->join('appointment as a','a.real_estate_id','real_estate.real_estate_id')
         ->where('translation_locale','vi')
-        ->where('real_estate_status','Đã bán')
+        ->where('real_estate_status','Chờ xác nhận')
         ->paginate(10);
-            
+        
+       
         return view('pages.admin.real_estate.done',compact('real_estate'));
+    }
+    public function getdata(Request $request)
+    {
+        $id = $request->get('id');
+        $real_estate=DB::table('appointment')->where('real_estate_id',$id)->get();
+        // dd($real_estate);
+         return response()->json(['success'=>$real_estate, 200]);
+       
+        // return view('pages.admin.real_estate.done',compact('real_estate'));
+    }
+    public function change_status($id)
+    {
+        RealEstate::where('real_estate_id', $id)
+        ->update([
+            'real_estate_status' => 'Đã bán', 
+        ]);
+
+        return redirect()->route('real_estate.done')->with('success', 'Duyệt thành công BĐS đã bán');
     }
 }

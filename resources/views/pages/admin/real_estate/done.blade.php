@@ -27,6 +27,7 @@
     </div>
 </div>
 @endif
+{{-- {{dd($real_estate)}} --}}
 <h2 class="page-title">Bất động sản đã bán <br><br></h2>
 
 <div class="row">
@@ -46,6 +47,8 @@
                     </thead>
                     <tbody>
                         @foreach ($real_estate as $item)
+                        <form>
+                            @csrf
                         <tr>
                             <td>{{$item->real_estate_id}}</td>
                             <td>
@@ -61,24 +64,40 @@
                             <td style="text-align: right">{{number_format($item->real_estate_price)}}</td>
                             <td>{{$item->real_estate_acreage}}</td>
                             <td>
-                                <form action="{{ route('real_estate.destroy', $item->real_estate_id) }}" method="post"
-                                    class="delete_form">
-                                    @csrf
-                                    <a href="{{route('single_list',$item->real_estate_id)}}">&nbsp;&nbsp;
-                                        <i class="fa fa-info"></i></a>
-                                    <a href="{{route('real_estate.edit',$item->real_estate_id)}}">
-                                        <span class="glyphicon glyphicon-edit"></span></a>
-                                    &nbsp;
-                                    &nbsp;
-                                    &nbsp;
-                                    <button type="submit"
-                                        style="border: none;background-color: Transparent;color: red;">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-
-                                </form>
+                                <input type="hidden" value="{{$item->real_estate_id}}"  name="getID" id="getID">
+                                <div class="btn-group">
+                                    <a type="button" href="#" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" id="kiemtra">Kiểm tra</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title text-danger" id="exampleModalLabel">Kiểm tra lại thông tin lịch hẹn và xác nhận lại trạng thái</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                          <tr>
+                                                            <th>Thời gian</th>
+                                                            <th>Nội dung</th>
+                                                            <th>Trạng thái cuộc hẹn</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody id="table-content-appoitment">
+                                                        </tbody>
+                                                      </table>
+                                                     <a href="{{ route('real_estate.change_status',$item->real_estate_id) }}" class="btn btn-warning">Cập nhật đã bán BĐS</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
+                        </form>
                         @endforeach
                         <tr>
                             <td align="center" colspan="10">
@@ -117,5 +136,49 @@
 
 
 
-
+  
 @endsection
+
+@push('script')
+
+
+
+{{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#kiemtra').click(function (e) { 
+            // e.preventDefault();
+            
+            // console.log('đã vào');
+            var id = $("#getID").val();
+            var _token = $("input[name='_token']").val();
+            //  console.log(id);
+
+            // $.ajaxSetup({
+            //     headers:{
+            //         'X-CSRF-Token':'{{csrf_token()}}',
+            //     }
+            // });
+
+            $.ajax({
+                type: "get",
+                url: "{{ route('real_estate.getdata') }}",
+                data: {_token:_token, id:id},
+                dataType: "json",
+                success: function (response) {
+                $.each(response.success, function () { 
+                    //    console.log(this.appointment_time);
+                    if(this.appointment_status==1)
+                        var strr='<tr><td>'+this.appointment_time+'</td><td>'+this.appointment_content+'</td><td>Đã xử lý</td></tr>';
+                    else
+                    var strr='<tr><td>'+this.appointment_time+'</td><td>'+this.appointment_content+'</td><td>Đang xử lý</td></tr>';
+                    $('#table-content-appoitment').append(strr);
+                    });
+                }
+            });
+
+        });
+
+    });
+</script>
+@endpush

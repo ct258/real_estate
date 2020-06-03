@@ -192,6 +192,7 @@ Route::group(['middleware' => ['cookie']], function ()
 
                     Route::post('/sold/{id}', 'PostController@sold')
                         ->name('post.sold');
+                        // lll,
                     Route::get('/repay/{id}', ['uses' => 'PaymentController@repay', 'as' => 'repay']);
                     Route::post('/VNPay', ['uses' => 'RealEstateController@VNPay', 'as' => 'VNPay_again']);
                     Route::get('/return-vnpay', ['uses' => 'RealEstateController@return', 'as' => 'return_again']);
@@ -656,6 +657,13 @@ Route::group(['middleware' => ['cookie']], function ()
                     //bất động sản đã bán
                     Route::get('/done', 'RealEstateController@done')
                         ->name('real_estate.done');
+                    //get data
+                    Route::get('/getdata', 'RealEstateController@getdata')
+                        ->name('real_estate.getdata');
+                    //cập nhật lại trạng thái
+                    Route::get('/change_real_estate_status/{id}', 'RealEstateController@change_status')
+                        ->name('real_estate.change_status');
+
                     // sửa
                     Route::get('/edit/{real_estate_id}', 'RealEstateController@edit')
                         ->name('real_estate.edit');
