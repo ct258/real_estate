@@ -229,27 +229,7 @@ Route::group(['middleware' => ['cookie']], function ()
                 //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
 
 
-                //report
-                Route::group(['prefix' => 'report'], function ()
-                {
-                    //index
-                    Route::get('/index', 'Admin\ReportController@index')
-                        ->name('report.index');
-                    Route::get('/fix', 'Admin\ReportController@fix')
-                        ->name('report.fix.index');
-                    // thêm
-                    // Route::get('/create', 'Admin\ReportController@create')->name('report.create');
-                    // Route::post('/create', 'Admin\ReportController@store')->name('report.create.submit');
-                    // xem chi tiết
-                    // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
-                    // sửa
-                    // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
-                    Route::post('/edit/submit/{id}', 'Admin\ReportController@update')
-                        ->name('report.update');
-                    // xóa mềm
-                    // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
-
-                });
+                
                 //customer
                 Route::group(['prefix' => 'customer'], function ()
                 {
@@ -377,6 +357,7 @@ Route::group(['middleware' => ['cookie']], function ()
                         ->name('staff.find');
 
                 });
+                
                 //statistic
                 Route::group(['prefix' => 'statistic'], function ()
                 {
@@ -624,6 +605,27 @@ Route::group(['middleware' => ['cookie']], function ()
             //staff
             Route::group(['middleware' => ['checkStaff']], function ()
             {
+                //report
+                Route::group(['prefix' => 'report'], function ()
+                {
+                    //index
+                    Route::get('/index', 'Admin\ReportController@index')
+                        ->name('report.index');
+                    Route::get('/fix', 'Admin\ReportController@fix')
+                        ->name('report.fix.index');
+                    // thêm
+                    // Route::get('/create', 'Admin\ReportController@create')->name('report.create');
+                    // Route::post('/create', 'Admin\ReportController@store')->name('report.create.submit');
+                    // xem chi tiết
+                    // Route::get('/show/{report_id}', 'Admin\ReportController@show')->name('report.show');
+                    // sửa
+                    // Route::get('/edit/{report_id}', 'Admin\ReportController@edit')->name('report.edit');
+                    Route::post('/edit/submit/{id}', 'Admin\ReportController@update')
+                        ->name('report.update');
+                    // xóa mềm
+                    // Route::post('/destroy/{report_id}', 'Admin\ReportController@destroy')->name('report.destroy');
+
+                });
                 //Bất động sản
                 Route::group(['prefix' => 'real_estate'], function ()
                 {

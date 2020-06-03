@@ -639,7 +639,7 @@
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoibmdoaWEyMzExIiwiYSI6ImNrN3B0aGpnNjBuaGYzbW1pcnphOHY0ZW4ifQ.DJKI6Ck_xfaja3RDUPmCfQ'
+        accessToken: 'pk.eyJ1IjoibWluaG5naGlhIiwiYSI6ImNrYXozYTZyYjA0ZmkyeXVlanVyenFwc2cifQ.yvDNyrd0HVnt7i97BFw5Ig'
     }).addTo(map);
     map.locate({setView: true, maxZoom: 16});
 
@@ -654,7 +654,7 @@
         // shadowSize: [30, 30],
         // shadowAnchor: [22, 94]
     });
-    L.marker([10.0310059,105.7513944], {icon: myIcon}).addTo(mymap);
+    L.marker([10.0310059,105.7513944], {icon: myIcon}).addTo(map);
 
     //vòng tròn
     var circle = L.circle([10.0310059,105.7513944], {
@@ -670,11 +670,10 @@
         .openOn(map);
 
     //text
-    marker.bindPopup("<b>Batdongsancantho</b>").openPopup();
-
+    // marker.bindPopup("<b>Batdongsancantho</b>").openPopup();
+// alert(121232131);
 
 //gps
-
 
     function onLocationFound(e) {
         var radius = e.accuracy;
