@@ -196,6 +196,39 @@ class StatisticController extends Controller
     return view('pages.admin.statistic.customer',compact('a','b','c','d'));
     }
 
+    public function profit(){
+        $ngayhientai = \Carbon\Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+        // dd($ngayhientai);
+
+        return view('pages.admin.statistic.profit',compact('ngayhientai'));
+
+    }
+
+     public function profitAjax(Request $request){
+        $data= [];
+        // $parameter = [
+        //     'tuNgay' => $request->tuNgay,
+        //     'denNgay' => $request->denNgay
+        // ];
+
+        $res = DB::table('real_estate')
+                ->select('real_estate_price as tien' , 'updated_at as ngayban')
+                ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
+                // ->whereBetween('ngayban',[$parameter])
+                ->get();
+                // dd($res);
+                foreach($res as $a){
+                    // var_dump($a->tien);die;
+                    $a->tien= (int)$a->tien*0.02;
+                }
+
+                // if($res){
+                    return json_encode($res);
+                // }
+
+
+    }
+
     public function create()
     {
         //
