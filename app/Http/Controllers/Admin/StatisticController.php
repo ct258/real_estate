@@ -203,27 +203,86 @@ class StatisticController extends Controller
         return view('pages.admin.statistic.profit',compact('ngayhientai'));
 
     }
+    public function profitAjax(Request $request){
+        $from =$request->tuNgay;
+        $to =$request->denNgay;
 
-     public function profitAjax(Request $request){
-        $data= [];
+    $res = DB::table('real_estate')
+            ->select('real_estate_price as tien' , 'updated_at as ngayban')
+            ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
+            ->whereBetween('updated_at',[$from." 00:00:00",$to." 00:00:00"])
+            ->get();
+    //         // dd($res);
+            // foreach($res as $a){
+            //     // var_dump($a->tien);die;
+            //     $a->tien= intval($a->tien)*0.02;
+            // }
+
+            // if($res){
+                return json_encode($res);
+            // }
+
+
+}
+
+    //  public function profitAjax(Request $request){
+    //     $data= [];
+    //     // $parameter = [
+    //     //     'tuNgay' => $request->tuNgay,
+    //     //     'denNgay' => $request->denNgay
+    //     // ];
+
+    //     $res = DB::table('real_estate')
+    //             ->select('real_estate_price as tien' , 'updated_at as ngayban')
+    //             ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
+    //             // ->whereBetween('ngayban',[$parameter])
+    //             ->get();
+    //             // dd($res);
+    //             foreach($res as $a){
+    //                 // var_dump($a->tien);die;
+    //                 $a->tien= (int)$a->tien*0.02;
+    //             }
+
+    //             // if($res){
+    //                 return json_encode($res);
+    //             // }
+
+
+    // }
+
+    public function transaction(){
+        $ngayhientai = \Carbon\Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+        // dd($ngayhientai);
+
+
+        return view('pages.admin.statistic.transaction',compact('ngayhientai'));
+
+    }
+
+     public function transactionAjax(Request $request){
+        // $data= [];
+        $from =$request->tuNgay;
+        $to =$request->denNgay;
         // $parameter = [
         //     'tuNgay' => $request->tuNgay,
         //     'denNgay' => $request->denNgay
         // ];
-
         $res = DB::table('real_estate')
-                ->select('real_estate_price as tien' , 'updated_at as ngayban')
-                ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
-                // ->whereBetween('ngayban',[$parameter])
-                ->get();
+        // ->select('created_at')
+        ->select(DB::raw('count(*) as sl,created_at as ngayban'))
+        // ->select('real_estate_price as tien' , 'updated_at as ngayban')
+        ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
+        ->whereBetween('updated_at',[$from." 00:00:00",$to." 00:00:00"])
+        // ->whereBetween('ngayban',[$parameter])
+        ->groupBy('ngayban')
+        ->get();
+        // dd($res);
                 // dd($res);
-                foreach($res as $a){
-                    // var_dump($a->tien);die;
-                    $a->tien= (int)$a->tien*0.02;
-                }
+                // alert($res);
 
+                return json_encode($res);
                 // if($res){
-                    return json_encode($res);
+                    // return json_encode($res);
                 // }
 
 

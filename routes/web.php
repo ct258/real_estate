@@ -230,7 +230,7 @@ Route::group(['middleware' => ['cookie']], function ()
                 //     Route::post('/destroy/{promotion_id}', 'Admin\PromotionController@destroy')->name('promotion.destroy');
 
 
-                
+
                 //customer
                 Route::group(['prefix' => 'customer'], function ()
                 {
@@ -358,7 +358,7 @@ Route::group(['middleware' => ['cookie']], function ()
                         ->name('staff.find');
 
                 });
-                
+
                 //statistic
                 Route::group(['prefix' => 'statistic'], function ()
                 {
@@ -567,7 +567,7 @@ Route::group(['middleware' => ['cookie']], function ()
 
                     });
 
-                    
+
                     //statistic
                     Route::group(['prefix' => 'statistic'], function ()
                     {
@@ -584,6 +584,11 @@ Route::group(['middleware' => ['cookie']], function ()
                         ->name('statistic.profit');
                         Route::get('/profitAjax','Admin\StatisticController@profitAjax')
                         ->name('statistic.profitAjax');
+
+                        Route::get('/transaction','Admin\StatisticController@transaction')
+                        ->name('statistic.transaction');
+                        Route::get('/transactionAjax','Admin\StatisticController@transactionAjax')
+                        ->name('statistic.transactionAjax');
 
 
                     });
