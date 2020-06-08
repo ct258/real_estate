@@ -199,43 +199,94 @@ class StatisticController extends Controller
     public function profit(){
         $ngayhientai = \Carbon\Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         // dd($ngayhientai);
-        $res = DB::table('real_estate')
-        ->select('real_estate_price as tien' , 'updated_at')
-        ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
-        // ->whereBetween('updated_at',[$from." 00:00:00",$to." 00:00:00"])
-        ->get();
-       ;
-        foreach($res as $a){
-            // var_dump($a->tien);die;
-            $a->tien= intval($a->tien)*0.02;
-            $a->tien=  number_format($a->tien, 0, ',', ' ');
-        }
-//  dd($res);
+
         return view('pages.admin.statistic.profit',compact('ngayhientai'));
 
     }
-
     public function profitAjax(Request $request){
         $from =$request->tuNgay;
         $to =$request->denNgay;
 
-      $res = DB::table('real_estate')
-            ->select('real_estate_price as tien' , 'updated_at')
+    $res = DB::table('real_estate')
+            ->select('real_estate_price as tien' , 'updated_at as ngayban')
             ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
             ->whereBetween('updated_at',[$from." 00:00:00",$to." 00:00:00"])
             ->get();
-            // dd($res);
-            foreach($res as $a){
-                // var_dump($a->tien);die;
-                $a->tien= intval($a->tien)*0.02;
-                number_format($a->tien, 0, ',', ' ');
-            }
+    //         // dd($res);
+            // foreach($res as $a){
+            //     // var_dump($a->tien);die;
+            //     $a->tien= intval($a->tien)*0.02;
+            // }
 
             // if($res){
                 return json_encode($res);
             // }
-            }
 
+
+}
+
+    //  public function profitAjax(Request $request){
+    //     $data= [];
+    //     // $parameter = [
+    //     //     'tuNgay' => $request->tuNgay,
+    //     //     'denNgay' => $request->denNgay
+    //     // ];
+
+    //     $res = DB::table('real_estate')
+    //             ->select('real_estate_price as tien' , 'updated_at as ngayban')
+    //             ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
+    //             // ->whereBetween('ngayban',[$parameter])
+    //             ->get();
+    //             // dd($res);
+    //             foreach($res as $a){
+    //                 // var_dump($a->tien);die;
+    //                 $a->tien= (int)$a->tien*0.02;
+    //             }
+
+    //             // if($res){
+    //                 return json_encode($res);
+    //             // }
+
+
+    // }
+
+    public function transaction(){
+        $ngayhientai = \Carbon\Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+        // dd($ngayhientai);
+
+
+        return view('pages.admin.statistic.transaction',compact('ngayhientai'));
+
+    }
+
+     public function transactionAjax(Request $request){
+        // $data= [];
+        $from =$request->tuNgay;
+        $to =$request->denNgay;
+        // $parameter = [
+        //     'tuNgay' => $request->tuNgay,
+        //     'denNgay' => $request->denNgay
+        // ];
+        $res = DB::table('real_estate')
+        // ->select('created_at')
+        ->select(DB::raw('count(*) as sl,created_at as ngayban'))
+        // ->select('real_estate_price as tien' , 'updated_at as ngayban')
+        ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
+        ->whereBetween('updated_at',[$from." 00:00:00",$to." 00:00:00"])
+        // ->whereBetween('ngayban',[$parameter])
+        ->groupBy('ngayban')
+        ->get();
+        // dd($res);
+                // dd($res);
+                // alert($res);
+
+                return json_encode($res);
+                // if($res){
+                    // return json_encode($res);
+                // }
+
+
+    }
 
     public function create()
     {
