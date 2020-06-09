@@ -58,7 +58,9 @@
                             <p>Diện tích: {{$item->real_estate_acreage}} m<sup>2</sup></p>
                         </div>
                         <div class="delect">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            <a href="{{route('cart.remove',$item->real_estate_id)}}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

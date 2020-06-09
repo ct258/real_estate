@@ -78,6 +78,7 @@ Route::group(['middleware' => ['cookie']], function ()
                 {
                     Route::get('/', ['uses' => 'CartController@cart', 'as' => 'cart']);
                     Route::get('/{real_estate_id}', ['uses' => 'CartController@add_to_cart', 'as' => 'cart.add']);
+                    Route::get('/remove/{real_estate_id}', ['uses' => 'CartController@remove', 'as' => 'cart.remove']);
                 });
             });
 
