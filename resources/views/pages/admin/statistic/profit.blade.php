@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="  https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" ></script>
@@ -37,9 +37,6 @@
       border: 2px solid #b0b0b0;
       background-color: #8b5c4b;
       color: white;
-    }
-    #a{
-        width: 100%;
     }
     .row.w3-res-tb {
 
@@ -91,7 +88,7 @@
        {{-- @foreach ($realWeeks as $key => $value) --}}
 
         <div class="col-md-6 chart_agile_left">
- <canvas id="a" width="10" height="10"></canvas>
+ <canvas id="a" width="100" height="100"></canvas>
  <div class="panel-heading" style="	text-transform: capitalize;">
     Bảng thống kê lợi nhuận
 
@@ -116,10 +113,8 @@
   </div>
   @endsection
 @push('script')
-
-
 <script>
-    numeral.register('locale', 'vi', {
+  numeral.register('locale', 'vi', {
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -139,6 +134,7 @@
     });
     // Sử dụng locate vi (Việt nam)
     numeral.locale('vi');
+
     $(document).ready(function() {
         var objChart;
         var $a = document.getElementById("a").getContext("2d");
@@ -164,7 +160,7 @@
                     var myLabels = [];
                     var myData = [];
                     $(res).each(function() {
-                        myLabels.push((this.updated_at));
+                        myLabels.push((this.ngayban));
                         myData.push(this.tien);
                     });
                     myData.push(0); // creates a '0' index on the graph
@@ -178,7 +174,7 @@
                             labels: myLabels,
                             datasets: [{
                                 data: myData,
-                                borderColor: "blue",
+                                borderColor: "red",
                                 backgroundColor: "#9ad0f5",
                                 borderWidth: 1
                             }]
@@ -190,13 +186,13 @@
                             },
                             title: {
                                 display: true,
-                                text: "Thống kê lợi nhuận sau mỗi giao dịch"
+                                text: "Báo cáo lợi nhuận"
                             },
                             scales: {
                                 xAxes: [{
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Ngày giao dịch thành công'
+                                        labelString: 'Ngày lợi nhuận'
                                     }
                                 }],
                                 yAxes: [{
@@ -207,7 +203,7 @@
                                     },
                                     scaleLabel: {
                                         display: true,
-                                        labelString: 'Tổng lợi nhuận mỗi giao dịch'
+                                        labelString: 'Tổng lợi nhuận'
                                     }
                                 }]
                             },
@@ -220,7 +216,7 @@
                             },
                             responsive: true,
                             maintainAspectRatio: true,
-                        }
+                    }
                     });
                 }
             });
@@ -231,3 +227,6 @@
 
 
 @endpush
+
+
+
