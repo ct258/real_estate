@@ -192,4 +192,16 @@ class CartController extends Controller
 
         return redirect('single_list/'.$real_estate_id)->with('success', 'Đã thêm thành công sản phẩm');
     }
+    public function remove($id)
+    {
+        $customer_id = Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        DetailCart::join('cart','cart.cart_id','detail_cart.cart_id')
+        ->join('customer as c','c.customer_id','cart.customer_id')
+        ->where('c.customer_id',$customer_id)
+        ->where('cart_status',null)
+        ->where('detail_cart.real_estate_id',$id)
+        ->delete();
+        return \redirect()->route('cart');
+
+    }
 }

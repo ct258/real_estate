@@ -10,7 +10,7 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 {{-- nhân viên --}}
-                {{-- @if( \Auth::guard('account')->user()->hasRole('Staff')) --}}
+                @if( \Auth::guard('account')->user()->hasRole('Staff'))
                 {{-- Bất động sản --}}
                 <li>
 
@@ -35,12 +35,12 @@
                     </ul>
                 </li>
                 {{-- bình luận --}}
-                <li>
+                {{-- <li>
                     <a href="">
                         <i class="fa fa-comment"></i>
                         <span>Bình luận</span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- cuộc hẹn --}}
                 <li>
                     <a href="{{ route('appointment.admin.index') }}">
@@ -117,10 +117,10 @@
                     <li><a href="">Bài viết</a></li>
                 </ul>
             </li>
-            {{-- @endif --}}
+            @endif
 
             {{-- admin --}}
-            {{-- @if( \Auth::guard('account')->user()->hasRole('Admin')) --}}
+            @if( \Auth::guard('account')->user()->hasRole('Admin'))
             {{-- khuyến mãi --}}
             {{-- <li>
                     <a href="#">
@@ -170,9 +170,9 @@
                 </a>
                 <ul class="sub">
                     <li><a href="{{route('statistic.cart')}}">Khu vực bán chạy</a></li>
-                <li><a href="{{route('statistic.transaction')}}">Giao dịch</a></li>
-                  {{--   <li><a href="">Doanh Thu</a></li> --}}
-                <li><a href="{{route('statistic.profit')}}">Lợi nhuận</a></li>
+                    <li><a href="{{route('statistic.transaction')}}">Giao dịch</a></li>
+                    {{--   <li><a href="">Doanh Thu</a></li> --}}
+                    <li><a href="{{route('statistic.profit')}}">Lợi nhuận</a></li>
                     <li><a href="{{route('statistic.customer')}}">Thành viên</a></li>
                     {{-- <li><a href="">Nhân viên</a></li>--}}
                     <li><a href="{{route('statistic.real_estate.index')}}">Nhà đất</a></li>
@@ -226,7 +226,7 @@
                         <li><a href="">Nhân viên</a></li>
                     </ul>
                 </li> --}}
-            {{-- @endif --}}
+            @endif
             </ul>
         </div>
         <!-- sidebar menu end-->

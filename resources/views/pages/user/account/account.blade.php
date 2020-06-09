@@ -94,9 +94,10 @@
                                 <span>@lang('Bill')</span>
                             </a>
                         </li>
-                        <li class="list-group-item " @if(!$check_re) disabled @endif>
+                        <li class="list-group-item ">
 
-                            <a href="{{route('account.my_re')}}">
+                            <a href="{{route('account.my_re')}}" @if(!$check_re)
+                                style="pointer-events: none;cursor: default;" @endif>
                                 <span>@lang('My real estate')</span>
                             </a>
                         </li>
@@ -125,7 +126,7 @@
                 <div class="card content-card">
                     <div class="card-header contnet-header">
                         <p>@lang('infor')</p>
-                        <p>@lang('Delete')</p><i class="fa fa-trash" aria-hidden="true"></i>
+                        {{-- <p>@lang('Delete')</p><i class="fa fa-trash" aria-hidden="true"></i> --}}
                     </div>
                     <form action="#">
                         <div class="row">

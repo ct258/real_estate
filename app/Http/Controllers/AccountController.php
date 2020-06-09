@@ -131,13 +131,13 @@ class AccountController extends Controller
     public function phone(Request $request)
     {
         $string=rand(1000,9999);
-        // $nexmo = app('Nexmo\Client');
+        $nexmo = app('Nexmo\Client');
 
-        // $nexmo->message()->send([
-        //     'to'   => '+84 522 970 498',
-        //     'from' => '+84 522 970 498',
-        //     'text' => 'BatdongsanCanTho: '.$string.', co hieu luc 5 phut',
-        // ]);
+        $nexmo->message()->send([
+            'to'   => '+84 522 970 498',
+            'from' => '+84 522 970 498',
+            'text' => 'BatdongsanCanTho: '.$string.', co hieu luc 5 phut',
+        ]);
         $request->merge(['text' => ($string)]);
         // $request->merge(['text' => (\Hash::make($string))]);
         return view('auth.verty',compact('request'));
