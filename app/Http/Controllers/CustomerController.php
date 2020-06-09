@@ -32,6 +32,7 @@ class CustomerController extends Controller
             }else{
                 $check_re=false;
             }
+            // dd($check_re);
             return view('pages.user.account.account',compact('info','check_re'));
         
     }
@@ -230,7 +231,7 @@ class CustomerController extends Controller
         ->join('unit','unit.unit_id','real_estate.unit_id')
         ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
 
-        // ->groupBy('wishlist.wishlist_id')
+        ->groupBy('dc.real_estate_id')
         ->select('real_estate.real_estate_id',
         'real_estate_avatar',
         'translation_name',
