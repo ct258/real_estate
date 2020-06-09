@@ -214,26 +214,26 @@ class StatisticController extends Controller
         return view('pages.admin.statistic.profit',compact('ngayhientai'));
 
     }
-
     public function profitAjax(Request $request){
         $from =$request->tuNgay;
         $to =$request->denNgay;
 
     $res = DB::table('real_estate')
-            ->select('real_estate_price as tien' , 'updated_at')
+            ->select('real_estate_price as tien' , 'updated_at as ngayban')
             ->whereIn('real_estate_status',['Chờ duyệt','Đã bán','Đã xác nhận'])
             ->whereBetween('updated_at',[$from." 00:00:00",$to." 00:00:00"])
             ->get();
-            // dd($res);
-            foreach($res as $a){
-                // var_dump($a->tien);die;
-                $a->tien= intval($a->tien)*0.02;
-                number_format($a->tien, 0, ',', ' ');
-            }
+    //         // dd($res);
+            // foreach($res as $a){
+            //     // var_dump($a->tien);die;
+            //     $a->tien= intval($a->tien)*0.02;
+            // }
 
             // if($res){
                 return json_encode($res);
             // }
+
+
 
 
 }
