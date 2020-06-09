@@ -384,6 +384,7 @@
                                     <td>
                                         <label>Giá đặt cọc</label>
                                         <input type="number" name="deposit" min="0" step="any"
+                                            onKeyUp="if(this.value>1000000000){this.value='1000000000';}else if(this.value<0){this.value='0';}"
                                             class="form-control input-transparent"><br>
                                     </td>
                                 </tr>
