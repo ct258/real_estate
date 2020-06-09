@@ -90,26 +90,26 @@
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="">
-                                <span>@lang('Rating comment')</span>
+                            <a href="{{route('account.order')}}">
+                                <span>@lang('Bill')</span>
                             </a>
                         </li>
-                        <li class="list-group-item "@if(!$check_re) disabled @endif>
-                           
+                        <li class="list-group-item " @if(!$check_re) disabled @endif>
+
                             <a href="{{route('account.my_re')}}">
                                 <span>@lang('My real estate')</span>
                             </a>
                         </li>
                         <li class="list-group-item ">
                             <a href="{{ route('appointment.detail',['id'=>$info->customer_id]) }}">
-                                <span>@lang('Appointment')</span> 
+                                <span>@lang('Appointment')</span>
                         <li class="list-group-item">
                             <a href="{{route('account.my_wish')}}">
                                 <span>@lang('Wish list')</span>
                             </a>
                         </li>
-                        
-                            </a>
+
+                        </a>
                         </li>
                         <li class="list-group-item">
                             <a href="{{route('logout') }}"><span>@lang('Logout')</span> </a>

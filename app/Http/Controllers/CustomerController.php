@@ -8,6 +8,7 @@ use App\Models\RealEstate;
 use App\Models\Currency;
 use App\Models\Customer;
 use App\Models\Wishlist;
+use App\Models\Cart;
 use Carbon\Carbon;
 
 class CustomerController extends Controller
@@ -210,5 +211,63 @@ class CustomerController extends Controller
     {
         WishList::where([['real_estate_id',$real_estate_id],['customer_id',\Auth::guard('account')->user()->load('customer')->customer->customer_id]])->delete();
         return $this->my_wish($request);
+    }
+    public function order(Request $request)
+    {
+        $id=\Auth::guard('account')->user()->load('customer')->customer->customer_id;
+        Carbon::setlocale(\Session::get('lang', config('app.locale')));
+        $now = Carbon::now();
+        $rate = Currency::select('currency_rate', 'currency_symbol')->where('currency_name', \Session::get('currency'))->first();
+        
+        $product = Cart::
+        join('customer','cart.customer_id','customer.customer_id')
+        ->join('detail_cart as dc','dc.cart_id','cart.cart_id')
+        ->join('real_estate','real_estate.real_estate_id','dc.real_estate_id')
+        ->join('translation', 'real_estate.real_estate_id', 'translation.real_estate_id')
+        ->join('ward', 'ward.district_id', 'real_estate.district_id')
+        ->join('district', 'ward.district_id', 'district.district_id')
+        ->join('province', 'district.province_id', 'province.province_id')
+        ->join('unit','unit.unit_id','real_estate.unit_id')
+        ->join('unit_translation','unit.unit_id','unit_translation.unit_id')
+
+        // ->groupBy('wishlist.wishlist_id')
+        ->select('real_estate.real_estate_id',
+        'real_estate_avatar',
+        'translation_name',
+        'translation_address',
+        'translation_description',
+        'real_estate_price',
+        'real_estate_acreage',
+        'real_estate.created_at',
+        'province.province_name',
+        'district.district_name',
+        'unit.*',
+        'unit_translation.*')
+        ->where([
+                ['translation_locale', \Session::get('lang', config('app.locale'))],
+                ['unit_translation_locale', \Session::get('lang', config('app.locale'))],
+                ['real_estate_status','<>','Đang bán'],
+                ['customer.customer_id',$id]
+            ])
+        // ->where('')
+            // ->orderBy('wishlist_id', 'desc')
+        ->get();
+        $day_product=null;
+        $price_product=null;
+        if($product->isNotEmpty()){
+            foreach ($product as $key => $value) {
+                
+                $day_product[$value['real_estate_id']] = Carbon::parse($value->created_at)->diffForHumans(($now));
+                $price_product[$value['real_estate_id']] = $value->real_estate_price * $rate->currency_rate/$value->unit_value;
+                // var_dump($day_product[$value['real_estate_id']]);die;
+            }
+        }
+        
+        return view('pages.user.account.order',
+        \compact(
+        'rate',
+        'product',
+        'day_product',
+        'price_product'));
     }
 }

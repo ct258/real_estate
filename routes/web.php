@@ -174,6 +174,8 @@ Route::group(['middleware' => ['cookie']], function ()
                         ->name('account.checkpass');
                     Route::get('/re', 'CustomerController@my_re')
                         ->name('account.my_re');
+                    Route::get('/order', 'CustomerController@order')
+                        ->name('account.order');
                     Route::get('/wishlist', 'CustomerController@my_wish')
                         ->name('account.my_wish');
                     Route::get('/remove_wishlist/{real_estate_id}', 'CustomerController@remove_wish')
