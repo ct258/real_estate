@@ -877,6 +877,6 @@ Route::group(['prefix' => ''], function ()
     Route::get('/acreage/{form_id}', 'DOMController@get_acreage')
         ->name('acreage');
 });
-
+Route::view('404', 'errors.404');
 
 Route::view('123', 'pages.admin.statistic.transaction');

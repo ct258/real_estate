@@ -32,6 +32,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        return redirect('/404');
         parent::report($exception);
     }
 
