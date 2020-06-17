@@ -236,7 +236,7 @@
                             <div class="form-label-group">
 
                                 {{-- mẫu --}}
-                                {{-- {{$request->text}} --}}
+                                {{$request->text}}
                                 <input type="hidden" name="code" value="{{$request->text}}">
                                 {{-- mẫu --}}
                                 <input type="hidden" name="username" value="{{$request->username}}">
